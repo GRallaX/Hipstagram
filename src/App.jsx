@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   getCurrentUser,
   logInUser,
@@ -7,12 +8,17 @@ import {
   updatePassword,
   userRegistration,
 } from "./store/currentUser/actions";
+import { getFeed } from "./store/posts/actions";
+import { getComments } from "./store/comments/actions";
+
+// import { getUsers } from "./store/users/actions";
 
 const App = () => {
   const dispatch = useDispatch();
   const { token, email, firstName, lastName, login, avatar, id } = useSelector(
     (state) => state.currentUser
   );
+  const { feed } = useSelector((state) => state.posts);
 
   return (
     <div className="App">
@@ -71,6 +77,26 @@ const App = () => {
           }
         >
           Update password
+        </button>
+      </div>
+      <div>
+        <button onClick={() => dispatch(getFeed(token))}>Get feed</button>
+        <button
+          onClick={() => {
+            const fetch = async () => {
+              const promises = [];
+              feed.map((post) =>
+                promises.push(dispatch(getComments(token, post._id)))
+              );
+              const fetchingComments = await Promise.all(promises);
+              return fetchingComments;
+            };
+            fetch()
+              .then()
+              .catch((e) => console.log(e.message));
+          }}
+        >
+          Get feed comments
         </button>
       </div>
     </div>
