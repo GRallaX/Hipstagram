@@ -1,17 +1,9 @@
-import axios from "axios";
-
 import { actionCreators } from "./actionCreators";
 
-const baseUrl = "https://hipstagram-api.herokuapp.com";
-
-export const getUsers = (token, userId) => {
+export const getUserById = (userId) => {
   return async (dispatch) => {
     try {
-      const { data: user } = await axios.get(baseUrl + "/users/" + userId, {
-        headers: {
-          Authorization: token,
-        },
-      });
+      const { data: user } = await fetchUserById(userId);
       dispatch(actionCreators.addUserById(userId, user));
     } catch (e) {
       console.log(e.response.data);

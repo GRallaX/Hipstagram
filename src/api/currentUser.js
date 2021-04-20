@@ -3,7 +3,7 @@ import { store } from "../store";
 
 const { token } = store.getState().currentUser;
 
-export const registartion = (login, email, password) => {
+export const fetchRegistration = (login, email, password) => {
   return api.post("/auth/registration", {
     login: login,
     email: email,
@@ -11,22 +11,22 @@ export const registartion = (login, email, password) => {
   });
 };
 
-export const logIn = (login, password) => {
+export const fetchLogIn = (login, password) => {
   return api.post("/auth/login", {
     login: login,
     password: password,
   });
 };
 
-export const fetchCurrentUser = () => {
+export const fetchCurrentUser = (deafaultToken = token) => {
   return api.get("/users/current", {
     headers: {
-      Authorization: token,
+      Authorization: deafaultToken,
     },
   });
 };
 
-export const updateUser = (firstName, lastName, email, login, avatar) => {
+export const fetchUpdateUser = (firstName, lastName, email, login, avatar) => {
   return api.patch(
     "/users/current",
     {
@@ -44,7 +44,7 @@ export const updateUser = (firstName, lastName, email, login, avatar) => {
   );
 };
 
-export const updatePassword = (password, confirmPassword) => {
+export const fetchUpdatePassword = (password, confirmPassword) => {
   return api.post(
     "/auth/login",
     {

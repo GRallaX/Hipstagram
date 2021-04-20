@@ -1,8 +1,9 @@
 import { actionTypes } from "./actionTypes";
 
 const defaultState = {
-  isLoggedIn: false,
-  token: !localStorage.token ? "" : JSON.parse(localStorage.token),
+  userLoaded: false,
+  isLoggedIn: !localStorage.token ? false : true,
+  token: !localStorage.token ? null : JSON.parse(localStorage.token),
   firstName: "",
   lastName: "",
   email: "",
@@ -17,6 +18,7 @@ const defaultState = {
 export default function currentUserReducer(state = defaultState, action) {
   switch (action.type) {
     case actionTypes.REGISTRATION:
+      localStorage.token = JSON.stringify(action.payload.token);
       return {
         ...state,
         id: action.payload.id,
@@ -25,16 +27,27 @@ export default function currentUserReducer(state = defaultState, action) {
       };
 
     case actionTypes.LOG_IN:
+      localStorage.token = JSON.stringify(action.payload.token);
       return {
         ...state,
         token: action.payload.token,
         isLoggedIn: true,
       };
 
+    case actionTypes.GET_CURRENT_USER:
+      return {
+        ...state,
+        ...action.payload,
+        isLoggedIn: true,
+        userLoaded: true,
+      };
+
     case actionTypes.LOG_OUT:
+      delete localStorage.token;
       return {
         ...state,
         token: "",
+        userLoaded: false,
         isLoggedIn: false,
         firstName: "",
         lastName: "",
@@ -45,12 +58,6 @@ export default function currentUserReducer(state = defaultState, action) {
         posts: [],
         followers: [],
         following: [],
-      };
-    case actionTypes.GET_CURRENT_USER:
-      return {
-        ...state,
-        ...action.payload,
-        isLoggedIn: true,
       };
 
     case actionTypes.UPDATE_CURRENT_USER:

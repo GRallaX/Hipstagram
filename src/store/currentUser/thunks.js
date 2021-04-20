@@ -1,10 +1,10 @@
 import { actionCreators } from "./actionCreators";
 import {
   fetchCurrentUser,
-  registartion,
-  logIn,
-  updateUser,
-  updatePassword,
+  fetchRegistration,
+  fetchLogIn,
+  fetchUpdateUser,
+  fetchUpdatePassword,
 } from "../../api/currentUser";
 
 export const userRegistration = (login, email, password) => {
@@ -12,12 +12,11 @@ export const userRegistration = (login, email, password) => {
     try {
       const {
         data: { id },
-      } = await registartion(login, email, password);
+      } = await fetchRegistration(login, email, password);
       const {
         data: { access_token: token },
-      } = await logIn(login, password);
+      } = await fetchLogIn(login, password);
       dispatch(actionCreators.setRegistration(id, token));
-      localStorage.token = JSON.stringify(token);
     } catch (e) {
       console.log(e.response.data);
     }
@@ -29,9 +28,8 @@ export const logInUser = (login, password) => {
     try {
       const {
         data: { access_token: token },
-      } = await logIn(login, password);
+      } = await fetchLogIn(login, password);
       dispatch(actionCreators.setLogIn(token));
-      localStorage.token = JSON.stringify(token);
     } catch (e) {
       console.log(e.response.data);
     }
@@ -41,14 +39,13 @@ export const logInUser = (login, password) => {
 export const logOutUser = () => {
   return (dispatch) => {
     dispatch(actionCreators.setLogOut());
-    delete localStorage.token;
   };
 };
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (token) => {
   return async (dispatch) => {
     try {
-      const { data: currentUser } = await fetchCurrentUser();
+      const { data: currentUser } = await fetchCurrentUser(token);
       dispatch(actionCreators.setCurrentUser(currentUser));
     } catch (e) {
       console.log(e.response.data);
@@ -65,7 +62,7 @@ export const updateCurrentUser = (
 ) => {
   return async (dispatch) => {
     try {
-      const { data: updatedUser } = await updateUser(
+      const { data: updatedUser } = await fetchUpdateUser(
         firstName,
         lastName,
         email,
@@ -88,8 +85,8 @@ export const updateUsersPassword = (
 ) => {
   return async (dispatch) => {
     try {
-      await logIn(login, password);
-      await updatePassword(newPassword, confirmNewPassword);
+      await fetchLogIn(login, password);
+      await fetchUpdatePassword(newPassword, confirmNewPassword);
       dispatch(actionCreators.setPassword());
     } catch (e) {
       console.log(e.response.data);
