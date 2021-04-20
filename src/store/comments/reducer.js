@@ -1,18 +1,13 @@
 import { actionTypes } from "./actionTypes";
 
-const defaultState = {
-  all: [],
-};
+const defaultState = {};
 
 export default function commentsReducer(state = defaultState, action) {
   switch (action.type) {
-    case actionTypes.GET_COMMENT_BY_POST_ID:
+    case actionTypes.GET_COMMENTS_BY_POST_ID:
       return {
         ...state,
-        all: [
-          ...state.all.filter((comment) => comment.id !== action.payload.id),
-          action.payload,
-        ],
+        [action.payload[0]]: action.payload[1],
       };
 
     default:

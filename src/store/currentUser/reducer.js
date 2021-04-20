@@ -1,8 +1,7 @@
 import { actionTypes } from "./actionTypes";
 
 const defaultState = {
-  isLoading: true,
-  isAuth: false,
+  isLoggedIn: false,
   token: !localStorage.token ? "" : JSON.parse(localStorage.token),
   firstName: "",
   lastName: "",
@@ -22,21 +21,21 @@ export default function currentUserReducer(state = defaultState, action) {
         ...state,
         id: action.payload.id,
         token: action.payload.token,
-        isAuth: true,
+        isLoggedIn: true,
       };
 
     case actionTypes.LOG_IN:
       return {
         ...state,
         token: action.payload.token,
-        isAuth: true,
+        isLoggedIn: true,
       };
 
     case actionTypes.LOG_OUT:
       return {
         ...state,
         token: "",
-        isAuth: false,
+        isLoggedIn: false,
         firstName: "",
         lastName: "",
         email: "",
@@ -51,7 +50,7 @@ export default function currentUserReducer(state = defaultState, action) {
       return {
         ...state,
         ...action.payload,
-        isLoading: false,
+        isLoggedIn: true,
       };
 
     case actionTypes.UPDATE_CURRENT_USER:

@@ -1,24 +1,21 @@
-import axios from "axios";
 import { actionCreators } from "./actionCreators";
-
-const baseUrl = "https://hipstagram-api.herokuapp.com";
+import {
+  fetchCurrentUser,
+  registartion,
+  logIn,
+  updateUser,
+  updatePassword,
+} from "../../api/currentUser";
 
 export const userRegistration = (login, email, password) => {
   return async (dispatch) => {
     try {
       const {
         data: { id },
-      } = await axios.post(baseUrl + "/auth/registration", {
-        login: login,
-        email: email,
-        password: password,
-      });
+      } = await registartion(login, email, password);
       const {
         data: { access_token: token },
-      } = await axios.post(baseUrl + "/auth/login", {
-        login: login,
-        password: password,
-      });
+      } = await logIn(login, password);
       dispatch(actionCreators.setRegistration(id, token));
       localStorage.token = JSON.stringify(token);
     } catch (e) {
@@ -32,10 +29,7 @@ export const logInUser = (login, password) => {
     try {
       const {
         data: { access_token: token },
-      } = await axios.post(baseUrl + "/auth/login", {
-        login: login,
-        password: password,
-      });
+      } = await logIn(login, password);
       dispatch(actionCreators.setLogIn(token));
       localStorage.token = JSON.stringify(token);
     } catch (e) {
@@ -51,17 +45,10 @@ export const logOutUser = () => {
   };
 };
 
-export const getCurrentUser = (token) => {
+export const getCurrentUser = () => {
   return async (dispatch) => {
     try {
-      const { data: currentUser } = await axios.get(
-        baseUrl + "/users/current",
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const { data: currentUser } = await fetchCurrentUser();
       dispatch(actionCreators.setCurrentUser(currentUser));
     } catch (e) {
       console.log(e.response.data);
@@ -70,7 +57,6 @@ export const getCurrentUser = (token) => {
 };
 
 export const updateCurrentUser = (
-  token,
   firstName,
   lastName,
   email,
@@ -79,21 +65,14 @@ export const updateCurrentUser = (
 ) => {
   return async (dispatch) => {
     try {
-      const { data: updatedUser } = await axios.patch(
-        baseUrl + "/users/current",
-        {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          login: login,
-          avatar: avatar,
-        },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+      const { data: updatedUser } = await updateUser(
+        firstName,
+        lastName,
+        email,
+        login,
+        avatar
       );
+
       dispatch(actionCreators.setUpdateUser(updatedUser));
     } catch (e) {
       console.log(e.response.data);
@@ -101,28 +80,16 @@ export const updateCurrentUser = (
   };
 };
 
-export const updatePassword = (
+export const updateUsersPassword = (
   login,
   password,
-  token,
   newPassword,
   confirmNewPassword
 ) => {
   return async (dispatch) => {
     try {
-      await axios.post(baseUrl + "/auth/login", {
-        login: login,
-        password: password,
-      });
-      await axios.post(
-        baseUrl + "/auth/updatePassword",
-        { password: newPassword, confirmPassword: confirmNewPassword },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      await logIn(login, password);
+      await updatePassword(newPassword, confirmNewPassword);
       dispatch(actionCreators.setPassword());
     } catch (e) {
       console.log(e.response.data);

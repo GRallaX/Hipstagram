@@ -1,10 +1,10 @@
 import { actionTypes } from "./actionTypes";
 
 export const actionCreators = {
-  addComment: function (comment) {
+  addComments: function (postId, comments) {
     return {
-      type: actionTypes.GET_COMMENT_BY_POST_ID,
-      payload: comment,
+      type: actionTypes.GET_COMMENTS_BY_POST_ID,
+      payload: [postId, comments],
     };
   },
 };

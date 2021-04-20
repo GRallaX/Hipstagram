@@ -1,10 +1,10 @@
 import { actionTypes } from "./actionTypes";
 
 export const actionCreators = {
-  addUser: function (user) {
+  addUserById: function (userId, user) {
     return {
       type: actionTypes.GET_USER_BY_ID,
-      payload: user,
+      payload: [userId, user],
     };
   },
 };

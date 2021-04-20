@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   currentUser: currentUserReducer,
   posts: postsReducer,
   users: usersReducer,
-  comments: commentsReducer,
+  commentsByPostId: commentsReducer,
 });
 
 export const store = createStore(
