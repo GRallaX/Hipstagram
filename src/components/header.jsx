@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 
 import { logOutUser } from "../store/currentUser/thunks";
+import logoutIcon from "../images/logout_icon.png";
 
 export const Header = () => {
   const history = useHistory();
@@ -46,7 +47,7 @@ export const Header = () => {
             dispatch(logOutUser());
           }}
         >
-          <img src="./images/logout_icon.png" alt="Log out" />
+          <img src={logoutIcon} alt="Log out" />
         </span>
       </div>
     </header>

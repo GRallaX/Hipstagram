@@ -9,6 +9,7 @@ import { Header } from "./components/header";
 import { User } from "./pages/User";
 import { ProfileSettings } from "./pages/ProfileSettings";
 import { SearchUsers } from "./pages/SearchUsers";
+import loadingIcon from "./images/Loading_icon.gif";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const App = () => {
   if (isLoggedIn && !userLoaded) {
     return (
       <div>
-        <img src="./images/Loading_icon.gif" alt="" />
+        <img src={loadingIcon} alt="loadingIcon" />
       </div>
     );
   } else {

@@ -18,7 +18,7 @@ export const UsersList = ({ usersList }) => {
   return (
     <ul className="user_search">
       {usersList.map((user) => {
-        return;
+        return <UserCard user={user} />;
       })}
     </ul>
   );
