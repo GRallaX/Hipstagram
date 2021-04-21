@@ -9,7 +9,8 @@ export default function usersReducer(state = defaultState, action) {
         ...state,
         [action.payload[0]]: action.payload[1],
       };
-
+    case actionTypes.FOLLOW_UNFOLLOW_USER:
+      return state;
     default:
       return state;
   }

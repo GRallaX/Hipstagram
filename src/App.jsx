@@ -5,8 +5,10 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { getCurrentUser } from "./store/currentUser/thunks";
 import { Login } from "./pages/Login";
 import { Feed } from "./pages/Feed";
-
-// import { getUsers } from "./store/users/actions";
+import { Header } from "./components/header";
+import { User } from "./pages/User";
+import { ProfileSettings } from "./pages/ProfileSettings";
+import { SearchUsers } from "./pages/SearchUsers";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,24 +24,27 @@ const App = () => {
   if (isLoggedIn && !userLoaded) {
     return (
       <div>
-        <img src="./Loading_icon.gif" alt="" />
+        <img src="./images/Loading_icon.gif" alt="" />
       </div>
     );
   } else {
     return (
       <div className="App">
-        <h1>Hipstagram</h1>
-
-        {isLoggedIn ? null : (
-          <Switch>
-            <Redirect from="/login/registration" to="/login/registration" />
-            <Redirect from="/" to="/login" />
-          </Switch>
-        )}
+        {userLoaded && <Header />}
         <Switch>
-          {isLoggedIn ? null : <Route path="/login" component={Login} />}
+          {!isLoggedIn && <Route path="/login" component={Login} />}
+          {!isLoggedIn && (
+            <Redirect from="/login/registration" to="/login/registration" />
+          )}
+          {!isLoggedIn && <Redirect from="*" to="/login" />}
           <Route path="/feed" component={Feed} />
-          {isLoggedIn ? <Redirect from="/" to="/feed" /> : null}
+          <Route path="/users_search" component={SearchUsers} />
+          <Route
+            path="/user/:id/profile_settings"
+            component={ProfileSettings}
+          />
+          <Route path="/user/:id" component={User} />
+          {isLoggedIn && <Redirect from="*" to="/feed" />}
         </Switch>
       </div>
     );

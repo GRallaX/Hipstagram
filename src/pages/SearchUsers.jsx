@@ -1,7 +1,7 @@
 export const SearchUsers = () => {
   return (
-    <div className="main">
-      <h1>Search Users</h1>
-    </div>
+    <main>
+      <h2>Search Users</h2>
+    </main>
   );
 };

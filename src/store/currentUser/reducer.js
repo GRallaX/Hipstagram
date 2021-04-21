@@ -46,7 +46,7 @@ export default function currentUserReducer(state = defaultState, action) {
       delete localStorage.token;
       return {
         ...state,
-        token: "",
+        token: null,
         userLoaded: false,
         isLoggedIn: false,
         firstName: "",

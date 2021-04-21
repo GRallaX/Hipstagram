@@ -10,3 +10,11 @@ export const fetchUserById = (userId) => {
     },
   });
 };
+
+export const followUser = (userId) => {
+  return api.get("/users/follow/" + userId, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};

@@ -15,7 +15,7 @@ export const RegistrationForm = () => {
       >
         User registration
       </button>
-      <Link to="/login">Login </Link>
+      <Link to="/login">Login</Link>
     </div>
   );
 };

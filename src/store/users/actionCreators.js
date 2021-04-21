@@ -7,4 +7,9 @@ export const actionCreators = {
       payload: [userId, user],
     };
   },
+  followUnfollowUser: function () {
+    return {
+      type: actionTypes.FOLLOW_UNFOLLOW_USER,
+    };
+  },
 };
