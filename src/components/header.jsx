@@ -1,29 +1,35 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 
 import { logOutUser } from "../store/currentUser/thunks";
 import logoutIcon from "../images/logout_icon.png";
 
 export const Header = () => {
+  const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
   const { id: currentUserId, login: currentUserName } = useSelector(
     (state) => state.currentUser
   );
+
   return (
     <header>
       <input
+        key="users_search_input"
         type="text"
-        className="user_search_input"
-        onChange={() => {
-          if (history.location.pathname.search(/\/search_users/g)) {
-            history.push("/search_users");
+        className="users_search_input"
+        onChange={(event) => {
+          if (history.location.pathname.search(/\/users_search/g)) {
+            history.push("/users_search?=" + event.target.value);
           } else {
-            history.replace("/search_users");
+            history.replace("/users_search?=" + event.target.value);
           }
         }}
+        defaultValue={
+          location.pathname === "/users_search" ? location.search.slice(2) : ""
+        }
       />
-      <div className="header_navigation">
+      <nav className="header_navigation">
         <NavLink
           to="/feed"
           activeStyle={{
@@ -33,7 +39,7 @@ export const Header = () => {
           <span>Feed</span>
         </NavLink>
         <NavLink
-          to={"/user/" + currentUserId}
+          to={"/users/" + currentUserId}
           activeStyle={{
             fontWeight: "bold",
           }}
@@ -49,7 +55,7 @@ export const Header = () => {
         >
           <img src={logoutIcon} alt="Log out" />
         </span>
-      </div>
+      </nav>
     </header>
   );
 };

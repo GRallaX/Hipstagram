@@ -22,6 +22,7 @@ header {
   left: 0;
   top: 0;
   position: fixed;
+  z-index: 100;
 
   display: flex;
   justify-content: space-around;
@@ -80,4 +81,25 @@ main {
     width: 150px;
     height: 150px;
   }
+}
+
+.user_search_card {
+  list-style-type: none;
+  display: flex;
+
+  width: 100%;
+  justify-content: space-between;
+}
+
+.avatar.small {
+  width: 80px;
+
+  img {
+    width: 100px;
+  }
+}
+
+.follow_btn.small_btn {
+  height: 35px;
+  min-width: 80px;
 }

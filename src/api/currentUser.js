@@ -18,10 +18,10 @@ export const fetchLogIn = (login, password) => {
   });
 };
 
-export const fetchCurrentUser = (deafaultToken = token) => {
+export const fetchCurrentUser = (tokenParam) => {
   return api.get("/users/current", {
     headers: {
-      Authorization: deafaultToken,
+      Authorization: tokenParam,
     },
   });
 };

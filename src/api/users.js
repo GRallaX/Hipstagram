@@ -18,3 +18,11 @@ export const followUser = (userId) => {
     },
   });
 };
+
+export const searchUsersByID = (query) => {
+  return api.get("/users?search=" + query, {
+    headers: {
+      Authorization: token,
+    },
+  });
+};

@@ -6,6 +6,20 @@ import {
   fetchUpdateUser,
   fetchUpdatePassword,
 } from "../../api/currentUser";
+import { store } from "../";
+
+const { token: storeToken } = store.getState().currentUser;
+
+export const getCurrentUser = (token = storeToken) => {
+  return async (dispatch) => {
+    try {
+      const { data: currentUser } = await fetchCurrentUser(token);
+      dispatch(actionCreators.setCurrentUser(currentUser));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 
 export const userRegistration = (login, email, password) => {
   return async (dispatch) => {
@@ -16,9 +30,11 @@ export const userRegistration = (login, email, password) => {
       const {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
+      const { data: currentUser } = await fetchCurrentUser(token);
+      dispatch(actionCreators.setCurrentUser(currentUser));
       dispatch(actionCreators.setRegistration(id, token));
     } catch (e) {
-      console.log(e.response.data);
+      console.log(e);
     }
   };
 };
@@ -29,9 +45,11 @@ export const logInUser = (login, password) => {
       const {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
+      const { data: currentUser } = await fetchCurrentUser(token);
+      dispatch(actionCreators.setCurrentUser(currentUser));
       dispatch(actionCreators.setLogIn(token));
     } catch (e) {
-      console.log(e.response.data);
+      console.log(e);
     }
   };
 };
@@ -39,17 +57,6 @@ export const logInUser = (login, password) => {
 export const logOutUser = () => {
   return (dispatch) => {
     dispatch(actionCreators.setLogOut());
-  };
-};
-
-export const getCurrentUser = (token) => {
-  return async (dispatch) => {
-    try {
-      const { data: currentUser } = await fetchCurrentUser(token);
-      dispatch(actionCreators.setCurrentUser(currentUser));
-    } catch (e) {
-      console.log(e.response.data);
-    }
   };
 };
 
@@ -72,7 +79,7 @@ export const updateCurrentUser = (
 
       dispatch(actionCreators.setUpdateUser(updatedUser));
     } catch (e) {
-      console.log(e.response.data);
+      console.log(e);
     }
   };
 };
@@ -89,7 +96,7 @@ export const updateUsersPassword = (
       await fetchUpdatePassword(newPassword, confirmNewPassword);
       dispatch(actionCreators.setPassword());
     } catch (e) {
-      console.log(e.response.data);
+      console.log(e);
     }
   };
 };

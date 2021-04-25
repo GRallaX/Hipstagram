@@ -9,24 +9,24 @@ import { Header } from "./components/header";
 import { User } from "./pages/User";
 import { ProfileSettings } from "./pages/ProfileSettings";
 import { SearchUsers } from "./pages/SearchUsers";
-import loadingIcon from "./images/Loading_icon.gif";
+import loadingIcon from "./images/loading_big.svg";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { userLoaded, isLoggedIn, token } = useSelector(
-    (state) => state.currentUser
-  );
+  const { userLoaded, isLoggedIn } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
     if (!userLoaded && isLoggedIn) {
-      dispatch(getCurrentUser(token));
+      dispatch(getCurrentUser());
     }
   });
   if (isLoggedIn && !userLoaded) {
     return (
-      <div>
-        <img src={loadingIcon} alt="loadingIcon" />
-      </div>
+      <main>
+        <div className="loading_screen">
+          <img src={loadingIcon} alt="loadingIcon" />
+        </div>
+      </main>
     );
   } else {
     return (
@@ -41,10 +41,10 @@ const App = () => {
           <Route path="/feed" component={Feed} />
           <Route path="/users_search" component={SearchUsers} />
           <Route
-            path="/user/:id/profile_settings"
+            path="/users/:id/profile_settings"
             component={ProfileSettings}
           />
-          <Route path="/user/:id" component={User} />
+          <Route path="/users/:id" component={User} />
           {isLoggedIn && <Redirect from="*" to="/feed" />}
         </Switch>
       </div>

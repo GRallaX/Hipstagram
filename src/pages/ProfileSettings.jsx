@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Avatar } from "../components/avatar";
 import {
   updateCurrentUser,
   updateUsersPassword,
@@ -14,11 +15,14 @@ export const ProfileSettings = ({
   const { id: currentUserId, email, lastName, login, avatar } = useSelector(
     (state) => state.currentUser
   );
-  console.log(pageUserId, currentUserId);
+
   return (
     <main>
       {pageUserId !== currentUserId && <Redirect to="/" />}
       <h2>Profile Settings</h2>
+      <Avatar avatar={avatar} size="small">
+        <button type="submit">Change</button>
+      </Avatar>
       <button
         onClick={() =>
           dispatch(updateCurrentUser("Alex", lastName, email, login, avatar))

@@ -10,7 +10,7 @@ export const LoginForm = () => {
       <h2>Login</h2>
       <button
         onClick={() => {
-          dispatch(logInUser("AlexTest", "Qwerty123"));
+          dispatch(logInUser("Alex2141", "Qwerty123"));
         }}
       >
         Log in

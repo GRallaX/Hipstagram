@@ -9,8 +9,8 @@ export const RegistrationForm = () => {
     <div className="main">
       <h2>Registration</h2>
       <button
-        onClick={async () => {
-          await dispatch(userRegistration("Al42", "al@gmail.com", "Qwerty123"));
+        onClick={() => {
+          dispatch(userRegistration("Al42", "al@gmail.com", "Qwerty123"));
         }}
       >
         User registration
