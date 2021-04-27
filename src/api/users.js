@@ -3,7 +3,7 @@ import { store } from "../store";
 
 const { token } = store.getState().currentUser;
 
-export const fetchUserById = (userId) => {
+export const getUserById = (userId) => {
   return api.get("/users/" + userId, {
     headers: {
       Authorization: token,

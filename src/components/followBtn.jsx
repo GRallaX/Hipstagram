@@ -17,7 +17,7 @@ export const FollowButton = ({ userId, size }) => {
 
   if (userId === currentUserId) {
     return (
-      <Link to={"/user/" + currentUserId + "/profile_settings"}>
+      <Link to={"/users/" + currentUserId + "/profile_settings"}>
         <button className={"settings_btn " + size}>Settings</button>
       </Link>
     );

@@ -11,7 +11,7 @@ export const Header = () => {
   const { id: currentUserId, login: currentUserName } = useSelector(
     (state) => state.currentUser
   );
-
+  console.log(history);
   return (
     <header>
       <input
@@ -19,10 +19,13 @@ export const Header = () => {
         type="text"
         className="users_search_input"
         onChange={(event) => {
-          if (history.location.pathname.search(/\/users_search/g)) {
+          if (!!history.location.pathname.search(/\/users_search/g)) {
             history.push("/users_search?=" + event.target.value);
           } else {
             history.replace("/users_search?=" + event.target.value);
+          }
+          if (!event.target.value.length) {
+            history.goBack();
           }
         }}
         defaultValue={

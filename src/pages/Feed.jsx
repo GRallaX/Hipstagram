@@ -11,7 +11,6 @@ export const Feed = () => {
       const { data: feed } = await fetchFeed();
       setPosts(feed);
       setIsLoading(false);
-      console.log(feed);
     })();
   }, []);
 
