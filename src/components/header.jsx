@@ -4,6 +4,17 @@ import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { logOutUser } from "../store/currentUser/thunks";
 import logoutIcon from "../images/logout_icon.png";
 
+const handleSearchUsers = (event, history) => {
+  if (!event.target.value.length) {
+    return;
+  }
+  if (!!history.location.pathname.search(/\/users_search/g)) {
+    history.push("/users_search?=" + event.target.value);
+  } else {
+    history.replace("/users_search?=" + event.target.value);
+  }
+};
+
 export const Header = () => {
   const location = useLocation();
   const history = useHistory();
@@ -11,23 +22,13 @@ export const Header = () => {
   const { id: currentUserId, login: currentUserName } = useSelector(
     (state) => state.currentUser
   );
-  console.log(history);
   return (
     <header>
       <input
         key="users_search_input"
         type="text"
         className="users_search_input"
-        onChange={(event) => {
-          if (!!history.location.pathname.search(/\/users_search/g)) {
-            history.push("/users_search?=" + event.target.value);
-          } else {
-            history.replace("/users_search?=" + event.target.value);
-          }
-          if (!event.target.value.length) {
-            history.goBack();
-          }
-        }}
+        onChange={(event) => handleSearchUsers(event, history)}
         defaultValue={
           location.pathname === "/users_search" ? location.search.slice(2) : ""
         }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchFeed } from "../api/posts";
+import { FeedPost } from "../components/feedPost";
 import loadingIcon from "../images/loading_big.svg";
 
 export const Feed = () => {
@@ -7,11 +8,22 @@ export const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    let cleanupFunction = false;
+
     (async () => {
-      const { data: feed } = await fetchFeed();
-      setPosts(feed);
-      setIsLoading(false);
+      try {
+        const { data: feed } = await fetchFeed();
+        console.log(feed);
+        if (!cleanupFunction) {
+          setPosts(feed);
+          setIsLoading(false);
+        }
+      } catch (e) {
+        console.log(e);
+        setIsLoading(false);
+      }
     })();
+    return () => (cleanupFunction = true);
   }, []);
 
   if (isLoading) {
@@ -32,7 +44,11 @@ export const Feed = () => {
     return (
       <main>
         <h2>Feed</h2>
-        <div></div>
+        <ul className="feed_posts">
+          {posts.map((post) => {
+            return <FeedPost key={"post_" + post._id} post={post} />;
+          })}
+        </ul>
       </main>
     );
   }

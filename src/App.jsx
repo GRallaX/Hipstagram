@@ -34,9 +34,6 @@ const App = () => {
         {userLoaded && <Header />}
         <Switch>
           {!isLoggedIn && <Route path="/login" component={Login} />}
-          {!isLoggedIn && (
-            <Redirect from="/login/registration" to="/login/registration" />
-          )}
           {!isLoggedIn && <Redirect from="*" to="/login" />}
           <Route path="/feed" component={Feed} />
           <Route path="/users_search" component={SearchUsers} />

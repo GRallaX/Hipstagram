@@ -8,13 +8,17 @@ export const SearchUsers = (props) => {
   const [usersList, setUsersList] = useState([]);
 
   useEffect(() => {
+    let cleanupFunction = false;
     (async () => {
       const { data: users } = await searchUsersByID(
         props.location.search.slice(2)
       );
-      setUsersList(users);
-      setIsLoading(false);
+      if (!cleanupFunction) {
+        setUsersList(users);
+        setIsLoading(false);
+      }
     })();
+    return () => (cleanupFunction = true);
   }, [props.location.search]);
 
   if (isLoading) {

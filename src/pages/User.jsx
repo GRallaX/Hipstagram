@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { Avatar } from "../components/avatar";
 import { FollowButton } from "../components/followBtn";
 import loadingIcon from "../images/loading_big.svg";
-import { fetchCurrentUser } from "../api/currentUser";
 import { getUserById } from "../api/users";
 
 export const User = ({
@@ -14,23 +13,25 @@ export const User = ({
 }) => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const { id: currentUserId, token } = useSelector(
-    (state) => state.currentUser
-  );
+  const currentUser = useSelector((state) => state.currentUser);
+  const { id: currentUserId, token } = currentUser;
 
   useEffect(() => {
+    let cleanupFunction = false;
     try {
       (async () => {
         if (pageUserId === currentUserId) {
-          const { data: currentUser } = await fetchCurrentUser(token);
-          setUser({ ...currentUser });
-          setIsLoading(currentUser);
-          setIsLoading(false);
+          if (!cleanupFunction) {
+            setUser({ ...currentUser });
+            setIsLoading(false);
+          }
         } else {
           try {
             const { data: fetchedUser } = await getUserById(pageUserId);
-            setUser({ ...fetchedUser });
-            setIsLoading(false);
+            if (!cleanupFunction) {
+              setUser({ ...fetchedUser });
+              setIsLoading(false);
+            }
           } catch (e) {
             console.log(e);
             setIsLoading(false);
@@ -41,7 +42,9 @@ export const User = ({
       console.log(e);
       setIsLoading(false);
     }
-  }, [pageUserId, token, currentUserId]);
+
+    return () => (cleanupFunction = true);
+  }, [pageUserId, currentUser, token, currentUserId]);
 
   if (isLoading) {
     return (

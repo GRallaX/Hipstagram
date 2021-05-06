@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { followUser } from "../api/users";
 import { useState } from "react";
-import { getCurrentUser } from "../store/currentUser/thunks";
 import loadingIcon from "../images/loading_small.svg";
 
 export const FollowButton = ({ userId, size }) => {
   const { id: currentUserId, following } = useSelector(
     (state) => state.currentUser
   );
-  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [isFollowed, setIsFollowed] = useState(
     following.some((user) => user.id === userId) ? true : false
@@ -27,7 +25,6 @@ export const FollowButton = ({ userId, size }) => {
         onClick={async () => {
           setIsLoading(true);
           await followUser(userId);
-          await dispatch(getCurrentUser());
           setIsFollowed(isFollowed === true ? false : true);
           setIsLoading(false);
         }}

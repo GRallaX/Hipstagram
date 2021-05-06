@@ -17,7 +17,7 @@ export const ProfileSettings = ({
   );
 
   if (pageUserId !== currentUserId) {
-    return <Redirect to="/" />;
+    return <Redirect to={"/users/" + currentUserId + "/profile_settings"} />;
   } else {
     return (
       <main>

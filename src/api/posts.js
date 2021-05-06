@@ -3,10 +3,10 @@ import { store } from "../store";
 
 const { token } = store.getState().currentUser;
 
-export const fetchFeed = () => {
+export const fetchFeed = (tokenParam = token) => {
   return api.get("/posts/feed", {
     headers: {
-      Authorization: token,
+      Authorization: tokenParam,
     },
   });
 };
