@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchFeed } from "../api/posts";
-import { FeedPost } from "../components/feedPost";
+import { FeedPost } from "../containers/feedPost";
 import loadingIcon from "../images/loading_big.svg";
 
 export const Feed = () => {
@@ -8,8 +8,8 @@ export const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    document.title = "Hipstagram - Feed";
     let cleanupFunction = false;
-
     (async () => {
       try {
         const { data: feed } = await fetchFeed();

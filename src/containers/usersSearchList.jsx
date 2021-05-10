@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Avatar } from "./avatar";
-import { FollowButton } from "./followBtn";
+import { Avatar } from "../components/avatar";
+import { FollowButton } from "../components/followBtn";
 
 const UserCard = ({ user: { avatar, login, _id } }) => {
   return (

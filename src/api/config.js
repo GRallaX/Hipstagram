@@ -11,7 +11,7 @@ api.interceptors.response.use(
     return response;
   },
   function (error) {
-    console.log(error.response);
+    console.log(error.response.data);
     if (error.response.status === 401) {
       store.dispatch(actionCreators.setLogOut());
     }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { searchUsersByID } from "../api/users";
-import { UsersList } from "../components/usersList";
+import { UsersList } from "../containers/usersSearchList";
 import loadingIcon from "../images/loading_big.svg";
 
 export const SearchUsers = (props) => {
@@ -9,6 +9,7 @@ export const SearchUsers = (props) => {
 
   useEffect(() => {
     let cleanupFunction = false;
+    document.title = "Hipstagram - Users Search";
     (async () => {
       const { data: users } = await searchUsersByID(
         props.location.search.slice(2)

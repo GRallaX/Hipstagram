@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Avatar } from "../components/avatar";
@@ -15,6 +16,9 @@ export const ProfileSettings = ({
   const { id: currentUserId, email, lastName, login, avatar } = useSelector(
     (state) => state.currentUser
   );
+  useEffect(() => {
+    document.title = "Hipstagram - Profile Settings";
+  }, []);
 
   if (pageUserId !== currentUserId) {
     return <Redirect to={"/users/" + currentUserId + "/profile_settings"} />;

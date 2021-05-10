@@ -1,9 +1,13 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logInUser } from "../store/currentUser/thunks";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    document.title = "Hipstagram - Login";
+  }, []);
 
   return (
     <div>

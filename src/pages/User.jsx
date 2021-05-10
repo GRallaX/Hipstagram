@@ -18,30 +18,28 @@ export const User = ({
 
   useEffect(() => {
     let cleanupFunction = false;
-    try {
-      (async () => {
-        if (pageUserId === currentUserId) {
-          if (!cleanupFunction) {
-            setUser({ ...currentUser });
-            setIsLoading(false);
-          }
-        } else {
-          try {
-            const { data: fetchedUser } = await getUserById(pageUserId);
-            if (!cleanupFunction) {
-              setUser({ ...fetchedUser });
-              setIsLoading(false);
-            }
-          } catch (e) {
-            console.log(e);
-            setIsLoading(false);
-          }
+
+    (async () => {
+      if (pageUserId === currentUserId) {
+        if (!cleanupFunction) {
+          setUser({ ...currentUser });
+          setIsLoading(false);
         }
-      })();
-    } catch (e) {
-      console.log(e);
-      setIsLoading(false);
-    }
+        document.title = "Hipstagram - My Profile";
+      } else {
+        try {
+          const { data: fetchedUser } = await getUserById(pageUserId);
+          if (!cleanupFunction) {
+            setUser({ ...fetchedUser });
+            setIsLoading(false);
+          }
+          document.title = "Hipstagram - " + fetchedUser.login;
+        } catch (e) {
+          console.log(e);
+          setIsLoading(false);
+        }
+      }
+    })();
 
     return () => (cleanupFunction = true);
   }, [pageUserId, currentUser, token, currentUserId]);

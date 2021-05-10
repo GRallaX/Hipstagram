@@ -30,8 +30,6 @@ export const userRegistration = (login, email, password) => {
       const {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
-      const { data: currentUser } = await fetchCurrentUser(token);
-      dispatch(actionCreators.setCurrentUser(currentUser));
       dispatch(actionCreators.setRegistration(id, token));
       window.location.reload();
     } catch (e) {
@@ -46,8 +44,6 @@ export const logInUser = (login, password) => {
       const {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
-      const { data: currentUser } = await fetchCurrentUser(token);
-      dispatch(actionCreators.setCurrentUser(currentUser));
       dispatch(actionCreators.setLogIn(token));
       window.location.reload();
     } catch (e) {
