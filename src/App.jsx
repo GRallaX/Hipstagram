@@ -37,8 +37,8 @@ const App = () => {
           {!isLoggedIn && <Route path="/login" component={Login} />}
           {!isLoggedIn && <Redirect from="*" to="/login" />}
           <Route path="/feed">
-            <Feed />
             <Route path="/feed/post/:postId" component={ModalPost} />
+            <Feed />
           </Route>
           <Route path="/users_search" component={SearchUsers} />
           <Route

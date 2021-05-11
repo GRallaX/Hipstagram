@@ -4,11 +4,11 @@ import { FollowButton } from "../components/followBtn";
 
 const UserCard = ({ user: { avatar, login, _id } }) => {
   return (
-    <li className="user_search_card">
-      <div className="user_search_avatar">
+    <li className="users_search_card">
+      <div className="users_search_avatar">
         <Avatar avatar={avatar} size="small" />
       </div>
-      <Link to={"/users/" + _id} className="user_search_ref">
+      <Link to={"/users/" + _id} className="users_search_ref">
         {login}
       </Link>
       <FollowButton userId={_id} size="small_btn" />

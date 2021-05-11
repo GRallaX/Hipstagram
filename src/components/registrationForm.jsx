@@ -14,7 +14,7 @@ export const RegistrationForm = () => {
       <h2>Registration</h2>
       <button
         onClick={() => {
-          dispatch(userRegistration("Al42", "al@gmail.com", "Qwerty123"));
+          dispatch(userRegistration("Alex2141", "alex@gmail.com", "Qwerty123"));
         }}
       >
         User registration

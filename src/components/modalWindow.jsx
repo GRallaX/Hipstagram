@@ -2,8 +2,8 @@ import { useEffect } from "react";
 
 export const ModalWindow = ({ children, closeModalFunc }) => {
   useEffect(() => {
-    document.querySelector("body").style.overflow = "hidden";
-    return () => (document.querySelector("body").style.overflow = "visible");
+    document.querySelector("body").style.overflowY = "hidden";
+    return () => (document.querySelector("body").style.overflowY = "auto");
   });
 
   return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { searchUsersByID } from "../api/users";
-import { UsersList } from "../containers/usersSearchList";
+import { UsersList } from "../containers/usersList";
 import loadingIcon from "../images/loading_big.svg";
 
 export const SearchUsers = (props) => {

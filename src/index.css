@@ -4,7 +4,12 @@
   box-sizing: border-box;
 }
 
+#root {
+  height: 100%;
+}
+
 body {
+  overflow-x: hidden;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -15,11 +20,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-header {
+main {
+  min-height: 100vh;
+  position: relative;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+.main_header {
   left: 0;
   top: 0;
   position: fixed;
-  z-index: 100;
+  z-index: 98;
+  padding: 0 16px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -28,17 +44,78 @@ header {
   background-color: #4d88ed;
 }
 
-main {
+.main_header .logo {
+  flex: 1 999 0%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  filter: drop-shadow(1px 1px 1px #131313);
+}
+
+.main_header .logo img {
+  margin-right: 5px;
+  width: 40px;
+}
+
+.main_header .logo span {
+  padding-bottom: 2px;
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 22px;
+}
+
+.main_header .users_search {
   position: relative;
-  top: 50px;
+  flex: 0 1 auto;
+}
+
+@media (max-width: 750px) {
+  .main_header .users_search {
+    display: none;
+    overflow: hidden;
+    animation: slideout 0.5s;
+  }
+  @keyframes slideout {
+    from {
+      width: 0;
+    }
+    to {
+      width: 200px;
+    }
+  }
+}
+
+.main_header .users_search span {
+  position: absolute;
+  left: 9px;
+  top: 2.5px;
+}
+
+.main_header .users_search span svg {
+  fill: grey;
+  width: 13px;
+}
+
+.main_header .users_search_input {
+  padding: 3px 10px 3px 26px;
+  height: 28px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  outline: 0;
+  font-size: 16px;
 }
 
 .header_navigation {
+  flex: 1 999 0%;
+  height: 40px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
-  min-width: 250px;
-  height: 30px;
+}
+
+.header_navigation span {
+  margin-right: 16px;
+  filter: drop-shadow(1px 1px 1px #131313);
 }
 
 .header_navigation a {
@@ -51,22 +128,56 @@ main {
   transform: scale(1.1);
 }
 
-.header_navigation a:hover {
+.header_navigation span:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
 
-.log_out_btn {
-  padding: 7px 0 0;
+.header_navigation .search_Btn {
+  margin: 5px 13px 0 0;
 }
 
-.log_out_btn:hover {
+.header_navigation .search_Btn svg {
+  height: 25px;
+  fill: whitesmoke;
+}
+
+@media (max-width: 750px) {
+  .header_navigation .feed_btn {
+    margin: 7px 12px 0 0;
+  }
+}
+
+.header_navigation .feed_btn #home_icon {
+  fill: whitesmoke;
+  width: 29px;
+}
+
+@media (max-width: 750px) {
+  .header_navigation .my_profile_btn {
+    margin: 7px 16px 0 0;
+  }
+}
+
+.header_navigation .log_out_btn {
+  margin: 7px 16px 0 0;
+}
+
+.header_navigation .log_out_btn:hover {
   cursor: pointer;
 }
 
-.log_out_btn img {
-  height: 25px;
-  width: 25px;
+.users_search {
+  display: inline-block;
+  padding: 0;
+  justify-self: center;
+}
+
+.users_search_card {
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .big.avatar {
@@ -79,19 +190,28 @@ main {
   height: 150px;
 }
 
-.user_search_card {
-  list-style-type: none;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
 .avatar.small {
-  width: 80px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .avatar.small img {
-  width: 100px;
+  width: 100%;
+  height: auto;
+}
+
+.avatar.very_small {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar.very_small img {
+  width: 100%;
+  height: 100%;
 }
 
 .follow_btn.small_btn {
@@ -103,22 +223,36 @@ main {
   position: fixed;
   top: 0;
   left: 0;
+  min-height: 300px;
   height: 100vh;
   width: 100vw;
+  overflow-y: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
 
 .modal_window {
+  margin: 20px;
   display: flex;
   align-items: center;
   flex-direction: column;
   height: fit-content;
-  max-width: 50%;
+  max-width: 95%;
   padding: 20px;
+  overflow: hidden;
   background-color: white;
+}
+
+.modal_post_image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.modal_post_image img {
+  width: 100%;
 }
 /*# sourceMappingURL=index.css.map */

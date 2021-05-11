@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { fetchFeed } from "../api/posts";
-import { FeedPost } from "../containers/feedPost";
-import loadingIcon from "../images/loading_big.svg";
+import "./feed.css";
+
+import { fetchFeed } from "../../api/posts";
+import { FeedPost } from "../../containers/feedPost";
+
+import loadingIcon from "../../images/loading_big.svg";
 
 export const Feed = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,12 +46,11 @@ export const Feed = () => {
   } else {
     return (
       <main>
-        <h2>Feed</h2>
-        <ul className="feed_posts">
+        <div className="feed_posts">
           {posts.map((post) => {
             return <FeedPost key={"post_" + post._id} post={post} />;
           })}
-        </ul>
+        </div>
       </main>
     );
   }

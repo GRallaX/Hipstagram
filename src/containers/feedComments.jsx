@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Avatar } from "../components/avatar";
 
 import { fetchPostComments } from "../api/comments";
 import loadingIcon from "../images/loading_small.svg";
@@ -8,12 +7,13 @@ import loadingIcon from "../images/loading_small.svg";
 const Comment = ({ comment }) => {
   const { owner } = comment;
   return (
-    <li className="post_comment">
-      <Link to={"/users/" + owner.id} className="user_comment_ref">
-        <Avatar avatar={owner.avatar} size="very_small" />
-        {owner.login}
-      </Link>
-      <p>{comment.text}</p>
+    <li className="feed_comment">
+      <span>
+        <Link to={"/users/" + owner.id} className="feed_user_ref">
+          {owner.login}
+        </Link>
+        {comment.text}
+      </span>
     </li>
   );
 };

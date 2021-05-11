@@ -2,16 +2,20 @@ import { Link, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { Avatar } from "../components/avatar";
-import { LikesAndComments } from "../components/likesAndComments";
-import { PostComments } from "./postComments";
+import { LikeButton } from "../components/likeBtn";
+import { PostComments } from "./feedComments";
 import { getUserById } from "../api/users";
+
 import loadingIcon from "../images/loading_big.svg";
+import { commentBtn } from "../images/commentBtn.js";
 
 export const FeedPost = ({
-  post: { ownerId, imageUrl, title, _id, likes },
+  post,
+  post: { ownerId, imgUrl, title, _id, likes },
 }) => {
   const [postOwner, setPostOwner] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [imgLoading, setImgLoading] = useState(true);
 
   const history = useHistory();
 
@@ -32,36 +36,58 @@ export const FeedPost = ({
   }, [_id, ownerId]);
   if (isLoading) {
     return (
-      <li className="feed_post">
+      <article className="feed_post">
         <div className="loading_screen">
           <img src={loadingIcon} alt="loadingIcon" />
         </div>
-      </li>
+      </article>
     );
   } else {
     return (
-      <li className="feed_post">
-        <div className="header">
+      <article className="feed_post">
+        <header className="feed_post_header">
           <Link to={"/users/" + ownerId} className="user_post_ref">
             <Avatar avatar={postOwner.avatar} size="small" />
             {postOwner.login}
           </Link>
-        </div>
-        <div className="image">
+        </header>
+        <div
+          className="image"
+          style={
+            imgLoading
+              ? window.innerWidth > 600
+                ? { minHeight: "400px" }
+                : { minHeight: "calc(100vw/1.5)" }
+              : { minHeight: "unset" }
+          }
+        >
           <img
-            src={imageUrl}
-            alt={"post_image_" + _id}
-            onClick={() => history.push("/feed/post/" + _id)}
+            src={imgUrl}
+            alt={"post_image" + imgUrl}
+            onClick={() => history.push("/feed/post/" + _id, { post })}
+            onLoad={() => setImgLoading(false)}
           />
         </div>
-
-        <Link to={"/users/" + ownerId} className="user_post_title_ref">
-          {postOwner.login}
-        </Link>
-        <p>{title}</p>
-        <LikesAndComments likes={likes} postId={_id} />
+        <div className="feed_post_btns">
+          <LikeButton likes={likes} postId={_id} />
+          <span
+            className="comment_btn"
+            onClick={() => history.push("/feed/post/" + _id, { post })}
+          >
+            {commentBtn}
+          </span>
+          <div className="feed_post_likes"></div>
+        </div>
+        <div className="feed_owner_comment">
+          <span className="feed_comment">
+            <Link to={"/users/" + ownerId} className="feed_user_ref">
+              {postOwner.login}
+            </Link>
+            {title}
+          </span>
+        </div>
         <PostComments postId={_id} />
-      </li>
+      </article>
     );
   }
 };

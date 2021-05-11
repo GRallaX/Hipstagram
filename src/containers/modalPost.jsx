@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 
 import { getPostById } from "../api/posts";
@@ -6,12 +6,20 @@ import { ModalWindow } from "../components/modalWindow";
 import loadingIcon from "../images/loading_big.svg";
 
 export const ModalPost = () => {
-  const [post, setPost] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
+  const location = useLocation();
   const history = useHistory();
   const { pathname } = useLocation();
   const { postId } = useParams();
+
+  const [post, setPost] = useState(
+    !location.state?.post ? false : location.state.post
+  );
+  const [isLoading, setIsLoading] = useState(
+    !location.state?.post ? true : false
+  );
+
+  const loadingImg = useRef();
+  const postContainer = useRef();
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -64,7 +72,24 @@ export const ModalPost = () => {
         }
       >
         <div className="modal_post">
-          <p>{post.title}</p>
+          <img src={loadingIcon} alt="loadingIcon" ref={loadingImg} />
+          <article
+            ref={postContainer}
+            className="post"
+            style={{ display: "none" }}
+          >
+            <div className="modal_post_image">
+              <img
+                onLoad={() => {
+                  postContainer.current.style.display = "initial";
+                  loadingImg.current.style.display = "none";
+                }}
+                src={post.imgUrl}
+                alt={"post_image " + post.imgUrl}
+              />
+            </div>
+            <p>{post.title}</p>
+          </article>
         </div>
       </ModalWindow>
     );
