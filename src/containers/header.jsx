@@ -48,8 +48,10 @@ export const Header = () => {
   return (
     <header className="main_header">
       <div className="logo">
-        <img src={Logo} alt="hip logo" />
-        {screenWidth > 750 && <span>Hipstagram</span>}
+        <NavLink to="/">
+          <img src={Logo} alt="hip logo" />
+          {screenWidth > 750 && <span>Hipstagram</span>}
+        </NavLink>
       </div>
       <div
         className="users_search_input_container"

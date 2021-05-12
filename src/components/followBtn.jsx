@@ -13,10 +13,16 @@ export const FollowButton = ({ userId, size }) => {
     following.some((user) => user.id === userId) ? true : false
   );
 
-  if (userId === currentUserId) {
+  if (userId === currentUserId && size === "big_btn") {
     return (
       <Link to={"/users/" + currentUserId + "/profile_settings"}>
-        <button className={"settings_btn " + size}>Settings</button>
+        <button className={"settings_btn " + size}>Profile Settings</button>
+      </Link>
+    );
+  } else if (userId === currentUserId) {
+    return (
+      <Link to={"/users/" + currentUserId}>
+        <button className={"follow_btn " + size}>My Profile</button>
       </Link>
     );
   } else {

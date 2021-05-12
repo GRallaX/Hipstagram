@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { searchUsersByID } from "../api/users";
-import { UsersList } from "../containers/usersList";
-import loadingIcon from "../images/loading_big.svg";
+
+import "./search.css";
+import { searchUsersByID } from "../../api/users";
+import { UsersList } from "../../containers/usersList";
+import loadingIcon from "../../images/loading_big.svg";
 
 export const SearchUsers = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,8 +41,10 @@ export const SearchUsers = (props) => {
   } else {
     return (
       <main>
-        <h2>Users Search</h2>
-        <UsersList usersList={usersList} />
+        <div className="users_search">
+          <h2>Users Search</h2>
+          <UsersList usersList={usersList} />
+        </div>
       </main>
     );
   }

@@ -13,13 +13,11 @@
   border-radius: 3px;
   border: 1px solid #dbdbdb;
 }
-
 .feed_post_header {
   padding: 16px;
   display: flex;
   justify-content: space-between;
 }
-
 .feed_post .user_post_ref {
   display: flex;
   align-items: center;
@@ -27,15 +25,12 @@
   color: black;
   font-weight: 600;
 }
-
 .feed_post .user_post_ref .avatar.small {
   margin-right: 12px;
 }
-
 .feed_post .user_post_ref:hover {
   text-decoration: underline;
 }
-
 .feed_post .image {
   width: 100%;
   min-width: 600px;
@@ -46,29 +41,24 @@
   animation-iteration-count: infinite;
   animation-play-state: running;
 }
-
 @media (max-width: 600px) {
   .feed_post .image {
     min-width: 100vw;
   }
 }
-
 .feed_post .image img {
   display: block;
   width: 100%;
 }
-
 .feed_post_btns {
   padding: 8px 16px;
   display: flex;
   justify-content: flex-start;
 }
-
 .feed_post_btns span {
   cursor: pointer;
   margin-right: 16px;
 }
-
 .feed_post .feed_owner_comment {
   padding: 0 16px;
 }
@@ -76,7 +66,6 @@
 .comments_container {
   padding: 8px 16px;
 }
-
 .comments_container .loading_comments {
   display: flex;
   justify-content: center;
@@ -115,5 +104,4 @@
   100.0% {
     background-color: #d1d1d1;
   }
-}
-/*# sourceMappingURL=feed.css.map */
+}/*# sourceMappingURL=feed.css.map */

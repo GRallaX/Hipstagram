@@ -2,8 +2,7 @@ import axios from "axios";
 import { store } from "../store";
 import { actionCreators } from "../store/currentUser/actionCreators";
 
-let token;
-
+let { token } = store.getState().currentUser;
 store.subscribe(() => {
   token = store.getState().currentUser.token;
 });

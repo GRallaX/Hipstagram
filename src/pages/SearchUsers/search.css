@@ -1,0 +1,12 @@
+.users_search {
+  width: 100%;
+  max-width: 500px;
+  margin: 16px 0;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+  padding: 0 16px;
+}
+.users_search h2 {
+  text-align: center;
+}/*# sourceMappingURL=search.css.map */

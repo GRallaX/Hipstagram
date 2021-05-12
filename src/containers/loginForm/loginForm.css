@@ -9,11 +9,9 @@
   padding: 0;
   overflow: hidden;
 }
-
 .login_lbl_container label {
   padding: 0 8px;
 }
-
 .login_lbl_container input {
   position: relative;
   margin: 0;
@@ -64,12 +62,10 @@
   padding: 0;
   overflow: hidden;
 }
-
 .pass_lbl_container label {
   padding: 0 8px;
   flex: 1 0 0;
 }
-
 .pass_lbl_container input {
   width: 100%;
   position: relative;
@@ -90,7 +86,6 @@
   flex: 0 0 auto;
   padding-right: 8px;
 }
-
 .show_pass button {
   height: 30px;
   box-shadow: 0 0 2px 1px rgba(127, 132, 135, 0.2);
@@ -104,5 +99,4 @@
 
 .hidden {
   display: none;
-}
-/*# sourceMappingURL=loginForm.css.map */
+}/*# sourceMappingURL=loginForm.css.map */

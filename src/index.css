@@ -9,11 +9,12 @@
 }
 
 body {
-  overflow-x: hidden;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-width: 350px;
 }
 
 code {
@@ -38,37 +39,35 @@ main {
   padding: 0 16px;
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 50px;
   background-color: #4d88ed;
   box-shadow: 0 2px 3px 0 rgba(127, 132, 135, 0.2);
 }
-
 .main_header .logo {
   flex: 1 999 0%;
+  filter: drop-shadow(1px 1px 1px #131313);
+}
+.main_header .logo a {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  filter: drop-shadow(1px 1px 1px #131313);
+  text-decoration: none;
 }
-
 .main_header .logo img {
   margin-right: 5px;
   width: 40px;
 }
-
 .main_header .logo span {
   padding-bottom: 2px;
   text-decoration: none;
   color: whitesmoke;
   font-size: 22px;
 }
-
 .main_header .users_search_input_container {
   flex: 0 1 auto;
   position: relative;
 }
-
 @media (max-width: 750px) {
   .main_header .users_search_input_container {
     width: 200px;
@@ -86,18 +85,15 @@ main {
     }
   }
 }
-
 .main_header .users_search_input_container span {
   position: absolute;
   left: 9px;
   top: 2.5px;
 }
-
 .main_header .users_search_input_container span svg {
   fill: grey;
   width: 13px;
 }
-
 .main_header .users_search_input {
   padding: 3px 10px 3px 26px;
   height: 28px;
@@ -106,7 +102,6 @@ main {
   outline: 0;
   font-size: 16px;
 }
-
 .main_header .users_search_input:focus {
   border: 1px solid #969696;
 }
@@ -118,86 +113,61 @@ main {
   justify-content: flex-end;
   align-items: center;
 }
-
 @media (max-width: 750px) {
   .header_navigation {
     flex-grow: 0;
     margin-left: 16px;
   }
 }
-
 .header_navigation span {
+  transition: 0.3s;
   margin-right: 16px;
   filter: drop-shadow(1px 1px 1px #131313);
 }
-
 .header_navigation a {
   text-decoration: none;
   color: whitesmoke;
   font-size: 22px;
 }
-
 .header_navigation a:focus {
   transform: scale(1.1);
 }
-
 .header_navigation span:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
-
 .header_navigation .search_Btn {
   margin: 5px 13px 0 0;
 }
-
 .header_navigation .search_Btn svg {
   height: 25px;
   fill: whitesmoke;
 }
-
 @media (max-width: 750px) {
   .header_navigation .feed_btn {
     margin: 7px 12px 0 0;
   }
 }
-
 .header_navigation .feed_btn #home_icon {
   fill: whitesmoke;
   width: 29px;
 }
-
 @media (max-width: 750px) {
   .header_navigation .my_profile_btn {
     margin: 7px 16px 0 0;
   }
 }
-
 .header_navigation .log_out_btn {
   margin: 7px 16px 0 0;
 }
-
 .header_navigation .log_out_btn:hover {
   cursor: pointer;
-}
-
-.users_search {
-  display: inline-block;
-  padding: 0;
-  justify-self: center;
-}
-
-.users_search_card {
-  list-style-type: none;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
 }
 
 .big.avatar {
   height: 150px;
   width: 150px;
 }
-
 .big.avatar img {
   width: 150px;
   height: 150px;
@@ -211,7 +181,6 @@ main {
   border-radius: 50%;
   overflow: hidden;
 }
-
 .avatar.small img {
   width: 100%;
   height: auto;
@@ -223,13 +192,12 @@ main {
   border-radius: 50%;
   overflow: hidden;
 }
-
 .avatar.very_small img {
   width: 100%;
   height: 100%;
 }
 
-.follow_btn.small_btn {
+.follow_btn.medium_btn {
   height: 35px;
   min-width: 80px;
 }
@@ -266,8 +234,6 @@ main {
   height: 100%;
   overflow: hidden;
 }
-
 .modal_post_image img {
   width: 100%;
-}
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
