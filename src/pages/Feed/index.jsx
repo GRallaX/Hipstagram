@@ -16,7 +16,6 @@ export const Feed = () => {
     (async () => {
       try {
         const { data: feed } = await fetchFeed();
-        console.log(feed);
         if (!cleanupFunction) {
           setPosts(feed);
           setIsLoading(false);

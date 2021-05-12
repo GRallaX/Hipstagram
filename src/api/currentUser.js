@@ -1,7 +1,4 @@
 import api from "./config";
-import { store } from "../store";
-
-const { token } = store.getState().currentUser;
 
 export const fetchRegistration = (login, email, password) => {
   return api.post("/auth/registration", {
@@ -18,43 +15,23 @@ export const fetchLogIn = (login, password) => {
   });
 };
 
-export const fetchCurrentUser = (tokenParam) => {
-  return api.get("/users/current", {
-    headers: {
-      Authorization: tokenParam,
-    },
-  });
+export const fetchCurrentUser = () => {
+  return api.get("/users/current");
 };
 
 export const fetchUpdateUser = (firstName, lastName, email, login, avatar) => {
-  return api.patch(
-    "/users/current",
-    {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      login: login,
-      avatar: avatar,
-    },
-    {
-      headers: {
-        Authorization: token,
-      },
-    }
-  );
+  return api.patch("/users/current", {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    login: login,
+    avatar: avatar,
+  });
 };
 
 export const fetchUpdatePassword = (password, confirmPassword) => {
-  return api.post(
-    "/auth/login",
-    {
-      password: password,
-      confirmPassword: confirmPassword,
-    },
-    {
-      headers: {
-        Authorization: token,
-      },
-    }
-  );
+  return api.post("/auth/login", {
+    password: password,
+    confirmPassword: confirmPassword,
+  });
 };

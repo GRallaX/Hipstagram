@@ -1,14 +1,16 @@
 import { Route, Switch } from "react-router-dom";
-import { LoginForm } from "../components/loginForm";
-import { RegistrationForm } from "../components/registrationForm";
+
+import "./login.css";
+import { LoginForm } from "../../containers/loginForm";
+import { RegistrationForm } from "../../containers/registrationForm";
 
 export const Login = () => {
   return (
-    <main>
+    <div className="login_wrapper">
       <Switch>
         <Route path="/login/registration" component={RegistrationForm} />
         <Route path="/login" component={LoginForm} />
       </Switch>
-    </main>
+    </div>
   );
 };

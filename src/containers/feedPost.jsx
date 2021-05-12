@@ -34,6 +34,7 @@ export const FeedPost = ({
     })();
     return () => (cleanupFunction = true);
   }, [_id, ownerId]);
+
   if (isLoading) {
     return (
       <article className="feed_post">
@@ -58,7 +59,7 @@ export const FeedPost = ({
               ? window.innerWidth > 600
                 ? { minHeight: "400px" }
                 : { minHeight: "calc(100vw/1.5)" }
-              : { minHeight: "unset" }
+              : { minHeight: "unset", animationName: "none" }
           }
         >
           <img

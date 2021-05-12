@@ -1,0 +1,108 @@
+.login_lbl_container {
+  position: relative;
+  display: flex;
+  width: 260px;
+  height: 50px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.login_lbl_container label {
+  padding: 0 8px;
+}
+
+.login_lbl_container input {
+  position: relative;
+  margin: 0;
+  border: none;
+  outline: 0;
+  width: 243px;
+  font-size: 18px;
+  padding: 0;
+  z-index: 1;
+}
+
+.login_lbl_container.active {
+  border: 1px solid #969696;
+}
+
+.input_lbl {
+  position: absolute;
+  top: 11px;
+  left: 8px;
+  color: #8e8e8e;
+  font-size: 18px;
+  z-index: 2;
+}
+
+.input_lbl.active {
+  top: 0px;
+  left: 8px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.input_lbl.active + input {
+  top: 10px;
+}
+
+.input_lbl.inactive {
+  transition: 0.3s;
+}
+
+.pass_lbl_container {
+  position: relative;
+  display: flex;
+  width: 260px;
+  height: 50px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.pass_lbl_container label {
+  padding: 0 8px;
+  flex: 1 0 0;
+}
+
+.pass_lbl_container input {
+  width: 100%;
+  position: relative;
+  margin: 0;
+  border: none;
+  outline: 0;
+  font-size: 18px;
+  padding: 0;
+  z-index: 1;
+}
+
+.pass_lbl_container.active {
+  border: 1px solid #969696;
+}
+
+.show_pass {
+  position: relative;
+  flex: 0 0 auto;
+  padding-right: 8px;
+}
+
+.show_pass button {
+  height: 30px;
+  box-shadow: 0 0 2px 1px rgba(127, 132, 135, 0.2);
+  border: 0;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  color: #808080;
+  padding: 0 3px;
+}
+
+.hidden {
+  display: none;
+}
+/*# sourceMappingURL=loginForm.css.map */

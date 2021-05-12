@@ -6,14 +6,11 @@ import {
   fetchUpdateUser,
   fetchUpdatePassword,
 } from "../../api/currentUser";
-import { store } from "../";
 
-const { token: storeToken } = store.getState().currentUser;
-
-export const getCurrentUser = (token = storeToken) => {
+export const getCurrentUser = () => {
   return async (dispatch) => {
     try {
-      const { data: currentUser } = await fetchCurrentUser(token);
+      const { data: currentUser } = await fetchCurrentUser();
       dispatch(actionCreators.setCurrentUser(currentUser));
     } catch (e) {
       console.log(e);
@@ -31,7 +28,6 @@ export const userRegistration = (login, email, password) => {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
       dispatch(actionCreators.setRegistration(id, token));
-      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -45,7 +41,6 @@ export const logInUser = (login, password) => {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
       dispatch(actionCreators.setLogIn(token));
-      window.location.reload();
     } catch (e) {
       console.log(e);
     }

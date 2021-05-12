@@ -1,28 +1,13 @@
 import api from "./config";
-import { store } from "../store";
-
-const { token } = store.getState().currentUser;
 
 export const fetchFeed = () => {
-  return api.get("/posts/feed", {
-    headers: {
-      Authorization: token,
-    },
-  });
+  return api.get("/posts/feed");
 };
 
 export const likePost = (postId) => {
-  return api.get("/posts/like/" + postId, {
-    headers: {
-      Authorization: token,
-    },
-  });
+  return api.get("/posts/like/" + postId);
 };
 
 export const getPostById = (postId) => {
-  return api.get("/posts/" + postId, {
-    headers: {
-      Authorization: token,
-    },
-  });
+  return api.get("/posts/" + postId);
 };

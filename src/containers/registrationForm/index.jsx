@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { userRegistration } from "../store/currentUser/thunks";
+import { userRegistration } from "../../store/currentUser/thunks";
 
 export const RegistrationForm = () => {
   const dispatch = useDispatch();

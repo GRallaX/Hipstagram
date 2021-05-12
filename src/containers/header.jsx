@@ -30,6 +30,7 @@ export const Header = () => {
   );
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  const searchInputContainer = useRef();
   const searchInput = useRef();
 
   useEffect(() => {
@@ -51,8 +52,8 @@ export const Header = () => {
         {screenWidth > 750 && <span>Hipstagram</span>}
       </div>
       <div
-        className="users_search"
-        ref={searchInput}
+        className="users_search_input_container"
+        ref={searchInputContainer}
         style={
           screenWidth < 750
             ? location.pathname === "/users_search"
@@ -64,6 +65,7 @@ export const Header = () => {
         <input
           key="users_search_input"
           type="text"
+          ref={searchInput}
           className="users_search_input"
           onChange={(event) => handleSearchUsers(event, history)}
           defaultValue={
@@ -82,11 +84,12 @@ export const Header = () => {
         {screenWidth < 750 && (
           <span
             className="search_Btn"
-            onClick={() =>
-              searchInput.current.style.display === "none"
-                ? (searchInput.current.style.display = "initial")
-                : (searchInput.current.style.display = "none")
-            }
+            onClick={() => {
+              searchInputContainer.current.style.display === "none"
+                ? (searchInputContainer.current.style.display = "initial")
+                : (searchInputContainer.current.style.display = "none");
+              setTimeout(() => searchInput.current.focus(), 100);
+            }}
           >
             <SearchSymbol />
           </span>

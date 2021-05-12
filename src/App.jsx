@@ -21,6 +21,7 @@ const App = () => {
       dispatch(getCurrentUser());
     }
   });
+
   if (isLoggedIn && !userLoaded) {
     return (
       <main>

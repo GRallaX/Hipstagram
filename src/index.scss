@@ -43,12 +43,13 @@ main {
 
   padding: 0 16px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
 
   width: 100vw;
   height: 50px;
   background-color: #4d88ed;
+
+  box-shadow: 0 2px 3px 0 rgba(127, 132, 135, 0.2);
 
   .logo {
     flex: 1 999 0%;
@@ -69,13 +70,17 @@ main {
       font-size: 22px;
     }
   }
-  .users_search {
-    position: relative;
+  .users_search_input_container {
     flex: 0 1 auto;
+    position: relative;
 
     @media (max-width: 750px) {
+      width: 200px;
+
       display: none;
       overflow: hidden;
+
+      transition: 0.5s;
       animation: slideout 0.5s;
 
       @keyframes slideout {
@@ -98,6 +103,7 @@ main {
       }
     }
   }
+
   .users_search_input {
     padding: 3px 10px 3px 26px;
     height: 28px;
@@ -108,11 +114,20 @@ main {
 
     font-size: 16px;
   }
+
+  .users_search_input:focus {
+    border: 1px solid #969696;
+  }
 }
 
 .header_navigation {
   flex: 1 999 0%;
   height: 40px;
+
+  @media (max-width: 750px) {
+    flex-grow: 0;
+    margin-left: 16px;
+  }
 
   display: flex;
   justify-content: flex-end;
@@ -195,6 +210,9 @@ main {
 }
 
 .avatar.small {
+  display: flex;
+  align-items: center;
+
   width: 50px;
   height: 50px;
   border-radius: 50%;
