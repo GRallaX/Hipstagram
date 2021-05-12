@@ -9,4 +9,43 @@
 }
 .users_search h2 {
   text-align: center;
+}
+
+.users_list {
+  width: 100%;
+  padding: 0;
+}
+.users_list_card {
+  display: flex;
+  margin-bottom: 16px;
+  width: 100%;
+  list-style-type: none;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+  padding: 8px 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+.users_list_card .user_link {
+  flex: 0 99 0%;
+  display: flex;
+  align-items: center;
+}
+.users_list_card .user_link .avatar {
+  margin-right: 16px;
+}
+.users_list_card .user_link a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+.users_list_card .user_link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.users_list_card .subscribe_btn {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: flex-end;
 }/*# sourceMappingURL=search.css.map */

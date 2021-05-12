@@ -33,7 +33,7 @@ export const User = ({
             setUser({ ...fetchedUser });
             setIsLoading(false);
           }
-          document.title = "Hipstagram - " + fetchedUser.login;
+          document.title = fetchedUser.login;
         } catch (e) {
           console.log(e);
           setIsLoading(false);
@@ -46,23 +46,23 @@ export const User = ({
 
   if (isLoading) {
     return (
-      <main>
+      <div className="main">
         <div className="loading_screen">
           <img src={loadingIcon} alt="loadingIcon" />
         </div>
-      </main>
+      </div>
     );
   } else if (!isLoading && !Object.keys(user).length) {
     return (
-      <main>
+      <div className="main">
         <h2>No such User</h2>
-      </main>
+      </div>
     );
   } else {
     const { login, avatar, id, email, firstName, lastName } = user;
 
     return (
-      <main>
+      <div className="main">
         <h2>{login}</h2>
         <Avatar avatar={avatar} size="big" />
         <FollowButton userId={id} size="big_btn" />
@@ -74,7 +74,7 @@ export const User = ({
           <span>login: {!login ? "no login" : login}</span> <br />
           <span>id: {!id ? "no id" : id}</span> <br />
         </div>
-      </main>
+      </div>
     );
   }
 };

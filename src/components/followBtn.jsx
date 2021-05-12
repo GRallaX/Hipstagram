@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { followUser } from "../api/users";
 import { useState } from "react";
+
+import { followUser } from "../api/users";
 import loadingIcon from "../images/loading_small.svg";
 
 export const FollowButton = ({ userId, size }) => {

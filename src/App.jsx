@@ -24,11 +24,11 @@ const App = () => {
 
   if (isLoggedIn && !userLoaded) {
     return (
-      <main>
+      <div className="main">
         <div className="loading_screen">
           <img src={loadingIcon} alt="loadingIcon" />
         </div>
-      </main>
+      </div>
     );
   } else {
     return (

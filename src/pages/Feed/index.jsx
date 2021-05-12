@@ -11,7 +11,7 @@ export const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    document.title = "Hipstagram - Feed";
+    document.title = "Feed";
     let cleanupFunction = false;
     (async () => {
       try {
@@ -30,27 +30,27 @@ export const Feed = () => {
 
   if (isLoading) {
     return (
-      <main>
+      <div className="main">
         <div className="loading_screen">
           <img src={loadingIcon} alt="loadingIcon" />
         </div>
-      </main>
+      </div>
     );
   } else if (!isLoading && !posts.length) {
     return (
-      <main>
+      <div className="main">
         <h2>No posts yet</h2>
-      </main>
+      </div>
     );
   } else {
     return (
-      <main>
+      <div className="main">
         <div className="feed_posts">
           {posts.map((post) => {
             return <FeedPost key={"post_" + post._id} post={post} />;
           })}
         </div>
-      </main>
+      </div>
     );
   }
 };

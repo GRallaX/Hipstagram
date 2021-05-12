@@ -11,7 +11,7 @@ export const SearchUsers = (props) => {
 
   useEffect(() => {
     let cleanupFunction = false;
-    document.title = "Hipstagram - Users Search";
+    document.title = "Users Search";
     (async () => {
       const { data: users } = await searchUsersByID(
         props.location.search.slice(2)
@@ -26,26 +26,28 @@ export const SearchUsers = (props) => {
 
   if (isLoading) {
     return (
-      <main>
+      <div className="main">
         <div className="loading_screen">
           <img src={loadingIcon} alt="loadingIcon" />
         </div>
-      </main>
+      </div>
     );
   } else if (!isLoading && !usersList.length) {
     return (
-      <main>
-        <h2>No Users Found</h2>
-      </main>
+      <div className="main">
+        <div className="users_search">
+          <h2>No Users Found</h2>
+        </div>
+      </div>
     );
   } else {
     return (
-      <main>
+      <div className="main">
         <div className="users_search">
           <h2>Users Search</h2>
           <UsersList usersList={usersList} />
         </div>
-      </main>
+      </div>
     );
   }
 };

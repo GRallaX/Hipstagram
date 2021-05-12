@@ -24,6 +24,7 @@
   text-decoration: none;
   color: black;
   font-weight: 600;
+  font-size: 14px;
 }
 .feed_post .user_post_ref .avatar.small {
   margin-right: 12px;
@@ -79,7 +80,7 @@
 
 .feed_comment {
   margin: 5px 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
 }
 

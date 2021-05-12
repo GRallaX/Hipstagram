@@ -13,18 +13,22 @@ export const ProfileSettings = ({
   },
 }) => {
   const dispatch = useDispatch();
-  const { id: currentUserId, email, lastName, login, avatar } = useSelector(
-    (state) => state.currentUser
-  );
+  const {
+    id: currentUserId,
+    email,
+    lastName,
+    login,
+    avatar,
+  } = useSelector((state) => state.currentUser);
   useEffect(() => {
-    document.title = "Hipstagram - Profile Settings";
+    document.title = "Profile Settings";
   }, []);
 
   if (pageUserId !== currentUserId) {
     return <Redirect to={"/users/" + currentUserId + "/profile_settings"} />;
   } else {
     return (
-      <main>
+      <div className="main">
         <h2>Profile Settings</h2>
         <Avatar avatar={avatar} size="big">
           <button type="submit">Change</button>
@@ -45,7 +49,7 @@ export const ProfileSettings = ({
         >
           Update password
         </button>
-      </main>
+      </div>
     );
   }
 };

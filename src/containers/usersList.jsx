@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
-import "./usersList.css";
-import { Avatar } from "../../components/avatar";
-import { FollowButton } from "../../components/followBtn";
+import { Avatar } from "../components/avatar";
+import { FollowButton } from "../components/followBtn";
 
 const UserCard = ({ user: { avatar, login, _id } }) => {
   return (
