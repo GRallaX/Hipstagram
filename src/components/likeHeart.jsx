@@ -1,0 +1,28 @@
+import { useRef } from "react";
+import { likePost } from "../api/posts";
+
+import { likeBtnDef, likeBtnLiked } from "../images/heartBtn.js";
+
+export const LikeHeart = ({ post, isLiked, setIsLiked }) => {
+  const { _id } = post;
+
+  const likeContainer = useRef();
+
+  return (
+    <div
+      className="like_heart_container"
+      onDoubleClick={async () => {
+        try {
+          setIsLiked(isLiked ? false : true);
+          likeContainer.current.className = isLiked ? "unliked" : "liked";
+          await likePost(_id);
+        } catch (e) {
+          setIsLiked(isLiked ? false : true);
+          console.log(e.response);
+        }
+      }}
+    >
+      <span ref={likeContainer}>{!isLiked ? likeBtnDef : likeBtnLiked}</span>
+    </div>
+  );
+};

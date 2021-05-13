@@ -21,16 +21,39 @@ const handleSearchUsers = (event, history) => {
   }
 };
 
-export const Header = () => {
+const SearchInput = ({ searchInput }) => {
   const location = useLocation();
   const history = useHistory();
+
+  return (
+    <div className="users_search_input_container">
+      <input
+        key="users_search_input"
+        type="text"
+        ref={searchInput}
+        className="users_search_input"
+        onChange={(event) => handleSearchUsers(event, history)}
+        defaultValue={
+          location.pathname === "/users_search" ? location.search.slice(2) : ""
+        }
+        autoCapitalize="none"
+        placeholder="Search"
+      />
+      <span>
+        <SearchSymbol />
+      </span>
+    </div>
+  );
+};
+
+export const Header = () => {
   const dispatch = useDispatch();
   const { id: currentUserId, login: currentUserLogin } = useSelector(
     (state) => state.currentUser
   );
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [showSearch, setShowSearch] = useState(false);
 
-  const searchInputContainer = useRef();
   const searchInput = useRef();
 
   useEffect(() => {
@@ -53,44 +76,22 @@ export const Header = () => {
           {screenWidth > 750 && <span>Hipstagram</span>}
         </NavLink>
       </div>
-      <div
-        className="users_search_input_container"
-        ref={searchInputContainer}
-        style={
-          screenWidth < 750
-            ? location.pathname === "/users_search"
-              ? { display: "initial" }
-              : { display: "none" }
-            : { display: "initial" }
-        }
-      >
-        <input
-          key="users_search_input"
-          type="text"
-          ref={searchInput}
-          className="users_search_input"
-          onChange={(event) => handleSearchUsers(event, history)}
-          defaultValue={
-            location.pathname === "/users_search"
-              ? location.search.slice(2)
-              : ""
-          }
-          autoCapitalize="none"
-          placeholder="Search"
-        />
-        <span>
-          <SearchSymbol />
-        </span>
-      </div>
+      {screenWidth > 750 ? (
+        <SearchInput searchInput={searchInput} />
+      ) : showSearch ? (
+        <SearchInput searchInput={searchInput} />
+      ) : null}
       <nav className="header_navigation">
         {screenWidth < 750 && (
           <span
             className="search_Btn"
             onClick={() => {
-              searchInputContainer.current.style.display === "none"
-                ? (searchInputContainer.current.style.display = "initial")
-                : (searchInputContainer.current.style.display = "none");
-              setTimeout(() => searchInput.current.focus(), 100);
+              if (!showSearch) {
+                setShowSearch(true);
+                setTimeout(() => searchInput.current.focus(), 100);
+              } else {
+                setShowSearch(false);
+              }
             }}
           >
             <SearchSymbol />

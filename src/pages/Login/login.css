@@ -102,7 +102,9 @@
 }
 
 .submit_btn {
-  flex: 1 0 auto;
+  height: 35px;
+  min-width: 120px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=login.css.map */

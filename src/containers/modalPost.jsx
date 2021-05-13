@@ -8,7 +8,6 @@ import loadingIcon from "../images/loading_big.svg";
 export const ModalPost = () => {
   const location = useLocation();
   const history = useHistory();
-  const { pathname } = useLocation();
   const { postId } = useParams();
 
   const [post, setPost] = useState(
@@ -42,11 +41,7 @@ export const ModalPost = () => {
 
   if (isLoading) {
     return (
-      <ModalWindow
-        closeModalFunc={() =>
-          history.push(pathname.substring(0, pathname.search(/post/g)))
-        }
-      >
+      <ModalWindow closeModalFunc={() => history.goBack()}>
         <div className="modal_post">
           <img src={loadingIcon} alt="loadingIcon" />
         </div>
@@ -54,11 +49,7 @@ export const ModalPost = () => {
     );
   } else if (!isLoading && !post) {
     return (
-      <ModalWindow
-        closeModalFunc={() =>
-          history.push(pathname.substring(0, pathname.search(/post/g)))
-        }
-      >
+      <ModalWindow closeModalFunc={() => history.goBack()}>
         <div className="modal_post">
           <h2>No post found</h2>
         </div>
@@ -66,11 +57,7 @@ export const ModalPost = () => {
     );
   } else if (!isLoading && !!post) {
     return (
-      <ModalWindow
-        closeModalFunc={() =>
-          history.push(pathname.substring(0, pathname.search(/post/g)))
-        }
-      >
+      <ModalWindow closeModalFunc={() => history.goBack()}>
         <div className="modal_post">
           <img src={loadingIcon} alt="loadingIcon" ref={loadingImg} />
           <article

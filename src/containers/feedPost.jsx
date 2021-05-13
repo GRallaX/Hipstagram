@@ -1,8 +1,10 @@
 import { Link, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import { Avatar } from "../components/avatar";
 import { LikeButton } from "../components/likeBtn";
+import { LikeHeart } from "../components/likeHeart";
 import { PostComments } from "./feedComments";
 import { getUserById } from "../api/users";
 
@@ -16,6 +18,11 @@ export const FeedPost = ({
   const [postOwner, setPostOwner] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [imgLoading, setImgLoading] = useState(true);
+
+  const { id: currentUserId } = useSelector((state) => state.currentUser);
+  const [isLiked, setIsLiked] = useState(
+    likes.some((user) => user._id === currentUserId) ? true : false
+  );
 
   const history = useHistory();
 
@@ -65,15 +72,20 @@ export const FeedPost = ({
           <img
             src={imgUrl}
             alt={"post_image" + imgUrl}
-            onClick={() => history.push("/feed/post/" + _id, { post })}
             onLoad={() => setImgLoading(false)}
           />
+          <LikeHeart post={post} isLiked={isLiked} setIsLiked={setIsLiked} />
         </div>
         <div className="feed_post_btns">
-          <LikeButton likes={likes} postId={_id} />
+          <LikeButton
+            likes={likes}
+            postId={_id}
+            isLiked={isLiked}
+            setIsLiked={setIsLiked}
+          />
           <span
             className="comment_btn"
-            onClick={() => history.push("/feed/post/" + _id, { post })}
+            onClick={() => history.push("/feed/p/" + _id, { post })}
           >
             {commentBtn}
           </span>

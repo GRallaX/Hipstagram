@@ -16,6 +16,16 @@ const App = () => {
   const dispatch = useDispatch();
   const { userLoaded, isLoggedIn } = useSelector((state) => state.currentUser);
 
+  document.addEventListener(
+    "mousedown",
+    function (event) {
+      if (event.detail > 1) {
+        event.preventDefault();
+      }
+    },
+    false
+  );
+
   useEffect(() => {
     if (!userLoaded && isLoggedIn) {
       dispatch(getCurrentUser());
@@ -38,7 +48,7 @@ const App = () => {
           {!isLoggedIn && <Route path="/login" component={Login} />}
           {!isLoggedIn && <Redirect from="*" to="/login" />}
           <Route path="/feed">
-            <Route path="/feed/post/:postId" component={ModalPost} />
+            <Route path="/feed/p/:postId" component={ModalPost} />
             <Feed />
           </Route>
           <Route path="/users_search" component={SearchUsers} />

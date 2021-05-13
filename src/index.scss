@@ -82,13 +82,15 @@ code {
   .users_search_input_container {
     flex: 0 1 auto;
     position: relative;
+    width: 220px;
+    height: 100%;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @media (max-width: 750px) {
-      width: 212.4px;
-
-      display: none;
-      overflow: hidden;
-
       transition: 0.5s;
       animation: slideout 0.5s;
 
@@ -97,15 +99,16 @@ code {
           width: 0;
         }
         to {
-          width: 200px;
+          width: 220px;
         }
       }
     }
 
     span {
       position: absolute;
-      left: 9px;
-      top: 5px;
+      left: 12px;
+      top: 14px;
+
       svg {
         fill: grey;
         width: 13px;
@@ -114,7 +117,7 @@ code {
   }
 
   .users_search_input {
-    padding: 3px 10px 3px 26px;
+    padding: 5px 10px 3px 26px;
     height: 33px;
 
     border: 1px solid #dbdbdb;
@@ -124,8 +127,14 @@ code {
     font-size: 14px;
   }
 
+  @media (max-width: 750px) {
+    .users_search_input:focus {
+      border: darkgray;
+    }
+  }
+
   .users_search_input:focus {
-    filter: drop-shadow(1px 1px 1px #131313);
+    filter: drop-shadow(0 0 1px #131313);
   }
 }
 

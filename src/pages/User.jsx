@@ -30,6 +30,7 @@ export const User = ({
         try {
           const { data: fetchedUser } = await getUserById(pageUserId);
           if (!cleanupFunction) {
+            console.info(fetchedUser);
             setUser({ ...fetchedUser });
             setIsLoading(false);
           }

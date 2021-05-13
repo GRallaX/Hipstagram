@@ -1,24 +1,25 @@
-import { useState } from "react";
+import { useRef } from "react";
+import { likePost } from "../api/posts";
 
 import { likeBtnDef, likeBtnLiked } from "../images/heartBtn.js";
-import { likePost } from "../api/posts";
-import { useSelector } from "react-redux";
 
-export const LikeButton = ({ likes, postId }) => {
-  const { id: currentUserId } = useSelector((state) => state.currentUser);
-  const [isLiked, setIsLiked] = useState(
-    likes.some((user) => user._id === currentUserId) ? true : false
-  );
+export const LikeButton = ({ postId, isLiked, setIsLiked }) => {
+  const likeContainer = useRef();
 
   return (
     <span
-      className="like_btn"
+      className="like_btn_container"
+      ref={likeContainer}
       onClick={async () => {
         try {
           setIsLiked(isLiked ? false : true);
+          likeContainer.current.className = isLiked
+            ? "like_btn_container unliked"
+            : "like_btn_container liked";
           await likePost(postId);
         } catch (e) {
-          console.log(e.response.data);
+          setIsLiked(isLiked ? false : true);
+          console.log(e.response);
         }
       }}
     >
