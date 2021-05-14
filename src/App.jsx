@@ -56,7 +56,10 @@ const App = () => {
             path="/users/:id/profile_settings"
             component={ProfileSettings}
           />
-          <Route path="/users/:id" component={User} />
+          <Route path="/users/">
+            <Route path="/users/:ownerId/p/:postId" component={ModalPost} />
+            <Route path="/users/:id" component={User} />
+          </Route>
           {isLoggedIn && <Redirect from="*" to="/feed" />}
         </Switch>
       </div>

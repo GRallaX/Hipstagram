@@ -1,0 +1,14 @@
+.big.avatar {
+  height: 150px;
+  width: 150px;
+}
+.big.avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.interactions_container .interactions .like_btn,
+.interactions_container .interactions .comment_btn_filled {
+  width: 20px;
+  height: 20px;
+}/*# sourceMappingURL=user.css.map */

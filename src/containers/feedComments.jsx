@@ -32,7 +32,7 @@ export const PostComments = ({ postId }) => {
           setIsLoading(false);
         }
       } catch (e) {
-        console.log(e.response.data);
+        console.log(e);
       }
     })();
     return () => (cleanupFunction = true);

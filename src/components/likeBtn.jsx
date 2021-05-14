@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { likePost } from "../api/posts";
 
-import { likeBtnDef, likeBtnLiked } from "../images/heartBtn.js";
+import { LikeBtnDef, LikeBtnLiked } from "../images/heartBtn.js";
 
 export const LikeButton = ({ postId, isLiked, setIsLiked }) => {
   const likeContainer = useRef();
@@ -23,7 +23,7 @@ export const LikeButton = ({ postId, isLiked, setIsLiked }) => {
         }
       }}
     >
-      {!isLiked ? likeBtnDef : likeBtnLiked}
+      {!isLiked ? <LikeBtnDef /> : <LikeBtnLiked />}
     </span>
   );
 };

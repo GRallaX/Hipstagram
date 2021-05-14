@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -9,7 +9,7 @@ import { PostComments } from "./feedComments";
 import { getUserById } from "../api/users";
 
 import loadingIcon from "../images/loading_big.svg";
-import { commentBtn } from "../images/commentBtn.js";
+import { CommentBtn } from "../images/commentBtn.js";
 
 export const FeedPost = ({
   post,
@@ -23,8 +23,6 @@ export const FeedPost = ({
   const [isLiked, setIsLiked] = useState(
     likes.some((user) => user._id === currentUserId) ? true : false
   );
-
-  const history = useHistory();
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -83,12 +81,11 @@ export const FeedPost = ({
             isLiked={isLiked}
             setIsLiked={setIsLiked}
           />
-          <span
-            className="comment_btn"
-            onClick={() => history.push("/feed/p/" + _id, { post })}
-          >
-            {commentBtn}
-          </span>
+          <Link to={{ pathname: "/feed/p/" + _id, state: { post } }}>
+            <span className="comment_btn_container">
+              <CommentBtn />
+            </span>
+          </Link>
           <div className="feed_post_likes"></div>
         </div>
         <div className="feed_owner_comment">

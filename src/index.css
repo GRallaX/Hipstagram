@@ -176,15 +176,6 @@ code {
   cursor: pointer;
 }
 
-.big.avatar {
-  height: 150px;
-  width: 150px;
-}
-.big.avatar img {
-  width: 150px;
-  height: 150px;
-}
-
 .avatar.small {
   display: flex;
   align-items: center;

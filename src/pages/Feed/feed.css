@@ -136,7 +136,8 @@
   animation: unlike-button-animation 0.45s ease-in-out;
   transform: scale(1);
 }
-.feed_post_btns .like_btn {
+.feed_post_btns .like_btn,
+.feed_post_btns .comment_btn {
   width: 25px;
   height: 25px;
 }

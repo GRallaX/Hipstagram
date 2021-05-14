@@ -1,0 +1,18 @@
+.big.avatar {
+  height: 150px;
+  width: 150px;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.interactions_container {
+  .interactions {
+    .like_btn,
+    .comment_btn_filled {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
