@@ -1,6 +1,6 @@
 .users_search {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   margin: 16px 0;
 
   background-color: #fff;
@@ -34,32 +34,70 @@
     align-items: center;
 
     .user_link {
-      flex: 0 99 0%;
+      flex: 0 99 auto;
 
       display: flex;
       align-items: center;
+      overflow: hidden;
+
+      .link_login {
+        flex: 0 99 auto;
+        text-overflow: ellipsis;
+
+        max-width: calc(100% - 66px);
+
+        .ref {
+          display: block;
+          text-decoration: none;
+          color: black;
+          font-weight: 600;
+        }
+      }
 
       .avatar {
+        flex: 1 0 auto;
         margin-right: 16px;
       }
 
-      a {
-        text-decoration: none;
-        color: black;
-        font-weight: 600;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
       }
-    }
-
-    .user_link:hover {
-      cursor: pointer;
-      text-decoration: underline;
     }
 
     .subscribe_btn {
       flex: 1 0 auto;
 
+      margin: 0 0 0 16px;
+
       display: flex;
       justify-content: flex-end;
+
+      .follow_btn {
+        height: 35px;
+        width: 100px;
+        border-radius: 5px;
+
+        border: 2px solid #4d88ed;
+        color: whitesmoke;
+        background: #4d88ed;
+
+        outline: none;
+
+        font-size: 14px;
+        font-weight: 400;
+
+        &.followed {
+          color: black;
+          border: 2px solid black;
+          background: rgb(240, 240, 240);
+        }
+
+        &:hover {
+          filter: drop-shadow(1px 1px 2px #131313);
+          cursor: pointer;
+        }
+      }
     }
   }
 }

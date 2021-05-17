@@ -8,9 +8,11 @@ const UserCard = ({ user: { avatar, login, _id } }) => {
     <li className="users_list_card">
       <div className="user_link">
         <Avatar avatar={avatar} size="small" />
-        <Link to={"/users/" + _id} className="ref">
-          {login}
-        </Link>
+        <div className="link_login">
+          <Link to={"/users/" + _id} className="ref">
+            {login}
+          </Link>
+        </div>
       </div>
       <div className="subscribe_btn">
         <FollowButton userId={_id} size="medium_btn" />

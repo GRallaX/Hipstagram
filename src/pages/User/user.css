@@ -1,10 +1,85 @@
-.big.avatar {
+.user_header {
+  display: flex;
+}
+.user_header .big.avatar {
   height: 150px;
   width: 150px;
 }
-.big.avatar img {
+.user_header .big.avatar img {
   width: 100%;
   height: auto;
+}
+.user_header .login_subscribe {
+  margin: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user_header .login_subscribe .login {
+  margin: 0;
+  font-weight: 400;
+  font-size: 26px;
+}
+.user_header .login_subscribe .follow_btn {
+  margin: 4px 0 0 16px;
+  height: 35px;
+  width: 150px;
+  border-radius: 5px;
+  border: 2px solid #4d88ed;
+  color: whitesmoke;
+  background: #4d88ed;
+  outline: none;
+  font-size: 16px;
+}
+.user_header .login_subscribe .follow_btn:hover {
+  filter: drop-shadow(1px 1px 2px #131313);
+  cursor: pointer;
+}
+.user_header .login_subscribe .followed {
+  color: black;
+  border: 2px solid black;
+  background: #f0f0f0;
+}
+.user_header .login_subscribe .settings_btn {
+  margin: 4px 0 0 16px;
+  height: 35px;
+  width: 150px;
+  border-radius: 5px;
+  color: black;
+  border: 2px solid black;
+  outline: none;
+  font-size: 16px;
+}
+.user_header .login_subscribe .settings_btn:hover {
+  filter: drop-shadow(1px 1px 2px #131313);
+  cursor: pointer;
+}
+.user_header .user_data {
+  margin: 16px 0;
+  display: flex;
+  padding: 0;
+  font-size: 18px;
+}
+.user_header .user_data li {
+  list-style-type: none;
+}
+.user_header .user_data li:not(:last-of-type) {
+  margin: 0 16px 0 0;
+}
+.user_header .user_data .data {
+  font-weight: 700;
+}
+.user_header .info {
+  margin: 16px 0;
+  line-height: 1.5;
+}
+.user_header .name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+.user_header .email {
+  font-size: 16px;
 }
 
 .interactions_container .interactions .like_btn,

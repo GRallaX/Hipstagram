@@ -10,23 +10,23 @@ import { User } from "./pages/User";
 import { ProfileSettings } from "./pages/ProfileSettings";
 import { SearchUsers } from "./pages/SearchUsers";
 import { ModalPost } from "./containers/modalPost";
+
 import loadingIcon from "./images/loading_big.svg";
 
 const App = () => {
   const dispatch = useDispatch();
   const { userLoaded, isLoggedIn } = useSelector((state) => state.currentUser);
 
-  document.addEventListener(
-    "mousedown",
-    function (event) {
-      if (event.detail > 1) {
-        event.preventDefault();
-      }
-    },
-    false
-  );
-
   useEffect(() => {
+    document.addEventListener(
+      "mousedown",
+      function (e) {
+        if (e.detail > 1) {
+          e.preventDefault();
+        }
+      },
+      false
+    );
     if (!userLoaded && isLoggedIn) {
       dispatch(getCurrentUser());
     }

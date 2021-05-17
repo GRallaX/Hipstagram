@@ -110,15 +110,15 @@ code {
   outline: 0;
   font-size: 14px;
 }
-@media (max-width: 750px) {
-  .main_header .users_search_input:focus {
-    border: darkgray;
-  }
-}
 .main_header .users_search_input:focus {
   filter: drop-shadow(0 0 1px #131313);
 }
 
+@media (max-width: 750px) {
+  .users_search_input:focus {
+    border: darkgray;
+  }
+}
 .header_navigation {
   flex: 1 999 0%;
   height: 40px;
@@ -136,6 +136,10 @@ code {
   transition: 0.3s;
   margin-right: 16px;
 }
+.header_navigation span:hover {
+  filter: drop-shadow(1px 1px 1px #131313);
+  cursor: pointer;
+}
 .header_navigation a {
   text-decoration: none;
   color: whitesmoke;
@@ -143,10 +147,6 @@ code {
 }
 .header_navigation a:focus {
   filter: drop-shadow(1px 1px 1px #131313);
-}
-.header_navigation span:hover {
-  filter: drop-shadow(1px 1px 1px #131313);
-  cursor: pointer;
 }
 .header_navigation .search_Btn {
   margin: 5px 13px 0 0;

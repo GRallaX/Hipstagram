@@ -33,7 +33,6 @@ export const User = ({
         try {
           const { data: fetchedUser } = await getUserById(pageUserId);
           if (!cleanupFunction) {
-            console.info(fetchedUser);
             setUser({ ...fetchedUser });
             setIsLoading(false);
           }
@@ -75,43 +74,68 @@ export const User = ({
       followingsCount,
     } = user;
 
+    const reducer = (accum, post) => {
+      if (!accum.length || accum[accum.length - 1].length === 3) {
+        const newGroup = [];
+        newGroup.push(post);
+        accum.push(newGroup);
+      } else {
+        accum[accum.length - 1].push(post);
+      }
+      return accum;
+    };
+    const groupedUserPosts = posts.reduce(reducer, []);
+
     return (
       <div className="main">
         <header className="user_header">
           <Avatar avatar={avatar} size="big" />
           <section className="user_info">
-            <h1>{login}</h1>
-            <FollowButton userId={id} size="big_btn" />
+            <div className="login_subscribe">
+              <h1 className="login">{login}</h1>
+              <FollowButton userId={id} size="big_btn" />
+            </div>
             <ul className="user_data">
               <li>
                 <span className="data">{posts.length}</span>
                 <span className="data_type"> posts</span>
               </li>
               <li>
-                <span className="data">{followersCount}</span>
+                <span className="data">{followersCount || "0"}</span>
                 <span className="data_type"> followers</span>
               </li>
               <li>
-                <span className="data">{followingsCount}</span>
+                <span className="data">{followingsCount || "0"}</span>
                 <span className="data_type"> following</span>
               </li>
             </ul>
-            {(!!firstName || !!lastName) && (
-              <h3>{firstName + " " + lastName}</h3>
-            )}
-            {!!email && <span>{email}</span>}
+            <div className="info">
+              {(!!firstName || !!lastName) && (
+                <h3 className="name">{firstName + " " + lastName}</h3>
+              )}
+              {!!email && <span className="email">{email}</span>}
+            </div>
           </section>
         </header>
         <article className="user_posts">
           <div className="posts_wrapper">
             {posts.length > 0 ? (
-              posts.map((post) => {
+              groupedUserPosts.map((postGroup, index) => {
                 return (
-                  <UsersPost
-                    key={"post_" + post._id}
-                    post={post}
-                    ownersLogin={login}
-                  />
+                  <div
+                    key={"postsGroup " + (index + 1)}
+                    className={"posts_group"}
+                  >
+                    {postGroup.map((post) => {
+                      return (
+                        <UsersPost
+                          key={"post_" + post._id}
+                          post={post}
+                          ownersLogin={login}
+                        />
+                      );
+                    })}
+                  </div>
                 );
               })
             ) : (
