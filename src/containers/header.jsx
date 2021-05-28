@@ -1,50 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { logOutUser } from "../store/currentUser/thunks";
 
 import Logo from "../images/logo 1.png";
 import { ReactComponent as LogoutIcon } from "../images/logout_icon.svg";
 import { ReactComponent as ProfileIcon } from "../images/profile_icon.svg";
-import { ReactComponent as SearchSymbol } from "../images/search_icon.svg";
 import { ReactComponent as HomeSymbol } from "../images/home_icon.svg";
-
-const handleSearchUsers = (event, history) => {
-  if (!event.target.value.length) {
-    return;
-  }
-  if (!!history.location.pathname.search(/\/users_search/g)) {
-    history.push("/users_search?=" + event.target.value);
-  } else {
-    history.replace("/users_search?=" + event.target.value);
-  }
-};
-
-const SearchInput = ({ searchInput }) => {
-  const location = useLocation();
-  const history = useHistory();
-
-  return (
-    <div className="users_search_input_container">
-      <input
-        key="users_search_input"
-        type="text"
-        ref={searchInput}
-        className="users_search_input"
-        onChange={(event) => handleSearchUsers(event, history)}
-        defaultValue={
-          location.pathname === "/users_search" ? location.search.slice(2) : ""
-        }
-        autoCapitalize="none"
-        placeholder="Search"
-      />
-      <span>
-        <SearchSymbol />
-      </span>
-    </div>
-  );
-};
+import { ReactComponent as SearchSymbol } from "../images/search_icon.svg";
+import { SearchInput } from "../components/searchInput";
 
 export const Header = () => {
   const dispatch = useDispatch();

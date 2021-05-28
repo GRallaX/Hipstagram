@@ -42,12 +42,14 @@
 
       .link_login {
         flex: 0 99 auto;
-        text-overflow: ellipsis;
 
         max-width: calc(100% - 66px);
 
         .ref {
           display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
           text-decoration: none;
           color: black;
           font-weight: 600;

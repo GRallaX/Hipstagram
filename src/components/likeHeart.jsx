@@ -3,7 +3,7 @@ import { likePost } from "../api/posts";
 
 import { LikeBtnDef, LikeBtnLiked } from "../images/heartBtn.js";
 
-export const LikeHeart = ({ post, isLiked, setIsLiked }) => {
+export const LikeHeart = ({ post, isLiked, setIsLiked, updateFeed }) => {
   const { _id } = post;
 
   const likeContainer = useRef();
@@ -16,6 +16,7 @@ export const LikeHeart = ({ post, isLiked, setIsLiked }) => {
           setIsLiked(isLiked ? false : true);
           likeContainer.current.className = isLiked ? "unliked" : "liked";
           await likePost(_id);
+          updateFeed();
         } catch (e) {
           setIsLiked(isLiked ? false : true);
           console.log(e.response);

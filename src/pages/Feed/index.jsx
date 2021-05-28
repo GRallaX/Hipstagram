@@ -10,9 +10,7 @@ export const Feed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    document.title = "Feed";
-    let cleanupFunction = false;
+  const updateFeed = (cleanupFunction = false) => {
     (async () => {
       try {
         const { data: feed } = await fetchFeed();
@@ -25,7 +23,18 @@ export const Feed = () => {
         setIsLoading(false);
       }
     })();
-    return () => (cleanupFunction = true);
+  };
+
+  useEffect(() => {
+    document.title = "Feed";
+    let cleanupFunction = false;
+    const interval = setInterval(() => {
+      updateFeed(cleanupFunction);
+    }, 10000);
+    return () => {
+      cleanupFunction = true;
+      clearInterval(interval);
+    };
   }, []);
 
   if (isLoading) {
@@ -47,7 +56,13 @@ export const Feed = () => {
       <div className="main">
         <div className="feed_posts">
           {posts.map((post) => {
-            return <FeedPost key={"post_" + post._id} post={post} />;
+            return (
+              <FeedPost
+                key={"post_" + post._id}
+                post={post}
+                updateFeed={updateFeed}
+              />
+            );
           })}
         </div>
       </div>

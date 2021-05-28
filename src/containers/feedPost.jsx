@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Avatar } from "../components/avatar";
 import { LikeButton } from "../components/likeBtn";
 import { LikeHeart } from "../components/likeHeart";
+import { PostLikes } from "../components/postLikesInfo";
 import { PostComments } from "./feedComments";
 import { getUserById } from "../api/users";
 
@@ -14,10 +15,12 @@ import { CommentBtn } from "../images/commentBtn.js";
 export const FeedPost = ({
   post,
   post: { ownerId, imgUrl, title, _id, likes },
+  updateFeed,
 }) => {
   const [postOwner, setPostOwner] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [imgLoading, setImgLoading] = useState(true);
+  const [modalLikes, setModalLikes] = useState(null);
 
   const { id: currentUserId } = useSelector((state) => state.currentUser);
   const [isLiked, setIsLiked] = useState(
@@ -72,7 +75,12 @@ export const FeedPost = ({
             alt={"post_image" + imgUrl}
             onLoad={() => setImgLoading(false)}
           />
-          <LikeHeart post={post} isLiked={isLiked} setIsLiked={setIsLiked} />
+          <LikeHeart
+            post={post}
+            isLiked={isLiked}
+            setIsLiked={setIsLiked}
+            updateFeed={updateFeed}
+          />
         </div>
         <div className="feed_post_btns">
           <LikeButton
@@ -80,13 +88,14 @@ export const FeedPost = ({
             postId={_id}
             isLiked={isLiked}
             setIsLiked={setIsLiked}
+            updateFeed={updateFeed}
           />
           <Link to={{ pathname: "/feed/p/" + _id, state: { post } }}>
             <span className="comment_btn_container">
               <CommentBtn />
             </span>
           </Link>
-          <div className="feed_post_likes"></div>
+          <PostLikes likes={likes} setModalLikes={setModalLikes} />
         </div>
         <div className="feed_owner_comment">
           <span className="feed_comment">

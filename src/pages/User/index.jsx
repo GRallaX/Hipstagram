@@ -25,7 +25,11 @@ export const User = ({
     (async () => {
       if (pageUserId === currentUserId) {
         if (!cleanupFunction) {
-          setUser({ ...currentUser });
+          setUser({
+            ...currentUser,
+            followersCount: currentUser.followers.length,
+            followingsCount: currentUser.following.length,
+          });
           setIsLoading(false);
         }
         document.title = "Hipstagram - My Profile";
