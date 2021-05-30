@@ -11,6 +11,7 @@ import { getUserById } from "../api/users";
 
 import loadingIcon from "../images/loading_big.svg";
 import { CommentBtn } from "../images/commentBtn.js";
+import { ModalLikes } from "./modalLikes";
 
 export const FeedPost = ({
   post,
@@ -20,7 +21,7 @@ export const FeedPost = ({
   const [postOwner, setPostOwner] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [imgLoading, setImgLoading] = useState(true);
-  const [modalLikes, setModalLikes] = useState(null);
+  const [modalLikes, setModalLikes] = useState(false);
 
   const { id: currentUserId } = useSelector((state) => state.currentUser);
   const [isLiked, setIsLiked] = useState(
@@ -54,6 +55,9 @@ export const FeedPost = ({
   } else {
     return (
       <article className="feed_post">
+        {modalLikes && (
+          <ModalLikes usersList={likes} setModalLikes={setModalLikes} />
+        )}
         <header className="feed_post_header">
           <Link to={"/users/" + ownerId} className="user_post_ref">
             <Avatar avatar={postOwner.avatar} size="small" />

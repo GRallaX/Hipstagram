@@ -1,19 +1,27 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+const handleOpenModalLikes = (e, setModalLikes) => {
+  e.preventDefault();
+  setModalLikes(true);
+};
+
 const WithoutLikes = () => {
   return <span className="likes_count">No likes yet</span>;
 };
 
-const WithoutSubscribes = ({ likes }) => {
+const WithoutSubscribes = ({ likes, setModalLikes }) => {
   return (
-    <span className="likes_count_btn">
+    <span
+      className="likes_count_btn"
+      onClick={(e) => handleOpenModalLikes(e, setModalLikes)}
+    >
       {likes.length + (likes.length === 1 ? " like" : " likes")}
     </span>
   );
 };
 
-const WithSubscribes = ({ likes, likedSubscribe }) => {
+const WithSubscribes = ({ likes, likedSubscribe, setModalLikes }) => {
   return (
     <>
       <span className="likes_count">
@@ -23,7 +31,10 @@ const WithSubscribes = ({ likes, likedSubscribe }) => {
       {likes.length > 1 && (
         <>
           <span> and </span>
-          <span className="likes_count_btn">
+          <span
+            className="likes_count_btn"
+            onClick={(e) => handleOpenModalLikes(e, setModalLikes)}
+          >
             {likes.length - 1 + (likes.length === 2 ? " other" : " others")}
           </span>
         </>
@@ -54,13 +65,17 @@ export const PostLikes = ({ likes, setModalLikes }) => {
   ) {
     return (
       <div className="post_likes_info">
-        <WithSubscribes likes={likes} likedSubscribe={likedSubscribe} />
+        <WithSubscribes
+          likes={likes}
+          likedSubscribe={likedSubscribe}
+          setModalLikes={setModalLikes}
+        />
       </div>
     );
   } else {
     return (
       <div className="post_likes_info">
-        <WithoutSubscribes likes={likes} />
+        <WithoutSubscribes likes={likes} setModalLikes={setModalLikes} />
       </div>
     );
   }
