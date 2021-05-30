@@ -23,7 +23,7 @@
   align-items: center;
   text-decoration: none;
   color: black;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14px;
 }
 .feed_post .user_post_ref .avatar.small {
@@ -194,7 +194,7 @@
   margin: 0 5px 0 0;
   text-decoration: none;
   color: black;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .feed_user_ref:hover {

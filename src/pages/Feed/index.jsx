@@ -10,30 +10,28 @@ export const Feed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
-  const updateFeed = (cleanupFunction = false) => {
-    (async () => {
-      try {
-        const { data: feed } = await fetchFeed();
-        if (!cleanupFunction) {
-          setPosts(feed);
-          setIsLoading(false);
-        }
-      } catch (e) {
-        console.log(e);
+  const updateFeed = async (cleanupFunction = false) => {
+    try {
+      const { data: feed } = await fetchFeed();
+      if (!cleanupFunction) {
+        setPosts(feed);
         setIsLoading(false);
       }
-    })();
+    } catch (e) {
+      console.log(e);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
     document.title = "Feed";
     let cleanupFunction = false;
-    const interval = setInterval(() => {
-      updateFeed(cleanupFunction);
-    }, 10000);
+    // const interval = setInterval(() => {
+    updateFeed(cleanupFunction);
+    // }, 10000);
     return () => {
       cleanupFunction = true;
-      clearInterval(interval);
+      // clearInterval(interval);
     };
   }, []);
 
