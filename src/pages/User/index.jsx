@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+import { ModalFollowers } from "../../containers/smallModals/modalFollowers";
+import { ModalFollowings } from "../../containers/smallModals/modalFollowings";
+import { UsersPost } from "../../components/usersPost";
 import { Avatar } from "../../components/avatar";
 import { FollowButton } from "../../components/followBtn";
+
 import { getUserById } from "../../api/users";
-import { UsersPost } from "../../components/usersPost";
+import { getFollowersAndFollowings } from "../../api/users";
 
 import loadingIcon from "../../images/loading_big.svg";
 
@@ -17,6 +21,9 @@ export const User = ({
 }) => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [modalFollowers, setModalFollowers] = useState(null);
+  const [modalFollowings, setModalFollowings] = useState(null);
+
   const currentUser = useSelector((state) => state.currentUser);
   const { id: currentUserId, token } = currentUser;
 
@@ -31,14 +38,21 @@ export const User = ({
             followingsCount: currentUser.following.length,
           });
           setIsLoading(false);
+          setModalFollowers(null);
+          setModalFollowings(null);
         }
         document.title = "Hipstagram - My Profile";
       } else {
         try {
           const { data: fetchedUser } = await getUserById(pageUserId);
+          const { data: followersAndFollowings } =
+            await getFollowersAndFollowings(pageUserId);
+
           if (!cleanupFunction) {
-            setUser({ ...fetchedUser });
+            setUser({ ...fetchedUser, ...followersAndFollowings });
             setIsLoading(false);
+            setModalFollowers(null);
+            setModalFollowings(null);
           }
           document.title = fetchedUser.login;
         } catch (e) {
@@ -76,6 +90,8 @@ export const User = ({
       posts,
       followersCount,
       followingsCount,
+      followers,
+      following,
     } = user;
 
     const reducer = (accum, post) => {
@@ -92,6 +108,18 @@ export const User = ({
 
     return (
       <div className="main">
+        {modalFollowers && (
+          <ModalFollowers
+            usersList={modalFollowers}
+            setModalFollowers={setModalFollowers}
+          />
+        )}
+        {modalFollowings && (
+          <ModalFollowings
+            usersList={modalFollowings}
+            setModalFollowings={setModalFollowings}
+          />
+        )}
         <header className="user_header">
           <Avatar avatar={avatar} size="big" />
           <section className="user_info">
@@ -104,11 +132,21 @@ export const User = ({
                 <span className="data">{posts.length}</span>
                 <span className="data_type"> posts</span>
               </li>
-              <li>
+              <li
+                className={followersCount ? "followers" : "followers_empty"}
+                onClick={() => {
+                  if (followersCount) setModalFollowers(followers);
+                }}
+              >
                 <span className="data">{followersCount || "0"}</span>
                 <span className="data_type"> followers</span>
               </li>
-              <li>
+              <li
+                className={followingsCount ? "followings" : "followings_empty"}
+                onClick={() => {
+                  if (followingsCount) setModalFollowings(following);
+                }}
+              >
                 <span className="data">{followingsCount || "0"}</span>
                 <span className="data_type"> following</span>
               </li>

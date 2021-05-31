@@ -1,5 +1,6 @@
-import { ModalWindow } from "../components/modalWindow";
-import { UsersList } from "./usersList";
+import { ModalWindow } from "../../components/modalWindow";
+import { UsersList } from "../usersList";
+import "./smallModals.css";
 
 export const ModalLikes = ({ usersList, setModalLikes }) => {
   return (

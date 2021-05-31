@@ -11,7 +11,7 @@ import { getUserById } from "../api/users";
 
 import loadingIcon from "../images/loading_big.svg";
 import { CommentBtn } from "../images/commentBtn.js";
-import { ModalLikes } from "./modalLikes";
+import { ModalLikes } from "./smallModals/modalLikes";
 
 export const FeedPost = ({
   post,

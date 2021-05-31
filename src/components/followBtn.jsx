@@ -23,7 +23,7 @@ export const FollowButton = ({ userId, size }) => {
   } else if (userId === currentUserId) {
     return (
       <Link to={"/users/" + currentUserId}>
-        <button className={"follow_btn " + size}>My Profile</button>
+        <button className={"follow_btn followed " + size}>My Profile</button>
       </Link>
     );
   } else {
