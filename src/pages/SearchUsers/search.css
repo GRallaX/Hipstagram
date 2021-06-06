@@ -6,6 +6,7 @@
   border-radius: 3px;
   border: 1px solid #dbdbdb;
   padding: 0 16px;
+  font-size: 14px;
 }
 .users_search h2 {
   text-align: center;
@@ -36,7 +37,6 @@
 }
 .users_list_card .user_link .link_login {
   flex: 0 99 auto;
-  max-width: calc(100% - 66px);
 }
 .users_list_card .user_link .link_login .ref {
   display: block;
@@ -59,24 +59,4 @@
   margin: 0 0 0 16px;
   display: flex;
   justify-content: flex-end;
-}
-.users_list_card .subscribe_btn .follow_btn {
-  height: 35px;
-  width: 100px;
-  border-radius: 5px;
-  border: 2px solid #4d88ed;
-  color: whitesmoke;
-  background: #4d88ed;
-  outline: none;
-  font-size: 14px;
-  font-weight: 400;
-}
-.users_list_card .subscribe_btn .follow_btn.followed {
-  color: black;
-  border: 2px solid black;
-  background: #f0f0f0;
-}
-.users_list_card .subscribe_btn .follow_btn:hover {
-  filter: drop-shadow(1px 1px 2px #131313);
-  cursor: pointer;
 }/*# sourceMappingURL=search.css.map */

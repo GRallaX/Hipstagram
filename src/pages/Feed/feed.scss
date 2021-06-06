@@ -1,13 +1,15 @@
 .feed_posts {
-  padding: 40px 0 0 0;
+  padding: 20px 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 600px;
+
+  font-size: 14px;
 }
 
 .feed_post {
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
   width: 100%;
 
   background-color: #fff;
@@ -15,7 +17,7 @@
   border: 1px solid #dbdbdb;
 
   &_header {
-    padding: 16px;
+    padding: 12px 16px;
     display: flex;
     justify-content: space-between;
   }
@@ -26,14 +28,15 @@
 
     text-decoration: none;
     color: black;
-    font-weight: 700;
-    font-size: 14px;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
     .avatar.small {
       margin-right: 12px;
     }
-  }
-  .user_post_ref:hover {
-    text-decoration: underline;
   }
 
   .image {
@@ -83,7 +86,7 @@
             transform: scale(0);
           }
           15% {
-            opacity: 0.9;
+            opacity: 0.95;
             transform: scale(1.2);
           }
           30% {
@@ -91,7 +94,7 @@
           }
           45%,
           80% {
-            opacity: 0.9;
+            opacity: 0.95;
             transform: scale(1);
           }
         }
@@ -107,7 +110,7 @@
             transform: scale(0);
           }
           15% {
-            opacity: 0.9;
+            opacity: 0.95;
             transform: scale(1.2);
           }
           30% {
@@ -115,7 +118,7 @@
           }
           45%,
           80% {
-            opacity: 0.9;
+            opacity: 0.95;
 
             transform: scale(1);
           }
@@ -138,19 +141,9 @@
   }
 
   &_btns {
-    padding: 8px 16px;
+    padding: 10px 16px 0 16px;
     display: flex;
     justify-content: flex-start;
-
-    span {
-      cursor: pointer;
-      margin-right: 16px;
-    }
-
-    span:hover {
-      filter: drop-shadow(0 0 1px #131313);
-      transition: 0.3s;
-    }
 
     .like_btn_container.liked {
       animation: like-button-animation 0.45s ease-in-out;
@@ -166,10 +159,33 @@
     .comment_btn {
       width: 25px;
       height: 25px;
+      cursor: pointer;
+      margin-right: 12px;
+
+      &:hover {
+        filter: drop-shadow(0 0 1px #131313);
+        transition: 0.2s;
+      }
     }
 
     .like_btn .liked {
       fill: rgb(237, 73, 86);
+    }
+
+    .post_likes_info {
+      margin-top: 2px;
+
+      a,
+      .likes_count_btn {
+        text-decoration: none;
+        color: black;
+        font-weight: 600;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
     }
   }
 
@@ -205,7 +221,7 @@
 }
 
 .comments_container {
-  padding: 8px 16px;
+  padding: 4px 16px 8px 16px;
 
   .loading_comments {
     display: flex;
@@ -220,10 +236,13 @@
 }
 
 .feed_comment {
-  margin: 5px 0;
+  margin: 2px 0;
 
-  font-size: 14px;
   font-weight: 400;
+
+  &.owner {
+    margin-bottom: 8px;
+  }
 }
 
 .feed_user_ref {
@@ -231,7 +250,7 @@
 
   text-decoration: none;
   color: black;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .feed_user_ref:hover {

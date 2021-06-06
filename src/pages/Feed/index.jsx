@@ -3,8 +3,10 @@ import "./feed.css";
 
 import { fetchFeed } from "../../api/posts";
 import { FeedPost } from "../../containers/feedPost";
+import { ModalPost } from "../../containers/modalPost";
 
 import loadingIcon from "../../images/loading_big.svg";
+import { Route } from "react-router";
 
 export const Feed = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -52,6 +54,10 @@ export const Feed = () => {
   } else {
     return (
       <div className="main">
+        <Route
+          path="/feed/p/:postId"
+          render={() => <ModalPost updateFeed={updateFeed} />}
+        />
         <div className="feed_posts">
           {posts.map((post) => {
             return (

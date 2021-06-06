@@ -18,7 +18,7 @@ const Comment = ({ comment }) => {
   );
 };
 
-export const FeedComments = ({ postId, postTitle, postOwner }) => {
+export const ModalComments = ({ postId, postOwner, postTitle }) => {
   const [comments, setComments] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +40,7 @@ export const FeedComments = ({ postId, postTitle, postOwner }) => {
 
   if (isLoading) {
     return (
-      <div className="comments_container">
+      <div className="modal_comments_container">
         <div className="loading_comments">
           <img src={loadingIcon} alt="loadingIcon" />
         </div>
@@ -48,7 +48,7 @@ export const FeedComments = ({ postId, postTitle, postOwner }) => {
     );
   } else {
     return (
-      <div className="comments_container">
+      <div className="modal_comments_container">
         <ul className="comments">
           <li className="feed_comment owner">
             <span>

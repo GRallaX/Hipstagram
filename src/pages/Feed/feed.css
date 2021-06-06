@@ -1,20 +1,21 @@
 .feed_posts {
-  padding: 40px 0 0 0;
+  padding: 20px 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 600px;
+  font-size: 14px;
 }
 
 .feed_post {
-  margin: 0 0 40px 0;
+  margin: 0 0 20px 0;
   width: 100%;
   background-color: #fff;
   border-radius: 3px;
   border: 1px solid #dbdbdb;
 }
 .feed_post_header {
-  padding: 16px;
+  padding: 12px 16px;
   display: flex;
   justify-content: space-between;
 }
@@ -23,14 +24,13 @@
   align-items: center;
   text-decoration: none;
   color: black;
-  font-weight: 700;
-  font-size: 14px;
-}
-.feed_post .user_post_ref .avatar.small {
-  margin-right: 12px;
+  font-weight: 600;
 }
 .feed_post .user_post_ref:hover {
   text-decoration: underline;
+}
+.feed_post .user_post_ref .avatar.small {
+  margin-right: 12px;
 }
 .feed_post .image {
   position: relative;
@@ -74,14 +74,14 @@
     transform: scale(0);
   }
   15% {
-    opacity: 0.9;
+    opacity: 0.95;
     transform: scale(1.2);
   }
   30% {
     transform: scale(0.95);
   }
   45%, 80% {
-    opacity: 0.9;
+    opacity: 0.95;
     transform: scale(1);
   }
 }
@@ -94,14 +94,14 @@
     transform: scale(0);
   }
   15% {
-    opacity: 0.9;
+    opacity: 0.95;
     transform: scale(1.2);
   }
   30% {
     transform: scale(0.95);
   }
   45%, 80% {
-    opacity: 0.9;
+    opacity: 0.95;
     transform: scale(1);
   }
 }
@@ -116,17 +116,9 @@
   fill: white;
 }
 .feed_post_btns {
-  padding: 8px 16px;
+  padding: 10px 16px 0 16px;
   display: flex;
   justify-content: flex-start;
-}
-.feed_post_btns span {
-  cursor: pointer;
-  margin-right: 16px;
-}
-.feed_post_btns span:hover {
-  filter: drop-shadow(0 0 1px #131313);
-  transition: 0.3s;
 }
 .feed_post_btns .like_btn_container.liked {
   animation: like-button-animation 0.45s ease-in-out;
@@ -140,9 +132,30 @@
 .feed_post_btns .comment_btn {
   width: 25px;
   height: 25px;
+  cursor: pointer;
+  margin-right: 12px;
+}
+.feed_post_btns .like_btn:hover,
+.feed_post_btns .comment_btn:hover {
+  filter: drop-shadow(0 0 1px #131313);
+  transition: 0.2s;
 }
 .feed_post_btns .like_btn .liked {
   fill: #ed4956;
+}
+.feed_post_btns .post_likes_info {
+  margin-top: 2px;
+}
+.feed_post_btns .post_likes_info a,
+.feed_post_btns .post_likes_info .likes_count_btn {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+.feed_post_btns .post_likes_info a:hover,
+.feed_post_btns .post_likes_info .likes_count_btn:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 @keyframes like-button-animation {
   0%, to {
@@ -171,7 +184,7 @@
 }
 
 .comments_container {
-  padding: 8px 16px;
+  padding: 4px 16px 8px 16px;
 }
 .comments_container .loading_comments {
   display: flex;
@@ -185,16 +198,18 @@
 }
 
 .feed_comment {
-  margin: 5px 0;
-  font-size: 14px;
+  margin: 2px 0;
   font-weight: 400;
+}
+.feed_comment.owner {
+  margin-bottom: 8px;
 }
 
 .feed_user_ref {
   margin: 0 5px 0 0;
   text-decoration: none;
   color: black;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .feed_user_ref:hover {
@@ -211,7 +226,4 @@
   100.0% {
     background-color: #d1d1d1;
   }
-}
-.modal_window .users_list {
-  margin: 0;
 }/*# sourceMappingURL=feed.css.map */

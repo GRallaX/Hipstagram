@@ -47,10 +47,7 @@ const App = () => {
         <Switch>
           {!isLoggedIn && <Route path="/login" component={Login} />}
           {!isLoggedIn && <Redirect from="*" to="/login" />}
-          <Route path="/feed">
-            <Route path="/feed/p/:postId" component={ModalPost} />
-            <Feed />
-          </Route>
+          <Route path="/feed" component={Feed} />
           <Route path="/users_search" component={SearchUsers} />
           <Route
             path="/users/:id/profile_settings"

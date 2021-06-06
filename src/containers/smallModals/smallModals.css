@@ -1,6 +1,7 @@
-.modal_window {
-  border-radius: 3px;
+.modal_wrapper {
+  padding-top: 80px;
 }
+
 .modal_window h2 {
   margin-top: 0;
 }/*# sourceMappingURL=smallModals.css.map */

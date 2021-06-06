@@ -4,12 +4,16 @@
   box-sizing: border-box;
 }
 
-body {
+.body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: auto;
+}
+
+.scroll_hidden {
+  overflow-y: hidden;
 }
 
 code {
@@ -133,7 +137,7 @@ code {
   }
 }
 .header_navigation span {
-  transition: 0.3s;
+  transition: 0.2s;
   margin-right: 16px;
 }
 .header_navigation span:hover {
@@ -176,28 +180,23 @@ code {
   cursor: pointer;
 }
 
-.avatar.small {
+.avatar {
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   overflow: hidden;
 }
-.avatar.small img {
+.avatar img {
   width: 100%;
   height: auto;
 }
-
-.avatar.very_small {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  overflow: hidden;
+.avatar.small {
+  width: 32px;
+  height: 32px;
 }
-.avatar.very_small img {
-  width: 100%;
-  height: 100%;
+.avatar.very_small {
+  width: 24px;
+  height: 24px;
 }
 
 .follow_btn.medium_btn {
@@ -215,8 +214,8 @@ code {
   overflow-y: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 0;
+  align-items: flex-start;
+  padding: 100px 0 0 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
@@ -231,6 +230,7 @@ code {
   padding: 20px;
   overflow: hidden;
   background-color: white;
+  border-radius: 3px;
 }
 
 .modal_post_image {
@@ -240,4 +240,50 @@ code {
 }
 .modal_post_image img {
   width: 100%;
+  height: 100%;
+}
+
+.follow_btn {
+  border-radius: 5px;
+  border: 2px solid #4d88ed;
+  color: whitesmoke;
+  background: #4d88ed;
+  outline: none;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.follow_btn.medium_btn {
+  height: 35px;
+  width: 100px;
+  font-size: 14px;
+}
+.follow_btn.big_btn {
+  height: 35px;
+  width: 120px;
+  font-size: 16px;
+}
+.follow_btn.followed {
+  color: black;
+  border: 2px solid black;
+  background: #f0f0f0;
+}
+.follow_btn:hover {
+  filter: drop-shadow(1px 1px 2px #131313);
+  cursor: pointer;
+}
+
+.settings_btn {
+  height: 35px;
+  width: 150px;
+  border-radius: 5px;
+  color: black;
+  border: 2px solid black;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.settings_btn:hover {
+  filter: drop-shadow(1px 1px 2px #131313);
+  cursor: pointer;
 }/*# sourceMappingURL=index.css.map */

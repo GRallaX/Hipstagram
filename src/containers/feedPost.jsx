@@ -6,7 +6,7 @@ import { Avatar } from "../components/avatar";
 import { LikeButton } from "../components/likeBtn";
 import { LikeHeart } from "../components/likeHeart";
 import { PostLikes } from "../components/postLikesInfo";
-import { PostComments } from "./feedComments";
+import { FeedComments } from "./feedComments";
 import { getUserById } from "../api/users";
 
 import loadingIcon from "../images/loading_big.svg";
@@ -18,15 +18,13 @@ export const FeedPost = ({
   post: { ownerId, imgUrl, title, _id, likes },
   updateFeed,
 }) => {
-  const [postOwner, setPostOwner] = useState();
+  const [postOwner, setPostOwner] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [imgLoading, setImgLoading] = useState(true);
   const [modalLikes, setModalLikes] = useState(false);
 
   const { id: currentUserId } = useSelector((state) => state.currentUser);
-  const [isLiked, setIsLiked] = useState(
-    likes.some((user) => user._id === currentUserId) ? true : false
-  );
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -34,6 +32,9 @@ export const FeedPost = ({
       try {
         const { data: owner } = await getUserById(ownerId);
         if (!cleanupFunction) {
+          setIsLiked(
+            likes.some((user) => user._id === currentUserId) ? true : false
+          );
           setPostOwner(owner);
           setIsLoading(false);
         }
@@ -42,7 +43,7 @@ export const FeedPost = ({
       }
     })();
     return () => (cleanupFunction = true);
-  }, [_id, ownerId]);
+  }, [_id, ownerId, likes, currentUserId]);
 
   if (isLoading) {
     return (
@@ -94,22 +95,19 @@ export const FeedPost = ({
             setIsLiked={setIsLiked}
             updateFeed={updateFeed}
           />
-          <Link to={{ pathname: "/feed/p/" + _id, state: { post } }}>
+          <Link
+            to={{
+              pathname: "/feed/p/" + _id,
+              state: { post, postOwner },
+            }}
+          >
             <span className="comment_btn_container">
               <CommentBtn />
             </span>
           </Link>
           <PostLikes likes={likes} setModalLikes={setModalLikes} />
         </div>
-        <div className="feed_owner_comment">
-          <span className="feed_comment">
-            <Link to={"/users/" + ownerId} className="feed_user_ref">
-              {postOwner.login}
-            </Link>
-            {title}
-          </span>
-        </div>
-        <PostComments postId={_id} />
+        <FeedComments postId={_id} postTitle={title} postOwner={postOwner} />
       </article>
     );
   }

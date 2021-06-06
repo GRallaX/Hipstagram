@@ -22,37 +22,9 @@
 }
 .user_header .login_subscribe .follow_btn {
   margin: 4px 0 0 16px;
-  height: 35px;
-  width: 150px;
-  border-radius: 5px;
-  border: 2px solid #4d88ed;
-  color: whitesmoke;
-  background: #4d88ed;
-  outline: none;
-  font-size: 16px;
-}
-.user_header .login_subscribe .follow_btn:hover {
-  filter: drop-shadow(1px 1px 2px #131313);
-  cursor: pointer;
-}
-.user_header .login_subscribe .followed {
-  color: black;
-  border: 2px solid black;
-  background: #f0f0f0;
 }
 .user_header .login_subscribe .settings_btn {
   margin: 4px 0 0 16px;
-  height: 35px;
-  width: 150px;
-  border-radius: 5px;
-  color: black;
-  border: 2px solid black;
-  outline: none;
-  font-size: 16px;
-}
-.user_header .login_subscribe .settings_btn:hover {
-  filter: drop-shadow(1px 1px 2px #131313);
-  cursor: pointer;
 }
 .user_header .user_data {
   margin: 16px 0;
