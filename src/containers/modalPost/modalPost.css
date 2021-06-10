@@ -1,0 +1,51 @@
+.modal_post {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.modal_post_wrapper {
+  width: 100%;
+  height: 100%;
+}
+.modal_post_header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 56px;
+  border-bottom: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.modal_post_header .user_ref {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+.modal_post_header .user_ref .avatar:hover {
+  filter: drop-shadow(0 1px 1px #131313);
+}
+.modal_post_header .user_ref:hover {
+  text-decoration: underline;
+}
+.modal_post_header .user_ref .avatar.small {
+  margin-right: 12px;
+}
+.modal_post_image {
+  width: calc(100% - 250px);
+  height: 100%;
+  overflow: hidden;
+}
+.modal_post_image img {
+  width: 100%;
+  height: 100%;
+}
+
+.modal_post_image {
+  position: relative;
+  margin-right: 250px;
+  min-height: 400px;
+}/*# sourceMappingURL=modalPost.css.map */

@@ -217,6 +217,8 @@ code {
   align-items: center;
   overflow: hidden;
 
+  transition: 0.2s;
+
   img {
     width: 100%;
     height: auto;
@@ -225,6 +227,10 @@ code {
   &.small {
     width: 32px;
     height: 32px;
+
+    &:hover {
+      box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
+    }
   }
 
   &.very_small {
@@ -262,30 +268,14 @@ code {
   align-items: center;
   flex-direction: column;
 
-  height: fit-content;
-  max-width: 95%;
-
-  padding: 20px;
   overflow: hidden;
 
   background-color: white;
   border-radius: 3px;
 }
 
-.modal_post {
-  &_image {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
 .follow_btn {
+  margin: 4px 16px;
   border-radius: 5px;
 
   border: 2px solid #4d88ed;

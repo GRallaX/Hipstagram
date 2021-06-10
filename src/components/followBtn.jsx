@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-import { followUser } from "../api/users";
+import { followUser, getFollowersAndFollowings } from "../api/users";
 import loadingIcon from "../images/loading_small.svg";
 
-export const FollowButton = ({ userId, size }) => {
+export const FollowButton = (props) => {
+  const { userId, size } = props;
+
   const { id: currentUserId, following } = useSelector(
     (state) => state.currentUser
   );
@@ -34,6 +36,18 @@ export const FollowButton = ({ userId, size }) => {
           await followUser(userId);
           setIsFollowed(isFollowed === true ? false : true);
           setIsLoading(false);
+          if (props.user) {
+            const { user, setUser } = props;
+            const { data: followersAndFollowings } =
+              await getFollowersAndFollowings(userId);
+            setUser({
+              ...user,
+              ...followersAndFollowings,
+              followersCount: isFollowed
+                ? user.followersCount - 1
+                : user.followersCount + 1,
+            });
+          }
         }}
         className={
           "follow_btn " + (isFollowed ? "followed " : "not_followed ") + size

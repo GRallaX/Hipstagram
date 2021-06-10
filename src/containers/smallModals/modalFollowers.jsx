@@ -5,8 +5,10 @@ import "./smallModals.css";
 export const ModalFollowers = ({ usersList, setModalFollowers }) => {
   return (
     <ModalWindow closeModalFunc={() => setModalFollowers(null)}>
-      <h2>Followers</h2>
-      <UsersList usersList={usersList} />
+      <div className="small_modal_wrapper">
+        <h2>Followers</h2>
+        <UsersList usersList={usersList} />
+      </div>
     </ModalWindow>
   );
 };

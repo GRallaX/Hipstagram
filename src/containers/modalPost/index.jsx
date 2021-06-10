@@ -2,17 +2,20 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 
-import { getPostById } from "../api/posts";
-import { getUserById } from "../api/users";
-import { Avatar } from "../components/avatar";
-import { FollowButton } from "../components/followBtn";
-import { ModalWindow } from "../components/modalWindow";
-import loadingIcon from "../images/loading_big.svg";
-import { ModalComments } from "./modalComments";
-import { LikeButton } from "../components/likeBtn";
-import { LikeHeart } from "../components/likeHeart";
-import { PostLikes } from "../components/postLikesInfo";
-import { ModalLikes } from "./smallModals/modalLikes";
+import { FollowButton } from "../../components/followBtn";
+import { ModalWindow } from "../../components/modalWindow";
+import { ModalComments } from "../modalComments";
+import { LikeButton } from "../../components/likeBtn";
+import { LikeHeart } from "../../components/likeHeart";
+import { PostLikes } from "../../components/postLikesInfo";
+import { ModalLikes } from "../smallModals/modalLikes";
+
+import { getPostById } from "../../api/posts";
+import { getUserById } from "../../api/users";
+import { Avatar } from "../../components/avatar";
+
+import loadingIcon from "../../images/loading_big.svg";
+import "./modalPost.css";
 
 export const ModalPost = ({ updateFeed }) => {
   const location = useLocation();
@@ -32,7 +35,6 @@ export const ModalPost = ({ updateFeed }) => {
     likes.some((user) => user._id === currentUserId) ? true : false
   );
 
-  const loadingImg = useRef();
   const postContainer = useRef();
 
   useEffect(() => {
@@ -75,34 +77,21 @@ export const ModalPost = ({ updateFeed }) => {
   } else if (!isLoading && !!post) {
     return (
       <ModalWindow closeModalFunc={() => history.goBack()}>
-        <div className="modal_post">
-          <img src={loadingIcon} alt="loadingIcon" ref={loadingImg} />
-          <article
-            ref={postContainer}
-            className="post"
-            style={{ display: "none" }}
-          >
+        <div className="modal_post_wrapper">
+          <article className="modal_post">
             {modalLikes && (
               <ModalLikes usersList={likes} setModalLikes={setModalLikes} />
             )}
             <header className="modal_post_header">
-              <Link to={"/users/" + ownerId} className="user_post_ref">
+              <Link to={"/users/" + ownerId} className="user_ref">
                 <Avatar avatar={postOwner.avatar} size="small" />
+              </Link>
+              <Link to={"/users/" + ownerId} className="user_ref">
                 {postOwner.login}
               </Link>
-              <div className="subscribe_btn">
-                <FollowButton userId={ownerId} size="medium_btn" />
-              </div>
             </header>
             <div className="modal_post_image">
-              <img
-                onLoad={() => {
-                  postContainer.current.style.display = "initial";
-                  loadingImg.current.style.display = "none";
-                }}
-                src={imgUrl}
-                alt={"post_image " + imgUrl}
-              />
+              <img onLoad={() => {}} src={imgUrl} alt={imgUrl} />
             </div>
 
             <ModalComments

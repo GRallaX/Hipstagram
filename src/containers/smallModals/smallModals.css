@@ -1,7 +1,12 @@
-.modal_wrapper {
-  padding-top: 80px;
+.small_modal_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
 }
-
-.modal_window h2 {
-  margin-top: 0;
+.small_modal_wrapper h2 {
+  margin-top: 20px;
+}
+.small_modal_wrapper .users_list {
+  margin: auto 20px;
 }/*# sourceMappingURL=smallModals.css.map */

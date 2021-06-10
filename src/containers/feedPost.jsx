@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { Avatar } from "../components/avatar";
 import { LikeButton } from "../components/likeBtn";
 import { LikeHeart } from "../components/likeHeart";
 import { PostLikes } from "../components/postLikesInfo";
 import { FeedComments } from "./feedComments";
-import { getUserById } from "../api/users";
-
-import loadingIcon from "../images/loading_big.svg";
 import { CommentBtn } from "../images/commentBtn.js";
 import { ModalLikes } from "./smallModals/modalLikes";
+
+import { Avatar } from "../components/avatar";
+import { getUserById } from "../api/users";
+import loadingIcon from "../images/loading_big.svg";
 
 export const FeedPost = ({
   post,
@@ -62,22 +62,15 @@ export const FeedPost = ({
         <header className="feed_post_header">
           <Link to={"/users/" + ownerId} className="user_post_ref">
             <Avatar avatar={postOwner.avatar} size="small" />
+          </Link>
+          <Link to={"/users/" + ownerId} className="user_post_ref">
             {postOwner.login}
           </Link>
         </header>
-        <div
-          className="image"
-          style={
-            imgLoading
-              ? window.innerWidth > 600
-                ? { minHeight: "400px" }
-                : { minHeight: "calc(100vw/1.5)" }
-              : { minHeight: "unset", animationName: "none" }
-          }
-        >
+        <div className={imgLoading ? "image loading" : "image"}>
           <img
             src={imgUrl}
-            alt={"post_image" + imgUrl}
+            alt={"post_img_" + _id}
             onLoad={() => setImgLoading(false)}
           />
           <LikeHeart

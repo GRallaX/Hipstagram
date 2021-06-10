@@ -5,8 +5,10 @@ import "./smallModals.css";
 export const ModalLikes = ({ usersList, setModalLikes }) => {
   return (
     <ModalWindow closeModalFunc={() => setModalLikes(false)}>
-      <h2>Likes</h2>
-      <UsersList usersList={usersList} />
+      <div className="small_modal_wrapper">
+        <h2>Likes</h2>
+        <UsersList usersList={usersList} />
+      </div>
     </ModalWindow>
   );
 };

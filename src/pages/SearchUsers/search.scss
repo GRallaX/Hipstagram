@@ -9,6 +9,7 @@
 
   padding: 0 16px;
   font-size: 14px;
+
   h2 {
     text-align: center;
   }
@@ -22,6 +23,7 @@
 
   &_card {
     display: flex;
+    height: 56px;
 
     margin-bottom: 16px;
     width: 100%;
@@ -30,7 +32,6 @@
     border-radius: 3px;
     border: 1px solid #dbdbdb;
 
-    padding: 8px 16px;
     justify-content: space-between;
     align-items: center;
 
@@ -39,7 +40,6 @@
 
       display: flex;
       align-items: center;
-      overflow: hidden;
 
       .link_login {
         flex: 0 99 auto;
@@ -52,27 +52,34 @@
           text-decoration: none;
           color: black;
           font-weight: 600;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
 
-      .avatar {
+      .ref_avatar {
         flex: 1 0 auto;
-        margin-right: 16px;
+        width: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       &:hover {
         cursor: pointer;
-        text-decoration: underline;
       }
     }
 
     .subscribe_btn {
       flex: 1 0 auto;
-
-      margin: 0 0 0 16px;
+      min-width: 132px;
 
       display: flex;
       justify-content: flex-end;
+      align-items: center;
     }
   }
 }

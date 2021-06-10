@@ -3,8 +3,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   max-width: 600px;
   font-size: 14px;
+}
+@media (max-width: 600px) {
+  .feed_posts {
+    padding: 0;
+  }
 }
 
 .feed_post {
@@ -14,10 +20,20 @@
   border-radius: 3px;
   border: 1px solid #dbdbdb;
 }
+@media (max-width: 600px) {
+  .feed_post {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    padding-bottom: 6px;
+  }
+}
 .feed_post_header {
-  padding: 12px 16px;
+  height: 56px;
+  padding: 0 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
 }
 .feed_post .user_post_ref {
   display: flex;
@@ -35,22 +51,33 @@
 .feed_post .image {
   position: relative;
   width: 100%;
-  min-width: 600px;
   background-color: #eeeeee;
-  animation-name: loadingPostImg;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-play-state: running;
+  overflow: hidden;
+}
+.feed_post .image.loading {
+  height: 400px;
+  animation: loadingPostImg 1.5s ease-in-out infinite running;
 }
 @media (max-width: 600px) {
-  .feed_post .image {
-    min-width: 100vw;
+  .feed_post .image.loading {
+    height: calc((100vw / 3) * 2);
+  }
+}
+@keyframes loadingPostImg {
+  0% {
+    background-color: #d1d1d1;
+  }
+  50.0% {
+    background-color: #eeeeee;
+  }
+  100.0% {
+    background-color: #d1d1d1;
   }
 }
 .feed_post .image img {
   display: block;
   width: 100%;
+  height: auto;
 }
 .feed_post .image .like_heart_container {
   position: absolute;
@@ -214,16 +241,4 @@
 
 .feed_user_ref:hover {
   text-decoration: underline;
-}
-
-@keyframes loadingPostImg {
-  0% {
-    background-color: #d1d1d1;
-  }
-  50.0% {
-    background-color: #eeeeee;
-  }
-  100.0% {
-    background-color: #d1d1d1;
-  }
 }/*# sourceMappingURL=feed.css.map */

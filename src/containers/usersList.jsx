@@ -7,7 +7,7 @@ const UserCard = ({ user: { avatar, login, _id, id } }) => {
   return (
     <li className="users_list_card">
       <div className="user_link">
-        <Link to={"/users/" + (_id || id)} className="ref">
+        <Link to={"/users/" + (_id || id)} className="ref_avatar">
           <Avatar avatar={avatar} size="small" />
         </Link>
         <div className="link_login">

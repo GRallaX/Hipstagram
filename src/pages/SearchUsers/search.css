@@ -19,13 +19,13 @@
 }
 .users_list_card {
   display: flex;
+  height: 56px;
   margin-bottom: 16px;
   width: 100%;
   list-style-type: none;
   background-color: #fff;
   border-radius: 3px;
   border: 1px solid #dbdbdb;
-  padding: 8px 16px;
   justify-content: space-between;
   align-items: center;
 }
@@ -33,7 +33,6 @@
   flex: 0 99 auto;
   display: flex;
   align-items: center;
-  overflow: hidden;
 }
 .users_list_card .user_link .link_login {
   flex: 0 99 auto;
@@ -46,17 +45,23 @@
   color: black;
   font-weight: 600;
 }
-.users_list_card .user_link .avatar {
+.users_list_card .user_link .link_login .ref:hover {
+  text-decoration: underline;
+}
+.users_list_card .user_link .ref_avatar {
   flex: 1 0 auto;
-  margin-right: 16px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .users_list_card .user_link:hover {
   cursor: pointer;
-  text-decoration: underline;
 }
 .users_list_card .subscribe_btn {
   flex: 1 0 auto;
-  margin: 0 0 0 16px;
+  min-width: 132px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }/*# sourceMappingURL=search.css.map */

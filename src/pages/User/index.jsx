@@ -125,7 +125,12 @@ export const User = ({
           <section className="user_info">
             <div className="login_subscribe">
               <h1 className="login">{login}</h1>
-              <FollowButton userId={id} size="big_btn" />
+              <FollowButton
+                userId={id}
+                size="big_btn"
+                user={user}
+                setUser={setUser}
+              />
             </div>
             <ul className="user_data">
               <li>
