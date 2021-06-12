@@ -24,6 +24,7 @@
   @media (max-width: 600px) {
     margin: 0;
     border: none;
+    border-bottom: 1px solid #dbdbdb;
     border-radius: 0;
 
     padding-bottom: 6px;
@@ -173,22 +174,28 @@
     display: flex;
     justify-content: flex-start;
 
-    .like_btn_container.liked {
-      animation: like-button-animation 0.45s ease-in-out;
-      transform: scale(1);
+    > a:first-of-type {
+      margin-right: 12px;
     }
 
-    .like_btn_container.unliked {
-      animation: unlike-button-animation 0.45s ease-in-out;
-      transform: scale(1);
-    }
+    .like_btn_container {
+      margin-right: 12px;
 
+      &.liked {
+        animation: like-button-animation 0.45s ease-in-out;
+        transform: scale(1);
+      }
+
+      &.unliked {
+        animation: unlike-button-animation 0.45s ease-in-out;
+        transform: scale(1);
+      }
+    }
     .like_btn,
     .comment_btn {
       width: 25px;
       height: 25px;
       cursor: pointer;
-      margin-right: 12px;
 
       &:hover {
         filter: drop-shadow(0 0 1px #131313);

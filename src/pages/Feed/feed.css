@@ -24,6 +24,7 @@
   .feed_post {
     margin: 0;
     border: none;
+    border-bottom: 1px solid #dbdbdb;
     border-radius: 0;
     padding-bottom: 6px;
   }
@@ -147,6 +148,12 @@
   display: flex;
   justify-content: flex-start;
 }
+.feed_post_btns > a:first-of-type {
+  margin-right: 12px;
+}
+.feed_post_btns .like_btn_container {
+  margin-right: 12px;
+}
 .feed_post_btns .like_btn_container.liked {
   animation: like-button-animation 0.45s ease-in-out;
   transform: scale(1);
@@ -160,7 +167,6 @@
   width: 25px;
   height: 25px;
   cursor: pointer;
-  margin-right: 12px;
 }
 .feed_post_btns .like_btn:hover,
 .feed_post_btns .comment_btn:hover {

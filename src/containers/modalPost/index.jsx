@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 
@@ -21,31 +21,31 @@ export const ModalPost = ({ updateFeed }) => {
   const location = useLocation();
   const history = useHistory();
   const { postId } = useParams();
-
-  const [postOwner, setPostOwner] = useState(location.state.postOwner || false);
-  const [post, setPost] = useState(location.state.post || false);
-  const [isLoading, setIsLoading] = useState(post && postOwner ? false : true);
-
-  const { ownerId, likes, title, imgUrl } = post;
-
-  const [modalLikes, setModalLikes] = useState(false);
-
   const { id: currentUserId } = useSelector((state) => state.currentUser);
-  const [isLiked, setIsLiked] = useState(
-    likes.some((user) => user._id === currentUserId) ? true : false
+
+  const [postOwner, setPostOwner] = useState(
+    location.state?.postOwner || false
   );
+  const [post, setPost] = useState(location.state?.post || false);
+  const { ownerId, likes, title, imgUrl } = post;
+  const [isLoading, setIsLoading] = useState(post && postOwner ? false : true);
+  const [modalLikes, setModalLikes] = useState(false);
+  const [isLiked, setIsLiked] = useState(
+    likes?.some((user) => user._id === currentUserId)
+  );
+  const [imgLoading, setImgLoading] = useState(true);
 
-  const postContainer = useRef();
-
-  useEffect(() => {
-    let cleanupFunction = false;
-    (async () => {
+  const updatePost = useCallback(
+    async (cleanupFunction) => {
       try {
         const { data: fetchedPost } = await getPostById(postId);
         const { data: fetchedUser } = await getUserById(fetchedPost.ownerId);
         if (!cleanupFunction) {
-          setPost(fetchedPost);
-          setPostOwner(fetchedUser);
+          setPost({ ...fetchedPost });
+          setIsLiked(
+            fetchedPost.likes.some((user) => user._id === currentUserId)
+          );
+          setPostOwner({ ...fetchedUser });
           setIsLoading(false);
         }
       } catch (e) {
@@ -54,13 +54,21 @@ export const ModalPost = ({ updateFeed }) => {
           setIsLoading(false);
         }
       }
-    })();
+    },
+    [postId, currentUserId]
+  );
+
+  useEffect(() => {
+    let cleanupFunction = false;
+    updatePost(cleanupFunction);
     return () => (cleanupFunction = true);
-  }, [postId, ownerId]);
+  }, [updatePost]);
 
   if (isLoading) {
     return (
-      <ModalWindow closeModalFunc={() => history.goBack()}>
+      <ModalWindow
+        closeModalFunc={() => history.push(location.pathname.split("/p/")[0])}
+      >
         <div className="modal_post">
           <img src={loadingIcon} alt="loadingIcon" />
         </div>
@@ -68,15 +76,19 @@ export const ModalPost = ({ updateFeed }) => {
     );
   } else if (!isLoading && !post) {
     return (
-      <ModalWindow closeModalFunc={() => history.goBack()}>
+      <ModalWindow
+        closeModalFunc={() => history.push(location.pathname.split("/p/")[0])}
+      >
         <div className="modal_post">
-          <h2>No post found</h2>
+          <h2 className="no_post_found">No post found</h2>
         </div>
       </ModalWindow>
     );
   } else if (!isLoading && !!post) {
     return (
-      <ModalWindow closeModalFunc={() => history.goBack()}>
+      <ModalWindow
+        closeModalFunc={() => history.push(location.pathname.split("/p/")[0])}
+      >
         <div className="modal_post_wrapper">
           <article className="modal_post">
             {modalLikes && (
@@ -90,24 +102,43 @@ export const ModalPost = ({ updateFeed }) => {
                 {postOwner.login}
               </Link>
             </header>
-            <div className="modal_post_image">
-              <img onLoad={() => {}} src={imgUrl} alt={imgUrl} />
-            </div>
-
-            <ModalComments
-              postId={postId}
-              postTitle={title}
-              postOwner={postOwner}
-            />
-            <div className="modal_post_btns">
-              <LikeButton
-                likes={likes}
-                postId={postId}
+            <div
+              className={
+                imgLoading ? "modal_post_image loading" : "modal_post_image"
+              }
+            >
+              <img
+                onLoad={() => {
+                  setImgLoading(false);
+                }}
+                src={imgUrl}
+                alt={imgUrl}
+              />
+              <LikeHeart
+                post={post}
                 isLiked={isLiked}
                 setIsLiked={setIsLiked}
                 updateFeed={updateFeed}
+                updatePost={updatePost}
               />
-              <PostLikes likes={likes} setModalLikes={setModalLikes} />
+            </div>
+            <div className="comments_likes_container">
+              <ModalComments
+                postId={postId}
+                postTitle={title}
+                postOwner={postOwner}
+              />
+              <div className="modal_post_btns">
+                <LikeButton
+                  likes={likes}
+                  postId={postId}
+                  isLiked={isLiked}
+                  setIsLiked={setIsLiked}
+                  updateFeed={updateFeed}
+                  updatePost={updatePost}
+                />
+                <PostLikes likes={likes} setModalLikes={setModalLikes} />
+              </div>
             </div>
           </article>
         </div>

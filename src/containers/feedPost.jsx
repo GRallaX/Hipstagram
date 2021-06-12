@@ -32,9 +32,7 @@ export const FeedPost = ({
       try {
         const { data: owner } = await getUserById(ownerId);
         if (!cleanupFunction) {
-          setIsLiked(
-            likes.some((user) => user._id === currentUserId) ? true : false
-          );
+          setIsLiked(likes.some((user) => user._id === currentUserId));
           setPostOwner(owner);
           setIsLoading(false);
         }
