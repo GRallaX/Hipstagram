@@ -16,13 +16,13 @@ const debounce = (
 )();
 
 const handleSearchUsers = (event, history) => {
-  if (!event.target.value.length) {
+  if (!event.target.value.trim().length) {
     return;
   }
-  if (!!history.location.pathname.search(/\/users_search/g)) {
-    history.push("/users_search?=" + event.target.value);
+  if (history.location.pathname.search(/\/users_search/g)) {
+    history.push("/users_search?=" + event.target.value.trim());
   } else {
-    history.replace("/users_search?=" + event.target.value);
+    history.replace("/users_search?=" + event.target.value.trim());
   }
 };
 
@@ -33,8 +33,13 @@ export const SearchInput = ({ searchInput }) => {
   useEffect(() => {
     if (location.pathname === "/users_search") {
       searchInput.current.focus();
+      console.log(history.action);
+      if (history.action === "POP")
+        searchInput.current.value = location.search.slice(2) || "";
+    } else {
+      searchInput.current.value = "";
     }
-  }, [location, searchInput]);
+  }, [location, searchInput, history.action]);
 
   return (
     <div className="users_search_input_container">

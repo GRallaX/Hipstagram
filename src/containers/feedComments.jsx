@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { fetchPostComments } from "../api/comments";
 
 import loadingIcon from "../images/loading_small.svg";
 
@@ -19,19 +20,31 @@ const Comment = ({ comment }) => {
 };
 
 export const FeedComments = ({
+  postId,
   postTitle,
   postOwner,
   comments,
-  updateComments,
+  setComments,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
     let cleanupFunction = false;
-    updateComments(cleanupFunction, setIsLoading);
+    (async () => {
+      try {
+        const { data: comments } = await fetchPostComments(postId);
+        if (!cleanupFunction) {
+          setComments(comments);
+          setIsLoading(false);
+        }
+      } catch (e) {
+        console.log(e.response);
+      }
+    })();
+
     return () => (cleanupFunction = true);
-  }, [updateComments, location]);
+  }, [postId, setComments, location]);
 
   if (isLoading || !comments) {
     return (

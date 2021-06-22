@@ -279,6 +279,7 @@
 .feed_post .add_comment_container .add_comment_form .add_comment_btn img {
   height: 25px;
   width: 100%;
+  filter: brightness(3);
 }
 
 .comments_container {

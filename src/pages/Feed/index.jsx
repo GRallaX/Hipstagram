@@ -12,24 +12,22 @@ export const Feed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
-  const updateFeed = async (cleanupFunction = false) => {
-    try {
-      const { data: feed } = await fetchFeed();
-      if (!cleanupFunction) {
-        setPosts([...feed]);
-        setIsLoading(false);
-      }
-    } catch (e) {
-      console.log(e);
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
     document.title = "Feed";
     let cleanupFunction = false;
     // const interval = setInterval(() => {
-    updateFeed(cleanupFunction);
+    (async () => {
+      try {
+        const { data: feed } = await fetchFeed();
+        if (!cleanupFunction) {
+          setPosts([...feed]);
+          setIsLoading(false);
+        }
+      } catch (e) {
+        console.log(e);
+        setIsLoading(false);
+      }
+    })();
     // }, 10000);
     return () => {
       cleanupFunction = true;
@@ -54,19 +52,10 @@ export const Feed = () => {
   } else {
     return (
       <div className="main">
-        <Route
-          path="/feed/p/:postId"
-          render={() => <ModalPost updatePosts={updateFeed} />}
-        />
+        <Route path="/feed/p/:postId" render={() => <ModalPost />} />
         <div className="feed_posts">
           {posts.map((post) => {
-            return (
-              <FeedPost
-                key={"post_" + post._id}
-                post={post}
-                updateFeed={updateFeed}
-              />
-            );
+            return <FeedPost key={"post_" + post._id} post={post} />;
           })}
         </div>
       </div>
