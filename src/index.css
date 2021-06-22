@@ -16,6 +16,10 @@
   overflow-y: hidden;
 }
 
+span {
+  user-select: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
@@ -26,13 +30,14 @@ code {
 }
 
 .main {
-  width: 100%;
+  min-width: 100%;
   min-height: 100vh;
   position: relative;
   padding-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: auto;
   background-color: #fafafa;
 }
 
@@ -58,17 +63,23 @@ code {
   justify-content: flex-start;
   align-items: center;
   text-decoration: none;
+  width: fit-content;
 }
 .main_header .logo img {
   filter: drop-shadow(1px 1px 1px #131313);
   margin-right: 5px;
   width: 40px;
+  transition: 0.2s;
+}
+.main_header .logo img:hover {
+  filter: drop-shadow(1px 1px 2px #131313);
 }
 .main_header .logo span {
   padding-bottom: 2px;
   text-decoration: none;
   color: whitesmoke;
   font-size: 22px;
+  transition: 0.2s;
 }
 .main_header .logo span:hover {
   filter: drop-shadow(1px 1px 1px #131313);
@@ -113,6 +124,7 @@ code {
   border-radius: 3px;
   outline: 0;
   font-size: 14px;
+  transition: 0.2s;
 }
 .main_header .users_search_input:focus {
   filter: drop-shadow(0 0 1px #131313);
@@ -139,6 +151,7 @@ code {
 .header_navigation span {
   transition: 0.2s;
   margin-right: 16px;
+  transition: 0.2s;
 }
 .header_navigation span:hover {
   filter: drop-shadow(1px 1px 1px #131313);
@@ -148,6 +161,7 @@ code {
   text-decoration: none;
   color: whitesmoke;
   font-size: 22px;
+  transition: 0.2s;
 }
 .header_navigation a:focus {
   filter: drop-shadow(1px 1px 1px #131313);
@@ -175,6 +189,7 @@ code {
 }
 .header_navigation .log_out_btn {
   margin: 7px 16px 0 0;
+  transition: 0.2s;
 }
 .header_navigation .log_out_btn:hover {
   cursor: pointer;
@@ -183,7 +198,7 @@ code {
 .avatar {
   border-radius: 50%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   transition: 0.2s;
 }
@@ -219,7 +234,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 100px 0 0 0;
+  padding: 50px 0 0 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
@@ -232,6 +247,7 @@ code {
   overflow: hidden;
   background-color: white;
   border-radius: 3px;
+  transition: 0.8s;
 }
 
 .follow_btn {
@@ -243,6 +259,7 @@ code {
   outline: none;
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: 0.2s;
 }
 .follow_btn.medium_btn {
   height: 35px;
@@ -255,9 +272,18 @@ code {
   font-size: 16px;
 }
 .follow_btn.followed {
-  color: black;
-  border: 2px solid black;
+  color: #696969;
+  border: 2px solid #888888;
   background: #f0f0f0;
+}
+.follow_btn.small_btn {
+  width: 95px;
+  height: 30px;
+  margin: 0;
+}
+.follow_btn.small_btn img {
+  height: 25px;
+  width: 100%;
 }
 .follow_btn:hover {
   filter: drop-shadow(1px 1px 2px #131313);
@@ -274,8 +300,13 @@ code {
   font-size: 16px;
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: 0.2s;
 }
 .settings_btn:hover {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
+}
+
+.loading img {
+  opacity: 0;
 }/*# sourceMappingURL=index.css.map */

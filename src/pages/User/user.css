@@ -2,6 +2,7 @@
   display: flex;
 }
 .user_header .big.avatar {
+  margin: 16px 0 0;
   height: 150px;
   width: 150px;
 }
@@ -14,21 +15,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 .user_header .login_subscribe .login {
-  margin: 0;
+  margin: 4px 0 4px 16px;
   font-weight: 400;
   font-size: 26px;
 }
-.user_header .login_subscribe .follow_btn {
-  margin: 4px 0 0 16px;
-}
-.user_header .login_subscribe .settings_btn {
-  margin: 4px 0 0 16px;
-}
 .user_header .user_data {
-  margin: 16px 0;
+  margin: 16px;
   display: flex;
+  justify-content: space-evenly;
   padding: 0;
   font-size: 18px;
 }
@@ -38,12 +35,22 @@
 .user_header .user_data li:not(:last-of-type) {
   margin: 0 16px 0 0;
 }
+.user_header .user_data .followers,
+.user_header .user_data .followings {
+  transition: 0.2s;
+}
+.user_header .user_data .followers:hover,
+.user_header .user_data .followings:hover {
+  filter: drop-shadow(1px 1px 1px #131313);
+  cursor: pointer;
+}
 .user_header .user_data .data {
   font-weight: 700;
 }
 .user_header .info {
-  margin: 16px 0;
+  margin: 16px;
   line-height: 1.5;
+  text-align: left;
 }
 .user_header .name {
   margin: 0;

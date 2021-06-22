@@ -2,6 +2,8 @@
   display: flex;
 
   .big.avatar {
+    margin: 16px 0 0;
+
     height: 150px;
     width: 150px;
     img {
@@ -16,26 +18,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 
     .login {
-      margin: 0;
-
+      margin: 4px 0 4px 16px;
       font-weight: 400;
       font-size: 26px;
-    }
-
-    .follow_btn {
-      margin: 4px 0 0 16px;
-    }
-
-    .settings_btn {
-      margin: 4px 0 0 16px;
     }
   }
 
   .user_data {
-    margin: 16px 0;
+    margin: 16px;
     display: flex;
+    justify-content: space-evenly;
     padding: 0;
     font-size: 18px;
 
@@ -47,14 +42,25 @@
       }
     }
 
+    .followers,
+    .followings {
+      transition: 0.2s;
+
+      &:hover {
+        filter: drop-shadow(1px 1px 1px #131313);
+        cursor: pointer;
+      }
+    }
+
     .data {
       font-weight: 700;
     }
   }
 
   .info {
-    margin: 16px 0;
+    margin: 16px;
     line-height: 1.5;
+    text-align: left;
   }
 
   .name {

@@ -54,7 +54,7 @@ export const FollowButton = (props) => {
         }
       >
         {isLoading ? (
-          <img src={loadingIcon} alt="loadingIcon" />
+          <img src={loadingIcon} alt="1" />
         ) : isFollowed ? (
           "Unsubscribe"
         ) : (

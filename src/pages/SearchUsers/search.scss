@@ -53,8 +53,10 @@
           color: black;
           font-weight: 600;
 
+          transition: 0.2s;
+
           &:hover {
-            text-decoration: underline;
+            filter: drop-shadow(1px 1px 1px #131313);
           }
         }
       }

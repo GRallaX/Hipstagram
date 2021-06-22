@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-import { fetchPostComments } from "../api/comments";
 import loadingIcon from "../images/loading_small.svg";
 
 const Comment = ({ comment }) => {
   const { owner } = comment;
+
   return (
     <li className="feed_comment">
       <span>
@@ -18,27 +18,22 @@ const Comment = ({ comment }) => {
   );
 };
 
-export const FeedComments = ({ postId, postTitle, postOwner }) => {
-  const [comments, setComments] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+export const FeedComments = ({
+  postTitle,
+  postOwner,
+  comments,
+  updateComments,
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     let cleanupFunction = false;
-    (async () => {
-      try {
-        const { data: comments } = await fetchPostComments(postId);
-        if (!cleanupFunction) {
-          setComments(comments);
-          setIsLoading(false);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    updateComments(cleanupFunction, setIsLoading);
     return () => (cleanupFunction = true);
-  }, [postId]);
+  }, [updateComments, location]);
 
-  if (isLoading) {
+  if (isLoading || !comments) {
     return (
       <div className="comments_container">
         <div className="loading_comments">

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { fetchPostComments } from "../api/comments";
 import loadingIcon from "../images/loading_small.svg";
 
 const Comment = ({ comment }) => {
@@ -18,27 +17,21 @@ const Comment = ({ comment }) => {
   );
 };
 
-export const ModalComments = ({ postId, postOwner, postTitle }) => {
-  const [comments, setComments] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+export const ModalComments = ({
+  postOwner,
+  postTitle,
+  comments,
+  updateComments,
+}) => {
+  const [isLoading, setIsLoading] = useState(comments ? false : true);
 
   useEffect(() => {
     let cleanupFunction = false;
-    (async () => {
-      try {
-        const { data: comments } = await fetchPostComments(postId);
-        if (!cleanupFunction) {
-          setComments(comments);
-          setIsLoading(false);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    updateComments(cleanupFunction, setIsLoading);
     return () => (cleanupFunction = true);
-  }, [postId]);
+  }, [updateComments]);
 
-  if (isLoading) {
+  if (isLoading || !comments) {
     return (
       <div className="modal_comments_container">
         <div className="loading_comments">

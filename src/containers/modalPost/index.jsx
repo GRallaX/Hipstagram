@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import { getPostById } from "../../api/posts";
+import { getUserById } from "../../api/users";
+import { fetchPostComments } from "../../api/comments";
 
 import { FollowButton } from "../../components/followBtn";
 import { ModalWindow } from "../../components/modalWindow";
@@ -9,15 +12,13 @@ import { LikeButton } from "../../components/likeBtn";
 import { LikeHeart } from "../../components/likeHeart";
 import { PostLikes } from "../../components/postLikesInfo";
 import { ModalLikes } from "../smallModals/modalLikes";
+import { AddComment } from "../../components/addComment";
 
-import { getPostById } from "../../api/posts";
-import { getUserById } from "../../api/users";
 import { Avatar } from "../../components/avatar";
-
 import loadingIcon from "../../images/loading_big.svg";
 import "./modalPost.css";
 
-export const ModalPost = ({ updateFeed }) => {
+export const ModalPost = ({ updatePosts }) => {
   const location = useLocation();
   const history = useHistory();
   const { postId } = useParams();
@@ -28,6 +29,7 @@ export const ModalPost = ({ updateFeed }) => {
   );
   const [post, setPost] = useState(location.state?.post || false);
   const { ownerId, likes, title, imgUrl } = post;
+  const [comments, setComments] = useState(location.state?.comments || false);
   const [isLoading, setIsLoading] = useState(post && postOwner ? false : true);
   const [modalLikes, setModalLikes] = useState(false);
   const [isLiked, setIsLiked] = useState(
@@ -56,6 +58,21 @@ export const ModalPost = ({ updateFeed }) => {
       }
     },
     [postId, currentUserId]
+  );
+
+  const updateComments = useCallback(
+    async (cleanupFunction, setLoading) => {
+      try {
+        const { data: comments } = await fetchPostComments(postId);
+        if (!cleanupFunction) {
+          setComments(comments);
+          setLoading(false);
+        }
+      } catch (e) {
+        console.log(e.response);
+      }
+    },
+    [postId]
   );
 
   useEffect(() => {
@@ -101,6 +118,9 @@ export const ModalPost = ({ updateFeed }) => {
               <Link to={"/users/" + ownerId} className="user_ref">
                 {postOwner.login}
               </Link>
+              <div className="subscribe_btn">
+                <FollowButton userId={ownerId} size="small_btn" />
+              </div>
             </header>
             <div
               className={
@@ -118,7 +138,6 @@ export const ModalPost = ({ updateFeed }) => {
                 post={post}
                 isLiked={isLiked}
                 setIsLiked={setIsLiked}
-                updateFeed={updateFeed}
                 updatePost={updatePost}
               />
             </div>
@@ -127,6 +146,9 @@ export const ModalPost = ({ updateFeed }) => {
                 postId={postId}
                 postTitle={title}
                 postOwner={postOwner}
+                comments={comments}
+                setComments={setComments}
+                updateComments={updateComments}
               />
               <div className="modal_post_btns">
                 <LikeButton
@@ -134,11 +156,15 @@ export const ModalPost = ({ updateFeed }) => {
                   postId={postId}
                   isLiked={isLiked}
                   setIsLiked={setIsLiked}
-                  updateFeed={updateFeed}
                   updatePost={updatePost}
                 />
                 <PostLikes likes={likes} setModalLikes={setModalLikes} />
               </div>
+              <AddComment
+                postId={postId}
+                comments={comments}
+                setComments={setComments}
+              />
             </div>
           </article>
         </div>

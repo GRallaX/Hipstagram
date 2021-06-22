@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
+import { getPostById } from "../api/posts";
+import { fetchPostComments } from "../api/comments";
+import { getUserById } from "../api/users";
 
 import { LikeButton } from "../components/likeBtn";
 import { LikeHeart } from "../components/likeHeart";
@@ -8,31 +11,71 @@ import { PostLikes } from "../components/postLikesInfo";
 import { FeedComments } from "./feedComments";
 import { CommentBtn } from "../images/commentBtn.js";
 import { ModalLikes } from "./smallModals/modalLikes";
+import { AddComment } from "../components/addComment";
 
 import { Avatar } from "../components/avatar";
-import { getUserById } from "../api/users";
 import loadingIcon from "../images/loading_big.svg";
 
-export const FeedPost = ({
-  post,
-  post: { ownerId, imgUrl, title, _id, likes },
-  updateFeed,
-}) => {
+export const FeedPost = ({ post: postProp }) => {
+  const [post, setPost] = useState(postProp);
+  const { ownerId, imgUrl, title, _id, likes } = post;
+
   const [postOwner, setPostOwner] = useState(false);
+  const [comments, setComments] = useState(false);
+  const [modalLikes, setModalLikes] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [imgLoading, setImgLoading] = useState(true);
-  const [modalLikes, setModalLikes] = useState(false);
 
   const { id: currentUserId } = useSelector((state) => state.currentUser);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(
+    likes.some((user) => user._id === currentUserId)
+  );
+
+  const location = useLocation();
+
+  const updatePost = useCallback(
+    async (cleanupFunction) => {
+      try {
+        const { data: fetchedPost } = await getPostById(_id);
+        if (!cleanupFunction) {
+          setPost({ ...fetchedPost });
+          setIsLiked(
+            fetchedPost.likes.some((user) => user._id === currentUserId)
+          );
+          setIsLoading(false);
+        }
+      } catch (e) {
+        console.log(e.response);
+        if (!cleanupFunction) {
+          setIsLoading(false);
+        }
+      }
+    },
+    [_id, currentUserId]
+  );
+
+  const updateComments = useCallback(
+    async (cleanupFunction, setLoading) => {
+      try {
+        const { data: comments } = await fetchPostComments(_id);
+        if (!cleanupFunction) {
+          setComments(comments);
+          setLoading(false);
+        }
+      } catch (e) {
+        console.log(e.response);
+      }
+    },
+    [_id]
+  );
 
   useEffect(() => {
     let cleanupFunction = false;
     (async () => {
       try {
         const { data: owner } = await getUserById(ownerId);
+        await updatePost(cleanupFunction);
         if (!cleanupFunction) {
-          setIsLiked(likes.some((user) => user._id === currentUserId));
           setPostOwner(owner);
           setIsLoading(false);
         }
@@ -41,7 +84,7 @@ export const FeedPost = ({
       }
     })();
     return () => (cleanupFunction = true);
-  }, [_id, ownerId, likes, currentUserId]);
+  }, [_id, ownerId, currentUserId, updatePost, postProp, location]);
 
   if (isLoading) {
     return (
@@ -75,7 +118,7 @@ export const FeedPost = ({
             post={post}
             isLiked={isLiked}
             setIsLiked={setIsLiked}
-            updateFeed={updateFeed}
+            updatePost={updatePost}
           />
         </div>
         <div className="feed_post_btns">
@@ -84,12 +127,12 @@ export const FeedPost = ({
             postId={_id}
             isLiked={isLiked}
             setIsLiked={setIsLiked}
-            updateFeed={updateFeed}
+            updatePost={updatePost}
           />
           <Link
             to={{
               pathname: "/feed/p/" + _id,
-              state: { post, postOwner },
+              state: { post, comments, postOwner },
             }}
           >
             <span className="comment_btn_container">
@@ -98,7 +141,17 @@ export const FeedPost = ({
           </Link>
           <PostLikes likes={likes} setModalLikes={setModalLikes} />
         </div>
-        <FeedComments postId={_id} postTitle={title} postOwner={postOwner} />
+        <FeedComments
+          postTitle={title}
+          postOwner={postOwner}
+          comments={comments}
+          updateComments={updateComments}
+        />
+        <AddComment
+          postId={_id}
+          comments={comments}
+          setComments={setComments}
+        />
       </article>
     );
   }

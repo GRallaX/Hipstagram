@@ -21,13 +21,16 @@
   border-radius: 3px;
   border: 1px solid #dbdbdb;
 
+  .loading_screen {
+    display: flex;
+    justify-content: center;
+  }
+
   @media (max-width: 600px) {
     margin: 0;
     border: none;
     border-bottom: 1px solid #dbdbdb;
     border-radius: 0;
-
-    padding-bottom: 6px;
   }
 
   &_header {
@@ -47,7 +50,7 @@
     font-weight: 600;
 
     &:hover {
-      text-decoration: underline;
+      filter: drop-shadow(1px 1px 1px #131313);
     }
 
     .avatar.small {
@@ -88,6 +91,10 @@
       display: block;
       width: 100%;
       height: auto;
+
+      transition-property: opacity;
+      transition-timing-function: linear;
+      transition-duration: 0.3s;
     }
 
     .like_heart_container {
@@ -216,8 +223,10 @@
         color: black;
         font-weight: 600;
 
+        transition: 0.2s;
+
         &:hover {
-          text-decoration: underline;
+          filter: drop-shadow(1px 1px 1px #131313);
           cursor: pointer;
         }
       }
@@ -253,6 +262,81 @@
   .feed_owner_comment {
     padding: 0 16px;
   }
+
+  .add_comment_container {
+    min-height: 56px;
+    border-top: 1px solid #dbdbdb;
+
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+
+    .add_comment_form {
+      width: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+
+      .text_wrapper {
+        flex-grow: 1;
+      }
+
+      .new_comment_text {
+        width: 100%;
+        height: 22px;
+        display: block;
+        padding: 0;
+
+        resize: none;
+        outline: 0;
+        border: 0;
+
+        font-family: inherit;
+        font-size: 14px;
+      }
+
+      .add_comment_btn {
+        width: 55px;
+        height: 30px;
+
+        margin: 0 0 0 8px;
+        border-radius: 5px;
+
+        border: 2px solid #4d88ed;
+        color: whitesmoke;
+        background: #4d88ed;
+
+        outline: none;
+
+        font-weight: 600;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+        &:hover {
+          filter: drop-shadow(1px 1px 2px #131313);
+          cursor: pointer;
+        }
+
+        transition: 0.2s;
+
+        &.disabled {
+          opacity: 0.3;
+          color: #696969;
+          border: 2px solid #888888;
+          background: rgb(240, 240, 240);
+
+          &:hover {
+            filter: none;
+            cursor: auto;
+          }
+        }
+
+        img {
+          height: 25px;
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
 .comments_container {
@@ -286,8 +370,10 @@
   text-decoration: none;
   color: black;
   font-weight: 600;
-}
 
-.feed_user_ref:hover {
-  text-decoration: underline;
+  transition: 0.2s;
+
+  &:hover {
+    filter: drop-shadow(1px 1px 1px #131313);
+  }
 }

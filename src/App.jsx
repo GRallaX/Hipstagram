@@ -18,15 +18,6 @@ const App = () => {
   const { userLoaded, isLoggedIn } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
-    document.addEventListener(
-      "mousedown",
-      function (e) {
-        if (e.detail > 1) {
-          e.preventDefault();
-        }
-      },
-      false
-    );
     if (!userLoaded && isLoggedIn) {
       dispatch(getCurrentUser());
     }

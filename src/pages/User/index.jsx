@@ -135,7 +135,9 @@ export const User = ({
             <ul className="user_data">
               <li>
                 <span className="data">{posts.length}</span>
-                <span className="data_type"> posts</span>
+                <span className="data_type">
+                  {posts.length === 1 ? " post" : " posts"}
+                </span>
               </li>
               <li
                 className={followersCount ? "followers" : "followers_empty"}
@@ -144,7 +146,9 @@ export const User = ({
                 }}
               >
                 <span className="data">{followersCount || "0"}</span>
-                <span className="data_type"> followers</span>
+                <span className="data_type">
+                  {followersCount === 1 ? " follower" : " followers"}
+                </span>
               </li>
               <li
                 className={followingsCount ? "followings" : "followings_empty"}

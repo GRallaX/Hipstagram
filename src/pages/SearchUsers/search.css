@@ -44,9 +44,10 @@
   text-decoration: none;
   color: black;
   font-weight: 600;
+  transition: 0.2s;
 }
 .users_list_card .user_link .link_login .ref:hover {
-  text-decoration: underline;
+  filter: drop-shadow(1px 1px 1px #131313);
 }
 .users_list_card .user_link .ref_avatar {
   flex: 1 0 auto;

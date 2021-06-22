@@ -16,7 +16,7 @@ export const Feed = () => {
     try {
       const { data: feed } = await fetchFeed();
       if (!cleanupFunction) {
-        setPosts(feed);
+        setPosts([...feed]);
         setIsLoading(false);
       }
     } catch (e) {
@@ -56,7 +56,7 @@ export const Feed = () => {
       <div className="main">
         <Route
           path="/feed/p/:postId"
-          render={() => <ModalPost updateFeed={updateFeed} />}
+          render={() => <ModalPost updatePosts={updateFeed} />}
         />
         <div className="feed_posts">
           {posts.map((post) => {

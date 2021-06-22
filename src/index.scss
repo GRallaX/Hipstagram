@@ -19,6 +19,10 @@
   overflow-y: hidden;
 }
 
+span {
+  user-select: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -29,7 +33,7 @@ code {
 }
 
 .main {
-  width: 100%;
+  min-width: 100%;
   min-height: 100vh;
   position: relative;
   padding-top: 50px;
@@ -37,6 +41,8 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  overflow-x: auto;
 
   background-color: #fafafa;
 }
@@ -65,12 +71,19 @@ code {
       justify-content: flex-start;
       align-items: center;
       text-decoration: none;
+      width: fit-content;
     }
 
     img {
       filter: drop-shadow(1px 1px 1px #131313);
       margin-right: 5px;
       width: 40px;
+
+      transition: 0.2s;
+
+      &:hover {
+        filter: drop-shadow(1px 1px 2px #131313);
+      }
     }
 
     span {
@@ -78,6 +91,8 @@ code {
       text-decoration: none;
       color: whitesmoke;
       font-size: 22px;
+
+      transition: 0.2s;
 
       &:hover {
         filter: drop-shadow(1px 1px 1px #131313);
@@ -131,6 +146,8 @@ code {
 
     font-size: 14px;
 
+    transition: 0.2s;
+
     &:focus {
       filter: drop-shadow(0 0 1px #131313);
     }
@@ -160,6 +177,8 @@ code {
     transition: 0.2s;
     margin-right: 16px;
 
+    transition: 0.2s;
+
     &:hover {
       filter: drop-shadow(1px 1px 1px #131313);
       cursor: pointer;
@@ -170,6 +189,8 @@ code {
     text-decoration: none;
     color: whitesmoke;
     font-size: 22px;
+
+    transition: 0.2s;
 
     &:focus {
       filter: drop-shadow(1px 1px 1px #131313);
@@ -204,6 +225,8 @@ code {
   .log_out_btn {
     margin: 7px 16px 0 0;
 
+    transition: 0.2s;
+
     &:hover {
       cursor: pointer;
     }
@@ -214,7 +237,7 @@ code {
   border-radius: 50%;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
 
   transition: 0.2s;
@@ -256,7 +279,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 100px 0 0 0;
+  padding: 50px 0 0 0;
 
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
@@ -272,6 +295,8 @@ code {
 
   background-color: white;
   border-radius: 3px;
+
+  transition: 0.8s;
 }
 
 .follow_btn {
@@ -286,6 +311,8 @@ code {
 
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  transition: 0.2s;
 
   &.medium_btn {
     height: 35px;
@@ -302,9 +329,20 @@ code {
   }
 
   &.followed {
-    color: black;
-    border: 2px solid black;
+    color: #696969;
+    border: 2px solid #888888;
     background: rgb(240, 240, 240);
+  }
+
+  &.small_btn {
+    width: 95px;
+    height: 30px;
+    margin: 0;
+
+    img {
+      height: 25px;
+      width: 100%;
+    }
   }
 
   &:hover {
@@ -330,5 +368,13 @@ code {
   &:hover {
     filter: drop-shadow(1px 1px 2px #131313);
     cursor: pointer;
+  }
+
+  transition: 0.2s;
+}
+
+.loading {
+  img {
+    opacity: 0;
   }
 }
