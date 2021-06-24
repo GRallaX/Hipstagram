@@ -10,3 +10,13 @@ export const postComment = (postId, text) => {
     text: text,
   });
 };
+
+export const editComment = (commentId, text) => {
+  return api.patch("/comments/" + commentId, {
+    text: text,
+  });
+};
+
+export const deleteComment = (commentId) => {
+  return api.delete("/comments/" + commentId);
+};

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { fetchPostComments } from "../api/comments";
 
 import loadingIcon from "../images/loading_small.svg";
 
@@ -11,25 +12,37 @@ const Comment = ({ comment }) => {
         <Link to={"/users/" + owner.id} className="feed_user_ref">
           {owner.login}
         </Link>
-        {comment.text}
+        {" " + comment.text}
       </span>
     </li>
   );
 };
 
 export const ModalComments = ({
-  postOwner,
+  postId,
   postTitle,
+  postOwner,
   comments,
-  updateComments,
+  setComments,
 }) => {
   const [isLoading, setIsLoading] = useState(comments ? false : true);
 
   useEffect(() => {
     let cleanupFunction = false;
-    updateComments(cleanupFunction, setIsLoading);
+    (async () => {
+      try {
+        const { data: comments } = await fetchPostComments(postId);
+        if (!cleanupFunction) {
+          setComments(comments);
+          setIsLoading(false);
+        }
+      } catch (e) {
+        console.log(e.response);
+      }
+    })();
+
     return () => (cleanupFunction = true);
-  }, [updateComments]);
+  }, [postId, setComments]);
 
   if (isLoading || !comments) {
     return (
@@ -48,7 +61,7 @@ export const ModalComments = ({
               <Link to={"/users/" + postOwner.id} className="feed_user_ref">
                 {postOwner.login}
               </Link>
-              {postTitle}
+              {" " + postTitle}
             </span>
           </li>
           {comments.map((comment) => {

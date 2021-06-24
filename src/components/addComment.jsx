@@ -31,15 +31,18 @@ export const AddComment = ({ postId, comments, setComments }) => {
       setCommentText("");
     } catch (e) {
       console.log(e.response);
+      setPostingComment(false);
     }
   };
 
   const handleOnEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
-      formRef.current.dispatchEvent(
-        new Event("submit", { cancelable: true, bubbles: true })
-      );
+      if (commentText) {
+        formRef.current.dispatchEvent(
+          new Event("submit", { cancelable: true, bubbles: true })
+        );
+      }
     }
   };
 

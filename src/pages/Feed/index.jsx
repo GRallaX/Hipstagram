@@ -12,6 +12,8 @@ export const Feed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
+  const [modalPost, setModalPost] = useState(false);
+
   useEffect(() => {
     document.title = "Feed";
     let cleanupFunction = false;
@@ -52,10 +54,20 @@ export const Feed = () => {
   } else {
     return (
       <div className="main">
-        <Route path="/feed/p/:postId" render={() => <ModalPost />} />
+        <Route
+          path="/feed/p/:postId"
+          render={() => <ModalPost setModalPost={setModalPost} />}
+        />
         <div className="feed_posts">
           {posts.map((post) => {
-            return <FeedPost key={"post_" + post._id} post={post} />;
+            return (
+              <FeedPost
+                key={"post_" + post._id}
+                post={post}
+                modalPost={modalPost}
+                setModalPost={setModalPost}
+              />
+            );
           })}
         </div>
       </div>

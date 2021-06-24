@@ -19,7 +19,7 @@
   overflow-y: hidden;
 }
 
-span {
+button {
   user-select: none;
 }
 
@@ -356,8 +356,8 @@ code {
   width: 150px;
   border-radius: 5px;
 
-  color: black;
-  border: 2px solid black;
+  color: #696969;
+  border: 2px solid #888888;
 
   outline: none;
 
@@ -376,5 +376,19 @@ code {
 .loading {
   img {
     opacity: 0;
+  }
+}
+
+.feed_user_ref {
+  margin: 0;
+
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+
+  transition: 0.2s;
+
+  &:hover {
+    filter: drop-shadow(1px 1px 1px #131313);
   }
 }

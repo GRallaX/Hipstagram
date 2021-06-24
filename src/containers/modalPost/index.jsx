@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import { getPostById } from "../../api/posts";
 import { getUserById } from "../../api/users";
-import { fetchPostComments } from "../../api/comments";
 
 import { FollowButton } from "../../components/followBtn";
 import { ModalWindow } from "../../components/modalWindow";
@@ -18,17 +17,22 @@ import { Avatar } from "../../components/avatar";
 import loadingIcon from "../../images/loading_big.svg";
 import "./modalPost.css";
 
-export const ModalPost = ({ updatePosts }) => {
+export const ModalPost = ({ setModalPost }) => {
   const location = useLocation();
   const history = useHistory();
   const { postId } = useParams();
-  const { id: currentUserId } = useSelector((state) => state.currentUser);
+
+  const [post, setPost] = useState(location.state?.post || false);
+  const { ownerId, title, imgUrl } = post;
 
   const [postOwner, setPostOwner] = useState(
     location.state?.postOwner || false
   );
-  const [post, setPost] = useState(location.state?.post || false);
-  const { ownerId, likes, title, imgUrl } = post;
+
+  const currentUser = useSelector((state) => state.currentUser);
+  const { id: currentUserId } = currentUser;
+
+  const [likes, setLikes] = useState(location.state?.likes || false);
   const [comments, setComments] = useState(location.state?.comments || false);
   const [isLoading, setIsLoading] = useState(post && postOwner ? false : true);
   const [modalLikes, setModalLikes] = useState(false);
@@ -37,18 +41,26 @@ export const ModalPost = ({ updatePosts }) => {
   );
   const [imgLoading, setImgLoading] = useState(true);
 
-  const updatePost = useCallback(
-    async (cleanupFunction) => {
+  useEffect(() => {
+    return () => setModalPost({ ...post, likes: likes, comments: comments });
+  }, [likes, post, setModalPost, comments]);
+
+  useEffect(() => {
+    let cleanupFunction = false;
+    (async () => {
       try {
         const { data: fetchedPost } = await getPostById(postId);
         const { data: fetchedUser } = await getUserById(fetchedPost.ownerId);
         if (!cleanupFunction) {
           setPost({ ...fetchedPost });
+          setLikes([...fetchedPost.likes]);
           setIsLiked(
             fetchedPost.likes.some((user) => user._id === currentUserId)
           );
           setPostOwner({ ...fetchedUser });
           setIsLoading(false);
+
+          console.log("loading post finished", fetchedPost);
         }
       } catch (e) {
         console.log(e.response);
@@ -56,30 +68,11 @@ export const ModalPost = ({ updatePosts }) => {
           setIsLoading(false);
         }
       }
-    },
-    [postId, currentUserId]
-  );
-
-  const updateComments = useCallback(
-    async (cleanupFunction, setLoading) => {
-      try {
-        const { data: comments } = await fetchPostComments(postId);
-        if (!cleanupFunction) {
-          setComments(comments);
-          setLoading(false);
-        }
-      } catch (e) {
-        console.log(e.response);
-      }
-    },
-    [postId]
-  );
-
-  useEffect(() => {
-    let cleanupFunction = false;
-    updatePost(cleanupFunction);
-    return () => (cleanupFunction = true);
-  }, [updatePost]);
+    })();
+    return () => {
+      cleanupFunction = true;
+    };
+  }, [currentUserId, postId]);
 
   if (isLoading) {
     return (
@@ -131,14 +124,22 @@ export const ModalPost = ({ updatePosts }) => {
                 onLoad={() => {
                   setImgLoading(false);
                 }}
-                src={imgUrl}
+                src="https://sample-videos.com/img/Sample-jpg-image-500kb.jpg"
                 alt={imgUrl}
               />
               <LikeHeart
                 post={post}
+                likes={likes}
+                setLikes={setLikes}
                 isLiked={isLiked}
                 setIsLiked={setIsLiked}
-                updatePost={updatePost}
+                currentUser={{
+                  _id: currentUser.id,
+                  login: currentUser.login,
+                  firstName: currentUser.firstName,
+                  lastName: currentUser.lastName,
+                  avatar: currentUser.avatar,
+                }}
               />
             </div>
             <div className="comments_likes_container">
@@ -148,15 +149,21 @@ export const ModalPost = ({ updatePosts }) => {
                 postOwner={postOwner}
                 comments={comments}
                 setComments={setComments}
-                updateComments={updateComments}
               />
               <div className="modal_post_btns">
                 <LikeButton
+                  post={post}
                   likes={likes}
-                  postId={postId}
+                  setLikes={setLikes}
                   isLiked={isLiked}
                   setIsLiked={setIsLiked}
-                  updatePost={updatePost}
+                  currentUser={{
+                    _id: currentUser.id,
+                    login: currentUser.login,
+                    firstName: currentUser.firstName,
+                    lastName: currentUser.lastName,
+                    avatar: currentUser.avatar,
+                  }}
                 />
                 <PostLikes likes={likes} setModalLikes={setModalLikes} />
               </div>

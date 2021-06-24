@@ -7,7 +7,6 @@ export const LikeButton = ({
   post,
   likes,
   setLikes,
-
   isLiked,
   setIsLiked,
   currentUser,
@@ -16,29 +15,31 @@ export const LikeButton = ({
 
   const likeContainer = useRef();
 
+  const handleLike = async () => {
+    try {
+      setIsLiked(isLiked ? false : true);
+      likeContainer.current.className = isLiked
+        ? "like_btn_container unliked"
+        : "like_btn_container liked";
+      setLikes(
+        isLiked
+          ? likes.filter((like) => like._id !== currentUser._id)
+          : [...likes, currentUser]
+      );
+      await likePost(_id);
+    } catch (e) {
+      console.log(e.response);
+      setIsLiked(isLiked);
+      setLikes([...likes]);
+      likeContainer.current.className = "like_btn_container";
+    }
+  };
+
   return (
     <span
       className="like_btn_container"
       ref={likeContainer}
-      onClick={async () => {
-        try {
-          setIsLiked(isLiked ? false : true);
-          likeContainer.current.className = isLiked
-            ? "like_btn_container unliked"
-            : "like_btn_container liked";
-          setLikes(
-            isLiked
-              ? likes.filter((like) => like._id !== currentUser._id)
-              : [...likes, currentUser]
-          );
-          await likePost(_id);
-        } catch (e) {
-          console.log(e.response);
-          setIsLiked(isLiked);
-          setLikes([...likes]);
-          likeContainer.current.className = "like_btn_container";
-        }
-      }}
+      onClick={handleLike}
     >
       {!isLiked ? <LikeBtnDef /> : <LikeBtnLiked />}
     </span>

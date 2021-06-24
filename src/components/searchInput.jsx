@@ -33,7 +33,6 @@ export const SearchInput = ({ searchInput }) => {
   useEffect(() => {
     if (location.pathname === "/users_search") {
       searchInput.current.focus();
-      console.log(history.action);
       if (history.action === "POP")
         searchInput.current.value = location.search.slice(2) || "";
     } else {

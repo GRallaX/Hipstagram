@@ -15,31 +15,29 @@ export const LikeHeart = ({
 
   const likeContainer = useRef();
 
+  const handleLike = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    try {
+      setIsLiked(isLiked ? false : true);
+      likeContainer.current.className = isLiked ? "unliked" : "liked";
+      setLikes(
+        isLiked
+          ? likes.filter((like) => like._id !== currentUser._id)
+          : [...likes, currentUser]
+      );
+      await likePost(_id);
+    } catch (e) {
+      console.log(e.response);
+      setIsLiked(isLiked);
+      setLikes([...likes]);
+      likeContainer.current.removeAttribute("class");
+    }
+  };
+
   return (
-    <div
-      className="like_heart_container"
-      onDoubleClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        (async () => {
-          try {
-            setIsLiked(isLiked ? false : true);
-            likeContainer.current.className = isLiked ? "unliked" : "liked";
-            setLikes(
-              isLiked
-                ? likes.filter((like) => like._id !== currentUser._id)
-                : [...likes, currentUser]
-            );
-            await likePost(_id);
-          } catch (e) {
-            console.log(e.response);
-            setIsLiked(isLiked);
-            setLikes([...likes]);
-            likeContainer.current.removeAttribute("class");
-          }
-        })();
-      }}
-    >
+    <div className="like_heart_container" onDoubleClick={handleLike}>
       <span ref={likeContainer}>
         {!isLiked ? <LikeBtnDef /> : <LikeBtnLiked />}
       </span>

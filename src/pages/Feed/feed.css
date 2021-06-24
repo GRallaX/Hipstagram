@@ -95,6 +95,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 .feed_post .image .like_heart_container span {
   opacity: 0;
@@ -298,19 +299,89 @@
 
 .feed_comment {
   margin: 2px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
   font-weight: 400;
+}
+.feed_comment .comment_text {
+  flex-grow: 0;
+}
+.feed_comment .comment_info {
+  flex: 1 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.feed_comment .comment_info .comment_menu {
+  position: relative;
+  transition: 0.2s;
+}
+.feed_comment .comment_info .comment_menu .btns {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 70px;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  flex-direction: column;
+  transition: 0.2s;
+  z-index: 15;
+}
+.feed_comment .comment_info .comment_menu .btns button {
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 16px;
+  border: none;
+  border-radius: 5px;
+  line-height: 18px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 14px;
+  outline: none;
+  transition: 0.2s;
+  color: whitesmoke;
+}
+.feed_comment .comment_info .comment_menu .btns button:hover {
+  filter: drop-shadow(1px 1px 2px #131313);
+  cursor: pointer;
+}
+.feed_comment .comment_info .comment_menu .btns .edit {
+  background: #4d88ed;
+}
+.feed_comment .comment_info .comment_menu .btns .delete {
+  background: #ee1c00;
+}
+.feed_comment .comment_info .comment_menu .hidden {
+  top: 10px;
+  height: 0;
+  z-index: -1;
+}
+.feed_comment .comment_info .edited {
+  font-weight: 400;
+  color: #bdbdbd;
 }
 .feed_comment.owner {
   margin-bottom: 8px;
 }
-
-.feed_user_ref {
-  margin: 0 5px 0 0;
-  text-decoration: none;
-  color: black;
-  font-weight: 600;
-  transition: 0.2s;
+.feed_comment .menu_toggle {
+  opacity: 0;
 }
-.feed_user_ref:hover {
+.feed_comment .menu_toggle svg {
+  margin-left: 6px;
+  height: 22px;
+  width: 15px;
+}
+.feed_comment .menu_toggle:hover {
+  cursor: pointer;
   filter: drop-shadow(1px 1px 1px #131313);
+}
+.feed_comment:hover .menu_toggle {
+  opacity: 1;
 }/*# sourceMappingURL=feed.css.map */

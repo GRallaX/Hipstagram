@@ -1,5 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getPostById } from "../api/posts";
 import { getUserById } from "../api/users";
@@ -15,7 +15,7 @@ import { AddComment } from "../components/addComment";
 import { Avatar } from "../components/avatar";
 import loadingIcon from "../images/loading_big.svg";
 
-export const FeedPost = ({ post: postProp }) => {
+export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
   const [post, setPost] = useState(postProp);
   const { ownerId, imgUrl, title, _id } = post;
 
@@ -33,7 +33,23 @@ export const FeedPost = ({ post: postProp }) => {
     likes.some((user) => user._id === currentUserId)
   );
 
-  const location = useLocation();
+  const modalPostOpened = useMemo(() => {
+    if (modalPost?._id === _id) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [_id, modalPost?._id]);
+
+  useEffect(() => {
+    if (modalPostOpened) {
+      setPost({ ...modalPost });
+      setComments([...modalPost.comments]);
+      setLikes([...modalPost.likes]);
+      setIsLiked(modalPost.likes.some((user) => user._id === currentUserId));
+      setModalPost(false);
+    }
+  }, [currentUserId, modalPost, modalPostOpened, setModalPost]);
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -44,6 +60,9 @@ export const FeedPost = ({ post: postProp }) => {
         if (!cleanupFunction) {
           setPost({ ...fetchedPost });
           setLikes([...fetchedPost.likes]);
+          setIsLiked(
+            fetchedPost.likes.some((user) => user._id === currentUserId)
+          );
           setPostOwner(owner);
           setIsLoading(false);
         }
@@ -52,7 +71,7 @@ export const FeedPost = ({ post: postProp }) => {
       }
     })();
     return () => (cleanupFunction = true);
-  }, [_id, ownerId, currentUserId, postProp, location]);
+  }, [_id, ownerId, currentUserId, postProp]);
 
   if (isLoading) {
     return (
@@ -115,7 +134,7 @@ export const FeedPost = ({ post: postProp }) => {
           <Link
             to={{
               pathname: "/feed/p/" + _id,
-              state: { post, comments, postOwner },
+              state: { post, comments, postOwner, likes },
             }}
           >
             <span className="comment_btn_container">
