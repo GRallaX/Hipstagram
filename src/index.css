@@ -29,6 +29,17 @@ code {
   min-width: 350px;
 }
 
+.loading_big {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+}
+.loading_big img {
+  height: 100px;
+  width: 100px;
+}
+
 .main {
   min-width: 100%;
   min-height: 100vh;
@@ -311,13 +322,13 @@ code {
   opacity: 0;
 }
 
-.feed_user_ref {
-  margin: 0;
+.comment_user_ref {
+  margin: 0 2px 0 0;
   text-decoration: none;
   color: black;
   font-weight: 600;
   transition: 0.2s;
 }
-.feed_user_ref:hover {
+.comment_user_ref:hover {
   filter: drop-shadow(1px 1px 1px #131313);
 }/*# sourceMappingURL=index.css.map */

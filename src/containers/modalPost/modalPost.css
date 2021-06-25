@@ -107,6 +107,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 .modal_post_image .like_heart_container span {
   opacity: 0;
@@ -171,14 +172,14 @@
   flex-direction: column;
   align-items: stretch;
 }
-.modal_post .comments_likes_container .modal_comments_container {
+.modal_post .comments_likes_container .comments_container {
   flex-grow: 1;
   width: 100%;
   box-sizing: content-box;
   overflow: auto;
   padding: 6px 6px 6px 12px;
 }
-.modal_post .comments_likes_container .modal_comments_container .loading_comments {
+.modal_post .comments_likes_container .comments_container .loading_comments {
   display: flex;
   justify-content: center;
 }
@@ -280,6 +281,7 @@
   padding: 0 82px 0 0;
   font-family: inherit;
   font-size: 14px;
+  overflow: hidden;
 }
 .modal_post .add_comment_container .add_comment_form .add_comment_btn {
   width: 55px;
@@ -321,4 +323,94 @@
   height: 25px;
   width: 100%;
   filter: brightness(3);
+}
+.modal_post .comment {
+  margin: 2px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  font-weight: 400;
+}
+.modal_post .comment .comment_text {
+  flex-grow: 0;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.modal_post .comment .comment_info {
+  flex: 1 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.modal_post .comment .comment_info .comment_menu {
+  position: relative;
+  transition: 0.2s;
+}
+.modal_post .comment .comment_info .comment_menu .btns {
+  position: absolute;
+  top: -29px;
+  left: -20px;
+  width: 70px;
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  flex-direction: column;
+  transition: 0.2s;
+  z-index: 15;
+}
+.modal_post .comment .comment_info .comment_menu .btns button {
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  outline: none;
+  transition: 0.2s;
+  color: whitesmoke;
+}
+.modal_post .comment .comment_info .comment_menu .btns button:hover {
+  filter: drop-shadow(1px 1px 2px #131313);
+  cursor: pointer;
+}
+.modal_post .comment .comment_info .comment_menu .btns .edit {
+  background: #4d88ed;
+}
+.modal_post .comment .comment_info .comment_menu .btns .delete {
+  background: #ee1c00;
+}
+.modal_post .comment .comment_info .comment_menu .hidden {
+  top: 10px;
+  height: 0;
+  z-index: -1;
+}
+.modal_post .comment .comment_info .edited {
+  font-weight: 400;
+  color: #bdbdbd;
+  margin-right: 24px;
+}
+.modal_post .comment.owner {
+  margin-bottom: 8px;
+}
+.modal_post .comment .menu_toggle {
+  opacity: 0;
+}
+.modal_post .comment .menu_toggle svg {
+  display: block;
+  margin: 2px 6px 0 6px;
+  height: 18px;
+  width: 15px;
+}
+.modal_post .comment .menu_toggle:hover {
+  cursor: pointer;
+  filter: drop-shadow(1px 1px 1px #131313);
+}
+.modal_post .comment:hover .menu_toggle {
+  opacity: 1;
 }/*# sourceMappingURL=modalPost.css.map */

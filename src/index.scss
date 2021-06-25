@@ -32,6 +32,18 @@ code {
   min-width: 350px;
 }
 
+.loading_big {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+
+  img {
+    height: 100px;
+    width: 100px;
+  }
+}
+
 .main {
   min-width: 100%;
   min-height: 100vh;
@@ -379,8 +391,8 @@ code {
   }
 }
 
-.feed_user_ref {
-  margin: 0;
+.comment_user_ref {
+  margin: 0 2px 0 0;
 
   text-decoration: none;
   color: black;

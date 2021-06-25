@@ -6,7 +6,7 @@ import { getUserById } from "../../api/users";
 
 import { FollowButton } from "../../components/followBtn";
 import { ModalWindow } from "../../components/modalWindow";
-import { ModalComments } from "../modalComments";
+import { PostComments } from "../postComments";
 import { LikeButton } from "../../components/likeBtn";
 import { LikeHeart } from "../../components/likeHeart";
 import { PostLikes } from "../../components/postLikesInfo";
@@ -14,7 +14,8 @@ import { ModalLikes } from "../smallModals/modalLikes";
 import { AddComment } from "../../components/addComment";
 
 import { Avatar } from "../../components/avatar";
-import loadingIcon from "../../images/loading_big.svg";
+import { LoadingIconBig } from "../../components/loadingIcon";
+
 import "./modalPost.css";
 
 export const ModalPost = ({ setModalPost }) => {
@@ -23,7 +24,7 @@ export const ModalPost = ({ setModalPost }) => {
   const { postId } = useParams();
 
   const [post, setPost] = useState(location.state?.post || false);
-  const { ownerId, title, imgUrl } = post;
+  const { _id, ownerId, title, imgUrl } = post;
 
   const [postOwner, setPostOwner] = useState(
     location.state?.postOwner || false
@@ -80,7 +81,7 @@ export const ModalPost = ({ setModalPost }) => {
         closeModalFunc={() => history.push(location.pathname.split("/p/")[0])}
       >
         <div className="modal_post">
-          <img src={loadingIcon} alt="loadingIcon" />
+          <LoadingIconBig />
         </div>
       </ModalWindow>
     );
@@ -143,8 +144,8 @@ export const ModalPost = ({ setModalPost }) => {
               />
             </div>
             <div className="comments_likes_container">
-              <ModalComments
-                postId={postId}
+              <PostComments
+                postId={_id}
                 postTitle={title}
                 postOwner={postOwner}
                 comments={comments}

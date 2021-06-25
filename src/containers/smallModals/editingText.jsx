@@ -1,8 +1,8 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { ModalWindow } from "../../components/modalWindow";
 
-import loadingIcon from "../images/loading_small.svg";
+import loadingIcon from "../../images/loading_small.svg";
 import "./smallModals.css";
 
 export const EditingTextModal = ({
@@ -13,6 +13,7 @@ export const EditingTextModal = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [text, setText] = useState("");
+
   const formRef = useRef();
 
   const handleOnEnterPress = (e) => {
@@ -28,7 +29,7 @@ export const EditingTextModal = ({
 
   const handleTextInput = (e) => {
     setText(e.target.value.trim());
-    if (textDefValue === text) {
+    if (textDefValue === e.target.value.trim()) {
       setText("");
     }
   };
@@ -40,6 +41,7 @@ export const EditingTextModal = ({
     try {
       await onSubmitFunc(text);
       setIsLoading(false);
+      closeFunc();
     } catch (e) {
       console.log(e.response);
       isLoading(false);

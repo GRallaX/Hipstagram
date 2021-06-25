@@ -17,7 +17,7 @@ export const LikeButton = ({
 
   const handleLike = async () => {
     try {
-      setIsLiked(isLiked ? false : true);
+      setIsLiked(!isLiked);
       likeContainer.current.className = isLiked
         ? "like_btn_container unliked"
         : "like_btn_container liked";

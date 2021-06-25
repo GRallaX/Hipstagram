@@ -20,10 +20,6 @@
   border-radius: 3px;
   border: 1px solid #dbdbdb;
 }
-.feed_post .loading_screen {
-  display: flex;
-  justify-content: center;
-}
 @media (max-width: 600px) {
   .feed_post {
     margin: 0;
@@ -220,7 +216,7 @@
     transform: scale(0.95);
   }
 }
-.feed_post .feed_owner_comment {
+.feed_post .owner_comment {
   padding: 0 16px;
 }
 .feed_post .add_comment_container {
@@ -297,7 +293,7 @@
   list-style-type: none;
 }
 
-.feed_comment {
+.comment {
   margin: 2px 0;
   display: flex;
   flex-wrap: nowrap;
@@ -305,26 +301,26 @@
   justify-content: flex-start;
   font-weight: 400;
 }
-.feed_comment .comment_text {
+.comment .comment_text {
   flex-grow: 0;
 }
-.feed_comment .comment_info {
+.comment .comment_info {
   flex: 1 0;
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: space-between;
 }
-.feed_comment .comment_info .comment_menu {
+.comment .comment_info .comment_menu {
   position: relative;
   transition: 0.2s;
 }
-.feed_comment .comment_info .comment_menu .btns {
+.comment .comment_info .comment_menu .btns {
   position: absolute;
-  top: -20px;
+  top: -29px;
   left: -20px;
   width: 70px;
-  height: 60px;
+  height: 80px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -333,55 +329,54 @@
   transition: 0.2s;
   z-index: 15;
 }
-.feed_comment .comment_info .comment_menu .btns button {
+.comment .comment_info .comment_menu .btns button {
   margin: 0;
   padding: 0;
   width: 60px;
-  height: 16px;
+  height: 30px;
   border: none;
   border-radius: 5px;
-  line-height: 18px;
   font-weight: 500;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 14px;
   outline: none;
   transition: 0.2s;
   color: whitesmoke;
 }
-.feed_comment .comment_info .comment_menu .btns button:hover {
+.comment .comment_info .comment_menu .btns button:hover {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
-.feed_comment .comment_info .comment_menu .btns .edit {
+.comment .comment_info .comment_menu .btns .edit {
   background: #4d88ed;
 }
-.feed_comment .comment_info .comment_menu .btns .delete {
+.comment .comment_info .comment_menu .btns .delete {
   background: #ee1c00;
 }
-.feed_comment .comment_info .comment_menu .hidden {
+.comment .comment_info .comment_menu .hidden {
   top: 10px;
   height: 0;
   z-index: -1;
 }
-.feed_comment .comment_info .edited {
+.comment .comment_info .edited {
   font-weight: 400;
   color: #bdbdbd;
 }
-.feed_comment.owner {
+.comment.owner {
   margin-bottom: 8px;
 }
-.feed_comment .menu_toggle {
+.comment .menu_toggle {
   opacity: 0;
 }
-.feed_comment .menu_toggle svg {
-  margin-left: 6px;
-  height: 22px;
+.comment .menu_toggle svg {
+  display: block;
+  margin: 2px 6px 0 6px;
+  height: 18px;
   width: 15px;
 }
-.feed_comment .menu_toggle:hover {
+.comment .menu_toggle:hover {
   cursor: pointer;
   filter: drop-shadow(1px 1px 1px #131313);
 }
-.feed_comment:hover .menu_toggle {
+.comment:hover .menu_toggle {
   opacity: 1;
 }/*# sourceMappingURL=feed.css.map */

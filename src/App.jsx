@@ -11,7 +11,7 @@ import { ProfileSettings } from "./pages/ProfileSettings";
 import { SearchUsers } from "./pages/SearchUsers";
 import { ModalPost } from "./containers/modalPost";
 
-import loadingIcon from "./images/loading_big.svg";
+import { LoadingIconBig } from "./components/loadingIcon";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,9 +26,7 @@ const App = () => {
   if (isLoggedIn && !userLoaded) {
     return (
       <div className="main">
-        <div className="loading_screen">
-          <img src={loadingIcon} alt="loadingIcon" />
-        </div>
+        <LoadingIconBig />
       </div>
     );
   } else {

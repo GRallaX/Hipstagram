@@ -6,7 +6,7 @@ import { followUser, getFollowersAndFollowings } from "../api/users";
 import loadingIcon from "../images/loading_small.svg";
 
 export const FollowButton = (props) => {
-  const { userId, size } = props;
+  const { userId, size, user, setUser } = props;
 
   const { id: currentUserId, following } = useSelector(
     (state) => state.currentUser
@@ -32,21 +32,29 @@ export const FollowButton = (props) => {
     return (
       <button
         onClick={async () => {
-          setIsLoading(true);
-          await followUser(userId);
-          setIsFollowed(isFollowed === true ? false : true);
-          setIsLoading(false);
-          if (props.user) {
-            const { user, setUser } = props;
-            const { data: followersAndFollowings } =
-              await getFollowersAndFollowings(userId);
-            setUser({
-              ...user,
-              ...followersAndFollowings,
-              followersCount: isFollowed
-                ? user.followersCount - 1
-                : user.followersCount + 1,
-            });
+          try {
+            setIsLoading(true);
+            await followUser(userId);
+            setIsFollowed(!isFollowed);
+            setIsLoading(false);
+            if (user) {
+              const { data: followersAndFollowings } =
+                await getFollowersAndFollowings(userId);
+              setUser({
+                ...user,
+                ...followersAndFollowings,
+                followersCount: isFollowed
+                  ? user.followersCount - 1
+                  : user.followersCount + 1,
+              });
+            }
+          } catch (e) {
+            console.log(e.response);
+            setIsFollowed(isFollowed);
+            if (user) {
+              setUser({ ...user });
+            }
+            setIsLoading(false);
           }
         }}
         className={

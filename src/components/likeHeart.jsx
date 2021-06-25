@@ -20,7 +20,7 @@ export const LikeHeart = ({
     e.stopPropagation();
 
     try {
-      setIsLiked(isLiked ? false : true);
+      setIsLiked(!isLiked);
       likeContainer.current.className = isLiked ? "unliked" : "liked";
       setLikes(
         isLiked

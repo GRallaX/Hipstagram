@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import "./search.css";
 import { searchUsersByID } from "../../api/users";
 import { UsersList } from "../../containers/usersList";
-import loadingIcon from "../../images/loading_big.svg";
+
+import { LoadingIconBig } from "../../components/loadingIcon";
 
 export const SearchUsers = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,9 +28,7 @@ export const SearchUsers = (props) => {
   if (isLoading) {
     return (
       <div className="main">
-        <div className="loading_screen">
-          <img src={loadingIcon} alt="loadingIcon" />
-        </div>
+        <LoadingIconBig />
       </div>
     );
   } else if (!isLoading && !usersList.length) {

@@ -10,8 +10,7 @@ import { FollowButton } from "../../components/followBtn";
 import { getUserById } from "../../api/users";
 import { getFollowersAndFollowings } from "../../api/users";
 
-import loadingIcon from "../../images/loading_big.svg";
-
+import { LoadingIconBig } from "../../components/loadingIcon";
 import "./user.css";
 
 export const User = ({
@@ -68,9 +67,7 @@ export const User = ({
   if (isLoading) {
     return (
       <div className="main">
-        <div className="loading_screen">
-          <img src={loadingIcon} alt="loadingIcon" />
-        </div>
+        <LoadingIconBig />
       </div>
     );
   } else if (!isLoading && !Object.keys(user).length) {
