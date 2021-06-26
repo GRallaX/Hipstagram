@@ -12,15 +12,14 @@ export const Feed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [postsForRender, setPostsForRender] = useState([]);
-  const [endOfPage, setEndOfPage] = useState(false);
-
   const [modalPost, setModalPost] = useState(false);
+  const [endOfPage, setEndOfPage] = useState(false);
 
   const feedContainer = useRef();
 
   const feedScrollListener = () => {
     if (
-      document.documentElement.clientHeight + 100 >
+      document.documentElement.clientHeight + 200 >
       feedContainer.current?.getBoundingClientRect().bottom
     ) {
       setEndOfPage(true);
@@ -29,7 +28,8 @@ export const Feed = () => {
 
   useEffect(() => {
     if (posts.length > postsForRender.length) {
-      window.addEventListener("scroll", feedScrollListener);
+      document.addEventListener("scroll", feedScrollListener, true);
+      return () => document.removeEventListener("scroll", feedScrollListener);
     }
   }, [posts, postsForRender]);
 

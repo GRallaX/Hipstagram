@@ -10,7 +10,7 @@ import { PostComments } from "../postComments";
 import { LikeButton } from "../../components/likeBtn";
 import { LikeHeart } from "../../components/likeHeart";
 import { PostLikes } from "../../components/postLikesInfo";
-import { ModalLikes } from "../smallModals/modalLikes";
+import { ModalLikes } from "../dialogues/modalLikes";
 import { AddComment } from "../../components/addComment";
 
 import { Avatar } from "../../components/avatar";

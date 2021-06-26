@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteComment, editComment, fetchPostComments } from "../api/comments";
+import {
+  deleteComment,
+  editComment,
+  fetchPostComments,
+} from "../../api/comments";
 
-import { EditingTextModal } from "./smallModals/editingText";
+import { EditingTextModal } from "../dialogues/editingText";
 
-import loadingIcon from "../images/loading_small.svg";
-import { ReactComponent as ThreeDotsMenu } from "../images/three-dots-menu.svg";
+import { ReactComponent as ThreeDotsMenu } from "../../images/three-dots-menu.svg";
+import loadingIcon from "../../images/loading_small.svg";
+import "./postComments.css";
 
 const Comment = ({ comment, comments, setComments }) => {
   const [showBtns, setShowBtns] = useState(false);
@@ -50,6 +55,9 @@ const Comment = ({ comment, comments, setComments }) => {
       onMouseLeave={() => {
         if (showBtns) setShowBtns(false);
       }}
+      onClick={() => {
+        if (showBtns) setShowBtns(false);
+      }}
     >
       {showEditModal && (
         <EditingTextModal
@@ -75,19 +83,24 @@ const Comment = ({ comment, comments, setComments }) => {
               >
                 <ThreeDotsMenu />
               </div>
-              <div className={!showBtns ? "btns hidden" : "btns"}>
-                <button
-                  className="edit"
-                  onClick={() => {
-                    setShowEditModal(true);
-                    setShowBtns(false);
-                  }}
-                >
-                  edit
-                </button>
-                <button className="delete" onClick={handleDeleteComment}>
-                  delete
-                </button>
+
+              <div className={showBtns ? "btns" : "btns hidden"}>
+                {showBtns && (
+                  <>
+                    <button
+                      className="edit"
+                      onClick={() => {
+                        setShowEditModal(true);
+                        setShowBtns(false);
+                      }}
+                    >
+                      edit
+                    </button>
+                    <button className="delete" onClick={handleDeleteComment}>
+                      delete
+                    </button>
+                  </>
+                )}
               </div>
             </>
           )}
@@ -112,8 +125,8 @@ export const PostComments = ({
     let cleanupFunction = false;
 
     const interval = setInterval(() => {
-      setUpdate(true);
-    }, 15000);
+      // setUpdate(true);
+    }, 20000);
 
     (async () => {
       try {

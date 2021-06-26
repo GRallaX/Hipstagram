@@ -161,7 +161,7 @@ code {
     transition: 0.2s;
 
     &:focus {
-      filter: drop-shadow(0 0 1px #131313);
+      box-shadow: 0 0 0 1px #505050;
     }
   }
 }
@@ -191,7 +191,8 @@ code {
 
     transition: 0.2s;
 
-    &:hover {
+    &:hover,
+    &:focus {
       filter: drop-shadow(1px 1px 1px #131313);
       cursor: pointer;
     }
@@ -263,7 +264,8 @@ code {
     width: 32px;
     height: 32px;
 
-    &:hover {
+    &:hover,
+    &:focus {
       box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
     }
   }
@@ -357,7 +359,8 @@ code {
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     filter: drop-shadow(1px 1px 2px #131313);
     cursor: pointer;
   }
@@ -377,7 +380,8 @@ code {
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-  &:hover {
+  &:hover,
+  &:focus {
     filter: drop-shadow(1px 1px 2px #131313);
     cursor: pointer;
   }
@@ -400,7 +404,8 @@ code {
 
   transition: 0.2s;
 
-  &:hover {
+  &:hover,
+  &:focus {
     filter: drop-shadow(1px 1px 1px #131313);
   }
 }

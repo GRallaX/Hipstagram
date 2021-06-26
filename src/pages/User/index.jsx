@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { ModalFollowers } from "../../containers/smallModals/modalFollowers";
-import { ModalFollowings } from "../../containers/smallModals/modalFollowings";
+import { ModalFollowers } from "../../containers/dialogues/modalFollowers";
+import { ModalFollowings } from "../../containers/dialogues/modalFollowings";
 import { UsersPost } from "../../components/usersPost";
 import { Avatar } from "../../components/avatar";
 import { FollowButton } from "../../components/followBtn";

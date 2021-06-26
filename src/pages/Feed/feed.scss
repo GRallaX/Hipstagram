@@ -44,7 +44,8 @@
     color: black;
     font-weight: 600;
 
-    &:hover {
+    &:hover,
+    &:focus {
       filter: drop-shadow(1px 1px 1px #131313);
     }
 
@@ -201,7 +202,8 @@
       height: 25px;
       cursor: pointer;
 
-      &:hover {
+      &:hover,
+      &:focus {
         filter: drop-shadow(0 0 1px #131313);
         transition: 0.2s;
       }
@@ -222,7 +224,8 @@
 
         transition: 0.2s;
 
-        &:hover {
+        &:hover,
+        &:focus {
           filter: drop-shadow(1px 1px 1px #131313);
           cursor: pointer;
         }
@@ -254,10 +257,6 @@
     50% {
       transform: scale(0.95);
     }
-  }
-
-  .owner_comment {
-    padding: 0 16px;
   }
 
   .add_comment_container {
@@ -308,7 +307,8 @@
         font-weight: 600;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-        &:hover {
+        &:hover,
+        &:focus {
           filter: drop-shadow(1px 1px 2px #131313);
           cursor: pointer;
         }
@@ -339,131 +339,4 @@
 
 .comments_container {
   padding: 4px 16px 8px 16px;
-
-  .loading_comments {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.comments {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.comment {
-  margin: 2px 0;
-
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  justify-content: flex-start;
-
-  font-weight: 400;
-
-  .comment_text {
-    flex-grow: 0;
-  }
-
-  .comment_info {
-    flex: 1 0;
-
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    .comment_menu {
-      position: relative;
-
-      transition: 0.2s;
-
-      .btns {
-        position: absolute;
-        top: -29px;
-        left: -20px;
-
-        width: 70px;
-        height: 80px;
-
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        overflow: hidden;
-        flex-direction: column;
-
-        transition: 0.2s;
-
-        z-index: 15;
-
-        button {
-          margin: 0;
-          padding: 0;
-          width: 60px;
-          height: 30px;
-
-          border: none;
-          border-radius: 5px;
-
-          font-weight: 500;
-          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-
-          outline: none;
-          transition: 0.2s;
-
-          color: whitesmoke;
-
-          &:hover {
-            filter: drop-shadow(1px 1px 2px #131313);
-            cursor: pointer;
-          }
-        }
-
-        .edit {
-          background: #4d88ed;
-        }
-
-        .delete {
-          background: rgb(238, 28, 0);
-        }
-      }
-
-      .hidden {
-        top: 10px;
-        height: 0;
-        z-index: -1;
-      }
-    }
-
-    .edited {
-      font-weight: 400;
-      color: #bdbdbd;
-    }
-  }
-
-  &.owner {
-    margin-bottom: 8px;
-  }
-
-  .menu_toggle {
-    opacity: 0;
-
-    svg {
-      display: block;
-      margin: 2px 6px 0 6px;
-
-      height: 18px;
-      width: 15px;
-    }
-
-    &:hover {
-      cursor: pointer;
-      filter: drop-shadow(1px 1px 1px #131313);
-    }
-  }
-
-  &:hover .menu_toggle {
-    opacity: 1;
-  }
 }

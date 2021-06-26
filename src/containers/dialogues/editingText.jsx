@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ModalWindow } from "../../components/modalWindow";
 
 import loadingIcon from "../../images/loading_small.svg";
-import "./smallModals.css";
+import "./dialogues.css";
 
 export const EditingTextModal = ({
   header,
@@ -15,6 +15,7 @@ export const EditingTextModal = ({
   const [text, setText] = useState("");
 
   const formRef = useRef();
+  const textInput = useRef();
 
   const handleOnEnterPress = (e) => {
     if (e.keyCode === 13 && e.shiftKey === false) {
@@ -48,29 +49,35 @@ export const EditingTextModal = ({
     }
   };
 
+  useEffect(() => textInput.current.focus(), []);
+
   return (
     <ModalWindow closeModalFunc={closeFunc}>
       <div className="small_modal_wrapper">
         <h2>{header}</h2>
         <form className="text" onSubmit={handleSubmit} ref={formRef}>
-          <textarea
-            className="new_text"
-            name="text"
-            placeholder="Enter text here..."
-            autoComplete="off"
-            autoCorrect="off"
-            defaultValue={textDefValue}
-            onChange={handleTextInput}
-            onKeyDown={handleOnEnterPress}
-          />
+          <label>
+            <textarea
+              className="new_text"
+              name="text"
+              placeholder="Enter text here..."
+              autoComplete="off"
+              autoCorrect="off"
+              defaultValue={textDefValue}
+              onChange={handleTextInput}
+              onKeyDown={handleOnEnterPress}
+              ref={textInput}
+            />
+          </label>
           <div className="btns">
-            <button className="cancel" onClick={closeFunc}>
+            <button className="cancel" onClick={closeFunc} tabIndex="0">
               Cancel
             </button>
             <button
               className={text ? "submit" : "submit disabled"}
               type="submit"
               disabled={text ? false : true}
+              tabIndex="0"
             >
               {isLoading ? <img src={loadingIcon} alt="1" /> : "Submit"}
             </button>

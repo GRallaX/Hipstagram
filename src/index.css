@@ -138,7 +138,7 @@ code {
   transition: 0.2s;
 }
 .main_header .users_search_input:focus {
-  filter: drop-shadow(0 0 1px #131313);
+  box-shadow: 0 0 0 1px #505050;
 }
 
 @media (max-width: 750px) {
@@ -164,7 +164,7 @@ code {
   margin-right: 16px;
   transition: 0.2s;
 }
-.header_navigation span:hover {
+.header_navigation span:hover, .header_navigation span:focus {
   filter: drop-shadow(1px 1px 1px #131313);
   cursor: pointer;
 }
@@ -221,7 +221,7 @@ code {
   width: 32px;
   height: 32px;
 }
-.avatar.small:hover {
+.avatar.small:hover, .avatar.small:focus {
   box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
 }
 .avatar.very_small {
@@ -296,7 +296,7 @@ code {
   height: 25px;
   width: 100%;
 }
-.follow_btn:hover {
+.follow_btn:hover, .follow_btn:focus {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
@@ -313,7 +313,7 @@ code {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: 0.2s;
 }
-.settings_btn:hover {
+.settings_btn:hover, .settings_btn:focus {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
@@ -329,6 +329,6 @@ code {
   font-weight: 600;
   transition: 0.2s;
 }
-.comment_user_ref:hover {
+.comment_user_ref:hover, .comment_user_ref:focus {
   filter: drop-shadow(1px 1px 1px #131313);
 }/*# sourceMappingURL=index.css.map */
