@@ -28,39 +28,35 @@
   border: 1px solid #dbdbdb;
   justify-content: space-between;
   align-items: center;
-}
-.users_list_card .user_link {
-  flex: 0 99 auto;
-  display: flex;
-  align-items: center;
-}
-.users_list_card .user_link .link_login {
-  flex: 0 99 auto;
-}
-.users_list_card .user_link .link_login .ref {
-  display: block;
   overflow: hidden;
+}
+.users_list_card .link_login {
+  flex: 0 99 auto;
+  overflow: hidden;
+}
+.users_list_card .link_login .ref {
+  display: block;
   text-overflow: ellipsis;
+  overflow: hidden;
   text-decoration: none;
   color: black;
   font-weight: 600;
   transition: 0.2s;
 }
-.users_list_card .user_link .link_login .ref:hover {
+.users_list_card .link_login .ref:hover {
   filter: drop-shadow(1px 1px 1px #131313);
 }
-.users_list_card .user_link .ref_avatar {
-  flex: 1 0 auto;
+.users_list_card .ref_avatar {
   width: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.users_list_card .user_link:hover {
+.users_list_card:hover {
   cursor: pointer;
 }
 .users_list_card .subscribe_btn {
-  flex: 1 0 auto;
+  flex: 1 0;
   min-width: 132px;
   display: flex;
   justify-content: flex-end;

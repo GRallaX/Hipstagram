@@ -93,3 +93,15 @@ export const updateUsersPassword = (
     }
   };
 };
+
+export const subscribeUser = (user) => {
+  return (dispatch) => {
+    dispatch(actionCreators.subscribeUser(user));
+  };
+};
+
+export const unSubscribeUser = (userId) => {
+  return (dispatch) => {
+    dispatch(actionCreators.unSubscribeUser(userId));
+  };
+};

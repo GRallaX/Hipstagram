@@ -33,7 +33,7 @@ export const ModalPost = ({ setModalPost }) => {
   const currentUser = useSelector((state) => state.currentUser);
   const { id: currentUserId } = currentUser;
 
-  const [likes, setLikes] = useState(location.state?.likes || false);
+  const [likes, setLikes] = useState(location.state?.likes || []);
   const [comments, setComments] = useState(location.state?.comments || false);
   const [isLoading, setIsLoading] = useState(post && postOwner ? false : true);
   const [modalLikes, setModalLikes] = useState(false);
@@ -43,7 +43,11 @@ export const ModalPost = ({ setModalPost }) => {
   const [imgLoading, setImgLoading] = useState(true);
 
   useEffect(() => {
-    return () => setModalPost({ ...post, likes: likes, comments: comments });
+    return () => {
+      if (setModalPost) {
+        setModalPost({ ...post, likes: likes, comments: comments });
+      }
+    };
   }, [likes, post, setModalPost, comments]);
 
   useEffect(() => {
@@ -113,7 +117,11 @@ export const ModalPost = ({ setModalPost }) => {
                 {postOwner.login}
               </Link>
               <div className="subscribe_btn">
-                <FollowButton userId={ownerId} size="small_btn" />
+                <FollowButton
+                  user={postOwner}
+                  setUser={setPostOwner}
+                  size="small_btn"
+                />
               </div>
             </header>
             <div
@@ -125,7 +133,7 @@ export const ModalPost = ({ setModalPost }) => {
                 onLoad={() => {
                   setImgLoading(false);
                 }}
-                src="https://sample-videos.com/img/Sample-jpg-image-500kb.jpg"
+                src="https://sample-videos.com/img/Sample-png-image-500kb.png"
                 alt={imgUrl}
               />
               <LikeHeart

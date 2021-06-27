@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, useLocation } from "react-router-dom";
+import LazyLoad from "react-lazyload";
 
+import { ModalPost } from "../../containers/modalPost";
 import { ModalFollowers } from "../../containers/dialogues/modalFollowers";
 import { ModalFollowings } from "../../containers/dialogues/modalFollowings";
 import { UsersPost } from "../../components/usersPost";
@@ -12,19 +15,32 @@ import { getFollowersAndFollowings } from "../../api/users";
 
 import { LoadingIconBig } from "../../components/loadingIcon";
 import "./user.css";
+import { getCurrentUser } from "../../store/currentUser/thunks";
 
 export const User = ({
   match: {
     params: { id: pageUserId },
   },
 }) => {
+  const location = useLocation();
+  const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [modalFollowers, setModalFollowers] = useState(null);
-  const [modalFollowings, setModalFollowings] = useState(null);
+  const [modalFollowers, setModalFollowers] = useState(false);
+  const [modalFollowings, setModalFollowings] = useState(false);
+  const [modalPost, setModalPost] = useState(false);
 
   const currentUser = useSelector((state) => state.currentUser);
   const { id: currentUserId, token } = currentUser;
+
+  useEffect(() => {
+    if (pageUserId === currentUserId) dispatch(getCurrentUser());
+  }, [dispatch, currentUserId, pageUserId]);
+
+  useEffect(() => {
+    setModalFollowers(false);
+    setModalFollowings(false);
+  }, [location]);
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -37,8 +53,6 @@ export const User = ({
             followingsCount: currentUser.following.length,
           });
           setIsLoading(false);
-          setModalFollowers(null);
-          setModalFollowings(null);
         }
         document.title = "Hipstagram - My Profile";
       } else {
@@ -50,8 +64,6 @@ export const User = ({
           if (!cleanupFunction) {
             setUser({ ...fetchedUser, ...followersAndFollowings });
             setIsLoading(false);
-            setModalFollowers(null);
-            setModalFollowings(null);
           }
           document.title = fetchedUser.login;
         } catch (e) {
@@ -105,6 +117,10 @@ export const User = ({
 
     return (
       <div className="main">
+        <Route
+          path="/users/:ownerId/p/:postId"
+          render={() => <ModalPost setModalPost={setModalPost} />}
+        />
         {modalFollowers && (
           <ModalFollowers
             usersList={modalFollowers}
@@ -170,20 +186,25 @@ export const User = ({
             {posts.length > 0 ? (
               groupedUserPosts.map((postGroup, index) => {
                 return (
-                  <div
+                  <LazyLoad
+                    height={200}
+                    offset={100}
                     key={"postsGroup " + (index + 1)}
-                    className={"posts_group"}
                   >
-                    {postGroup.map((post) => {
-                      return (
-                        <UsersPost
-                          key={"post_" + post._id}
-                          post={post}
-                          ownersLogin={login}
-                        />
-                      );
-                    })}
-                  </div>
+                    <div className={"posts_group"}>
+                      {postGroup.map((post) => {
+                        return (
+                          <UsersPost
+                            key={"post_" + post._id}
+                            post={post}
+                            postOwner={user}
+                            modalPost={modalPost}
+                            setModalPost={setModalPost}
+                          />
+                        );
+                      })}
+                    </div>
+                  </LazyLoad>
                 );
               })
             ) : (

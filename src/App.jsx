@@ -9,7 +9,6 @@ import { Header } from "./containers/header";
 import { User } from "./pages/User";
 import { ProfileSettings } from "./pages/ProfileSettings";
 import { SearchUsers } from "./pages/SearchUsers";
-import { ModalPost } from "./containers/modalPost";
 
 import { LoadingIconBig } from "./components/loadingIcon";
 
@@ -42,10 +41,7 @@ const App = () => {
             path="/users/:id/profile_settings"
             component={ProfileSettings}
           />
-          <Route path="/users/">
-            <Route path="/users/:ownerId/p/:postId" component={ModalPost} />
-            <Route path="/users/:id" component={User} />
-          </Route>
+          <Route path="/users/:id" component={User} />
           {isLoggedIn && <Redirect from="*" to="/feed" />}
         </Switch>
       </div>

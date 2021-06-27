@@ -250,14 +250,20 @@ code {
   border-radius: 50%;
 
   display: flex;
-  align-items: flex-start;
   overflow: hidden;
 
   transition: 0.2s;
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+  &.big {
+    height: 150px;
+    width: 150px;
   }
 
   &.small {
@@ -327,6 +333,12 @@ code {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   transition: 0.2s;
+
+  &.not_followed {
+    img {
+      filter: brightness(3);
+    }
+  }
 
   &.medium_btn {
     height: 35px;

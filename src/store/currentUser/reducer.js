@@ -69,6 +69,17 @@ export default function currentUserReducer(state = defaultState, action) {
     case actionTypes.UPDATE_PASSWORD:
       return state;
 
+    case actionTypes.SUBSCRIBE_USER:
+      return { ...state, following: [...state.following, action.payload] };
+
+    case actionTypes.UNSUBSCRIBE_USER:
+      return {
+        ...state,
+        following: [
+          ...state.following.filter((user) => user.id !== action.payload),
+        ],
+      };
+
     default:
       return state;
   }

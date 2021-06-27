@@ -45,4 +45,18 @@ export const actionCreators = {
       type: actionTypes.UPDATE_PASSWORD,
     };
   },
+
+  subscribeUser: function (user) {
+    return {
+      type: actionTypes.SUBSCRIBE_USER,
+      payload: user,
+    };
+  },
+
+  unSubscribeUser: function (userId) {
+    return {
+      type: actionTypes.UNSUBSCRIBE_USER,
+      payload: userId,
+    };
+  },
 };

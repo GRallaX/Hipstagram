@@ -44,9 +44,9 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
 
   useEffect(() => {
     if (modalPostOpened) {
-      setPost({ ...modalPost });
-      setComments([...modalPost.comments]);
-      setLikes([...modalPost.likes]);
+      setPost(modalPost);
+      setComments(modalPost.comments);
+      setLikes(modalPost.likes);
       setIsLiked(modalPost.likes.some((user) => user._id === currentUserId));
       setModalPost(false);
     }

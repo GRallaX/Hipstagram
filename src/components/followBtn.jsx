@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import { followUser, getFollowersAndFollowings } from "../api/users";
 import loadingIcon from "../images/loading_small.svg";
+import { subscribeUser, unSubscribeUser } from "../store/currentUser/thunks";
 
-export const FollowButton = (props) => {
-  const { userId, size, user, setUser } = props;
+export const FollowButton = ({ size, user: userProp, setUser }) => {
+  let user;
+  if (userProp._id) {
+    user = { ...userProp, id: userProp._id };
+    delete user._id;
+  } else {
+    user = { ...userProp };
+  }
+  const { id: userId } = user;
+
+  const dispatch = useDispatch();
 
   const { id: currentUserId, following } = useSelector(
     (state) => state.currentUser
@@ -15,6 +25,15 @@ export const FollowButton = (props) => {
   const [isFollowed, setIsFollowed] = useState(
     following.some((user) => user.id === userId) ? true : false
   );
+
+  useEffect(() => {
+    let cleanupFunction = false;
+    if (!cleanupFunction)
+      setIsFollowed(
+        following.some((user) => user.id === userId) ? true : false
+      );
+    return () => (cleanupFunction = true);
+  }, [following, userId]);
 
   if (userId === currentUserId && size === "big_btn") {
     return (
@@ -35,9 +54,12 @@ export const FollowButton = (props) => {
           try {
             setIsLoading(true);
             await followUser(userId);
+            isFollowed
+              ? dispatch(unSubscribeUser(userId))
+              : dispatch(subscribeUser(user));
             setIsFollowed(!isFollowed);
             setIsLoading(false);
-            if (user) {
+            if (setUser) {
               const { data: followersAndFollowings } =
                 await getFollowersAndFollowings(userId);
               setUser({
@@ -51,7 +73,7 @@ export const FollowButton = (props) => {
           } catch (e) {
             console.log(e.response);
             setIsFollowed(isFollowed);
-            if (user) {
+            if (setUser) {
               setUser({ ...user });
             }
             setIsLoading(false);

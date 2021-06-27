@@ -3,21 +3,22 @@ import { Link } from "react-router-dom";
 import { Avatar } from "../components/avatar";
 import { FollowButton } from "../components/followBtn";
 
-const UserCard = ({ user: { avatar, login, _id, id } }) => {
+const UserCard = ({ user }) => {
+  const { avatar, login, _id, id } = user;
+
   return (
     <li className="users_list_card">
-      <div className="user_link">
-        <Link to={"/users/" + (_id || id)} className="ref_avatar">
-          <Avatar avatar={avatar} size="small" />
+      <Link to={"/users/" + (_id || id)} className="ref_avatar">
+        <Avatar avatar={avatar} size="small" />
+      </Link>
+      <div className="link_login">
+        <Link to={"/users/" + (_id || id)} className="ref">
+          {login}
         </Link>
-        <div className="link_login">
-          <Link to={"/users/" + (_id || id)} className="ref">
-            {login}
-          </Link>
-        </div>
       </div>
+
       <div className="subscribe_btn">
-        <FollowButton userId={_id || id} size="medium_btn" />
+        <FollowButton user={user} size="medium_btn" />
       </div>
     </li>
   );

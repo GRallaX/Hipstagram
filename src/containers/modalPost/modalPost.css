@@ -4,6 +4,10 @@
   width: 100%;
   font-size: 14px;
 }
+.modal_post .loading_big {
+  height: 40vw;
+  width: 60vw;
+}
 .modal_post .no_post_found {
   margin: 100px;
   font-size: 30px;
