@@ -1,53 +1,69 @@
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
 
-export const PasswordInput = () => {
-  const lbl = useRef();
-  const input = useRef();
-  const container = useRef();
-  const show = useRef();
+export const PasswordInput = React.forwardRef(
+  ({ name, message, clearErrors, onChange, onBlur }, ref) => {
+    const [showPass, setShowPass] = useState(false);
+    const [value, setValue] = useState("");
 
-  return (
-    <div ref={container} className="pass_lbl_container">
-      <label>
-        <span ref={lbl} className="input_lbl">
-          Password
-        </span>
-        <input
-          ref={input}
-          aria-label="password"
-          aria-required="true"
-          autoCapitalize="off"
-          autoCorrect="off"
-          maxLength="30"
-          name="password"
-          type="password"
-          onBlur={() => (container.current.className = "pass_lbl_container")}
-          onFocus={() =>
-            (container.current.className = "pass_lbl_container active")
-          }
-          onChange={(e) => {
-            lbl.current.className = "input_lbl active";
-            show.current.className = "show_pass";
-            if (e.target.value === "") {
-              lbl.current.className = "input_lbl inactive";
-              show.current.className = "show_pass hidden";
-            }
-          }}
-        />
-      </label>
-      <div ref={show} className="show_pass hidden">
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            input.current.type === "password"
-              ? (input.current.type = "text")
-              : (input.current.type = "password");
-          }}
-        >
-          Show
-        </button>
+    const lbl = useRef();
+    const container = useRef();
+    const input = useRef();
+
+    return (
+      <div className="input_wrapper">
+        <div ref={container} className="pass_lbl_container">
+          <label>
+            <span
+              ref={lbl}
+              className="input_lbl"
+              onClick={() => input.current.focus()}
+            >
+              Password
+            </span>
+            <input
+              ref={(ref, input)}
+              name={name}
+              autoCapitalize="off"
+              autoCorrect="off"
+              aria-label="password"
+              type={showPass ? "text" : "password"}
+              onBlur={(e) => {
+                onBlur(e);
+                container.current.className = "pass_lbl_container";
+              }}
+              onFocus={() => {
+                container.current.className = "pass_lbl_container active";
+                if (message.loginForm) clearErrors("loginForm");
+              }}
+              onChange={(e) => {
+                onChange(e);
+                lbl.current.className = "input_lbl active";
+                setValue(e.target.value.trim());
+                if (message.loginForm) clearErrors("loginForm");
+                if (e.target.value.trim() === "") {
+                  lbl.current.className = "input_lbl inactive";
+                  setValue("");
+                }
+              }}
+            />
+          </label>
+          <div className="show_pass">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowPass(!showPass);
+              }}
+              disabled={value ? false : true}
+            >
+              Show
+            </button>
+          </div>
+        </div>
+        {message[name] && (
+          <span className="message">{message[name].message}</span>
+        )}
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
