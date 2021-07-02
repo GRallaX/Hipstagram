@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
+import { searchUsersByLogin } from "../../api/users";
 
-import "./search.css";
-import { searchUsersByID } from "../../api/users";
 import { UsersList } from "../../containers/usersList";
-
 import { LoadingIconBig } from "../../components/loadingIcon";
+import "./search.css";
 
-export const SearchUsers = (props) => {
+export const SearchUsers = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [usersList, setUsersList] = useState([]);
 
@@ -14,7 +13,7 @@ export const SearchUsers = (props) => {
     let cleanupFunction = false;
     document.title = "Users Search";
     (async () => {
-      const { data: users } = await searchUsersByID(
+      const { data: users } = await searchUsersByLogin(
         props.location.search.slice(2)
       );
       if (!cleanupFunction) {

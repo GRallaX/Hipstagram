@@ -34,23 +34,25 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-  }
 
-  .user_post_ref {
-    display: flex;
-    align-items: center;
+    .user_post_ref {
+      display: flex;
+      align-items: center;
 
-    text-decoration: none;
-    color: black;
-    font-weight: 600;
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
 
-    &:hover,
-    &:focus {
-      filter: drop-shadow(1px 1px 1px #131313);
+      .avatar.small {
+        margin-right: 12px;
+      }
     }
 
-    .avatar.small {
-      margin-right: 12px;
+    a:nth-of-type(2) {
+      &:hover,
+      &:focus {
+        filter: drop-shadow(1px 1px 1px #131313);
+      }
     }
   }
 

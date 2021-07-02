@@ -41,6 +41,7 @@ code {
 }
 
 .main {
+  width: max-content;
   min-width: 100%;
   min-height: 100vh;
   position: relative;
@@ -193,6 +194,13 @@ code {
   fill: whitesmoke;
   width: 29px;
 }
+.header_navigation .my_profile_btn {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 200px;
+  color: whitesmoke;
+  text-decoration: none;
+}
 @media (max-width: 750px) {
   .header_navigation .my_profile_btn {
     margin: 7px 16px 0 0;
@@ -204,6 +212,9 @@ code {
 }
 .header_navigation .log_out_btn:hover {
   cursor: pointer;
+}
+.header_navigation .active {
+  filter: drop-shadow(1px 1px 1px #131313);
 }
 
 .avatar {

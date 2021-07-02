@@ -61,7 +61,7 @@ export const UsersPost = ({
           onLoad={() => {
             setImgLoading(false);
           }}
-          src={"https://sample-videos.com/img/Sample-png-image-10mb.png"}
+          src={imgUrl}
           alt={ownersLogin + " " + title}
         />
         <div className="interactions_container">

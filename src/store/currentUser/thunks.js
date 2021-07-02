@@ -8,18 +8,19 @@ import {
 } from "../../api/currentUser";
 
 export const getCurrentUser = () => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const { data: currentUser } = await fetchCurrentUser();
       dispatch(actionCreators.setCurrentUser(currentUser));
     } catch (e) {
-      console.log(e);
+      console.log(e.response);
+      return e;
     }
   };
 };
 
 export const userRegistration = (login, email, password) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const {
         data: { id },
@@ -28,27 +29,30 @@ export const userRegistration = (login, email, password) => {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
       dispatch(actionCreators.setRegistration(id, token));
+      return id;
     } catch (e) {
-      console.log(e);
+      console.log(e.response);
+      return e;
     }
   };
 };
 
 export const logInUser = (login, password) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
-      dispatch(actionCreators.setLogIn(token));
+      return dispatch(actionCreators.setLogIn(token));
     } catch (e) {
-      console.log(e);
+      console.log(e.response);
+      return e;
     }
   };
 };
 
 export const logOutUser = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(actionCreators.setLogOut());
   };
 };
@@ -60,7 +64,7 @@ export const updateCurrentUser = (
   login,
   avatar
 ) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const { data: updatedUser } = await fetchUpdateUser(
         firstName,
@@ -83,7 +87,7 @@ export const updateUsersPassword = (
   newPassword,
   confirmNewPassword
 ) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       await fetchLogIn(login, password);
       await fetchUpdatePassword(newPassword, confirmNewPassword);
@@ -94,14 +98,14 @@ export const updateUsersPassword = (
   };
 };
 
-export const subscribeUser = (user) => {
-  return (dispatch) => {
+export const subscribeUser = user => {
+  return dispatch => {
     dispatch(actionCreators.subscribeUser(user));
   };
 };
 
-export const unSubscribeUser = (userId) => {
-  return (dispatch) => {
+export const unSubscribeUser = userId => {
+  return dispatch => {
     dispatch(actionCreators.unSubscribeUser(userId));
   };
 };

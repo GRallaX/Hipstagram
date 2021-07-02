@@ -10,7 +10,7 @@ const debounce = (
     if (timer !== null) clearTimeout(timer);
     timer = setTimeout(() => {
       timer = null;
-      callback(...args);
+      return callback(...args);
     }, delay);
   }
 )();
@@ -47,7 +47,7 @@ export const SearchInput = ({ searchInput }) => {
         type="text"
         ref={searchInput}
         className="users_search_input"
-        onChange={debounce((event) => handleSearchUsers(event, history), 700)}
+        onChange={debounce(event => handleSearchUsers(event, history), 700)}
         defaultValue={
           location.pathname === "/users_search" ? location.search.slice(2) : ""
         }

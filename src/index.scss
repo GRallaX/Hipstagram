@@ -45,6 +45,7 @@ code {
 }
 
 .main {
+  width: max-content;
   min-width: 100%;
   min-height: 100vh;
   position: relative;
@@ -230,6 +231,13 @@ code {
   }
 
   .my_profile_btn {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 200px;
+
+    color: whitesmoke;
+    text-decoration: none;
+
     @media (max-width: 750px) {
       margin: 7px 16px 0 0;
     }
@@ -243,6 +251,10 @@ code {
     &:hover {
       cursor: pointer;
     }
+  }
+
+  .active {
+    filter: drop-shadow(1px 1px 1px #131313);
   }
 }
 

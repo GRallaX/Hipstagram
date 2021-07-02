@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Avatar } from "../components/avatar";
+import { deleteUser } from "../api/users";
 import {
+  logOutUser,
   updateCurrentUser,
   updateUsersPassword,
 } from "../store/currentUser/thunks";
+
+import { Avatar } from "../components/avatar";
 
 export const ProfileSettings = ({
   match: {
@@ -19,7 +22,7 @@ export const ProfileSettings = ({
     lastName,
     login,
     avatar,
-  } = useSelector((state) => state.currentUser);
+  } = useSelector(state => state.currentUser);
   useEffect(() => {
     document.title = "Profile Settings";
   }, []);
@@ -48,6 +51,15 @@ export const ProfileSettings = ({
           }
         >
           Update password
+        </button>
+        <button
+          className="delete"
+          onClick={() => {
+            deleteUser(currentUserId);
+            dispatch(logOutUser());
+          }}
+        >
+          Delete User
         </button>
       </div>
     );

@@ -35,18 +35,18 @@
   justify-content: flex-start;
   align-items: center;
 }
-.feed_post .user_post_ref {
+.feed_post_header .user_post_ref {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: black;
   font-weight: 600;
 }
-.feed_post .user_post_ref:hover, .feed_post .user_post_ref:focus {
-  filter: drop-shadow(1px 1px 1px #131313);
-}
-.feed_post .user_post_ref .avatar.small {
+.feed_post_header .user_post_ref .avatar.small {
   margin-right: 12px;
+}
+.feed_post_header a:nth-of-type(2):hover, .feed_post_header a:nth-of-type(2):focus {
+  filter: drop-shadow(1px 1px 1px #131313);
 }
 .feed_post .image {
   position: relative;

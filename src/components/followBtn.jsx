@@ -8,6 +8,8 @@ import { subscribeUser, unSubscribeUser } from "../store/currentUser/thunks";
 
 export const FollowButton = ({ size, user: userProp, setUser }) => {
   let user;
+
+  console.log(userProp);
   if (userProp._id) {
     user = { ...userProp, id: userProp._id };
     delete user._id;
@@ -19,19 +21,17 @@ export const FollowButton = ({ size, user: userProp, setUser }) => {
   const dispatch = useDispatch();
 
   const { id: currentUserId, following } = useSelector(
-    (state) => state.currentUser
+    state => state.currentUser
   );
   const [isLoading, setIsLoading] = useState(false);
   const [isFollowed, setIsFollowed] = useState(
-    following.some((user) => user.id === userId) ? true : false
+    following.some(user => user.id === userId) ? true : false
   );
 
   useEffect(() => {
     let cleanupFunction = false;
     if (!cleanupFunction)
-      setIsFollowed(
-        following.some((user) => user.id === userId) ? true : false
-      );
+      setIsFollowed(following.some(user => user.id === userId) ? true : false);
     return () => (cleanupFunction = true);
   }, [following, userId]);
 
