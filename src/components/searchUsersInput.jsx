@@ -15,17 +15,6 @@ const debounce = (
   }
 )();
 
-const handleSearchUsers = (event, history) => {
-  if (!event.target.value.trim().length) {
-    return;
-  }
-  if (history.location.pathname.search(/\/users_search/g)) {
-    history.push("/users_search?=" + event.target.value.trim());
-  } else {
-    history.replace("/users_search?=" + event.target.value.trim());
-  }
-};
-
 export const SearchInput = ({ searchInput }) => {
   const location = useLocation();
   const history = useHistory();
@@ -40,6 +29,17 @@ export const SearchInput = ({ searchInput }) => {
     }
   }, [location, searchInput, history.action]);
 
+  const handleSearchUsers = e => {
+    if (!e.target.value.trim().length) {
+      return;
+    }
+    if (history.location.pathname.search(/\/users_search/g)) {
+      history.push("/users_search?=" + e.target.value.trim());
+    } else {
+      history.replace("/users_search?=" + e.target.value.trim());
+    }
+  };
+
   return (
     <div className="users_search_input_container">
       <input
@@ -47,7 +47,7 @@ export const SearchInput = ({ searchInput }) => {
         type="text"
         ref={searchInput}
         className="users_search_input"
-        onChange={debounce(event => handleSearchUsers(event, history), 700)}
+        onChange={e => debounce(handleSearchUsers, 800)(e)}
         defaultValue={
           location.pathname === "/users_search" ? location.search.slice(2) : ""
         }

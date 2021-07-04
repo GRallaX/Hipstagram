@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export const TextInput = React.forwardRef(
   (
@@ -18,19 +18,39 @@ export const TextInput = React.forwardRef(
     const container = useRef();
     const input = useRef();
 
+    const [validationValue, setValidationValue] = useState("");
     const [valid, setValid] = useState(null);
 
-    const debounce = (
-      (timer = null) =>
-      (callback, delay = 500) =>
-      (...args) => {
-        if (timer !== null) clearTimeout(timer);
-        timer = setTimeout(() => {
-          timer = null;
-          return callback(...args);
-        }, delay);
+    useEffect(() => {
+      let cleanupFunction = false;
+      if (serverValidation) {
+        const timeout = setTimeout(async () => {
+          const validation = await serverValidation(validationValue);
+          if (!cleanupFunction) setValid(validation);
+        }, 1000);
+
+        return () => {
+          clearTimeout(timeout);
+          cleanupFunction = true;
+        };
       }
-    )();
+    }, [validationValue, serverValidation]);
+
+    useEffect(() => {
+      if (typeof valid === "string") {
+        setError(name, {
+          type: "serverValidation",
+          message: valid,
+        });
+      } else if (
+        valid === true &&
+        (!message[name] || message[name]?.type === "serverValidation")
+      ) {
+        if (message[name]?.type === "serverValidation") {
+          clearErrors(name);
+        }
+      }
+    }, [name, clearErrors, setError, message, valid]);
 
     return (
       <div className="input_wrapper">
@@ -49,6 +69,7 @@ export const TextInput = React.forwardRef(
               autoCapitalize="off"
               autoCorrect="off"
               type="text"
+              aria-label={`enter ${name}`}
               onBlur={e => {
                 onBlur(e);
                 container.current.className = "text_input_container";
@@ -69,30 +90,14 @@ export const TextInput = React.forwardRef(
                   serverValidation &&
                   (message[name]?.type === "serverValidation" || !message[name])
                 ) {
-                  const validation = debounce(
-                    () => serverValidation(e.target.value),
-                    700
-                  )();
-                  if (typeof validation === "string") {
-                    setError(name, {
-                      type: "serverValidation",
-                      message: validation,
-                    });
-                  } else if (
-                    validation === true &&
-                    (!message[name] ||
-                      message[name]?.type === "serverValidation")
-                  ) {
-                    if (message[name]?.type === "serverValidation") {
-                      clearErrors(name);
-                    }
-                    setValid(true);
-                  }
+                  if (message[name]?.type === "serverValidation")
+                    clearErrors(name);
+                  setValidationValue(e.target.value);
                 }
               }}
             />
           </label>
-          {valid && !message[name] && (
+          {valid === true && !message[name] && (
             <span className="validated">&#10003;</span>
           )}
         </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -7,7 +7,7 @@ import { userRegistration } from "../store/currentUser/thunks";
 import { TextInput } from "../components/textInput";
 import { PasswordInput } from "../components/passwordInput";
 import loadingIcon from "../images/loading_small.svg";
-// import { searchUsersByLogin } from "../api/users";
+import { searchUsersByLogin } from "../api/users";
 
 export const RegistrationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -101,21 +101,27 @@ export const RegistrationForm = () => {
     }
   };
 
-  // const serverLoginValidation = useCallback(async login => {
-  //   try {
-  //     const foundedUsers = await searchUsersByLogin(login);
-  //     if (
-  //       foundedUsers.length &&
-  //       foundedUsers.some(user => user.login === login)
-  //     ) {
-  //       return "User with this login has been already registered";
-  //     } else {
-  //       return true;
-  //     }
-  //   } catch (e) {
-  //     console.log(e.response);
-  //   }
-  // }, []);
+  const serverLoginValidation = useCallback(async login => {
+    if (
+      30 > login.length &&
+      login.length > 2 &&
+      login.search(/^[A-Z0-9]+$/gi) !== -1
+    ) {
+      try {
+        const { data: foundedUsers } = await searchUsersByLogin(login);
+        if (
+          foundedUsers.length &&
+          foundedUsers.some(user => user.login === login)
+        ) {
+          return "User with this login has already been registered";
+        } else {
+          return true;
+        }
+      } catch (e) {
+        return e.response?.data;
+      }
+    }
+  }, []);
 
   let password = watch("password");
   let checkPassword = watch("password1");
@@ -157,18 +163,15 @@ export const RegistrationForm = () => {
   }, []);
 
   return (
-    <div className="registration_container">
-      <h2>User Registration</h2>
-      <form
-        className="registration_form"
-        onSubmit={handleSubmit(handleRegistration)}
-      >
+    <div className="form_container">
+      <h2>Registration</h2>
+      <form className="form" onSubmit={handleSubmit(handleRegistration)}>
         <TextInput
           label="Login"
           message={errors}
-          // setError={setError}
+          setError={setError}
           clearErrors={clearErrors}
-          // serverValidation={serverLoginValidation}
+          serverValidation={serverLoginValidation}
           {...register("login", validation.login)}
         />
         <TextInput

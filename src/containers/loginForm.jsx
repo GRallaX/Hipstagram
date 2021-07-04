@@ -67,9 +67,9 @@ export const LoginForm = () => {
   }, []);
 
   return (
-    <div className="login_container">
-      <h2>Login</h2>
-      <form className="login_form" onSubmit={handleSubmit(handleLogin)}>
+    <div className="form_container">
+      <h2>Sign In</h2>
+      <form className="form" onSubmit={handleSubmit(handleLogin)}>
         <TextInput
           label="Login"
           message={errors}

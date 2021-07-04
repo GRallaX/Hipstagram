@@ -3,7 +3,7 @@ import { actionTypes } from "./actionTypes";
 const defaultState = {
   userLoaded: false,
   isLoggedIn: !localStorage.token ? false : true,
-  token: !localStorage.token ? null : JSON.parse(localStorage.token),
+  token: !localStorage.token ? false : JSON.parse(localStorage.token),
   firstName: "",
   lastName: "",
   email: "",
@@ -76,7 +76,7 @@ export default function currentUserReducer(state = defaultState, action) {
       return {
         ...state,
         following: [
-          ...state.following.filter((user) => user.id !== action.payload),
+          ...state.following.filter(user => user.id !== action.payload),
         ],
       };
 

@@ -12,7 +12,9 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(function (config) {
-  config.headers.Authorization = token;
+  if (token) {
+    config.headers.Authorization = token;
+  }
   return config;
 });
 
