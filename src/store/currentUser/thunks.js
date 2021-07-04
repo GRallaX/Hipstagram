@@ -28,7 +28,7 @@ export const userRegistration = (login, email, password) => {
       const {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
-      dispatch(actionCreators.setRegistration(id, token));
+      dispatch(actionCreators.registration(id, token));
       return id;
     } catch (e) {
       console.log(e.response);
@@ -43,7 +43,7 @@ export const logInUser = (login, password) => {
       const {
         data: { access_token: token },
       } = await fetchLogIn(login, password);
-      return dispatch(actionCreators.setLogIn(token));
+      return dispatch(actionCreators.logIn(token));
     } catch (e) {
       console.log(e.response);
       return e;
@@ -53,28 +53,16 @@ export const logInUser = (login, password) => {
 
 export const logOutUser = () => {
   return dispatch => {
-    dispatch(actionCreators.setLogOut());
+    dispatch(actionCreators.logOut());
   };
 };
 
-export const updateCurrentUser = (
-  firstName,
-  lastName,
-  email,
-  login,
-  avatar
-) => {
+export const updateCurrentUser = (type, value) => {
   return async dispatch => {
     try {
-      const { data: updatedUser } = await fetchUpdateUser(
-        firstName,
-        lastName,
-        email,
-        login,
-        avatar
-      );
-
-      dispatch(actionCreators.setUpdateUser(updatedUser));
+      console.log("start updating user");
+      const { data: updatedUser } = await fetchUpdateUser(type, value);
+      dispatch(actionCreators.updateUser(updatedUser));
     } catch (e) {
       console.log(e);
     }

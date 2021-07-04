@@ -19,14 +19,10 @@ export const fetchCurrentUser = () => {
   return api.get("/users/current");
 };
 
-export const fetchUpdateUser = (firstName, lastName, email, login, avatar) => {
-  return api.patch("/users/current", {
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    login: login,
-    avatar: avatar,
-  });
+export const fetchUpdateUser = (type, value) => {
+  const data = {};
+  data[type] = value;
+  return api.patch("/users/current", data);
 };
 
 export const fetchUpdatePassword = (password, confirmPassword) => {

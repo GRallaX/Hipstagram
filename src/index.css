@@ -12,6 +12,13 @@
   overflow-x: auto;
 }
 
+input,
+label,
+button,
+textarea {
+  font-family: inherit;
+}
+
 .scroll_hidden {
   overflow-y: hidden;
 }
@@ -122,7 +129,7 @@ code {
 }
 .main_header .users_search_input_container span {
   position: absolute;
-  left: 12px;
+  left: 11px;
   top: 14px;
 }
 .main_header .users_search_input_container span svg {
@@ -130,12 +137,13 @@ code {
   width: 13px;
 }
 .main_header .users_search_input {
-  padding: 5px 10px 3px 26px;
+  padding: 3px 10px 5px 26px;
   height: 33px;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
   outline: 0;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 400;
   transition: 0.2s;
 }
 .main_header .users_search_input:focus {
@@ -244,11 +252,6 @@ code {
   height: 24px;
 }
 
-.follow_btn.medium_btn {
-  height: 35px;
-  min-width: 80px;
-}
-
 .modal_wrapper {
   position: fixed;
   top: 0;
@@ -294,6 +297,10 @@ code {
   height: 35px;
   width: 100px;
   font-size: 14px;
+}
+.follow_btn.medium_btn img {
+  height: 30px;
+  width: 100%;
 }
 .follow_btn.big_btn {
   height: 35px;

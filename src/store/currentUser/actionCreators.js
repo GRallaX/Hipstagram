@@ -1,7 +1,7 @@
 import { actionTypes } from "./actionTypes";
 
 export const actionCreators = {
-  setRegistration: function (id, token) {
+  registration: function (id, token) {
     return {
       type: actionTypes.REGISTRATION,
       payload: {
@@ -11,7 +11,7 @@ export const actionCreators = {
     };
   },
 
-  setLogIn: function (token) {
+  logIn: function (token) {
     return {
       type: actionTypes.LOG_IN,
       payload: {
@@ -20,7 +20,7 @@ export const actionCreators = {
     };
   },
 
-  setLogOut: function () {
+  logOut: function () {
     return {
       type: actionTypes.LOG_OUT,
     };
@@ -33,7 +33,7 @@ export const actionCreators = {
     };
   },
 
-  setUpdateUser: function (updatedUser) {
+  updateUser: function (updatedUser) {
     return {
       type: actionTypes.UPDATE_CURRENT_USER,
       payload: updatedUser,

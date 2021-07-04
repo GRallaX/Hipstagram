@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export const TextInput = React.forwardRef(
+export const LoginTextInput = React.forwardRef(
   (
     {
       label,

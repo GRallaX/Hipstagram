@@ -44,21 +44,7 @@ export default function currentUserReducer(state = defaultState, action) {
 
     case actionTypes.LOG_OUT:
       delete localStorage.token;
-      return {
-        ...state,
-        token: null,
-        userLoaded: false,
-        isLoggedIn: false,
-        firstName: "",
-        lastName: "",
-        email: "",
-        login: "",
-        avatar: "",
-        id: "",
-        posts: [],
-        followers: [],
-        following: [],
-      };
+      return defaultState;
 
     case actionTypes.UPDATE_CURRENT_USER:
       return {

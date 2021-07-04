@@ -1,13 +1,31 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export const PasswordInput = React.forwardRef(
-  ({ label, name, message, clearErrors, onChange, onBlur }, ref) => {
+  (
+    {
+      label,
+      name,
+      message,
+      clearErrors,
+      onChange,
+      onBlur,
+      passwordShown,
+      setPasswordShown,
+    },
+    ref
+  ) => {
     const [showPass, setShowPass] = useState(false);
     const [value, setValue] = useState("");
 
     const lbl = useRef();
     const container = useRef();
     const input = useRef();
+
+    useEffect(() => {
+      if (setPasswordShown) {
+        if (passwordShown !== showPass) setShowPass(!showPass);
+      }
+    }, [passwordShown, showPass, setPasswordShown]);
 
     return (
       <div className="input_wrapper">
@@ -52,10 +70,11 @@ export const PasswordInput = React.forwardRef(
               onClick={e => {
                 e.preventDefault();
                 setShowPass(!showPass);
+                if (setPasswordShown) setPasswordShown(!passwordShown);
               }}
               disabled={value ? false : true}
             >
-              Show
+              {showPass ? "Hide" : "Show"}
             </button>
           </div>
         </div>

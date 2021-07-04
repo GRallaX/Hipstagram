@@ -7,15 +7,17 @@ import loadingIcon from "../images/loading_small.svg";
 import { subscribeUser, unSubscribeUser } from "../store/currentUser/thunks";
 
 export const FollowButton = ({ size, user: userProp, setUser }) => {
-  let user;
+  const user = {
+    firstName: userProp.firstName,
+    lastName: userProp.lastName,
+    avatar: userProp.avatar,
+    followersCount: userProp.followersCount,
+    followingCount: userProp.followingCount,
+    id: userProp.id || userProp._id,
+    email: userProp.email,
+    login: userProp.login,
+  };
 
-  console.log(userProp);
-  if (userProp._id) {
-    user = { ...userProp, id: userProp._id };
-    delete user._id;
-  } else {
-    user = { ...userProp };
-  }
   const { id: userId } = user;
 
   const dispatch = useDispatch();

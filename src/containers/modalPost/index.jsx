@@ -30,7 +30,7 @@ export const ModalPost = ({ setModalPost }) => {
     location.state?.postOwner || false
   );
 
-  const currentUser = useSelector((state) => state.currentUser);
+  const currentUser = useSelector(state => state.currentUser);
   const { id: currentUserId } = currentUser;
 
   const [likes, setLikes] = useState(location.state?.likes || []);
@@ -38,7 +38,7 @@ export const ModalPost = ({ setModalPost }) => {
   const [isLoading, setIsLoading] = useState(post && postOwner ? false : true);
   const [modalLikes, setModalLikes] = useState(false);
   const [isLiked, setIsLiked] = useState(
-    likes?.some((user) => user._id === currentUserId)
+    likes?.some(user => user._id === currentUserId)
   );
   const [imgLoading, setImgLoading] = useState(true);
 
@@ -60,12 +60,10 @@ export const ModalPost = ({ setModalPost }) => {
           setPost({ ...fetchedPost });
           setLikes([...fetchedPost.likes]);
           setIsLiked(
-            fetchedPost.likes.some((user) => user._id === currentUserId)
+            fetchedPost.likes.some(user => user._id === currentUserId)
           );
           setPostOwner({ ...fetchedUser });
           setIsLoading(false);
-
-          console.log("loading post finished", fetchedPost);
         }
       } catch (e) {
         console.log(e.response);

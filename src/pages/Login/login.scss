@@ -98,7 +98,7 @@
         outline: 0;
         width: 100%;
 
-        font-size: 18px;
+        font-size: 16px;
         font-weight: normal;
         padding: 0;
 
@@ -140,7 +140,7 @@
 
     .input_lbl {
       position: absolute;
-      top: 12px;
+      top: 10px;
       left: 8px;
 
       color: #8e8e8e;
@@ -171,6 +171,7 @@
 
       button {
         height: 30px;
+        width: 46px;
         border-radius: 5px;
 
         border: 2px solid #bebebe;
@@ -213,18 +214,19 @@
     margin: 8px 0 0;
 
     border-radius: 5px;
-
-    border: 2px solid #4d88ed;
     color: whitesmoke;
     background: #4d88ed;
-
+    border: none;
     outline: none;
 
     font-weight: 600;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
-
     transition: 0.2s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover,
     &:focus {

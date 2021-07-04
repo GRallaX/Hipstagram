@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { logInUser } from "../store/currentUser/thunks";
 
-import { TextInput } from "../components/textInput";
+import { LoginTextInput } from "../components/loginTextInput";
 import { PasswordInput } from "../components/passwordInput";
 import loadingIcon from "../images/loading_small.svg";
 
@@ -70,7 +70,7 @@ export const LoginForm = () => {
     <div className="form_container">
       <h2>Sign In</h2>
       <form className="form" onSubmit={handleSubmit(handleLogin)}>
-        <TextInput
+        <LoginTextInput
           label="Login"
           message={errors}
           clearErrors={clearErrors}

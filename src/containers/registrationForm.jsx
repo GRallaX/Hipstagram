@@ -4,13 +4,14 @@ import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { userRegistration } from "../store/currentUser/thunks";
 
-import { TextInput } from "../components/textInput";
+import { LoginTextInput } from "../components/loginTextInput";
 import { PasswordInput } from "../components/passwordInput";
 import loadingIcon from "../images/loading_small.svg";
 import { searchUsersByLogin } from "../api/users";
 
 export const RegistrationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
   const dispatch = useDispatch();
   const {
     register,
@@ -19,8 +20,8 @@ export const RegistrationForm = () => {
     clearErrors,
     watch,
 
-    formState: { errors, submitCount },
-  } = useForm();
+    formState: { errors },
+  } = useForm({ mode: "onTouched" });
 
   const history = useHistory();
 
@@ -104,7 +105,7 @@ export const RegistrationForm = () => {
   const serverLoginValidation = useCallback(async login => {
     if (
       30 > login.length &&
-      login.length > 2 &&
+      login.length >= 2 &&
       login.search(/^[A-Z0-9]+$/gi) !== -1
     ) {
       try {
@@ -126,25 +127,23 @@ export const RegistrationForm = () => {
   let password = watch("password");
   let checkPassword = watch("password1");
   useEffect(() => {
-    if (submitCount) {
-      if (password === checkPassword) {
-        if (errors.password?.type === "checkEqual") clearErrors("password");
-        if (errors.password1?.type === "checkEqual") clearErrors("password1");
-      }
-      if (password !== checkPassword) {
-        if (password && checkPassword) {
-          if (!errors.password) {
-            setError("password", {
-              type: "checkEqual",
-              message: "Passwords should be equal",
-            });
-          }
-          if (!errors.password1) {
-            setError("password1", {
-              type: "checkEqual",
-              message: "Passwords should be equal",
-            });
-          }
+    if (password === checkPassword) {
+      if (errors.password?.type === "checkEqual") clearErrors("password");
+      if (errors.password1?.type === "checkEqual") clearErrors("password1");
+    }
+    if (password !== checkPassword) {
+      if (password && checkPassword) {
+        if (!errors.password) {
+          setError("password", {
+            type: "checkEqual",
+            message: "Passwords should be equal",
+          });
+        }
+        if (!errors.password1) {
+          setError("password1", {
+            type: "checkEqual",
+            message: "Passwords should be equal",
+          });
         }
       }
     }
@@ -153,7 +152,6 @@ export const RegistrationForm = () => {
     password,
     checkPassword,
     setError,
-    submitCount,
     errors.password,
     errors.password1,
   ]);
@@ -166,7 +164,7 @@ export const RegistrationForm = () => {
     <div className="form_container">
       <h2>Registration</h2>
       <form className="form" onSubmit={handleSubmit(handleRegistration)}>
-        <TextInput
+        <LoginTextInput
           label="Login"
           message={errors}
           setError={setError}
@@ -174,7 +172,7 @@ export const RegistrationForm = () => {
           serverValidation={serverLoginValidation}
           {...register("login", validation.login)}
         />
-        <TextInput
+        <LoginTextInput
           label="Email"
           message={errors}
           clearErrors={clearErrors}
@@ -184,12 +182,16 @@ export const RegistrationForm = () => {
           label="Passsword"
           message={errors}
           clearErrors={clearErrors}
+          passwordShown={passwordShown}
+          setPasswordShown={setPasswordShown}
           {...register("password", validation.password)}
         />
         <PasswordInput
           label="Confirm password"
           message={errors}
           clearErrors={clearErrors}
+          passwordShown={passwordShown}
+          setPasswordShown={setPasswordShown}
           {...register("password1", validation.password1)}
         />
         <button
@@ -204,7 +206,7 @@ export const RegistrationForm = () => {
       <div className="switch_forms">
         <span>
           Have an account?
-          <Link to="/login">Log in</Link>
+          <Link to="/login">Log In</Link>
         </span>
       </div>
     </div>
