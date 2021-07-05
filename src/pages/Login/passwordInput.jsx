@@ -45,6 +45,7 @@ export const PasswordInput = React.forwardRef(
               autoCorrect="off"
               aria-label="password"
               type={showPass ? "text" : "password"}
+              maxLength="16"
               onBlur={e => {
                 onBlur(e);
                 container.current.className = "pass_lbl_container";

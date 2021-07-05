@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { fetchPostComments } from "../api/comments";
-import { LikeBtnLiked } from "../images/heartBtn.js";
-import { CommentBtnFilled } from "../images/commentBtn";
+import { fetchPostComments } from "../../api/comments";
+import { LikeBtnLiked } from "../../images/heartBtn.js";
+import { CommentBtnFilled } from "../../images/commentBtn";
 
 export const UsersPost = ({
   post: postProp,

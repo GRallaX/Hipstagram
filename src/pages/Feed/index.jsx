@@ -1,10 +1,9 @@
 import { Route } from "react-router";
 import { useEffect, useRef, useState } from "react";
-
 import { fetchFeed } from "../../api/posts";
-import { FeedPost } from "../../containers/feedPost";
-import { ModalPost } from "../../containers/modalPost";
 
+import { FeedPost } from "./feedPost";
+import { ModalPost } from "../../containers/modalPost";
 import { LoadingIconBig } from "../../components/loadingIcon";
 import "./feed.css";
 
@@ -86,7 +85,7 @@ export const Feed = () => {
           render={() => <ModalPost setModalPost={setModalPost} />}
         />
         <div className="feed_posts" ref={feedContainer}>
-          {postsForRender.map((post) => {
+          {postsForRender.map(post => {
             return (
               <FeedPost
                 key={"post_" + post._id}

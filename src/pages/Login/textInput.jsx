@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export const LoginTextInput = React.forwardRef(
+export const TextInput = React.forwardRef(
   (
     {
       label,
@@ -68,6 +68,7 @@ export const LoginTextInput = React.forwardRef(
               name={name}
               autoCapitalize="off"
               autoCorrect="off"
+              maxLength="30"
               type="text"
               aria-label={`enter ${name}`}
               onBlur={e => {

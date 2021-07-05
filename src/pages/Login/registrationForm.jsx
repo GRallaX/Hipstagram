@@ -2,12 +2,13 @@ import { useEffect, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { userRegistration } from "../store/currentUser/thunks";
+import { userRegistration } from "../../store/currentUser/thunks";
+import validation from "./validation";
 
-import { LoginTextInput } from "../components/loginTextInput";
-import { PasswordInput } from "../components/passwordInput";
-import loadingIcon from "../images/loading_small.svg";
-import { searchUsersByLogin } from "../api/users";
+import { TextInput } from "./textInput";
+import { PasswordInput } from "./passwordInput";
+import loadingIcon from "../../images/loading_small.svg";
+import { searchUsersByLogin } from "../../api/users";
 
 export const RegistrationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,63 +26,6 @@ export const RegistrationForm = () => {
 
   const history = useHistory();
 
-  const validation = {
-    login: {
-      required: { value: true, message: "Login is required" },
-      maxLength: {
-        value: 30,
-        message: "Login should contain 2–30 characters",
-      },
-      minLength: {
-        value: 2,
-        message: "Login should contain 2–30 characters",
-      },
-      pattern: {
-        value: /^[A-Z0-9]+$/gi,
-        message: "Login should contain only numers and letters",
-      },
-    },
-
-    email: {
-      required: { value: true, message: "Email is required" },
-      pattern: {
-        value: /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/g,
-        message: "Email should be like 'test@gmail.com'",
-      },
-    },
-
-    password: {
-      required: { value: true, message: "Password is required" },
-      maxLength: {
-        value: 16,
-        message: "Password should contain 8–16 characters",
-      },
-      minLength: {
-        value: 8,
-        message: "Password should contain 8–16 characters",
-      },
-      validate: {
-        checkEqual: v =>
-          v === watch("password1") || "Passwords should be equal",
-      },
-    },
-
-    password1: {
-      required: { value: true, message: "Password is required" },
-      maxLength: {
-        value: 16,
-        message: "Password should contain 8–16 characters",
-      },
-      minLength: {
-        value: 8,
-        message: "Password should contain 8–16 characters",
-      },
-      validate: {
-        checkEqual: v => v === watch("password") || "Passwords should be equal",
-      },
-    },
-  };
-
   const handleRegistration = async ({ login, email, password1 }) => {
     setIsLoading(true);
     const fetchRegistration = await dispatch(
@@ -94,7 +38,7 @@ export const RegistrationForm = () => {
       console.log(fetchRegistration.response);
       setIsLoading(false);
       setError("form", {
-        type: "registration",
+        type: "server",
         message:
           fetchRegistration.response?.data ||
           "Incorrect login, email or password",
@@ -164,7 +108,7 @@ export const RegistrationForm = () => {
     <div className="form_container">
       <h2>Registration</h2>
       <form className="form" onSubmit={handleSubmit(handleRegistration)}>
-        <LoginTextInput
+        <TextInput
           label="Login"
           message={errors}
           setError={setError}
@@ -172,7 +116,7 @@ export const RegistrationForm = () => {
           serverValidation={serverLoginValidation}
           {...register("login", validation.login)}
         />
-        <LoginTextInput
+        <TextInput
           label="Email"
           message={errors}
           clearErrors={clearErrors}

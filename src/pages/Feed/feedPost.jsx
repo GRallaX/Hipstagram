@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { getPostById } from "../api/posts";
-import { getUserById } from "../api/users";
+import { getPostById } from "../../api/posts";
+import { getUserById } from "../../api/users";
 
-import { LikeButton } from "../components/likeBtn";
-import { LikeHeart } from "../components/likeHeart";
-import { PostLikes } from "../components/postLikesInfo";
-import { PostComments } from "./postComments";
-import { CommentBtn } from "../images/commentBtn.js";
-import { ModalLikes } from "./dialogues/modalLikes";
-import { AddComment } from "../components/addComment";
+import { LikeButton } from "../../components/likeBtn";
+import { LikeHeart } from "../../components/likeHeart";
+import { PostLikes } from "../../components/postLikesInfo";
+import { PostComments } from "../../containers/postComments";
+import { CommentBtn } from "../../images/commentBtn.js";
+import { ModalLikes } from "../../containers/dialogues/modalLikes";
+import { AddComment } from "../../components/addComment";
 
-import { Avatar } from "../components/avatar";
-import { LoadingIconBig } from "../components/loadingIcon";
+import { Avatar } from "../../components/avatar";
+import { LoadingIconBig } from "../../components/loadingIcon";
 
 export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
   const [post, setPost] = useState(postProp);
@@ -27,11 +27,11 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
   const [imgLoading, setImgLoading] = useState(true);
   const [update, setUpdate] = useState(false);
 
-  const currentUser = useSelector((state) => state.currentUser);
+  const currentUser = useSelector(state => state.currentUser);
   const { id: currentUserId } = currentUser;
 
   const [isLiked, setIsLiked] = useState(
-    likes.some((user) => user._id === currentUserId)
+    likes.some(user => user._id === currentUserId)
   );
 
   const modalPostOpened = useMemo(() => {
@@ -47,7 +47,7 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
       setPost(modalPost);
       setComments(modalPost.comments);
       setLikes(modalPost.likes);
-      setIsLiked(modalPost.likes.some((user) => user._id === currentUserId));
+      setIsLiked(modalPost.likes.some(user => user._id === currentUserId));
       setModalPost(false);
     }
   }, [currentUserId, modalPost, modalPostOpened, setModalPost]);
@@ -67,7 +67,7 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
           setPost(fetchedPost);
           setLikes(fetchedPost.likes);
           setIsLiked(
-            fetchedPost.likes.some((user) => user._id === currentUserId)
+            fetchedPost.likes.some(user => user._id === currentUserId)
           );
           setPostOwner(owner);
           setIsLoading(false);

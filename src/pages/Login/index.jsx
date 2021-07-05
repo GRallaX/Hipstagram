@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 
-import { LoginForm } from "../../containers/loginForm";
-import { RegistrationForm } from "../../containers/registrationForm";
+import { LoginForm } from "./loginForm";
+import { RegistrationForm } from "./registrationForm";
 import Wallpaper from "../../images/wpap_final 1.png";
 import Logo from "../../images/logo 1.png";
 import "./login.css";

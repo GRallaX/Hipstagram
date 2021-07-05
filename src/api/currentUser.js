@@ -19,7 +19,7 @@ export const fetchCurrentUser = () => {
   return api.get("/users/current");
 };
 
-export const fetchUpdateUser = (type, value) => {
+export const updateUser = (type, value) => {
   const data = {};
   data[type] = value;
   return api.patch("/users/current", data);

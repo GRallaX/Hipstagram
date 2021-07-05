@@ -3,7 +3,7 @@ import {
   fetchCurrentUser,
   fetchRegistration,
   fetchLogIn,
-  fetchUpdateUser,
+  updateUser,
   fetchUpdatePassword,
 } from "../../api/currentUser";
 
@@ -61,10 +61,12 @@ export const updateCurrentUser = (type, value) => {
   return async dispatch => {
     try {
       console.log("start updating user");
-      const { data: updatedUser } = await fetchUpdateUser(type, value);
+      const { data: updatedUser } = await updateUser(type, value);
       dispatch(actionCreators.updateUser(updatedUser));
+      return updatedUser;
     } catch (e) {
       console.log(e);
+      return e;
     }
   };
 };

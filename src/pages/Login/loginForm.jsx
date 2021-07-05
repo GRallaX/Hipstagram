@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { logInUser } from "../store/currentUser/thunks";
+import { logInUser } from "../../store/currentUser/thunks";
+import validation from "./validation";
 
-import { LoginTextInput } from "../components/loginTextInput";
-import { PasswordInput } from "../components/passwordInput";
-import loadingIcon from "../images/loading_small.svg";
+import { PasswordInput } from "./passwordInput";
+import { TextInput } from "./textInput";
+import loadingIcon from "../../images/loading_small.svg";
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,36 +20,6 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const validation = {
-    login: {
-      required: { value: true, message: "Login is required" },
-      maxLength: {
-        value: 30,
-        message: "Login should contain 2–30 characters",
-      },
-      minLength: {
-        value: 2,
-        message: "Login should contain 2–30 characters",
-      },
-      pattern: {
-        value: /^[A-Z0-9]+$/gi,
-        message: "Login should contain only numers and letters",
-      },
-    },
-
-    password: {
-      required: { value: true, message: "Password is required" },
-      maxLength: {
-        value: 16,
-        message: "Password should contain 8–16 characters",
-      },
-      minLength: {
-        value: 8,
-        message: "Password should contain 8–16 characters",
-      },
-    },
-  };
-
   const handleLogin = async ({ login, password }) => {
     setIsLoading(true);
     const fetchLogin = await dispatch(logInUser(login, password));
@@ -56,7 +27,7 @@ export const LoginForm = () => {
       console.log(fetchLogin.response);
       setIsLoading(false);
       setError("form", {
-        type: "login",
+        type: "server",
         message: fetchLogin.response?.data || "Incorrect login or password",
       });
     }
@@ -70,7 +41,7 @@ export const LoginForm = () => {
     <div className="form_container">
       <h2>Sign In</h2>
       <form className="form" onSubmit={handleSubmit(handleLogin)}>
-        <LoginTextInput
+        <TextInput
           label="Login"
           message={errors}
           clearErrors={clearErrors}

@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, useLocation } from "react-router-dom";
+import { getCurrentUser } from "../../store/currentUser/thunks";
 import LazyLoad from "react-lazyload";
+import { getUserById } from "../../api/users";
+import { getFollowersAndFollowings } from "../../api/users";
 
 import { ModalPost } from "../../containers/modalPost";
 import { ModalFollowers } from "../../containers/dialogues/modalFollowers";
 import { ModalFollowings } from "../../containers/dialogues/modalFollowings";
-import { UsersPost } from "../../components/usersPost";
+import { UsersPost } from "./usersPost";
 import { Avatar } from "../../components/avatar";
 import { FollowButton } from "../../components/followBtn";
 
-import { getUserById } from "../../api/users";
-import { getFollowersAndFollowings } from "../../api/users";
-
 import { LoadingIconBig } from "../../components/loadingIcon";
 import "./user.css";
-import { getCurrentUser } from "../../store/currentUser/thunks";
 
 export const User = ({
   match: {
@@ -30,7 +29,7 @@ export const User = ({
   const [modalFollowings, setModalFollowings] = useState(false);
   const [modalPost, setModalPost] = useState(false);
 
-  const currentUser = useSelector((state) => state.currentUser);
+  const currentUser = useSelector(state => state.currentUser);
   const { id: currentUserId, token } = currentUser;
 
   useEffect(() => {
@@ -192,7 +191,7 @@ export const User = ({
                     key={"postsGroup " + (index + 1)}
                   >
                     <div className={"posts_group"}>
-                      {postGroup.map((post) => {
+                      {postGroup.map(post => {
                         return (
                           <UsersPost
                             key={"post_" + post._id}
