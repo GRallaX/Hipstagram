@@ -17,7 +17,7 @@ export const EditingTextModal = ({
   const formRef = useRef();
   const textInput = useRef();
 
-  const handleOnEnterPress = (e) => {
+  const handleOnEnterPress = e => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
       if (text) {
@@ -28,14 +28,14 @@ export const EditingTextModal = ({
     }
   };
 
-  const handleTextInput = (e) => {
+  const handleTextInput = e => {
     setText(e.target.value.trim());
     if (textDefValue === e.target.value.trim()) {
       setText("");
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -61,8 +61,8 @@ export const EditingTextModal = ({
               className="new_text"
               name="text"
               placeholder="Enter text here..."
-              autoComplete="off"
-              autoCorrect="off"
+              aria-label="Enter text"
+              maxLength="60"
               defaultValue={textDefValue}
               onChange={handleTextInput}
               onKeyDown={handleOnEnterPress}

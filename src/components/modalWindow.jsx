@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import FocusTrap from "focus-trap-react";
 
 export const ModalWindow = ({ children, closeModalFunc }) => {
   useEffect(() => {
@@ -7,16 +8,25 @@ export const ModalWindow = ({ children, closeModalFunc }) => {
   });
 
   return (
-    <div
-      className="modal_wrapper"
-      key="modal_wrapper"
-      onClick={() => {
-        closeModalFunc();
-      }}
-    >
-      <div className="modal_window" onClick={(e) => e.stopPropagation()}>
-        {children}
+    <FocusTrap focusTrapOptions={{ returnFocusOnDeactivate: false }}>
+      <div
+        className="modal_wrapper"
+        onClick={() => {
+          closeModalFunc();
+        }}
+        onKeyUp={e => {
+          if (e.key === "Escape") {
+            e.stopPropagation();
+            e.preventDefault();
+            closeModalFunc();
+            console.log(e);
+          }
+        }}
+      >
+        <div className="modal_window" onClick={e => e.stopPropagation()}>
+          {children}
+        </div>
       </div>
-    </div>
+    </FocusTrap>
   );
 };

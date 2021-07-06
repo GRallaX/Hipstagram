@@ -14,7 +14,7 @@ const WithoutSubscribes = ({ likes, setModalLikes }) => {
   return (
     <span
       className="likes_count_btn"
-      onClick={(e) => handleOpenModalLikes(e, setModalLikes)}
+      onClick={e => handleOpenModalLikes(e, setModalLikes)}
     >
       {likes.length + (likes.length === 1 ? " like" : " likes")}
     </span>
@@ -32,8 +32,14 @@ const WithSubscribes = ({ likes, likedSubscribe, setModalLikes }) => {
         <>
           <span> and </span>
           <span
+            tabIndex="0"
             className="likes_count_btn"
-            onClick={(e) => handleOpenModalLikes(e, setModalLikes)}
+            onKeyUp={e => {
+              if (e.key === "Enter") {
+                handleOpenModalLikes(e, setModalLikes);
+              }
+            }}
+            onClick={e => handleOpenModalLikes(e, setModalLikes)}
           >
             {likes.length - 1 + (likes.length === 2 ? " other" : " others")}
           </span>
@@ -44,7 +50,7 @@ const WithSubscribes = ({ likes, likedSubscribe, setModalLikes }) => {
 };
 
 export const PostLikes = ({ likes, setModalLikes }) => {
-  const currentUser = useSelector((state) => state.currentUser);
+  const currentUser = useSelector(state => state.currentUser);
 
   let likedSubscribe;
 
@@ -57,9 +63,9 @@ export const PostLikes = ({ likes, setModalLikes }) => {
   } else if (
     likes.length > 0 &&
     likes.find(
-      (userLikedBy) =>
+      userLikedBy =>
         (likedSubscribe = currentUser.following.find(
-          (followingUser) => userLikedBy._id === followingUser.id
+          followingUser => userLikedBy._id === followingUser.id
         ))
     )
   ) {

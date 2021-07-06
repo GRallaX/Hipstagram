@@ -18,13 +18,13 @@ const Comment = ({ comment, comments, setComments }) => {
   const [showEditModal, setShowEditModal] = useState(false);
 
   const { id, owner, text } = comment;
-  const { id: currentUserId } = useSelector((state) => state.currentUser);
+  const { id: currentUserId } = useSelector(state => state.currentUser);
 
-  const handleDeleteComment = async (e) => {
+  const handleDeleteComment = async e => {
     try {
       await deleteComment(id);
       setComments(
-        comments.filter((comment) => {
+        comments.filter(comment => {
           return comment.id !== id;
         })
       );
@@ -33,11 +33,11 @@ const Comment = ({ comment, comments, setComments }) => {
     }
   };
 
-  const handleEditComment = async (text) => {
+  const handleEditComment = async text => {
     try {
       const { data: editedComment } = await editComment(id, text);
       setComments(
-        comments.map((cmm) => {
+        comments.map(cmm => {
           if (cmm.id === id) {
             cmm = { ...cmm, ...editedComment };
           }
@@ -52,7 +52,7 @@ const Comment = ({ comment, comments, setComments }) => {
   return (
     <li
       className="comment"
-      onMouseLeave={() => {
+      onPointerLeave={() => {
         if (showBtns) setShowBtns(false);
       }}
       onClick={() => {
@@ -80,27 +80,36 @@ const Comment = ({ comment, comments, setComments }) => {
               <div
                 className="menu_toggle"
                 onClick={() => setShowBtns(!showBtns)}
+                onKeyUp={e => {
+                  if (e.key === "Enter") {
+                    setShowBtns(!showBtns);
+                  }
+                }}
+                tabIndex="0"
               >
                 <ThreeDotsMenu />
               </div>
-
               <div className={showBtns ? "btns" : "btns hidden"}>
-                {showBtns && (
-                  <>
-                    <button
-                      className="edit"
-                      onClick={() => {
-                        setShowEditModal(true);
-                        setShowBtns(false);
-                      }}
-                    >
-                      edit
-                    </button>
-                    <button className="delete" onClick={handleDeleteComment}>
-                      delete
-                    </button>
-                  </>
-                )}
+                <button
+                  className="edit"
+                  disabled={!showBtns ? true : false}
+                  onClick={() => {
+                    setShowEditModal(true);
+                    setShowBtns(false);
+                  }}
+                >
+                  edit
+                </button>
+                <button
+                  className="delete"
+                  disabled={!showBtns ? true : false}
+                  onClick={handleDeleteComment}
+                  onBlur={() => {
+                    if (showBtns) setShowBtns(false);
+                  }}
+                >
+                  delete
+                </button>
               </div>
             </>
           )}
@@ -167,7 +176,7 @@ export const PostComments = ({
               {" " + postTitle}
             </span>
           </li>
-          {comments.map((comment) => {
+          {comments.map(comment => {
             return (
               <Comment
                 key={"comment_" + comment.id}

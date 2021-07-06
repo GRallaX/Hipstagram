@@ -23,7 +23,7 @@ export const LikeButton = ({
         : "like_btn_container liked";
       setLikes(
         isLiked
-          ? likes.filter((like) => like._id !== currentUser._id)
+          ? likes.filter(like => like._id !== currentUser._id)
           : [...likes, currentUser]
       );
       await likePost(_id);
@@ -37,9 +37,15 @@ export const LikeButton = ({
 
   return (
     <span
+      tabIndex="0"
       className="like_btn_container"
       ref={likeContainer}
       onClick={handleLike}
+      onKeyUp={e => {
+        if (e.key === "Enter") {
+          handleLike();
+        }
+      }}
     >
       {!isLiked ? <LikeBtnDef /> : <LikeBtnLiked />}
     </span>

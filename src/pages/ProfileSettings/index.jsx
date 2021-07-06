@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import { UpdateUserForm } from "./updateUserForm";
 import { Avatar } from "../../components/avatar";
+import "./profileSettings.css";
 
 export const ProfileSettings = ({
   match: {
@@ -24,13 +25,15 @@ export const ProfileSettings = ({
     return (
       <div className="main">
         <h2>Profile Settings</h2>
-        <div className="avatar_wrapper">
-          <Avatar avatar={avatar} size="big">
-            <button type="submit">Change</button>
-          </Avatar>
-        </div>
-        <div className="update_user_wrapper">
-          <UpdateUserForm />
+        <div className="settings_wrapper">
+          <div className="avatar_wrapper">
+            <Avatar avatar={avatar} size="big">
+              <button type="submit">Change</button>
+            </Avatar>
+          </div>
+          <div className="update_user_wrapper">
+            <UpdateUserForm />
+          </div>
         </div>
       </div>
     );

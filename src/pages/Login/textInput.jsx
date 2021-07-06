@@ -69,6 +69,7 @@ export const TextInput = React.forwardRef(
               autoCapitalize="off"
               autoCorrect="off"
               maxLength="30"
+              spellCheck="false"
               type="text"
               aria-label={`enter ${name}`}
               onBlur={e => {

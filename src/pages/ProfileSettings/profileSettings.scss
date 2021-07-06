@@ -1,0 +1,107 @@
+.settings_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+  }
+
+  .avatar_wrapper {
+    padding: 30px;
+  }
+
+  .update_user_wrapper {
+    width: 460px;
+
+    padding: 30px 5px;
+
+    overflow: hidden;
+
+    .data_form {
+      height: 100%;
+      min-height: 200px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+
+      .data_label {
+        min-height: 46px;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.9;
+
+        .data_input {
+          margin: 0 0 0 8px;
+          width: 215px;
+          height: 30px;
+          border: 1px solid #dbdbdb;
+          border-radius: 5px;
+
+          align-items: center;
+          padding: 0 8px;
+
+          font-size: 16px;
+          font-weight: 400;
+        }
+
+        .change_btn,
+        .cancel_btn,
+        .submit_btn {
+          width: 138px;
+          height: 30px;
+
+          margin: 0 0 0 8px;
+          border-radius: 5px;
+
+          color: #696969;
+          border: 2px solid #888888;
+          background: rgb(240, 240, 240);
+
+          outline: none;
+
+          font-weight: 600;
+          font-size: 14px;
+
+          &:hover,
+          &:focus {
+            filter: drop-shadow(1px 1px 2px #131313);
+            cursor: pointer;
+          }
+
+          transition: 0.2s;
+        }
+
+        .cancel_btn {
+          width: 65px;
+        }
+
+        .submit_btn {
+          width: 65px;
+          border: 2px solid #4d88ed;
+          color: whitesmoke;
+          background: #4d88ed;
+
+          img {
+            height: 25px;
+            filter: brightness(3);
+          }
+        }
+        .message {
+          flex: 0 0 360px;
+
+          color: rgb(237, 73, 86);
+          font-size: 12px;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}

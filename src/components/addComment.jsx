@@ -9,7 +9,7 @@ export const AddComment = ({ postId, comments, setComments }) => {
 
   const formRef = useRef();
 
-  const handleTextInput = (e) => {
+  const handleTextInput = e => {
     setCommentText(e.target.value.trim());
     if (e.target.value) {
       e.target.style.height = "22px";
@@ -19,7 +19,7 @@ export const AddComment = ({ postId, comments, setComments }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setPostingComment(true);
 
@@ -35,7 +35,7 @@ export const AddComment = ({ postId, comments, setComments }) => {
     }
   };
 
-  const handleOnEnterPress = (e) => {
+  const handleOnEnterPress = e => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
       if (commentText) {
@@ -54,8 +54,8 @@ export const AddComment = ({ postId, comments, setComments }) => {
             className="new_comment_text"
             name="comment_text"
             placeholder="Add a comment..."
-            autoComplete="off"
-            autoCorrect="off"
+            aria-label="Add a comment"
+            maxLength="60"
             onChange={handleTextInput}
             onKeyDown={handleOnEnterPress}
           />

@@ -1,0 +1,88 @@
+.settings_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (max-width: 750px) {
+  .settings_wrapper {
+    flex-direction: column;
+  }
+}
+.settings_wrapper .avatar_wrapper {
+  padding: 30px;
+}
+.settings_wrapper .update_user_wrapper {
+  width: 460px;
+  padding: 30px 5px;
+  overflow: hidden;
+}
+.settings_wrapper .update_user_wrapper .data_form {
+  height: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.settings_wrapper .update_user_wrapper .data_form .data_label {
+  min-height: 46px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+.settings_wrapper .update_user_wrapper .data_form .data_label .data_input {
+  margin: 0 0 0 8px;
+  width: 215px;
+  height: 30px;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.settings_wrapper .update_user_wrapper .data_form .data_label .change_btn,
+.settings_wrapper .update_user_wrapper .data_form .data_label .cancel_btn,
+.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn {
+  width: 138px;
+  height: 30px;
+  margin: 0 0 0 8px;
+  border-radius: 5px;
+  color: #696969;
+  border: 2px solid #888888;
+  background: #f0f0f0;
+  outline: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s;
+}
+.settings_wrapper .update_user_wrapper .data_form .data_label .change_btn:hover, .settings_wrapper .update_user_wrapper .data_form .data_label .change_btn:focus,
+.settings_wrapper .update_user_wrapper .data_form .data_label .cancel_btn:hover,
+.settings_wrapper .update_user_wrapper .data_form .data_label .cancel_btn:focus,
+.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn:hover,
+.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn:focus {
+  filter: drop-shadow(1px 1px 2px #131313);
+  cursor: pointer;
+}
+.settings_wrapper .update_user_wrapper .data_form .data_label .cancel_btn {
+  width: 65px;
+}
+.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn {
+  width: 65px;
+  border: 2px solid #4d88ed;
+  color: whitesmoke;
+  background: #4d88ed;
+}
+.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn img {
+  height: 25px;
+  filter: brightness(3);
+}
+.settings_wrapper .update_user_wrapper .data_form .data_label .message {
+  flex: 0 0 360px;
+  color: #ed4956;
+  font-size: 12px;
+  transition: 0.3s;
+}/*# sourceMappingURL=profileSettings.css.map */

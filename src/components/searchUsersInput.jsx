@@ -43,16 +43,19 @@ export const SearchInput = ({ searchInput }) => {
   return (
     <div className="users_search_input_container">
       <input
-        key="users_search_input"
         type="text"
-        ref={searchInput}
         className="users_search_input"
+        maxLength="30"
+        spellCheck="false"
+        autoCapitalize="off"
+        autoCorrect="off"
+        aria-label="Users search"
+        placeholder="Search"
+        ref={searchInput}
         onChange={e => debounce(handleSearchUsers, 800)(e)}
         defaultValue={
           location.pathname === "/users_search" ? location.search.slice(2) : ""
         }
-        autoCapitalize="none"
-        placeholder="Search"
       />
       <span>
         <SearchSymbol />

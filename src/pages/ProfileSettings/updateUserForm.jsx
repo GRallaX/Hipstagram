@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentUser } from "../../store/currentUser/thunks";
-import validation from "./validation";
+
+import { EditUserInput } from "./editUserInput";
 
 export const UpdateUserForm = () => {
   const [editingField, setEditingField] = useState(false);
+  const [loading, setLoading] = useState(false);
   const {
     register,
     unregister,
@@ -19,104 +21,95 @@ export const UpdateUserForm = () => {
   const currentUser = useSelector(state => state.currentUser);
   const {
     // id: currentUserId,
-    // email,
+    login,
+    email,
     firstName,
-    // lastName,
-    // login,
+    lastName,
     // avatar,
   } = currentUser;
   const dispatch = useDispatch();
 
-  const SubmitButton = () => {
-    return (
-      <button className="submit_btn" type="submit">
-        Submit
-      </button>
-    );
+  const handleEditUser = async data => {
+    console.log(data);
+    if (data[editingField] === currentUser[editingField]) {
+      console.log("no changes");
+    } else {
+      setLoading(true);
+      const updatedUser = await dispatch(
+        updateCurrentUser(editingField, data[editingField])
+      );
+      if (updatedUser.response) {
+        setError(editingField, {
+          type: "server",
+          message: updatedUser.response?.data,
+        });
+        return setLoading(false);
+      }
+      console.log(
+        `data sent: type – "${editingField}", value – "${data[editingField]}"`
+      );
+    }
+    unregister(editingField);
+    setLoading(false);
+    setEditingField(false);
   };
 
-  useEffect(() => {
-    if (editingField) setFocus(editingField);
-  }, [editingField, setFocus]);
-
-  const ChangeButton = ({ name }) => {
-    return (
-      <button
-        className="change_btn"
-        type="button"
-        onClick={e => {
-          e.preventDefault();
-          setEditingField(name);
-        }}
-      >
-        Change
-      </button>
-    );
-  };
-
-  const CancelButton = ({ name }) => {
-    return (
-      <button
-        className="cancel_btn"
-        type="button"
-        onClick={e => {
-          e.preventDefault();
-          setEditingField(false);
-          setValue(name, currentUser[name]);
-          unregister(name);
-        }}
-      >
-        Cancel
-      </button>
-    );
-  };
+  console.table(errors);
 
   return (
-    <form
-      className="data"
-      onSubmit={handleSubmit(async data => {
-        const key = Object.keys(data)[0];
-        if (data[key] === currentUser[key]) {
-          console.log("no changes");
-        } else {
-          const updatedUser = await dispatch(updateCurrentUser(key, data[key]));
-          console.log(`data sent: type – "${key}", value – "${data[key]}"`);
-          if (updatedUser.response) {
-            setError(key, {
-              type: "server",
-              message: updatedUser.response?.data,
-            });
-            return;
-          }
-        }
-        unregister(editingField);
-        setEditingField(false);
-      })}
-    >
-      <label>
-        First name
-        <input
-          defaultValue={firstName}
-          type="text"
-          autoCapitalize="off"
-          autoCorrect="off"
-          aria-label="Name"
-          maxLength="30"
-          {...(editingField === "firstName"
-            ? register("firstName", validation.firstName)
-            : { disabled: true })}
-        />
-        {errors.firstName && (
-          <span className="message">{errors.firstName.message}</span>
-        )}
-        {editingField === "firstName" ? (
-          <>
-            <CancelButton name="firstName" /> <SubmitButton />
-          </>
-        ) : (
-          <ChangeButton name="firstName" />
-        )}
-      </label>
+    <form className="data_form" onSubmit={handleSubmit(handleEditUser)}>
+      <EditUserInput
+        label="Login"
+        name="login"
+        defaultValue={login}
+        editingField={editingField}
+        register={register}
+        unregister={unregister}
+        setEditingField={setEditingField}
+        setValue={setValue}
+        setFocus={setFocus}
+        errors={errors}
+        loading={loading}
+      />
+      <EditUserInput
+        label="Email"
+        name="email"
+        defaultValue={email}
+        editingField={editingField}
+        register={register}
+        unregister={unregister}
+        setEditingField={setEditingField}
+        setValue={setValue}
+        setFocus={setFocus}
+        errors={errors}
+        loading={loading}
+      />
+      <EditUserInput
+        label="First Name"
+        name="firstName"
+        defaultValue={firstName}
+        editingField={editingField}
+        register={register}
+        unregister={unregister}
+        setEditingField={setEditingField}
+        setValue={setValue}
+        setFocus={setFocus}
+        errors={errors}
+        loading={loading}
+      />
+      <EditUserInput
+        label="Last Name"
+        name="lastName"
+        defaultValue={lastName}
+        editingField={editingField}
+        register={register}
+        unregister={unregister}
+        setEditingField={setEditingField}
+        setValue={setValue}
+        setFocus={setFocus}
+        errors={errors}
+        loading={loading}
+      />
     </form>
   );
 };

@@ -11,7 +11,7 @@ const validation = {
     },
     pattern: {
       value: /^[A-Z0-9]+$/gi,
-      message: "Login should contain only numers and letters",
+      message: "Login should contain only numbers and letters",
     },
   },
 
@@ -19,7 +19,7 @@ const validation = {
     required: { value: true, message: "Email is required" },
     pattern: {
       value: /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/g,
-      message: "Email should be like 'test@gmail.com'",
+      message: "Email should be type of 'test@gmail.com'",
     },
   },
 

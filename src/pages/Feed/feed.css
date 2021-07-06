@@ -17,7 +17,7 @@
   margin: 0 0 20px 0;
   width: 100%;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 5px;
   border: 1px solid #dbdbdb;
 }
 @media (max-width: 600px) {
@@ -255,7 +255,6 @@
   background: #4d88ed;
   outline: none;
   font-weight: 600;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: 0.2s;
 }
 .feed_post .add_comment_container .add_comment_form .add_comment_btn:hover, .feed_post .add_comment_container .add_comment_form .add_comment_btn:focus {
