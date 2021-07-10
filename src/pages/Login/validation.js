@@ -19,7 +19,7 @@ const validation = {
     required: { value: true, message: "Email is required" },
     pattern: {
       value: /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/g,
-      message: "Email should be type of 'test@gmail.com'",
+      message: "Email should be 'test@gmail.com' format",
     },
   },
 

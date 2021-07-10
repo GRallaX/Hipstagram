@@ -19,7 +19,7 @@ const validation = {
     required: { value: true, message: "Email is required" },
     pattern: {
       value: /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/g,
-      message: "Email should be type of 'test@gmail.com'",
+      message: "Email should be 'test@gmail.com' format",
     },
   },
 
@@ -50,6 +50,18 @@ const validation = {
     pattern: {
       value: /^[A-Z]+$/gi,
       message: "Last name should contain only letters",
+    },
+  },
+
+  password: {
+    required: { value: true, message: "Password is required" },
+    maxLength: {
+      value: 16,
+      message: "Password should contain 8–16 characters",
+    },
+    minLength: {
+      value: 8,
+      message: "Password should contain 8–16 characters",
     },
   },
 };

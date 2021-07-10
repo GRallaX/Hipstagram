@@ -20,6 +20,10 @@
 
     font-weight: 400;
 
+    &:hover .menu_toggle {
+      opacity: 1;
+    }
+
     .comment_text {
       flex-grow: 0;
 
@@ -111,6 +115,7 @@
 
       &:hover,
       &:focus {
+        outline: none;
         cursor: pointer;
         filter: drop-shadow(1px 1px 1px #131313);
         opacity: 1;
@@ -123,5 +128,21 @@
         width: 15px;
       }
     }
+  }
+}
+
+.comment_user_ref {
+  margin: 0 2px 0 0;
+
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+
+  transition: 0.2s;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    filter: drop-shadow(1px 1px 1px #131313);
   }
 }

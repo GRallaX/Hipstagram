@@ -50,15 +50,17 @@
         font-weight: 600;
 
         transition: 0.2s;
+        margin: 2px;
 
-        &:hover {
+        &:hover,
+        &:focus {
           filter: drop-shadow(1px 1px 1px #131313);
         }
       }
     }
 
     .ref_avatar {
-      width: 70px;
+      margin: 0 15px;
 
       display: flex;
       align-items: center;

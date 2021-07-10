@@ -1,19 +1,30 @@
 .user_header {
-  display: flex;
-  justify-content: center;
   margin: 20px 0 30px;
   width: max-content;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+@media (max-width: 600px) {
+  .user_header {
+    margin: 0;
+    width: 100%;
+    border-radius: none;
+    border: none;
+  }
 }
 .user_header .big.avatar {
-  margin: 16px 40px 0 0;
+  margin: 0 40px 0 0;
 }
 @media (max-width: 750px) {
   .user_header .big.avatar {
-    margin: 16px 0 0;
+    margin: 0 0;
   }
 }
 .user_header .login_subscribe {
-  margin: 16px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -108,30 +119,60 @@
 
 .user_posts {
   width: 100%;
-  max-width: 900px;
+  max-width: 902px;
+  min-height: 200px;
   overflow: hidden;
-  padding: 0 3vw 3vw;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #dbdbdb;
 }
-@media (min-width: 900px) {
+@media (min-width: 902px) {
   .user_posts {
     padding: 0 27px 27px;
   }
 }
+@media (max-width: 902px) {
+  .user_posts {
+    padding: 0 3vw 0 3vw;
+    border: none;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+  }
+}
 @media (max-width: 750px) {
   .user_posts {
-    padding: 0;
+    padding: 20px 0;
+    border: none;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+  }
+}
+@media (max-width: 600px) {
+  .user_posts {
+    flex: 99 0 auto;
+    border-radius: 0;
+  }
+}
+.user_posts.empty {
+  width: 540px;
+  border: 1px solid #dbdbdb;
+}
+@media (max-width: 600px) {
+  .user_posts.empty {
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid #dbdbdb;
   }
 }
 .user_posts .posts_wrapper {
-  width: 94vw;
-  border-top: 2px solid #dbdbdb;
   padding-top: 5vw;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   text-align: center;
 }
-@media (min-width: 900px) {
+@media (min-width: 902px) {
   .user_posts .posts_wrapper {
     padding-top: 45px;
     width: 100%;
@@ -140,9 +181,12 @@
 @media (max-width: 750px) {
   .user_posts .posts_wrapper {
     width: 100%;
-    border: none;
     padding: 0;
   }
+}
+.user_posts .posts_wrapper h2 {
+  font-weight: 400;
+  font-size: 26px;
 }
 .user_posts .posts_wrapper .posts_group {
   width: 100%;
@@ -156,7 +200,7 @@
 .user_posts .posts_wrapper .posts_group a:not(:last-of-type) {
   margin-right: 3vw;
 }
-@media (min-width: 900px) {
+@media (min-width: 902px) {
   .user_posts .posts_wrapper .posts_group a:not(:last-of-type) {
     margin-right: 27px;
   }
@@ -166,7 +210,7 @@
     margin: 0;
   }
 }
-@media (min-width: 900px) {
+@media (min-width: 902px) {
   .user_posts .posts_wrapper .posts_group a {
     margin: 0 27px 27px 0;
   }
@@ -184,7 +228,7 @@
   justify-content: center;
   align-items: center;
 }
-@media (min-width: 900px) {
+@media (min-width: 902px) {
   .user_posts .posts_wrapper .posts_group a .user_post {
     width: 264px;
     height: 264px;

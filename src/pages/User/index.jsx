@@ -132,6 +132,7 @@ export const User = ({
             setModalFollowings={setModalFollowings}
           />
         )}
+
         <header className="user_header">
           <Avatar avatar={avatar} size="big" />
           <section className="user_info">
@@ -152,6 +153,7 @@ export const User = ({
                 </span>
               </li>
               <li
+                tabIndex={followersCount ? 0 : undefined}
                 className={followersCount ? "followers" : "followers_empty"}
                 onClick={() => {
                   if (followersCount) setModalFollowers(followers);
@@ -163,6 +165,7 @@ export const User = ({
                 </span>
               </li>
               <li
+                tabIndex={followingsCount ? 0 : undefined}
                 className={followingsCount ? "followings" : "followings_empty"}
                 onClick={() => {
                   if (followingsCount) setModalFollowings(following);
@@ -180,7 +183,7 @@ export const User = ({
             </div>
           </section>
         </header>
-        <article className="user_posts">
+        <article className={posts.length ? "user_posts" : "user_posts empty"}>
           <div className="posts_wrapper">
             {posts.length > 0 ? (
               groupedUserPosts.map((postGroup, index) => {

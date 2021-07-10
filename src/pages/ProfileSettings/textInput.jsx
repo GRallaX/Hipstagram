@@ -14,6 +14,7 @@ export const EditUserInput = ({
   setFocus,
   errors,
   loading,
+  children,
 }) => {
   useEffect(() => {
     if (editingField) setFocus(editingField);
@@ -61,7 +62,7 @@ export const EditUserInput = ({
     <label className="data_label">
       {label}
       <input
-        className="data_input"
+        className={!children ? "data_input" : "data_input valid"}
         defaultValue={defaultValue}
         type="text"
         autoCapitalize="off"
@@ -79,6 +80,9 @@ export const EditUserInput = ({
         }}
         onBlur={hadleStopEdit}
       />
+
+      {children}
+
       {editingField === name ? (
         <>
           <CancelButton /> <SubmitButton />

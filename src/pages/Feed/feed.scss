@@ -49,8 +49,7 @@
     }
 
     a:nth-of-type(2) {
-      &:hover,
-      &:focus {
+      &:hover {
         filter: drop-shadow(1px 1px 1px #131313);
       }
     }
@@ -204,8 +203,7 @@
       height: 25px;
       cursor: pointer;
 
-      &:hover,
-      &:focus {
+      &:hover {
         filter: drop-shadow(0 0 1px #131313);
         transition: 0.2s;
       }
@@ -226,8 +224,7 @@
 
         transition: 0.2s;
 
-        &:hover,
-        &:focus {
+        &:hover {
           filter: drop-shadow(1px 1px 1px #131313);
           cursor: pointer;
         }
@@ -259,6 +256,10 @@
     50% {
       transform: scale(0.95);
     }
+  }
+
+  .comments_container {
+    padding: 4px 16px 8px 16px;
   }
 
   .add_comment_container {
@@ -322,7 +323,8 @@
           border: 2px solid #888888;
           background: rgb(240, 240, 240);
 
-          &:hover {
+          &:hover,
+          &:focus {
             filter: none;
             cursor: auto;
           }
@@ -336,8 +338,4 @@
       }
     }
   }
-}
-
-.comments_container {
-  padding: 4px 16px 8px 16px;
 }

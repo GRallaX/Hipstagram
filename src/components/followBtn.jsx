@@ -1,34 +1,70 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import { followUser, getFollowersAndFollowings } from "../api/users";
 import loadingIcon from "../images/loading_small.svg";
 import { subscribeUser, unSubscribeUser } from "../store/currentUser/thunks";
 
 export const FollowButton = ({ size, user: userProp, setUser }) => {
-  const user = {
-    firstName: userProp.firstName,
-    lastName: userProp.lastName,
-    avatar: userProp.avatar,
-    followersCount: userProp.followersCount,
-    followingCount: userProp.followingCount,
-    id: userProp.id || userProp._id,
-    email: userProp.email,
-    login: userProp.login,
-  };
+  let user = {};
+  if (userProp._id) {
+    user = { ...userProp, id: userProp._id };
+    delete user._id;
+  } else {
+    user = { ...userProp };
+  }
 
   const { id: userId } = user;
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const { id: currentUserId, following } = useSelector(
-    state => state.currentUser
-  );
+  const currentUser = useSelector(state => state.currentUser);
+  const { id: currentUserId, following } = currentUser;
+
   const [isLoading, setIsLoading] = useState(false);
   const [isFollowed, setIsFollowed] = useState(
     following.some(user => user.id === userId) ? true : false
   );
+
+  const handleSubscribe = async e => {
+    e.preventDefault(e);
+    setIsLoading(true);
+    const subscribe = isFollowed
+      ? await dispatch(unSubscribeUser(user))
+      : await dispatch(subscribeUser(user));
+    setIsFollowed(!isFollowed);
+    setIsLoading(false);
+    if (setUser) {
+      setUser({
+        ...user,
+        followers: isFollowed
+          ? user.followers.filter(u => u.id !== currentUserId)
+          : [...user.followers, currentUser],
+        followersCount: isFollowed
+          ? user.followersCount - 1
+          : user.followersCount + 1,
+      });
+    }
+    if (subscribe.response) {
+      console.log(subscribe.response);
+      setIsFollowed(isFollowed);
+      if (setUser) {
+        setUser({ ...user });
+      }
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoToSettings = e => {
+    e.preventDefault();
+    history.push("/users/" + currentUserId + "/profile_settings");
+  };
+
+  const handleGoToMyProfile = e => {
+    e.preventDefault();
+    history.push("/users/" + currentUserId);
+  };
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -39,54 +75,29 @@ export const FollowButton = ({ size, user: userProp, setUser }) => {
 
   if (userId === currentUserId && size === "big_btn") {
     return (
-      <Link to={"/users/" + currentUserId + "/profile_settings"}>
-        <button className={"settings_btn " + size}>Profile Settings</button>
-      </Link>
+      <button className={"settings_btn " + size} onClick={handleGoToSettings}>
+        Profile Settings
+      </button>
     );
   } else if (userId === currentUserId) {
     return (
-      <Link to={"/users/" + currentUserId}>
-        <button className={"follow_btn followed " + size}>My Profile</button>
-      </Link>
+      <button
+        className={"follow_btn followed " + size}
+        onClick={handleGoToMyProfile}
+      >
+        My Profile
+      </button>
     );
   } else {
     return (
       <button
-        onClick={async () => {
-          try {
-            setIsLoading(true);
-            await followUser(userId);
-            isFollowed
-              ? dispatch(unSubscribeUser(userId))
-              : dispatch(subscribeUser(user));
-            setIsFollowed(!isFollowed);
-            setIsLoading(false);
-            if (setUser) {
-              const { data: followersAndFollowings } =
-                await getFollowersAndFollowings(userId);
-              setUser({
-                ...user,
-                ...followersAndFollowings,
-                followersCount: isFollowed
-                  ? user.followersCount - 1
-                  : user.followersCount + 1,
-              });
-            }
-          } catch (e) {
-            console.log(e.response);
-            setIsFollowed(isFollowed);
-            if (setUser) {
-              setUser({ ...user });
-            }
-            setIsLoading(false);
-          }
-        }}
+        onClick={handleSubscribe}
         className={
           "follow_btn " + (isFollowed ? "followed " : "not_followed ") + size
         }
       >
         {isLoading ? (
-          <img src={loadingIcon} alt="1" />
+          <img src={loadingIcon} alt="..." />
         ) : isFollowed ? (
           "Unsubscribe"
         ) : (

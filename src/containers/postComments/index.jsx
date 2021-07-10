@@ -169,7 +169,7 @@ export const PostComments = ({
       <div className="comments_container">
         <ul className="comments">
           <li className="comment owner">
-            <span>
+            <span className="comment_text">
               <Link to={"/users/" + postOwner.id} className="comment_user_ref">
                 {postOwner.login}
               </Link>

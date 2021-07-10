@@ -6,6 +6,7 @@ import {
   updateUser,
   fetchUpdatePassword,
 } from "../../api/currentUser";
+import { followUser } from "../../api/users";
 
 export const getCurrentUser = () => {
   return async dispatch => {
@@ -60,7 +61,6 @@ export const logOutUser = () => {
 export const updateCurrentUser = (type, value) => {
   return async dispatch => {
     try {
-      console.log("start updating user");
       const { data: updatedUser } = await updateUser(type, value);
       dispatch(actionCreators.updateUser(updatedUser));
       return updatedUser;
@@ -71,7 +71,7 @@ export const updateCurrentUser = (type, value) => {
   };
 };
 
-export const updateUsersPassword = (
+export const changeUserPassword = (
   login,
   password,
   newPassword,
@@ -81,21 +81,37 @@ export const updateUsersPassword = (
     try {
       await fetchLogIn(login, password);
       await fetchUpdatePassword(newPassword, confirmNewPassword);
-      dispatch(actionCreators.setPassword());
+      dispatch(actionCreators.updatePassword());
+      return true;
     } catch (e) {
       console.log(e);
+      return e;
     }
   };
 };
 
 export const subscribeUser = user => {
-  return dispatch => {
-    dispatch(actionCreators.subscribeUser(user));
+  return async dispatch => {
+    try {
+      await followUser(user.id);
+      dispatch(actionCreators.subscribeUser(user));
+      return true;
+    } catch (e) {
+      console.log(e.response);
+      return e;
+    }
   };
 };
 
-export const unSubscribeUser = userId => {
-  return dispatch => {
-    dispatch(actionCreators.unSubscribeUser(userId));
+export const unSubscribeUser = user => {
+  return async dispatch => {
+    try {
+      await followUser(user.id);
+      dispatch(actionCreators.unSubscribeUser(user.id));
+      return true;
+    } catch (e) {
+      console.log(e.response);
+      return e;
+    }
   };
 };

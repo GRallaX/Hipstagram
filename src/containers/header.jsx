@@ -74,6 +74,7 @@ export const Header = () => {
         <span
           className="log_out_btn"
           aria-label="Log Out"
+          tabIndex="0"
           onClick={() => {
             dispatch(logOutUser());
           }}

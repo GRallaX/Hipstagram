@@ -40,7 +40,7 @@ export const actionCreators = {
     };
   },
 
-  setPassword: function () {
+  updatePassword: function () {
     return {
       type: actionTypes.UPDATE_PASSWORD,
     };

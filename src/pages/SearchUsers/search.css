@@ -42,12 +42,13 @@
   color: black;
   font-weight: 600;
   transition: 0.2s;
+  margin: 2px;
 }
-.users_list_card .link_login .ref:hover {
+.users_list_card .link_login .ref:hover, .users_list_card .link_login .ref:focus {
   filter: drop-shadow(1px 1px 1px #131313);
 }
 .users_list_card .ref_avatar {
-  width: 70px;
+  margin: 0 15px;
   display: flex;
   align-items: center;
   justify-content: center;

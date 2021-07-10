@@ -1,30 +1,140 @@
+.profile_settings_wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .settings_wrapper {
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #dbdbdb;
+}
+@media (max-width: 600px) {
+  .settings_wrapper {
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #dbdbdb;
+    border-radius: 0;
+  }
+}
+.settings_wrapper h2 {
+  margin: 0;
+  text-align: center;
+  padding: 30px 0 5px;
+}
+.settings_wrapper .settings_container {
   display: flex;
   flex-wrap: wrap;
 }
-@media (max-width: 750px) {
-  .settings_wrapper {
+@media (max-width: 700px) {
+  .settings_wrapper .settings_container {
     flex-direction: column;
   }
 }
-.settings_wrapper .avatar_wrapper {
+.settings_wrapper .settings_container .avatar_container {
   padding: 30px;
+  display: flex;
+  justify-content: center;
 }
-.settings_wrapper .update_user_wrapper {
-  width: 460px;
-  padding: 30px 5px;
+@media (max-width: 700px) {
+  .settings_wrapper .settings_container .avatar_container {
+    padding: 15px 0;
+  }
+}
+.settings_wrapper .settings_container .user_data_container {
+  padding: 30px 30px 30px 5px;
   overflow: hidden;
 }
-.settings_wrapper .update_user_wrapper .data_form {
+@media (max-width: 700px) {
+  .settings_wrapper .settings_container .user_data_container {
+    padding: 30px;
+  }
+}
+.settings_wrapper .settings_container .user_data_container .data_form {
   height: 100%;
-  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
 }
-.settings_wrapper .update_user_wrapper .data_form .data_label {
+.settings_wrapper .settings_container .user_data_container .data_form .validated {
+  position: absolute;
+  top: 0;
+  left: 240px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: #009100;
+  animation: appear 0.3s ease-in-out;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.security_wrapper {
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #dbdbdb;
+  padding: 30px;
+}
+.security_wrapper h2 {
+  margin: 0;
+  text-align: center;
+  padding: 0 0 5px;
+}
+.security_wrapper .edit_pass {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.9;
+}
+@media (max-width: 600px) {
+  .security_wrapper {
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #dbdbdb;
+    border-radius: 0;
+  }
+}
+.security_wrapper .password_form {
+  height: 215px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.security_wrapper .password_form.hidden {
+  height: 0;
+}
+.security_wrapper .password_form .data_label {
+  width: 360px;
+}
+.security_wrapper .password_form .message {
+  flex: 0 0 215px;
+}
+.security_wrapper .password_form .submit_btn {
+  width: 138px;
+  margin: 10px 45px 0 0;
+}
+
+.data_label {
+  position: relative;
   min-height: 46px;
+  width: 450px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
@@ -33,7 +143,7 @@
   font-weight: 500;
   line-height: 1.9;
 }
-.settings_wrapper .update_user_wrapper .data_form .data_label .data_input {
+.data_label .data_input {
   margin: 0 0 0 8px;
   width: 215px;
   height: 30px;
@@ -43,10 +153,23 @@
   padding: 0 8px;
   font-size: 16px;
   font-weight: 400;
+  transition: 0.2s;
 }
-.settings_wrapper .update_user_wrapper .data_form .data_label .change_btn,
-.settings_wrapper .update_user_wrapper .data_form .data_label .cancel_btn,
-.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn {
+.data_label .data_input.valid {
+  padding-right: 27px;
+}
+
+.message {
+  flex: 0 0 360px;
+  color: #ed4956;
+  font-size: 12px;
+  transition: 0.3s;
+  line-height: 1;
+}
+
+.change_btn,
+.cancel_btn,
+.submit_btn {
   width: 138px;
   height: 30px;
   margin: 0 0 0 8px;
@@ -59,30 +182,26 @@
   font-size: 14px;
   transition: 0.2s;
 }
-.settings_wrapper .update_user_wrapper .data_form .data_label .change_btn:hover, .settings_wrapper .update_user_wrapper .data_form .data_label .change_btn:focus,
-.settings_wrapper .update_user_wrapper .data_form .data_label .cancel_btn:hover,
-.settings_wrapper .update_user_wrapper .data_form .data_label .cancel_btn:focus,
-.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn:hover,
-.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn:focus {
+.change_btn:hover, .change_btn:focus,
+.cancel_btn:hover,
+.cancel_btn:focus,
+.submit_btn:hover,
+.submit_btn:focus {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
-.settings_wrapper .update_user_wrapper .data_form .data_label .cancel_btn {
+
+.cancel_btn {
   width: 65px;
 }
-.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn {
+
+.submit_btn {
   width: 65px;
   border: 2px solid #4d88ed;
   color: whitesmoke;
   background: #4d88ed;
 }
-.settings_wrapper .update_user_wrapper .data_form .data_label .submit_btn img {
+.submit_btn img {
   height: 25px;
   filter: brightness(3);
-}
-.settings_wrapper .update_user_wrapper .data_form .data_label .message {
-  flex: 0 0 360px;
-  color: #ed4956;
-  font-size: 12px;
-  transition: 0.3s;
 }/*# sourceMappingURL=profileSettings.css.map */
