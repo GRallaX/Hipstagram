@@ -63,6 +63,10 @@ const validation = {
       value: 8,
       message: "Password should contain 8–16 characters",
     },
+    pattern: {
+      value: /^[A-Z0-9]+$/gi,
+      message: "Password should contain only numbers and letters",
+    },
   },
 };
 

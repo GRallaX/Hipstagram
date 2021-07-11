@@ -1,11 +1,18 @@
 import validation from "./validation";
 
-export const PasswordInput = ({ label, name, errors, editPass, register }) => {
+export const PasswordInput = ({
+  label,
+  name,
+  errors,
+  editPass,
+  register,
+  showPass,
+}) => {
   return (
     <label className="data_label">
       {label}
       <input
-        type="password"
+        type={showPass ? "text" : "password"}
         className="data_input"
         autoCapitalize="off"
         autoCorrect="off"

@@ -26,7 +26,7 @@ export const updateUser = (type, value) => {
 };
 
 export const fetchUpdatePassword = (password, confirmPassword) => {
-  return api.post("/auth/login", {
+  return api.post("/auth/updatePassword", {
     password: password,
     confirmPassword: confirmPassword,
   });
