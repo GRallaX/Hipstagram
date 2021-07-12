@@ -20,8 +20,12 @@ export const EditUserInput = ({
     if (editingField) setFocus(editingField);
   }, [editingField, setFocus]);
 
+  useEffect(() => {
+    if (editingField !== name) setValue(name, defaultValue);
+  }, [editingField, defaultValue, name, setValue]);
+
   const hadleStopEdit = e => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setEditingField(false);
     setValue(name, defaultValue);
     unregister(name);
@@ -78,7 +82,6 @@ export const EditUserInput = ({
             hadleStopEdit(e);
           }
         }}
-        onBlur={hadleStopEdit}
       />
 
       {children}

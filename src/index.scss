@@ -97,6 +97,11 @@ code {
       align-items: center;
       text-decoration: none;
       width: fit-content;
+      outline: none;
+
+      &:focus-visible {
+        filter: drop-shadow(1px 1px 2px #131313);
+      }
     }
 
     img {
@@ -205,8 +210,10 @@ code {
 
     transition: 0.2s;
 
+    outline: none;
+
     &:hover,
-    &:focus {
+    &:focus-visible {
       filter: drop-shadow(1px 1px 1px #131313);
       cursor: pointer;
     }
@@ -217,9 +224,11 @@ code {
     color: whitesmoke;
     font-size: 22px;
 
+    outline: none;
+
     transition: 0.2s;
 
-    &:focus {
+    &:focus-visible {
       filter: drop-shadow(1px 1px 1px #131313);
     }
   }
@@ -247,7 +256,6 @@ code {
     text-overflow: ellipsis;
     overflow: hidden;
     max-width: 200px;
-    padding: 3px;
 
     color: whitesmoke;
     text-decoration: none;
@@ -264,14 +272,10 @@ code {
     transition: 0.2s;
 
     &:hover,
-    &:focus {
+    &:focus-visible {
       cursor: pointer;
       filter: drop-shadow(1px 1px 1px #131313);
     }
-  }
-
-  .active {
-    filter: drop-shadow(1px 1px 1px #131313);
   }
 }
 
@@ -400,7 +404,7 @@ code {
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     filter: drop-shadow(1px 1px 2px #131313);
     cursor: pointer;
   }
@@ -421,7 +425,7 @@ code {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     filter: drop-shadow(1px 1px 2px #131313);
     cursor: pointer;
   }

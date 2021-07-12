@@ -41,17 +41,17 @@
 .modal_post_header .user_ref:first-of-type {
   width: 32px;
 }
+.modal_post_header .user_ref:first-of-type:focus-visible .avatar {
+  box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
+}
 .modal_post_header .user_ref:nth-of-type(2) {
   margin: 0 6px;
   flex-grow: 1;
   overflow: hidden;
   transition: 0.2s;
 }
-.modal_post_header .user_ref:nth-of-type(2):hover {
+.modal_post_header .user_ref:nth-of-type(2):hover, .modal_post_header .user_ref:nth-of-type(2):focus-visible {
   filter: drop-shadow(1px 1px 1px #131313);
-}
-.modal_post_header .user_ref .avatar:hover {
-  filter: drop-shadow(0 1px 1px #131313);
 }
 .modal_post_header .user_ref .avatar.small {
   margin-right: 12px;
@@ -194,6 +194,10 @@
   display: flex;
   align-items: center;
   margin-right: 12px;
+  outline: none;
+}
+.modal_post .comments_likes_container .modal_post_btns .like_btn_container:focus-visible {
+  filter: drop-shadow(1px 1px 1px #131313);
 }
 .modal_post .comments_likes_container .modal_post_btns .like_btn_container.liked {
   animation: like-button-animation 0.45s ease-in-out;
@@ -231,7 +235,7 @@
   cursor: pointer;
 }
 .modal_post .comments_likes_container .modal_post_btns .like_btn:hover {
-  filter: drop-shadow(0 0 1px #131313);
+  filter: drop-shadow(1px 1px 1px #131313);
   transition: 0.2s;
 }
 .modal_post .comments_likes_container .modal_post_btns .like_btn .liked {
@@ -245,10 +249,12 @@
   text-decoration: none;
   color: black;
   font-weight: 600;
+  outline: none;
   transition: 0.2s;
 }
-.modal_post .comments_likes_container .modal_post_btns .post_likes_info a:hover,
-.modal_post .comments_likes_container .modal_post_btns .post_likes_info .likes_count_btn:hover {
+.modal_post .comments_likes_container .modal_post_btns .post_likes_info a:hover, .modal_post .comments_likes_container .modal_post_btns .post_likes_info a:focus-visible,
+.modal_post .comments_likes_container .modal_post_btns .post_likes_info .likes_count_btn:hover,
+.modal_post .comments_likes_container .modal_post_btns .post_likes_info .likes_count_btn:focus-visible {
   filter: drop-shadow(1px 1px 1px #131313);
   cursor: pointer;
 }
@@ -296,7 +302,7 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: 0.2s;
 }
-.modal_post .add_comment_container .add_comment_form .add_comment_btn:hover {
+.modal_post .add_comment_container .add_comment_form .add_comment_btn:hover, .modal_post .add_comment_container .add_comment_form .add_comment_btn:focus-visible {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }

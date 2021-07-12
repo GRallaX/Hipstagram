@@ -72,7 +72,7 @@
         .validated {
           position: absolute;
           top: 0;
-          left: 240px;
+          left: 281px;
           font-size: 20px;
           line-height: 28px;
           font-weight: 600;
@@ -120,11 +120,12 @@
     padding: 0 0 5px;
   }
 
-  .edit_pass {
+  .edit_pass,
+  .delete_user {
     width: 365px;
     display: flex;
-    justify-content: center;
-    padding: 30px 0 10px;
+    justify-content: flex-end;
+    padding: 20px 5px 10px;
     flex-wrap: wrap;
 
     font-size: 16px;
@@ -160,7 +161,7 @@
 
     .password_form {
       padding-right: 5px;
-      height: 235px;
+      height: 220px;
 
       display: flex;
       flex-direction: column;
@@ -171,7 +172,7 @@
       transition: 0.5s;
 
       & > label:first-child {
-        margin-top: 20px;
+        margin-top: 10px;
       }
 
       &.hidden {
@@ -274,7 +275,7 @@
   font-size: 14px;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     filter: drop-shadow(1px 1px 2px #131313);
     cursor: pointer;
   }
@@ -296,5 +297,33 @@
   img {
     height: 25px;
     filter: brightness(3);
+  }
+}
+
+.delete_user_btns {
+  height: 50px;
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+
+  font-weight: 500;
+  line-height: 16px;
+  transition: 0.5s;
+
+  &.hidden {
+    height: 0;
+  }
+
+  .submit_btn {
+    background-color: rgb(237, 73, 86);
+    border-color: rgb(237, 73, 86);
+  }
+
+  .btns_container {
+    display: flex;
+    align-items: center;
+    padding: 10px 5px;
   }
 }

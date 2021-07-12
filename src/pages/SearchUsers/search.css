@@ -1,12 +1,22 @@
 .users_search {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   margin: 16px 0;
   background-color: #fff;
   border-radius: 3px;
   border: 1px solid #dbdbdb;
   padding: 0 16px;
   font-size: 14px;
+}
+@media (max-width: 600px) {
+  .users_search {
+    flex: 1 0 auto;
+    max-width: 600px;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+  }
 }
 .users_search h2 {
   text-align: center;
@@ -30,6 +40,12 @@
   align-items: center;
   overflow: hidden;
 }
+.users_list_card a:first-of-type {
+  outline: none;
+}
+.users_list_card a:first-of-type:focus-visible .avatar {
+  box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
+}
 .users_list_card .link_login {
   flex: 0 99 auto;
   overflow: hidden;
@@ -44,7 +60,7 @@
   transition: 0.2s;
   margin: 2px;
 }
-.users_list_card .link_login .ref:hover, .users_list_card .link_login .ref:focus {
+.users_list_card .link_login .ref:hover, .users_list_card .link_login .ref:focus-visible {
   filter: drop-shadow(1px 1px 1px #131313);
 }
 .users_list_card .ref_avatar {

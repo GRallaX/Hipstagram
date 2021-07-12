@@ -57,8 +57,10 @@
     .followings {
       transition: 0.2s;
 
+      outline: none;
+
       &:hover,
-      &:focus {
+      &:focus-visible {
         filter: drop-shadow(1px 1px 1px #131313);
         cursor: pointer;
       }
@@ -86,6 +88,15 @@
   }
 }
 
+a {
+  outline: none;
+
+  &:focus-visible {
+    .interactions_container {
+      opacity: 1;
+    }
+  }
+}
 .interactions_container {
   position: absolute;
   top: 0;

@@ -71,7 +71,6 @@ export const UserSettings = () => {
   useEffect(() => {
     let cleanupFunction = false;
     if (editingField === "login" && validationValue) {
-      console.log("vlaidation starts");
       const timeout = setTimeout(async () => {
         const validation = await serverLoginValidation(validationValue);
         if (!cleanupFunction) setValid(validation);
@@ -122,7 +121,7 @@ export const UserSettings = () => {
 
   return (
     <div className="settings_wrapper">
-      <h2>User Settings</h2>
+      <h2>User settings</h2>
       <div className="settings_container">
         <div className="avatar_container">
           <Avatar avatar={avatar} size="big">

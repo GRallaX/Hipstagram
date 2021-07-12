@@ -11,6 +11,12 @@
 .small_modal_wrapper .users_list {
   margin: auto 20px;
 }
+.small_modal_wrapper .users_list .users_list_card a:first-of-type {
+  outline: none;
+}
+.small_modal_wrapper .users_list .users_list_card a:first-of-type:focus-visible .avatar {
+  box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
+}
 
 .text .new_text {
   width: 300px;
@@ -25,7 +31,7 @@
   overflow: hidden;
 }
 .text .new_text:focus {
-  outline: -webkit-focus-ring-color auto 1px;
+  border: 1px solid black;
 }
 .text .btns {
   height: 56px;

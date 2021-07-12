@@ -70,7 +70,7 @@
 .settings_wrapper .settings_container .user_data_container .data_form .validated {
   position: absolute;
   top: 0;
-  left: 240px;
+  left: 281px;
   font-size: 20px;
   line-height: 28px;
   font-weight: 600;
@@ -110,17 +110,19 @@
   text-align: center;
   padding: 0 0 5px;
 }
-.security_wrapper .edit_pass {
+.security_wrapper .edit_pass,
+.security_wrapper .delete_user {
   width: 365px;
   display: flex;
-  justify-content: center;
-  padding: 30px 0 10px;
+  justify-content: flex-end;
+  padding: 20px 5px 10px;
   flex-wrap: wrap;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.9;
 }
-.security_wrapper .edit_pass .success {
+.security_wrapper .edit_pass .success,
+.security_wrapper .delete_user .success {
   width: 100%;
   height: 24px;
   opacity: 1;
@@ -131,11 +133,13 @@
   font-weight: 500;
   transition: 0.5s;
 }
-.security_wrapper .edit_pass .success .validated {
+.security_wrapper .edit_pass .success .validated,
+.security_wrapper .delete_user .success .validated {
   font-size: 18px;
   font-weight: 700;
 }
-.security_wrapper .edit_pass .success.hidden {
+.security_wrapper .edit_pass .success.hidden,
+.security_wrapper .delete_user .success.hidden {
   opacity: 0;
   height: 0;
 }
@@ -144,7 +148,7 @@
 }
 .security_wrapper .password_container .password_form {
   padding-right: 5px;
-  height: 235px;
+  height: 220px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -152,7 +156,7 @@
   transition: 0.5s;
 }
 .security_wrapper .password_container .password_form > label:first-child {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .security_wrapper .password_container .password_form.hidden {
   height: 0;
@@ -233,13 +237,13 @@
   font-size: 14px;
   transition: 0.2s;
 }
-.change_btn:hover, .change_btn:focus,
+.change_btn:hover, .change_btn:focus-visible,
 .cancel_btn:hover,
-.cancel_btn:focus,
+.cancel_btn:focus-visible,
 .submit_btn:hover,
-.submit_btn:focus,
+.submit_btn:focus-visible,
 .show_btn:hover,
-.show_btn:focus {
+.show_btn:focus-visible {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
@@ -258,4 +262,27 @@
 .submit_btn img {
   height: 25px;
   filter: brightness(3);
+}
+
+.delete_user_btns {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  font-weight: 500;
+  line-height: 16px;
+  transition: 0.5s;
+}
+.delete_user_btns.hidden {
+  height: 0;
+}
+.delete_user_btns .submit_btn {
+  background-color: #ed4956;
+  border-color: #ed4956;
+}
+.delete_user_btns .btns_container {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
 }/*# sourceMappingURL=profileSettings.css.map */

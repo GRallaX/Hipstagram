@@ -89,6 +89,10 @@ code {
   align-items: center;
   text-decoration: none;
   width: fit-content;
+  outline: none;
+}
+.main_header .logo a:focus-visible {
+  filter: drop-shadow(1px 1px 2px #131313);
 }
 .main_header .logo img {
   filter: drop-shadow(1px 1px 1px #131313);
@@ -178,8 +182,9 @@ code {
   transition: 0.2s;
   margin-right: 16px;
   transition: 0.2s;
+  outline: none;
 }
-.header_navigation span:hover, .header_navigation span:focus {
+.header_navigation span:hover, .header_navigation span:focus-visible {
   filter: drop-shadow(1px 1px 1px #131313);
   cursor: pointer;
 }
@@ -187,9 +192,10 @@ code {
   text-decoration: none;
   color: whitesmoke;
   font-size: 22px;
+  outline: none;
   transition: 0.2s;
 }
-.header_navigation a:focus {
+.header_navigation a:focus-visible {
   filter: drop-shadow(1px 1px 1px #131313);
 }
 .header_navigation .search_Btn {
@@ -212,7 +218,6 @@ code {
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 200px;
-  padding: 3px;
   color: whitesmoke;
   text-decoration: none;
 }
@@ -226,11 +231,8 @@ code {
   margin: 7px 16px 0 0;
   transition: 0.2s;
 }
-.header_navigation .log_out_btn:hover, .header_navigation .log_out_btn:focus {
+.header_navigation .log_out_btn:hover, .header_navigation .log_out_btn:focus-visible {
   cursor: pointer;
-  filter: drop-shadow(1px 1px 1px #131313);
-}
-.header_navigation .active {
   filter: drop-shadow(1px 1px 1px #131313);
 }
 
@@ -330,7 +332,7 @@ code {
   height: 25px;
   width: 100%;
 }
-.follow_btn:hover, .follow_btn:focus {
+.follow_btn:hover, .follow_btn:focus-visible {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
@@ -347,7 +349,7 @@ code {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: 0.2s;
 }
-.settings_btn:hover, .settings_btn:focus {
+.settings_btn:hover, .settings_btn:focus-visible {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }

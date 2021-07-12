@@ -1,6 +1,6 @@
 .users_search {
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   margin: 16px 0;
 
   background-color: #fff;
@@ -9,6 +9,16 @@
 
   padding: 0 16px;
   font-size: 14px;
+
+  @media (max-width: 600px) {
+    flex: 1 0 auto;
+    max-width: 600px;
+    width: 100%;
+    margin: 0;
+
+    border: none;
+    border-radius: 0;
+  }
 
   h2 {
     text-align: center;
@@ -36,6 +46,16 @@
     align-items: center;
     overflow: hidden;
 
+    a:first-of-type {
+      outline: none;
+
+      &:focus-visible {
+        .avatar {
+          box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
+        }
+      }
+    }
+
     .link_login {
       flex: 0 99 auto;
       overflow: hidden;
@@ -53,7 +73,7 @@
         margin: 2px;
 
         &:hover,
-        &:focus {
+        &:focus-visible {
           filter: drop-shadow(1px 1px 1px #131313);
         }
       }

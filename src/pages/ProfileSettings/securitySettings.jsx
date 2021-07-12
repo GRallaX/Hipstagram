@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { PasswordInput } from "./passInput";
 import loadingIcon from "../../images/loading_small.svg";
-import { changeUserPassword } from "../../store/currentUser/thunks";
+import { changeUserPassword, logOutUser } from "../../store/currentUser/thunks";
+import { deleteUser } from "../../api/users";
 
 export const SecuritySettings = () => {
   const [editPass, setEditPass] = useState(false);
@@ -24,7 +25,7 @@ export const SecuritySettings = () => {
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
-  const { login } = useSelector(state => state.currentUser);
+  const { login, id: currentUserId } = useSelector(state => state.currentUser);
   const dispatch = useDispatch();
 
   const handleStopEdit = () => {
@@ -121,9 +122,29 @@ export const SecuritySettings = () => {
     }
   }, [successChange]);
 
+  const [openDeleteUser, setOpenDeleteUser] = useState(false);
+
+  const handleOpenDelete = e => {
+    e.preventDefault();
+    setOpenDeleteUser(v => !v);
+  };
+
+  const handleDeleteUser = async e => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await deleteUser(currentUserId);
+      await dispatch(logOutUser());
+      setLoading(false);
+    } catch (e) {
+      console.log(e.response?.data);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="security_wrapper">
-      <h2>Security Settings</h2>
+      <h2>Security settings</h2>
       <div className="password_container">
         <div className="edit_pass">
           <span>Password settings</span>
@@ -189,6 +210,37 @@ export const SecuritySettings = () => {
             <span className="message">{errors.form.message}</span>
           )}
         </form>
+      </div>
+      <div className="delete_user">
+        <span>Delete account</span>
+        <button className="change_btn" type="button" onClick={handleOpenDelete}>
+          {openDeleteUser ? "Cancel" : "Delete"}
+        </button>
+      </div>
+      <div
+        className={
+          openDeleteUser ? "delete_user_btns" : "delete_user_btns hidden"
+        }
+      >
+        <div className="btns_container">
+          <span>Are you sure?</span>
+          <button
+            className="change_btn"
+            type="button"
+            onClick={handleOpenDelete}
+            disabled={!openDeleteUser ? true : undefined}
+          >
+            Cancel
+          </button>
+          <button
+            className="submit_btn"
+            type="button"
+            onClick={handleDeleteUser}
+            disabled={!openDeleteUser ? true : undefined}
+          >
+            {loading ? <img src={loadingIcon} alt="loadingIcon" /> : "Delete"}
+          </button>
+        </div>
       </div>
     </div>
   );

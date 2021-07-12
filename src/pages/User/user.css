@@ -51,10 +51,11 @@
 .user_header .user_data .followers,
 .user_header .user_data .followings {
   transition: 0.2s;
+  outline: none;
 }
-.user_header .user_data .followers:hover, .user_header .user_data .followers:focus,
+.user_header .user_data .followers:hover, .user_header .user_data .followers:focus-visible,
 .user_header .user_data .followings:hover,
-.user_header .user_data .followings:focus {
+.user_header .user_data .followings:focus-visible {
   filter: drop-shadow(1px 1px 1px #131313);
   cursor: pointer;
 }
@@ -73,6 +74,13 @@
 }
 .user_header .email {
   font-size: 16px;
+}
+
+a {
+  outline: none;
+}
+a:focus-visible .interactions_container {
+  opacity: 1;
 }
 
 .interactions_container {

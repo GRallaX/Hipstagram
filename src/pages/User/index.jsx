@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, useLocation } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { getCurrentUser } from "../../store/currentUser/thunks";
 import LazyLoad from "react-lazyload";
 import { getUserById } from "../../api/users";
@@ -21,7 +21,6 @@ export const User = ({
     params: { id: pageUserId },
   },
 }) => {
-  const location = useLocation();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +38,7 @@ export const User = ({
   useEffect(() => {
     setModalFollowers(false);
     setModalFollowings(false);
-  }, [location]);
+  }, [user]);
 
   useEffect(() => {
     let cleanupFunction = false;

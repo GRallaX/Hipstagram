@@ -102,14 +102,6 @@
     opacity: 1;
   }
 }
-@keyframes disappear {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 .form .input_wrapper .text_input_container.active,
 .form .input_wrapper .pass_lbl_container.active {
   border: 1px solid #969696;
@@ -149,7 +141,7 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: 0.2s;
 }
-.form .input_wrapper .show_pass button:hover, .form .input_wrapper .show_pass button:focus {
+.form .input_wrapper .show_pass button:hover, .form .input_wrapper .show_pass button:focus-visible {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
@@ -180,7 +172,7 @@
   align-items: center;
   justify-content: center;
 }
-.form .submit_btn:hover, .form .submit_btn:focus {
+.form .submit_btn:hover, .form .submit_btn:focus-visible {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
@@ -199,6 +191,6 @@
   color: black;
   font-weight: 700;
 }
-.switch_forms a:hover, .switch_forms a:focus {
+.switch_forms a:hover, .switch_forms a:focus-visible {
   filter: drop-shadow(1px 1px 1px #131313);
 }/*# sourceMappingURL=login.css.map */

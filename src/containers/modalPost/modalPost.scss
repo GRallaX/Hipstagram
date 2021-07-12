@@ -42,6 +42,12 @@
 
       &:first-of-type {
         width: 32px;
+
+        &:focus-visible {
+          .avatar {
+            box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
+          }
+        }
       }
 
       &:nth-of-type(2) {
@@ -51,7 +57,8 @@
 
         transition: 0.2s;
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
           filter: drop-shadow(1px 1px 1px #131313);
         }
       }
@@ -60,12 +67,6 @@
       color: black;
       font-weight: 600;
       text-overflow: ellipsis;
-
-      .avatar {
-        &:hover {
-          filter: drop-shadow(0 1px 1px #131313);
-        }
-      }
 
       .avatar.small {
         margin-right: 12px;
@@ -242,6 +243,11 @@
         align-items: center;
         margin-right: 12px;
 
+        outline: none;
+        &:focus-visible {
+          filter: drop-shadow(1px 1px 1px #131313);
+        }
+
         &.liked {
           animation: like-button-animation 0.45s ease-in-out;
           transform: scale(1);
@@ -284,7 +290,7 @@
         cursor: pointer;
 
         &:hover {
-          filter: drop-shadow(0 0 1px #131313);
+          filter: drop-shadow(1px 1px 1px #131313);
           transition: 0.2s;
         }
       }
@@ -302,9 +308,12 @@
           color: black;
           font-weight: 600;
 
+          outline: none;
+
           transition: 0.2s;
 
-          &:hover {
+          &:hover,
+          &:focus-visible {
             filter: drop-shadow(1px 1px 1px #131313);
             cursor: pointer;
           }
@@ -366,7 +375,8 @@
         font-weight: 600;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
           filter: drop-shadow(1px 1px 2px #131313);
           cursor: pointer;
         }
