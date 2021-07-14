@@ -4,10 +4,11 @@ import { NavLink } from "react-router-dom";
 import { logOutUser } from "../store/currentUser/thunks";
 
 import { SearchInput } from "../components/searchUsersInput";
-import { ReactComponent as LogoutIcon } from "../images/logout_icon.svg";
+import { ReactComponent as PlusIcon } from "../images/plus_icon.svg";
 import { ReactComponent as ProfileIcon } from "../images/profile_icon.svg";
 import { ReactComponent as HomeSymbol } from "../images/home_icon.svg";
 import { ReactComponent as SearchSymbol } from "../images/search_icon.svg";
+import { ReactComponent as LogoutIcon } from "../images/logout_icon.svg";
 import Logo from "../images/logo 1.png";
 
 export const Header = () => {
@@ -32,11 +33,20 @@ export const Header = () => {
     };
   });
 
+  const handleOpenSearch = () => {
+    if (!showSearch) {
+      setShowSearch(true);
+      setTimeout(() => searchInput.current.focus(), 100);
+    } else {
+      setShowSearch(false);
+    }
+  };
+
   return (
     <header className="main_header">
       <div className="logo">
         <NavLink to="/">
-          <img src={Logo} alt="hip logo" />
+          <img src={Logo} alt="hipstagram logo" />
           {screenWidth > 750 && <span>Hipstagram</span>}
         </NavLink>
       </div>
@@ -49,18 +59,22 @@ export const Header = () => {
         {screenWidth < 750 && (
           <span
             className="search_Btn"
-            onClick={() => {
-              if (!showSearch) {
-                setShowSearch(true);
-                setTimeout(() => searchInput.current.focus(), 100);
-              } else {
-                setShowSearch(false);
-              }
+            tabIndex="0"
+            onClick={handleOpenSearch}
+            onKeyPress={e => {
+              if (e.key === "Enter") handleOpenSearch();
             }}
           >
             <SearchSymbol />
           </span>
         )}
+        <span
+          className="add_new_post_btn"
+          tabIndex="0"
+          aria-label="Add new post"
+        >
+          <PlusIcon />
+        </span>
         <span className="feed_btn">
           <NavLink to="/feed">
             {screenWidth > 750 ? "Feed" : <HomeSymbol />}
@@ -77,6 +91,9 @@ export const Header = () => {
           tabIndex="0"
           onClick={() => {
             dispatch(logOutUser());
+          }}
+          onKeyPress={e => {
+            if (e.key === "Enter") dispatch(logOutUser());
           }}
         >
           <LogoutIcon />

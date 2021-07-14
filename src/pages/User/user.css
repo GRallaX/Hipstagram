@@ -63,16 +63,19 @@
   font-weight: 700;
 }
 .user_header .info {
-  margin: 16px;
+  margin: 16px 16px 0;
   line-height: 1.5;
   text-align: left;
 }
 .user_header .name {
-  margin: 0;
+  margin: 5px 0;
   font-weight: 600;
   font-size: 18px;
+  text-align: left;
 }
 .user_header .email {
+  display: block;
+  margin-top: 5px;
   font-size: 16px;
 }
 
@@ -128,7 +131,6 @@ a:focus-visible .interactions_container {
 .user_posts {
   width: 100%;
   max-width: 902px;
-  min-height: 200px;
   overflow: hidden;
   background-color: #fff;
   border-radius: 5px;
@@ -162,16 +164,23 @@ a:focus-visible .interactions_container {
   }
 }
 .user_posts.empty {
-  width: 540px;
+  width: 250px;
   border: 1px solid #dbdbdb;
+  padding: 0;
+  margin: 50px 0;
 }
 @media (max-width: 600px) {
   .user_posts.empty {
+    margin: 0;
     width: 100%;
     border-radius: 0;
     border: none;
     border-top: 1px solid #dbdbdb;
+    padding: 50px 0;
   }
+}
+.user_posts.empty .posts_wrapper {
+  padding: 0;
 }
 .user_posts .posts_wrapper {
   padding-top: 5vw;
@@ -191,10 +200,6 @@ a:focus-visible .interactions_container {
     width: 100%;
     padding: 0;
   }
-}
-.user_posts .posts_wrapper h2 {
-  font-weight: 400;
-  font-size: 26px;
 }
 .user_posts .posts_wrapper .posts_group {
   width: 100%;

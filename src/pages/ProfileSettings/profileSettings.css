@@ -33,7 +33,7 @@
 }
 .settings_wrapper .settings_container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 @media (max-width: 750px) {
   .settings_wrapper .settings_container {
@@ -42,7 +42,7 @@
   }
 }
 .settings_wrapper .settings_container .avatar_container {
-  padding: 30px;
+  padding: 30px 25px 30px 35px;
   display: flex;
   justify-content: center;
 }
@@ -50,6 +50,37 @@
   .settings_wrapper .settings_container .avatar_container {
     padding: 15px 0;
   }
+}
+.settings_wrapper .settings_container .avatar_container > .avatar {
+  position: relative;
+}
+.settings_wrapper .settings_container .avatar_container > .avatar:hover, .settings_wrapper .settings_container .avatar_container > .avatar:focus-within {
+  box-shadow: 1px 1px 2px 2px rgba(51, 54, 56, 0.473);
+  cursor: pointer;
+}
+.settings_wrapper .settings_container .avatar_container > .avatar:hover .change_avatar_btn, .settings_wrapper .settings_container .avatar_container > .avatar:focus-within .change_avatar_btn {
+  background: black;
+  box-shadow: 0px 0px 8px 4px rgba(208, 208, 208, 0.45) inset;
+}
+.settings_wrapper .settings_container .avatar_container > .avatar .change_avatar_btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  color: whitesmoke;
+  border: none;
+  background: rgba(0, 0, 0, 0.3);
+  outline: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding-bottom: 10px;
+  transition: 0.2s;
+}
+.settings_wrapper .settings_container .avatar_container > .avatar .change_avatar_btn:hover, .settings_wrapper .settings_container .avatar_container > .avatar .change_avatar_btn:focus-visible {
+  cursor: pointer;
+  background: black;
+  box-shadow: 0px 0px 8px 4px rgba(208, 208, 208, 0.45) inset;
 }
 .settings_wrapper .settings_container .user_data_container {
   padding: 30px 30px 30px 5px;
@@ -107,8 +138,7 @@
 }
 .security_wrapper h2 {
   margin: 0;
-  text-align: center;
-  padding: 0 0 5px;
+  padding: 0 0 15px;
 }
 .security_wrapper .edit_pass,
 .security_wrapper .delete_user {
@@ -124,10 +154,10 @@
 .security_wrapper .edit_pass .success,
 .security_wrapper .delete_user .success {
   width: 100%;
-  height: 24px;
   opacity: 1;
-  line-height: 24px;
-  text-align: center;
+  height: 40px;
+  line-height: 45px;
+  text-align: right;
   color: #009100;
   font-size: 14px;
   font-weight: 500;
@@ -142,6 +172,9 @@
 .security_wrapper .delete_user .success.hidden {
   opacity: 0;
   height: 0;
+}
+.security_wrapper .delete_user {
+  padding: 5px 5px 0 0;
 }
 .security_wrapper .password_container {
   width: max-content;
@@ -176,12 +209,12 @@
   width: 138px;
 }
 .security_wrapper .password_container .password_form .message {
-  flex: 0 0 210px;
+  flex: 0 0 213px;
 }
 .security_wrapper .password_container .password_form > .message {
   flex: auto;
   margin-top: 5px;
-  width: 210px;
+  width: 213px;
 }
 
 .data_label {
@@ -247,10 +280,32 @@
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
 }
+.change_btn:disabled,
+.cancel_btn:disabled,
+.submit_btn:disabled,
+.show_btn:disabled {
+  opacity: 0.3;
+  color: #696969;
+  border: 2px solid #888888;
+  background: #f0f0f0;
+}
+.change_btn:disabled:hover, .change_btn:disabled:focus-visible,
+.cancel_btn:disabled:hover,
+.cancel_btn:disabled:focus-visible,
+.submit_btn:disabled:hover,
+.submit_btn:disabled:focus-visible,
+.show_btn:disabled:hover,
+.show_btn:disabled:focus-visible {
+  filter: none;
+  cursor: auto;
+}
 
-.cancel_btn,
-.show_btn {
+.cancel_btn {
   width: 65px;
+}
+
+.show_btn {
+  width: 69px;
 }
 
 .submit_btn {
@@ -266,13 +321,13 @@
 
 .delete_user_btns {
   height: 50px;
-  width: 100%;
+  width: 365px;
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
   font-weight: 500;
-  line-height: 16px;
-  transition: 0.5s;
+  line-height: 30px;
+  transition: 0.3s;
 }
 .delete_user_btns.hidden {
   height: 0;
@@ -283,6 +338,6 @@
 }
 .delete_user_btns .btns_container {
   display: flex;
-  align-items: center;
-  padding: 10px 5px;
+  align-items: flex-start;
+  padding: 15px 5px 0 0;
 }/*# sourceMappingURL=profileSettings.css.map */

@@ -20,8 +20,7 @@ export const RegistrationForm = () => {
     setError,
     clearErrors,
     watch,
-
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ mode: "onTouched" });
 
   const history = useHistory();
@@ -142,6 +141,7 @@ export const RegistrationForm = () => {
           className="submit_btn"
           type="submit"
           aria-labelledby="Send credentials"
+          disabled={isValid ? undefined : true}
         >
           {isLoading ? <img src={loadingIcon} alt="loadingIcon" /> : "Sign up"}
         </button>

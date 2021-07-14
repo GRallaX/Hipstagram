@@ -22,7 +22,7 @@ export const SecuritySettings = () => {
     setFocus,
     setError,
     clearErrors,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
   const { login, id: currentUserId } = useSelector(state => state.currentUser);
@@ -156,8 +156,8 @@ export const SecuritySettings = () => {
             {editPass ? "Cancel" : "Change"}
           </button>
           <span className={successChange ? "success" : "success hidden"}>
-            Password has been changed{" "}
-            <span className="validated">&#10003;</span>
+            Password has been changed
+            <span className="validated"> &#10003;</span>
           </span>
         </div>
 
@@ -201,7 +201,7 @@ export const SecuritySettings = () => {
             <button
               className="submit_btn"
               type="submit"
-              disabled={!editPass ? true : undefined}
+              disabled={!editPass || !isValid ? true : undefined}
             >
               {loading ? <img src={loadingIcon} alt="loadingIcon" /> : "Submit"}
             </button>

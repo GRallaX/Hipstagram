@@ -6,6 +6,16 @@
   flex-wrap: nowrap;
   justify-content: center;
 
+  animation: appear 0.2s ease-in-out;
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   .wallpaper {
     flex: 0 99 auto;
 
@@ -223,6 +233,19 @@
     &:focus-visible {
       filter: drop-shadow(1px 1px 2px #131313);
       cursor: pointer;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      color: #696969;
+      border: 2px solid #888888;
+      background: rgb(240, 240, 240);
+
+      &:hover,
+      &:focus {
+        filter: none;
+        cursor: auto;
+      }
     }
 
     img {

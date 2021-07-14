@@ -4,6 +4,15 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  animation: appear 0.2s ease-in-out;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .login_wrapper .wallpaper {
   flex: 0 99 auto;
@@ -175,6 +184,16 @@
 .form .submit_btn:hover, .form .submit_btn:focus-visible {
   filter: drop-shadow(1px 1px 2px #131313);
   cursor: pointer;
+}
+.form .submit_btn:disabled {
+  opacity: 0.3;
+  color: #696969;
+  border: 2px solid #888888;
+  background: #f0f0f0;
+}
+.form .submit_btn:disabled:hover, .form .submit_btn:disabled:focus {
+  filter: none;
+  cursor: auto;
 }
 .form .submit_btn img {
   filter: brightness(3);

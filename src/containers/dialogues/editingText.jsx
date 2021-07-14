@@ -70,14 +70,13 @@ export const EditingTextModal = ({
             />
           </label>
           <div className="btns">
-            <button className="cancel" onClick={closeFunc} tabIndex="0">
+            <button className="cancel" onClick={closeFunc}>
               Cancel
             </button>
             <button
               className={text ? "submit" : "submit disabled"}
               type="submit"
               disabled={text ? false : true}
-              tabIndex="0"
             >
               {isLoading ? <img src={loadingIcon} alt="1" /> : "Submit"}
             </button>

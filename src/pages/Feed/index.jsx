@@ -74,7 +74,9 @@ export const Feed = () => {
   } else if (!isLoading && !postsForRender.length) {
     return (
       <div className="main">
-        <h2>No posts yet</h2>
+        <div className="empty">
+          <h2>No posts yet</h2>
+        </div>
       </div>
     );
   } else {

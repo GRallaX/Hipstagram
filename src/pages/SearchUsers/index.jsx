@@ -33,8 +33,8 @@ export const SearchUsers = props => {
   } else if (!isLoading && !usersList.length) {
     return (
       <div className="main">
-        <div className="users_search">
-          <h2>No Users Found</h2>
+        <div className="empty">
+          <h2>No users found</h2>
         </div>
       </div>
     );
@@ -42,7 +42,7 @@ export const SearchUsers = props => {
     return (
       <div className="main">
         <div className="users_search">
-          <h2>Users Search</h2>
+          <h2>Users search</h2>
           <UsersList usersList={usersList} />
         </div>
       </div>

@@ -34,7 +34,7 @@
 
   .settings_container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 
     @media (max-width: 750px) {
       flex-direction: column;
@@ -42,13 +42,57 @@
     }
 
     .avatar_container {
-      padding: 30px;
+      padding: 30px 25px 30px 35px;
 
       display: flex;
       justify-content: center;
 
       @media (max-width: 750px) {
         padding: 15px 0;
+      }
+
+      & > .avatar {
+        position: relative;
+
+        &:hover,
+        &:focus-within {
+          box-shadow: 1px 1px 2px 2px rgba(51, 54, 56, 0.473);
+          cursor: pointer;
+
+          .change_avatar_btn {
+            background: rgba(0, 0, 0);
+            box-shadow: 0px 0px 8px 4px rgba(208, 208, 208, 0.45) inset;
+          }
+        }
+
+        .change_avatar_btn {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+
+          width: 100%;
+          height: 40px;
+
+          color: whitesmoke;
+          border: none;
+          background: rgba(0, 0, 0, 0.3);
+
+          outline: none;
+
+          font-weight: 600;
+          font-size: 14px;
+
+          padding-bottom: 10px;
+
+          transition: 0.2s;
+
+          &:hover,
+          &:focus-visible {
+            cursor: pointer;
+            background: rgba(0, 0, 0);
+            box-shadow: 0px 0px 8px 4px rgba(208, 208, 208, 0.45) inset;
+          }
+        }
       }
     }
 
@@ -116,8 +160,7 @@
 
   h2 {
     margin: 0;
-    text-align: center;
-    padding: 0 0 5px;
+    padding: 0 0 15px;
   }
 
   .edit_pass,
@@ -134,11 +177,11 @@
 
     .success {
       width: 100%;
-      height: 24px;
       opacity: 1;
+      height: 40px;
 
-      line-height: 24px;
-      text-align: center;
+      line-height: 45px;
+      text-align: right;
       color: rgb(0, 145, 0);
       font-size: 14px;
       font-weight: 500;
@@ -154,6 +197,10 @@
         height: 0;
       }
     }
+  }
+
+  .delete_user {
+    padding: 5px 5px 0 0;
   }
 
   .password_container {
@@ -197,13 +244,13 @@
         }
       }
       .message {
-        flex: 0 0 210px;
+        flex: 0 0 213px;
       }
 
       & > .message {
         flex: auto;
         margin-top: 5px;
-        width: 210px;
+        width: 213px;
       }
     }
   }
@@ -280,12 +327,28 @@
     cursor: pointer;
   }
 
+  &:disabled {
+    opacity: 0.3;
+    color: #696969;
+    border: 2px solid #888888;
+    background: rgb(240, 240, 240);
+
+    &:hover,
+    &:focus-visible {
+      filter: none;
+      cursor: auto;
+    }
+  }
+
   transition: 0.2s;
 }
 
-.cancel_btn,
-.show_btn {
+.cancel_btn {
   width: 65px;
+}
+
+.show_btn {
+  width: 69px;
 }
 
 .submit_btn {
@@ -302,15 +365,15 @@
 
 .delete_user_btns {
   height: 50px;
-  width: 100%;
+  width: 365px;
 
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
 
   font-weight: 500;
-  line-height: 16px;
-  transition: 0.5s;
+  line-height: 30px;
+  transition: 0.3s;
 
   &.hidden {
     height: 0;
@@ -323,7 +386,7 @@
 
   .btns_container {
     display: flex;
-    align-items: center;
-    padding: 10px 5px;
+    align-items: flex-start;
+    padding: 15px 5px 0 0;
   }
 }

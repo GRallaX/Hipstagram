@@ -6,11 +6,13 @@ import { updateCurrentUser } from "../../store/currentUser/thunks";
 
 import { EditUserInput } from "./textInput";
 import { Avatar } from "../../components/avatar";
+import { ChangeAvatar } from "../../containers/dialogues/changeAvatar";
 
 export const UserSettings = () => {
   const [editingField, setEditingField] = useState(false);
   const [validationValue, setValidationValue] = useState("");
   const [valid, setValid] = useState(null);
+  const [changeAvatar, setChangeAvatar] = useState(false);
   const [loading, setLoading] = useState(false);
   const {
     watch,
@@ -20,12 +22,17 @@ export const UserSettings = () => {
     setValue,
     setFocus,
     setError,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
   const currentUser = useSelector(state => state.currentUser);
   const { login, email, firstName, lastName, avatar } = currentUser;
   const dispatch = useDispatch();
+
+  const handleChangeAvatar = e => {
+    if (e) e.preventDefault();
+    setChangeAvatar(v => !v);
+  };
 
   const handleEditUser = async data => {
     if (data[editingField] === currentUser[editingField]) {
@@ -124,9 +131,18 @@ export const UserSettings = () => {
       <h2>User settings</h2>
       <div className="settings_container">
         <div className="avatar_container">
-          <Avatar avatar={avatar} size="big">
-            <button type="submit">Change</button>
+          <Avatar avatar={avatar} size="big" onClick={handleChangeAvatar}>
+            <button
+              type="button"
+              className="change_avatar_btn"
+              onClick={handleChangeAvatar}
+            >
+              Change
+            </button>
           </Avatar>
+          {changeAvatar && (
+            <ChangeAvatar avatar={avatar} closeFunc={handleChangeAvatar} />
+          )}
         </div>
         <div className="user_data_container">
           <form className="data_form" onSubmit={handleSubmit(handleEditUser)}>
@@ -142,6 +158,7 @@ export const UserSettings = () => {
               setFocus={setFocus}
               errors={errors}
               loading={loading}
+              isValid={isValid}
             >
               {valid === true ? (
                 <span className="validated">&#10003;</span>
@@ -159,6 +176,7 @@ export const UserSettings = () => {
               setFocus={setFocus}
               errors={errors}
               loading={loading}
+              isValid={isValid}
             />
             <EditUserInput
               label="First Name"
@@ -172,6 +190,7 @@ export const UserSettings = () => {
               setFocus={setFocus}
               errors={errors}
               loading={loading}
+              isValid={isValid}
             />
             <EditUserInput
               label="Last Name"
@@ -185,6 +204,7 @@ export const UserSettings = () => {
               setFocus={setFocus}
               errors={errors}
               loading={loading}
+              isValid={isValid}
             />
           </form>
         </div>

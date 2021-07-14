@@ -76,7 +76,7 @@ export const FollowButton = ({ size, user: userProp, setUser }) => {
   if (userId === currentUserId && size === "big_btn") {
     return (
       <button className={"settings_btn " + size} onClick={handleGoToSettings}>
-        Profile Settings
+        Settings
       </button>
     );
   } else if (userId === currentUserId) {
