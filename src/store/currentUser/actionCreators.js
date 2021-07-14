@@ -53,10 +53,17 @@ export const actionCreators = {
     };
   },
 
-  unSubscribeUser: function (userId) {
+  unsubscribeUser: function (userId) {
     return {
       type: actionTypes.UNSUBSCRIBE_USER,
       payload: userId,
+    };
+  },
+
+  createNewPost: function (post) {
+    return {
+      type: actionTypes.CREATE_NEW_POST,
+      payload: post,
     };
   },
 };

@@ -26,7 +26,7 @@
   }
 }
 .user_header .big.avatar {
-  margin: 0 40px 0 0;
+  margin: 0 25px 0 15px;
 }
 @media (max-width: 750px) {
   .user_header .big.avatar {

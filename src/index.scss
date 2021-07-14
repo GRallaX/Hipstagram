@@ -252,7 +252,6 @@ code {
   align-items: center;
 
   span {
-    transition: 0.2s;
     margin-right: 16px;
 
     transition: 0.2s;
@@ -286,17 +285,14 @@ code {
     color: whitesmoke;
     margin: 2px 13px 0 0;
 
-    outline: none;
-
-    transition: 0.2s;
-
     &:focus-visible {
       filter: drop-shadow(1px 1px 1px #131313);
     }
 
-    @media (min-width: 750px) {
+    @media (min-width: 825px) {
       margin-right: 18px;
       margin-left: 18px;
+      margin-bottom: 2px;
     }
 
     svg {
@@ -348,6 +344,10 @@ code {
     &:focus-visible {
       cursor: pointer;
       filter: drop-shadow(1px 1px 1px #131313);
+    }
+
+    @media (min-width: 825px) {
+      margin-bottom: 2px;
     }
 
     svg {

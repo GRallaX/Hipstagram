@@ -10,6 +10,7 @@ import { ReactComponent as HomeSymbol } from "../images/home_icon.svg";
 import { ReactComponent as SearchSymbol } from "../images/search_icon.svg";
 import { ReactComponent as LogoutIcon } from "../images/logout_icon.svg";
 import Logo from "../images/logo 1.png";
+import { CreateNewPost } from "./dialogues/createNewPost";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,9 @@ export const Header = () => {
   const location = useLocation();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [showSearch, setShowSearch] = useState(false);
+  const [createPost, setCreatePost] = useState(false);
 
   const searchInput = useRef();
-
-  console.log(location);
 
   useEffect(() => {
     if (location.pathname === "/users_search") {
@@ -43,6 +43,10 @@ export const Header = () => {
       window.removeEventListener("resize", handleResize);
     };
   });
+
+  const handleOpenCreatePost = () => {
+    setCreatePost(v => !v);
+  };
 
   const handleOpenSearch = () => {
     if (!showSearch) {
@@ -83,6 +87,10 @@ export const Header = () => {
           className="add_new_post_btn"
           tabIndex="0"
           aria-label="Add new post"
+          onClick={handleOpenCreatePost}
+          onKeyPress={e => {
+            if (e.key === "Enter") handleOpenCreatePost();
+          }}
         >
           <PlusIcon />
         </span>
@@ -110,6 +118,7 @@ export const Header = () => {
           <LogoutIcon />
         </span>
       </nav>
+      {createPost && <CreateNewPost closeFunc={handleOpenCreatePost} />}
     </header>
   );
 };

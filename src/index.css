@@ -219,7 +219,6 @@ code {
   }
 }
 .header_navigation span {
-  transition: 0.2s;
   margin-right: 16px;
   transition: 0.2s;
   outline: none;
@@ -243,16 +242,15 @@ code {
   align-items: center;
   color: whitesmoke;
   margin: 2px 13px 0 0;
-  outline: none;
-  transition: 0.2s;
 }
 .header_navigation .add_new_post_btn:focus-visible {
   filter: drop-shadow(1px 1px 1px #131313);
 }
-@media (min-width: 750px) {
+@media (min-width: 825px) {
   .header_navigation .add_new_post_btn {
     margin-right: 18px;
     margin-left: 18px;
+    margin-bottom: 2px;
   }
 }
 .header_navigation .add_new_post_btn svg {
@@ -296,6 +294,11 @@ code {
 .header_navigation .log_out_btn:hover, .header_navigation .log_out_btn:focus-visible {
   cursor: pointer;
   filter: drop-shadow(1px 1px 1px #131313);
+}
+@media (min-width: 825px) {
+  .header_navigation .log_out_btn {
+    margin-bottom: 2px;
+  }
 }
 .header_navigation .log_out_btn svg {
   width: 28px;

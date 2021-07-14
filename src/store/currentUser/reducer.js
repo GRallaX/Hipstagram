@@ -66,6 +66,12 @@ export default function currentUserReducer(state = defaultState, action) {
         ],
       };
 
+    case actionTypes.CREATE_NEW_POST:
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+      };
+
     default:
       return state;
   }

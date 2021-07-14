@@ -93,7 +93,7 @@
   padding: 20px 30px;
 }
 .login_wrapper .form_container:focus-within {
-  box-shadow: 2px 2px 3px 1px rgba(51, 54, 56, 0.473);
+  box-shadow: 1px 2px 3px 1px rgba(51, 54, 56, 0.473);
 }
 .login_wrapper h2 {
   margin: 0 0 20px;

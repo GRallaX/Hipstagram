@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateCurrentUser } from "../../store/currentUser/thunks";
 
 import { ModalWindow } from "../../components/modalWindow";
 import { Avatar } from "../../components/avatar";
 import loadingIcon from "../../images/loading_small.svg";
 import "./dialogues.css";
-import { useDispatch } from "react-redux";
-import { updateCurrentUser } from "../../store/currentUser/thunks";
 
 const convertImage = file => {
   return new Promise((res, rej) => {
@@ -121,11 +121,7 @@ export const ChangeAvatar = ({ avatar, closeFunc }) => {
             <button type="button" className="cancel" onClick={closeFunc}>
               Cancel
             </button>
-            <button
-              className="submit"
-              type="submit"
-              disabled={error ? true : undefined}
-            >
+            <button className="submit" type="submit">
               {sending ? <img src={loadingIcon} alt="loading" /> : "Submit"}
             </button>
           </div>

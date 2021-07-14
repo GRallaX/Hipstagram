@@ -108,8 +108,20 @@ export const unSubscribeUser = user => {
   return async dispatch => {
     try {
       await followUser(user.id);
-      dispatch(actionCreators.unSubscribeUser(user.id));
+      dispatch(actionCreators.unsubscribeUser(user.id));
       return true;
+    } catch (e) {
+      console.log(e.response);
+      return e;
+    }
+  };
+};
+
+export const createNewPost = (image, title) => {
+  return async dispatch => {
+    try {
+      const uploadedPost = await createNewPost(image, title);
+      dispatch(actionCreators.createNewPost(uploadedPost));
     } catch (e) {
       console.log(e.response);
       return e;
