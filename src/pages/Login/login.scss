@@ -1,35 +1,57 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .login_wrapper {
+  position: relative;
   min-height: 100vh;
-  width: 100%;
+  min-width: 100%;
 
   display: flex;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: stretch;
 
+  transition: 0.2s;
   animation: appear 0.2s ease-in-out;
-  @keyframes appear {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+
+  @media (min-width: 850px) {
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 600px) {
+    justify-content: center;
   }
 
   .wallpaper {
-    flex: 0 99 auto;
-
-    display: flex;
-    align-items: center;
-
+    flex: 6 1 auto;
     overflow: hidden;
-    min-height: 100%;
+
+    position: relative;
+
+    @media (min-width: 850px) {
+      max-width: 60%;
+    }
 
     img {
-      height: 100vh;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      top: 0;
+
+      height: 100%;
       width: auto;
 
-      min-height: 100%;
+      transition: opacity 0.3s linear;
+
+      @media (max-width: 800px) {
+        margin-right: -50px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -38,11 +60,18 @@
   }
 
   .form_wrapper {
-    flex: 0 0 auto;
-    margin: 30px;
+    flex: 1 0 auto;
 
-    h1 {
-      margin: 30px 0;
+    padding: 0 30px;
+
+    animation: appear 0.2s ease-in-out;
+
+    @media (max-width: 800px) {
+      padding: 0 15px;
+    }
+
+    .header {
+      margin: 30px 10px 30px 0;
 
       display: flex;
       flex-wrap: nowrap;
@@ -68,10 +97,19 @@
   .form_container {
     display: flex;
     flex-direction: column;
+
+    border-radius: 5px;
+    border: 1px solid #dbdbdb;
+    background-color: #fdfdfd;
+    padding: 20px 30px;
+
+    &:focus-within {
+      box-shadow: 2px 2px 3px 1px rgba(51, 54, 56, 0.473);
+    }
   }
 
   h2 {
-    margin: 20px 0;
+    margin: 0 0 20px;
     text-align: center;
     font-size: 22px;
   }
@@ -88,6 +126,7 @@
       width: 260px;
       height: 46px;
 
+      background: #fff;
       border: 1px solid #dbdbdb;
       border-radius: 5px;
 
@@ -236,7 +275,7 @@
     }
 
     &:disabled {
-      opacity: 0.3;
+      opacity: 0.6;
       color: #696969;
       border: 2px solid #888888;
       background: rgb(240, 240, 240);
@@ -255,7 +294,7 @@
 }
 
 .switch_forms {
-  margin-top: 6px;
+  margin-top: 12px;
 
   text-align: center;
   font-size: 16px;

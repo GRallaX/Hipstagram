@@ -10,11 +10,8 @@ export const ModalWindow = ({ children, closeModalFunc }) => {
   });
 
   useEffect(() => {
-    const modalHeight = modalContainer.current?.offsetHeight + 40;
-    if (
-      modalHeight >= window.innerHeight ||
-      modalHeight + 130 >= window.innerHeight
-    ) {
+    const modalHeight = modalContainer.current?.offsetHeight + 150;
+    if (modalHeight >= window.innerHeight) {
       modalContainer.current.className = "modal_container big";
     } else {
       modalContainer.current.className = "modal_container small";

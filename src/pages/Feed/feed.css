@@ -1,3 +1,11 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .feed_posts {
   padding: 20px 0 0 0;
   display: flex;
@@ -6,6 +14,8 @@
   width: 100%;
   max-width: 600px;
   font-size: 14px;
+  animation: appear 0.2s ease-in-out;
+  transition: 0.2s;
 }
 @media (max-width: 600px) {
   .feed_posts {
@@ -19,6 +29,8 @@
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #dbdbdb;
+  animation: appear 0.2s ease-in-out;
+  transition: 0.2s;
 }
 @media (max-width: 600px) {
   .feed_post {
@@ -84,9 +96,7 @@
   display: block;
   width: 100%;
   height: auto;
-  transition-property: opacity;
-  transition-timing-function: linear;
-  transition-duration: 0.3s;
+  transition: opacity 0.3s linear;
 }
 .feed_post .image .like_heart_container {
   position: absolute;

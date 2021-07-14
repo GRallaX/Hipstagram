@@ -14,7 +14,8 @@ export const getCurrentUser = () => {
       const { data: currentUser } = await fetchCurrentUser();
       dispatch(actionCreators.setCurrentUser(currentUser));
     } catch (e) {
-      console.log(e.response);
+      console.log(e.response?.data);
+      dispatch(logOutUser());
       return e;
     }
   };

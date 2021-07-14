@@ -9,6 +9,7 @@ import { TextInput } from "./textInput";
 import { PasswordInput } from "./passwordInput";
 import loadingIcon from "../../images/loading_small.svg";
 import { searchUsersByLogin } from "../../api/users";
+import Logo from "../../images/logo 1.png";
 
 export const RegistrationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -104,49 +105,61 @@ export const RegistrationForm = () => {
   }, []);
 
   return (
-    <div className="form_container">
-      <h2>Registration</h2>
-      <form className="form" onSubmit={handleSubmit(handleRegistration)}>
-        <TextInput
-          label="Login"
-          message={errors}
-          setError={setError}
-          clearErrors={clearErrors}
-          serverValidation={serverLoginValidation}
-          {...register("login", validation.login)}
-        />
-        <TextInput
-          label="Email"
-          message={errors}
-          clearErrors={clearErrors}
-          {...register("email", validation.email)}
-        />
-        <PasswordInput
-          label="Passsword"
-          message={errors}
-          clearErrors={clearErrors}
-          passwordShown={passwordShown}
-          setPasswordShown={setPasswordShown}
-          {...register("password", validation.password)}
-        />
-        <PasswordInput
-          label="Confirm password"
-          message={errors}
-          clearErrors={clearErrors}
-          passwordShown={passwordShown}
-          setPasswordShown={setPasswordShown}
-          {...register("password1", validation.password1)}
-        />
-        <button
-          className="submit_btn"
-          type="submit"
-          aria-labelledby="Send credentials"
-          disabled={isValid ? undefined : true}
-        >
-          {isLoading ? <img src={loadingIcon} alt="loadingIcon" /> : "Sign up"}
-        </button>
-        {errors.form && <span className="message">{errors.form.message}</span>}
-      </form>
+    <div className="form_wrapper">
+      <h1 className="header">
+        <img src={Logo} alt="hip logo" />
+        Hipstagram
+      </h1>
+      <div className="form_container">
+        <h2>Registration</h2>
+        <form className="form" onSubmit={handleSubmit(handleRegistration)}>
+          <TextInput
+            label="Login"
+            message={errors}
+            setError={setError}
+            clearErrors={clearErrors}
+            serverValidation={serverLoginValidation}
+            {...register("login", validation.login)}
+          />
+          <TextInput
+            label="Email"
+            message={errors}
+            clearErrors={clearErrors}
+            {...register("email", validation.email)}
+          />
+          <PasswordInput
+            label="Passsword"
+            message={errors}
+            clearErrors={clearErrors}
+            passwordShown={passwordShown}
+            setPasswordShown={setPasswordShown}
+            {...register("password", validation.password)}
+          />
+          <PasswordInput
+            label="Confirm password"
+            message={errors}
+            clearErrors={clearErrors}
+            passwordShown={passwordShown}
+            setPasswordShown={setPasswordShown}
+            {...register("password1", validation.password1)}
+          />
+          <button
+            className="submit_btn"
+            type="submit"
+            aria-labelledby="Send credentials"
+            disabled={isValid ? undefined : true}
+          >
+            {isLoading ? (
+              <img src={loadingIcon} alt="loadingIcon" />
+            ) : (
+              "Sign up"
+            )}
+          </button>
+          {errors.form && (
+            <span className="message">{errors.form.message}</span>
+          )}
+        </form>
+      </div>
       <div className="switch_forms">
         <span>
           Have an account?

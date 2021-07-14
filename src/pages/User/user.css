@@ -1,3 +1,11 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .user_header {
   margin: 20px 0 30px;
   width: max-content;
@@ -7,6 +15,7 @@
   display: flex;
   justify-content: center;
   padding: 20px;
+  animation: appear 0.2s ease-in-out;
 }
 @media (max-width: 600px) {
   .user_header {
@@ -135,6 +144,7 @@ a:focus-visible .interactions_container {
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #dbdbdb;
+  animation: appear 0.2s ease-in-out;
 }
 @media (min-width: 902px) {
   .user_posts {

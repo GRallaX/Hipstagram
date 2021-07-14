@@ -1,3 +1,12 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .users_search {
   width: 100%;
   max-width: 500px;
@@ -9,6 +18,10 @@
 
   padding: 0 16px;
   font-size: 14px;
+
+  animation: appear 0.2s ease-in-out;
+
+  transition: 0.2s;
 
   @media (max-width: 600px) {
     flex: 1 0 auto;
@@ -41,6 +54,10 @@
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+
+    animation: appear 0.2s ease-in-out;
+
+    transition: 0.2s;
 
     a:first-of-type {
       outline: none;

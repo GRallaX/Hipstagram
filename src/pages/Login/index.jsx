@@ -1,27 +1,28 @@
 import { Route, Switch } from "react-router-dom";
+import { useState } from "react";
 
 import { LoginForm } from "./loginForm";
 import { RegistrationForm } from "./registrationForm";
 import Wallpaper from "../../images/wpap_final 1.png";
-import Logo from "../../images/logo 1.png";
 import "./login.css";
 
 export const Login = () => {
+  const [imgLoading, setImgLoading] = useState(true);
+
   return (
     <div className="login_wrapper">
-      <div className="wallpaper">
-        <img src={Wallpaper} alt="wallpaper" />
+      <div className={imgLoading ? "wallpaper loading" : "wallpaper"}>
+        <img
+          src={Wallpaper}
+          onLoad={() => setImgLoading(false)}
+          alt="wallpaper"
+        />
       </div>
-      <div className="form_wrapper">
-        <h1>
-          <img src={Logo} alt="hip logo" />
-          Hipstagram
-        </h1>
-        <Switch>
-          <Route path="/login/registration" component={RegistrationForm} />
-          <Route path="/login" component={LoginForm} />
-        </Switch>
-      </div>
+
+      <Switch>
+        <Route path="/login/registration" component={RegistrationForm} />
+        <Route path="/login" component={LoginForm} />
+      </Switch>
     </div>
   );
 };

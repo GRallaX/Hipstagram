@@ -30,7 +30,10 @@ export const UserSettings = () => {
   const dispatch = useDispatch();
 
   const handleChangeAvatar = e => {
-    if (e) e.preventDefault();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setChangeAvatar(v => !v);
   };
 

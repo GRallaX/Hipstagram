@@ -26,9 +26,7 @@ api.interceptors.response.use(
     if (error.response.status === 401) {
       store.dispatch(actionCreators.logOut());
     }
-    if (error.response.data === "User not found") {
-      store.dispatch(actionCreators.logOut());
-    }
+
     return Promise.reject(error);
   }
 );

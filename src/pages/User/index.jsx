@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, useLocation } from "react-router-dom";
+import { Route, useHistory, useLocation } from "react-router-dom";
 import { getCurrentUser } from "../../store/currentUser/thunks";
 import LazyLoad from "react-lazyload";
 import { getUserById } from "../../api/users";
@@ -21,6 +21,7 @@ export const User = ({
     params: { id: pageUserId },
   },
 }) => {
+  const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
@@ -33,13 +34,21 @@ export const User = ({
   const { id: currentUserId, token } = currentUser;
 
   useEffect(() => {
-    if (pageUserId === currentUserId) dispatch(getCurrentUser());
-  }, [dispatch, currentUserId, pageUserId]);
-
-  useEffect(() => {
+    let cleanupFunction = false;
+    setIsLoading(true);
     setModalFollowers(false);
     setModalFollowings(false);
-  }, [user]);
+    (async () => {
+      if (pageUserId === currentUserId) {
+        await dispatch(getCurrentUser());
+        if (!cleanupFunction) {
+          setIsLoading(false);
+        }
+      }
+    })();
+
+    return () => (cleanupFunction = true);
+  }, [dispatch, currentUserId, pageUserId, location]);
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -51,7 +60,6 @@ export const User = ({
             followersCount: currentUser.followers.length,
             followingsCount: currentUser.following.length,
           });
-          setIsLoading(false);
         }
         document.title = "Hipstagram - My Profile";
       } else {
@@ -59,7 +67,6 @@ export const User = ({
           const { data: fetchedUser } = await getUserById(pageUserId);
           const { data: followersAndFollowings } =
             await getFollowersAndFollowings(pageUserId);
-
           if (!cleanupFunction) {
             setUser({ ...fetchedUser, ...followersAndFollowings });
             setIsLoading(false);
@@ -73,9 +80,7 @@ export const User = ({
     })();
 
     return () => (cleanupFunction = true);
-  }, [pageUserId, currentUser, token, currentUserId]);
-
-  useEffect(() => setIsLoading(true), [location]);
+  }, [pageUserId, currentUser, token, currentUserId, history]);
 
   if (isLoading) {
     return (

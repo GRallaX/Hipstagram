@@ -14,13 +14,13 @@ import { LoadingIconBig } from "./components/loadingIcon";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { userLoaded, isLoggedIn } = useSelector((state) => state.currentUser);
+  const { userLoaded, isLoggedIn } = useSelector(state => state.currentUser);
 
   useEffect(() => {
     if (!userLoaded && isLoggedIn) {
       dispatch(getCurrentUser());
     }
-  });
+  }, [isLoggedIn, userLoaded, dispatch]);
 
   if (isLoggedIn && !userLoaded) {
     return (

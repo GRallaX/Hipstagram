@@ -8,6 +8,7 @@ import validation from "./validation";
 import { PasswordInput } from "./passwordInput";
 import { TextInput } from "./textInput";
 import loadingIcon from "../../images/loading_small.svg";
+import Logo from "../../images/logo 1.png";
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,30 +39,38 @@ export const LoginForm = () => {
   }, []);
 
   return (
-    <div className="form_container">
-      <h2>Sign In</h2>
-      <form className="form" onSubmit={handleSubmit(handleLogin)}>
-        <TextInput
-          label="Login"
-          message={errors}
-          clearErrors={clearErrors}
-          {...register("login", validation.login)}
-        />
-        <PasswordInput
-          label="Password"
-          message={errors}
-          clearErrors={clearErrors}
-          {...register("password", validation.password)}
-        />
-        <button
-          className="submit_btn"
-          type="submit"
-          aria-labelledby="Send credentials"
-        >
-          {isLoading ? <img src={loadingIcon} alt="loadingIcon" /> : "Log In"}
-        </button>
-        {errors.form && <span className="message">{errors.form.message}</span>}
-      </form>
+    <div className="form_wrapper">
+      <h1 className="header">
+        <img src={Logo} alt="hip logo" />
+        Hipstagram
+      </h1>
+      <div className="form_container">
+        <h2>Sign In</h2>
+        <form className="form" onSubmit={handleSubmit(handleLogin)}>
+          <TextInput
+            label="Login"
+            message={errors}
+            clearErrors={clearErrors}
+            {...register("login", validation.login)}
+          />
+          <PasswordInput
+            label="Password"
+            message={errors}
+            clearErrors={clearErrors}
+            {...register("password", validation.password)}
+          />
+          <button
+            className="submit_btn"
+            type="submit"
+            aria-labelledby="Send credentials"
+          >
+            {isLoading ? <img src={loadingIcon} alt="loadingIcon" /> : "Log In"}
+          </button>
+          {errors.form && (
+            <span className="message">{errors.form.message}</span>
+          )}
+        </form>
+      </div>
       <div className="switch_forms">
         <span>
           Don't have an account?

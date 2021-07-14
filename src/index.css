@@ -43,10 +43,10 @@ code {
 }
 
 .loading_big {
+  margin-top: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 500px;
 }
 .loading_big img {
   height: 100px;
@@ -67,14 +67,6 @@ code {
   background-color: #fafafa;
   animation: appear 0.2s ease-in-out;
 }
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @media (min-width: 600px) {
   .main {
     width: 100%;
@@ -93,6 +85,7 @@ code {
   border-radius: 5px;
   background-color: #fff;
   padding: 0;
+  animation: appear 0.2s ease-in-out;
 }
 @media (max-width: 600px) {
   .main .empty {
@@ -105,6 +98,14 @@ code {
   }
 }
 
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .main_header {
   width: 100vw;
   left: 0;
@@ -117,6 +118,7 @@ code {
   height: 50px;
   background-color: #4d88ed;
   box-shadow: 0 2px 2px 0 rgba(127, 132, 135, 0.2);
+  animation: appear 0.2s ease-in-out;
 }
 .main_header .logo {
   flex: 1 999 0%;
@@ -335,11 +337,11 @@ code {
   min-height: 300px;
   height: 100vh;
   width: 100vw;
-  padding-left: calc(100vw - 100%);
   overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  animation: appear 0.2s ease-in-out;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
@@ -352,8 +354,8 @@ code {
   overflow: hidden;
   background-color: white;
   border-radius: 5px;
-  transition: 0.5s;
-  animation: appearModal 0.5s ease-in;
+  transition: 0.7s;
+  animation: appearModal 0.7s ease-in;
 }
 @keyframes appearModal {
   0% {
@@ -379,7 +381,7 @@ code {
   outline: none;
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  transition: 2s;
+  transition: 0.2s;
 }
 .follow_btn.not_followed img {
   filter: brightness(3);

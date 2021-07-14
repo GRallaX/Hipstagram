@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { logOutUser } from "../store/currentUser/thunks";
 
 import { SearchInput } from "../components/searchUsersInput";
@@ -16,10 +16,21 @@ export const Header = () => {
   const { id: currentUserId, login: currentUserLogin } = useSelector(
     state => state.currentUser
   );
+  const location = useLocation();
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [showSearch, setShowSearch] = useState(false);
 
   const searchInput = useRef();
+
+  console.log(location);
+
+  useEffect(() => {
+    if (location.pathname === "/users_search") {
+      setShowSearch(true);
+    } else {
+      setShowSearch(false);
+    }
+  }, [location]);
 
   useEffect(() => {
     const handleResize = () => {

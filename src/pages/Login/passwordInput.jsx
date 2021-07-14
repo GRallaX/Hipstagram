@@ -74,7 +74,7 @@ export const PasswordInput = React.forwardRef(
                 setShowPass(!showPass);
                 if (setPasswordShown) setPasswordShown(!passwordShown);
               }}
-              disabled={value ? false : true}
+              disabled={value ? undefined : true}
             >
               {showPass ? "Hide" : "Show"}
             </button>
