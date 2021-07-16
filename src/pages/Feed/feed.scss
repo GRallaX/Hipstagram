@@ -36,6 +36,10 @@
   animation: appear 0.2s ease-in-out;
   transition: 0.2s;
 
+  .loading_big {
+    margin: 200px 0;
+  }
+
   @media (max-width: 600px) {
     margin: 0;
     border: none;
@@ -58,9 +62,7 @@
       color: black;
       font-weight: 600;
 
-      .avatar.small {
-        margin-right: 12px;
-      }
+      margin-right: 12px;
     }
 
     a:first-of-type {
@@ -68,7 +70,7 @@
 
       &:focus-visible {
         .avatar {
-          box-shadow: 0 1px 2px 1px rgba(51, 54, 56, 0.473);
+          box-shadow: 1px 1px 2px 2px rgba(51, 54, 56, 0.473);
         }
       }
     }
@@ -76,7 +78,7 @@
     a:nth-of-type(2) {
       &:hover,
       &:focus-visible {
-        filter: drop-shadow(1px 1px 1px #131313);
+        filter: drop-shadow(1px 2px 1px #131313);
       }
     }
   }
@@ -209,7 +211,7 @@
 
       outline: none;
       &:focus-visible {
-        filter: drop-shadow(1px 1px 1px #131313);
+        filter: drop-shadow(1px 2px 1px #131313);
       }
     }
 
@@ -218,7 +220,7 @@
 
       outline: none;
       &:focus-visible {
-        filter: drop-shadow(1px 1px 1px #131313);
+        filter: drop-shadow(1px 2px 1px #131313);
       }
 
       &.liked {
@@ -237,8 +239,10 @@
       height: 25px;
       cursor: pointer;
 
+      transition: 0.2s;
+
       &:hover {
-        filter: drop-shadow(1px 1px 1px #131313);
+        filter: drop-shadow(1px 2px 1px #131313);
         transition: 0.2s;
       }
     }
@@ -258,14 +262,14 @@
 
         outline: none;
         &:focus-visible {
-          filter: drop-shadow(1px 1px 1px #131313);
+          filter: drop-shadow(1px 2px 1px #131313);
         }
 
         transition: 0.2s;
 
         &:hover,
         &:focus-visible {
-          filter: drop-shadow(1px 1px 1px #131313);
+          filter: drop-shadow(1px 2px 1px #131313);
           cursor: pointer;
         }
       }
@@ -332,6 +336,9 @@
 
         font-family: inherit;
         font-size: 14px;
+
+        transition: 0.2s;
+        overflow-y: hidden;
       }
 
       .add_comment_btn {
@@ -351,7 +358,7 @@
 
         &:hover,
         &:focus-visible {
-          filter: drop-shadow(1px 1px 2px #131313);
+          filter: drop-shadow(1px 2px 2px #131313);
           cursor: pointer;
         }
 

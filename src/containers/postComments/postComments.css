@@ -28,42 +28,39 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 .comments_container .comment .comment_info .comment_menu {
   position: relative;
 }
 .comments_container .comment .comment_info .comment_menu .btns {
   position: absolute;
-  top: -29px;
-  left: -20px;
-  width: 70px;
-  height: 80px;
+  top: -5px;
+  right: 100%;
+  width: 132px;
+  height: 33px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
-  flex-direction: column;
   transition: 0.2s;
-  z-index: 15;
 }
 .comments_container .comment .comment_info .comment_menu .btns .edit,
 .comments_container .comment .comment_info .comment_menu .btns .delete {
-  margin: 0;
   padding: 0;
   width: 60px;
-  height: 25px;
+  height: 23px;
   border: none;
   border-radius: 5px;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 12px;
   outline: none;
   color: whitesmoke;
 }
 .comments_container .comment .comment_info .comment_menu .btns .edit:hover, .comments_container .comment .comment_info .comment_menu .btns .edit:focus-visible,
 .comments_container .comment .comment_info .comment_menu .btns .delete:hover,
 .comments_container .comment .comment_info .comment_menu .btns .delete:focus-visible {
-  filter: drop-shadow(1px 1px 2px #131313);
+  filter: drop-shadow(1px 2px 2px #131313);
   cursor: pointer;
 }
 .comments_container .comment .comment_info .comment_menu .btns .edit {
@@ -73,31 +70,32 @@
   background: #ed4956;
 }
 .comments_container .comment .comment_info .comment_menu .hidden {
-  top: 12px;
-  height: 0;
-}
-.comments_container .comment .comment_info .edited {
-  font-weight: 400;
-  color: #bebebe;
+  width: 0;
 }
 .comments_container .comment.owner {
   margin-bottom: 8px;
 }
+.comments_container .comment .edited {
+  font-weight: 400;
+  color: #bbbbbb;
+  font-size: 14px;
+}
 .comments_container .comment .menu_toggle {
   opacity: 0;
+  margin: 4px 8px 0;
   transition: 0.2s;
 }
 .comments_container .comment .menu_toggle:hover, .comments_container .comment .menu_toggle:focus {
   outline: none;
   cursor: pointer;
-  filter: drop-shadow(1px 1px 1px #131313);
+  filter: drop-shadow(1px 2px 1px #131313);
   opacity: 1;
 }
 .comments_container .comment .menu_toggle svg {
   display: block;
-  margin: 2px 6px 0 6px;
-  height: 18px;
-  width: 15px;
+  height: 14px;
+  width: auto;
+  fill: #afaeae;
 }
 
 .comment_user_ref {
@@ -109,5 +107,5 @@
   outline: none;
 }
 .comment_user_ref:hover, .comment_user_ref:focus {
-  filter: drop-shadow(1px 1px 1px #131313);
+  filter: drop-shadow(1px 2px 1px #131313);
 }/*# sourceMappingURL=postComments.css.map */

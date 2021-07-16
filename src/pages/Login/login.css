@@ -90,7 +90,13 @@
   border-radius: 5px;
   border: 1px solid #dbdbdb;
   background-color: #fdfdfd;
-  padding: 20px 30px;
+  padding: 20px 30px 0;
+}
+.login_wrapper .form_container.login {
+  min-height: 270px;
+}
+.login_wrapper .form_container.registration {
+  min-height: 350px;
 }
 .login_wrapper .form_container:focus-within {
   box-shadow: 1px 2px 3px 1px rgba(51, 54, 56, 0.473);
@@ -101,6 +107,9 @@
   font-size: 22px;
 }
 
+.form.login {
+  min-height: 188px;
+}
 .form .input_wrapper {
   min-height: 63px;
 }
@@ -190,7 +199,7 @@
   transition: 0.2s;
 }
 .form .input_wrapper .show_pass button:hover, .form .input_wrapper .show_pass button:focus-visible {
-  filter: drop-shadow(1px 1px 2px #131313);
+  filter: drop-shadow(1px 2px 2px #131313);
   cursor: pointer;
 }
 .form .input_wrapper .show_pass button:disabled {
@@ -221,7 +230,7 @@
   justify-content: center;
 }
 .form .submit_btn:hover, .form .submit_btn:focus-visible {
-  filter: drop-shadow(1px 1px 2px #131313);
+  filter: drop-shadow(1px 2px 2px #131313);
   cursor: pointer;
 }
 .form .submit_btn:disabled {
@@ -250,5 +259,5 @@
   font-weight: 700;
 }
 .switch_forms a:hover, .switch_forms a:focus-visible {
-  filter: drop-shadow(1px 1px 1px #131313);
+  filter: drop-shadow(1px 2px 1px #131313);
 }/*# sourceMappingURL=login.css.map */

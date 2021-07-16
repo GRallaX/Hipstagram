@@ -21,7 +21,7 @@ export const RegistrationForm = () => {
     setError,
     clearErrors,
     watch,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({ mode: "onTouched" });
 
   const history = useHistory();
@@ -110,7 +110,7 @@ export const RegistrationForm = () => {
         <img src={Logo} alt="hip logo" />
         Hipstagram
       </h1>
-      <div className="form_container">
+      <div className="form_container registartion">
         <h2>Registration</h2>
         <form className="form" onSubmit={handleSubmit(handleRegistration)}>
           <TextInput
@@ -147,7 +147,7 @@ export const RegistrationForm = () => {
             className="submit_btn"
             type="submit"
             aria-labelledby="Send credentials"
-            disabled={isValid ? undefined : true}
+            disabled={Object.keys(errors).length ? true : undefined}
           >
             {isLoading ? (
               <img src={loadingIcon} alt="loadingIcon" />

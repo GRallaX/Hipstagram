@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, useHistory, useLocation } from "react-router-dom";
+import { Route, useParams } from "react-router-dom";
 import { getCurrentUser } from "../../store/currentUser/thunks";
 import LazyLoad from "react-lazyload";
 import { getUserById } from "../../api/users";
@@ -16,14 +16,10 @@ import { FollowButton } from "../../components/followBtn";
 import { LoadingIconBig } from "../../components/loadingIcon";
 import "./user.css";
 
-export const User = ({
-  match: {
-    params: { id: pageUserId },
-  },
-}) => {
-  const history = useHistory();
-  const location = useLocation();
+export const User = () => {
   const dispatch = useDispatch();
+  const { id: pageUserId } = useParams();
+
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [modalFollowers, setModalFollowers] = useState(false);
@@ -48,7 +44,7 @@ export const User = ({
     })();
 
     return () => (cleanupFunction = true);
-  }, [dispatch, currentUserId, pageUserId, location]);
+  }, [dispatch, currentUserId, pageUserId]);
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -80,7 +76,7 @@ export const User = ({
     })();
 
     return () => (cleanupFunction = true);
-  }, [pageUserId, currentUser, token, currentUserId, history]);
+  }, [pageUserId, currentUser, token, currentUserId]);
 
   if (isLoading) {
     return (

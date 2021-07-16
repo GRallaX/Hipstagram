@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -8,19 +8,18 @@ import {
 } from "../../api/comments";
 
 import { EditingTextModal } from "../dialogues/editingText";
-
-import { ReactComponent as ThreeDotsMenu } from "../../images/three-dots-menu.svg";
+import { ReactComponent as Settings } from "../../images/settings_icon.svg";
 import loadingIcon from "../../images/loading_small.svg";
 import "./postComments.css";
 
 const Comment = ({ comment, comments, setComments }) => {
   const [showBtns, setShowBtns] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-
   const { id, owner, text } = comment;
   const { id: currentUserId } = useSelector(state => state.currentUser);
+  const btnToFocus = useRef();
 
-  const handleDeleteComment = async e => {
+  const handleDeleteComment = async () => {
     try {
       await deleteComment(id);
       setComments(
@@ -49,11 +48,15 @@ const Comment = ({ comment, comments, setComments }) => {
     }
   };
 
+  useEffect(() => {
+    if (showBtns && btnToFocus.current) btnToFocus.current.focus();
+  }, [showBtns, btnToFocus]);
+
   return (
     <li
       className="comment"
-      onPointerLeave={() => {
-        if (showBtns) setShowBtns(false);
+      onMouseLeave={() => {
+        setShowBtns(false);
       }}
       onClick={() => {
         if (showBtns) setShowBtns(false);
@@ -87,10 +90,11 @@ const Comment = ({ comment, comments, setComments }) => {
                 }}
                 tabIndex="0"
               >
-                <ThreeDotsMenu />
+                <Settings />
               </div>
               <div className={showBtns ? "btns" : "btns hidden"}>
                 <button
+                  ref={btnToFocus}
                   className="edit"
                   disabled={!showBtns ? true : false}
                   onClick={() => {
@@ -104,9 +108,6 @@ const Comment = ({ comment, comments, setComments }) => {
                   className="delete"
                   disabled={!showBtns ? true : false}
                   onClick={handleDeleteComment}
-                  onBlur={() => {
-                    if (showBtns) setShowBtns(false);
-                  }}
                 >
                   delete
                 </button>
@@ -114,7 +115,7 @@ const Comment = ({ comment, comments, setComments }) => {
             </>
           )}
         </div>
-        {comment.isEdited && <span className="edited">edited</span>}
+        {comment.isEdited && <span className="edited"> edited</span>}
       </div>
     </li>
   );

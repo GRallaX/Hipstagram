@@ -101,7 +101,15 @@
     border-radius: 5px;
     border: 1px solid #dbdbdb;
     background-color: #fdfdfd;
-    padding: 20px 30px;
+    padding: 20px 30px 0;
+
+    &.login {
+      min-height: 270px;
+    }
+
+    &.registration {
+      min-height: 350px;
+    }
 
     &:focus-within {
       box-shadow: 1px 2px 3px 1px rgba(51, 54, 56, 0.473);
@@ -116,6 +124,10 @@
 }
 
 .form {
+  &.login {
+    min-height: 188px;
+  }
+
   .input_wrapper {
     min-height: 63px;
 
@@ -225,7 +237,7 @@
 
         &:hover,
         &:focus-visible {
-          filter: drop-shadow(1px 1px 2px #131313);
+          filter: drop-shadow(1px 2px 2px #131313);
           cursor: pointer;
         }
 
@@ -270,7 +282,7 @@
 
     &:hover,
     &:focus-visible {
-      filter: drop-shadow(1px 1px 2px #131313);
+      filter: drop-shadow(1px 2px 2px #131313);
       cursor: pointer;
     }
 
@@ -307,7 +319,7 @@
 
     &:hover,
     &:focus-visible {
-      filter: drop-shadow(1px 1px 1px #131313);
+      filter: drop-shadow(1px 2px 1px #131313);
     }
   }
 }

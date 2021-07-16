@@ -132,10 +132,10 @@ code {
   outline: none;
 }
 .main_header .logo a:focus-visible {
-  filter: drop-shadow(1px 1px 2px #131313);
+  filter: drop-shadow(1px 2px 2px #131313);
 }
 .main_header .logo img {
-  filter: drop-shadow(1px 1px 2px #131313);
+  filter: drop-shadow(1px 2px 2px #131313);
   margin-right: 5px;
   width: 40px;
   transition: 0.2s;
@@ -151,7 +151,7 @@ code {
   transition: 0.2s;
 }
 .main_header .logo span:hover {
-  filter: drop-shadow(1px 1px 1px #131313);
+  filter: drop-shadow(1px 2px 1px #131313);
 }
 .main_header .users_search_input_container {
   flex: 0 1 auto;
@@ -224,7 +224,7 @@ code {
   outline: none;
 }
 .header_navigation span:hover, .header_navigation span:focus-visible {
-  filter: drop-shadow(1px 1px 1px #131313);
+  filter: drop-shadow(1px 2px 1px #131313);
   cursor: pointer;
 }
 .header_navigation a {
@@ -235,22 +235,20 @@ code {
   transition: 0.2s;
 }
 .header_navigation a:focus-visible {
-  filter: drop-shadow(1px 1px 1px #131313);
+  filter: drop-shadow(1px 2px 1px #131313);
 }
 .header_navigation .add_new_post_btn {
   display: flex;
   align-items: center;
   color: whitesmoke;
-  margin: 2px 13px 0 0;
+  margin-left: 16px;
 }
 .header_navigation .add_new_post_btn:focus-visible {
-  filter: drop-shadow(1px 1px 1px #131313);
+  filter: drop-shadow(1px 2px 1px #131313);
 }
-@media (min-width: 825px) {
+@media (max-width: 750px) {
   .header_navigation .add_new_post_btn {
-    margin-right: 18px;
-    margin-left: 18px;
-    margin-bottom: 2px;
+    margin: 2px 13px 0 0;
   }
 }
 .header_navigation .add_new_post_btn svg {
@@ -293,7 +291,7 @@ code {
 }
 .header_navigation .log_out_btn:hover, .header_navigation .log_out_btn:focus-visible {
   cursor: pointer;
-  filter: drop-shadow(1px 1px 1px #131313);
+  filter: drop-shadow(1px 2px 1px #131313);
 }
 @media (min-width: 825px) {
   .header_navigation .log_out_btn {
@@ -326,7 +324,7 @@ code {
   height: 32px;
 }
 .avatar.small:hover {
-  box-shadow: 1px 1px 2px 1px rgba(51, 54, 56, 0.473);
+  box-shadow: 1px 1px 2px 2px rgba(51, 54, 56, 0.473);
 }
 .avatar.very_small {
   width: 24px;
@@ -340,7 +338,7 @@ code {
   min-height: 300px;
   height: 100vh;
   width: 100vw;
-  overflow-y: auto;
+  overflow-y: scroll;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -358,7 +356,7 @@ code {
   background-color: white;
   border-radius: 5px;
   transition: 0.7s;
-  animation: appearModal 0.7s ease-in;
+  animation: appearModal 0.8s ease-in;
 }
 @keyframes appearModal {
   0% {
@@ -382,6 +380,9 @@ code {
   color: whitesmoke;
   background: #4d88ed;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: 0.2s;
@@ -395,7 +396,7 @@ code {
   font-size: 14px;
 }
 .follow_btn.medium_btn img {
-  height: 30px;
+  height: 29px;
   width: 100%;
 }
 .follow_btn.big_btn {
@@ -418,7 +419,7 @@ code {
   width: 100%;
 }
 .follow_btn:hover, .follow_btn:focus-visible {
-  filter: drop-shadow(1px 1px 2px #131313);
+  filter: drop-shadow(1px 2px 2px #131313);
   cursor: pointer;
 }
 
@@ -436,7 +437,7 @@ code {
   transition: 0.2s;
 }
 .settings_btn:hover, .settings_btn:focus-visible {
-  filter: drop-shadow(1px 1px 2px #131313);
+  filter: drop-shadow(1px 2px 2px #131313);
   cursor: pointer;
 }
 

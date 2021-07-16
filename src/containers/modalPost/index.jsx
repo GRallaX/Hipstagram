@@ -115,11 +115,7 @@ export const ModalPost = ({ setModalPost }) => {
                 {postOwner.login}
               </Link>
               <div className="subscribe_btn">
-                <FollowButton
-                  user={postOwner}
-                  setUser={setPostOwner}
-                  size="small_btn"
-                />
+                <FollowButton user={postOwner} size="small_btn" />
               </div>
             </header>
             <div
@@ -131,7 +127,7 @@ export const ModalPost = ({ setModalPost }) => {
                 onLoad={() => {
                   setImgLoading(false);
                 }}
-                src="https://sample-videos.com/img/Sample-png-image-500kb.png"
+                src={imgUrl}
                 alt={imgUrl}
               />
               <LikeHeart

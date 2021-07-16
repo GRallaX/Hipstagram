@@ -44,7 +44,7 @@ export const LoginForm = () => {
         <img src={Logo} alt="hip logo" />
         Hipstagram
       </h1>
-      <div className="form_container">
+      <div className="form_container login">
         <h2>Sign In</h2>
         <form className="form" onSubmit={handleSubmit(handleLogin)}>
           <TextInput
@@ -63,12 +63,11 @@ export const LoginForm = () => {
             className="submit_btn"
             type="submit"
             aria-labelledby="Send credentials"
+            disabled={Object.keys(errors).length ? true : undefined}
           >
             {isLoading ? <img src={loadingIcon} alt="loadingIcon" /> : "Log In"}
           </button>
-          {errors.form && (
-            <span className="message">{errors.form.message}</span>
-          )}
+          <span className="message">{errors.form?.message}</span>
         </form>
       </div>
       <div className="switch_forms">

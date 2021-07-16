@@ -138,33 +138,27 @@ a:focus-visible .interactions_container {
 }
 
 .user_posts {
-  width: 100%;
   max-width: 902px;
   overflow: hidden;
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #dbdbdb;
+  margin-bottom: 30px;
   animation: appear 0.2s ease-in-out;
 }
 @media (min-width: 902px) {
   .user_posts {
-    padding: 0 27px 27px;
+    padding: 27px 27px 0;
   }
 }
 @media (max-width: 902px) {
   .user_posts {
-    padding: 0 3vw 0 3vw;
-    border: none;
-    border-top: 1px solid #dbdbdb;
-    border-bottom: 1px solid #dbdbdb;
+    padding: 3vw 3vw 0;
   }
 }
 @media (max-width: 750px) {
   .user_posts {
     padding: 20px 0;
-    border: none;
-    border-top: 1px solid #dbdbdb;
-    border-bottom: 1px solid #dbdbdb;
   }
 }
 @media (max-width: 600px) {
@@ -193,7 +187,6 @@ a:focus-visible .interactions_container {
   padding: 0;
 }
 .user_posts .posts_wrapper {
-  padding-top: 5vw;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -201,7 +194,6 @@ a:focus-visible .interactions_container {
 }
 @media (min-width: 902px) {
   .user_posts .posts_wrapper {
-    padding-top: 45px;
     width: 100%;
   }
 }
@@ -221,21 +213,26 @@ a:focus-visible .interactions_container {
   margin-bottom: 3vw;
 }
 .user_posts .posts_wrapper .posts_group a:not(:last-of-type) {
-  margin-right: 3vw;
+  margin-right: 0;
 }
 @media (min-width: 902px) {
   .user_posts .posts_wrapper .posts_group a:not(:last-of-type) {
     margin-right: 27px;
   }
 }
+@media (max-width: 902px) {
+  .user_posts .posts_wrapper .posts_group a:not(:last-of-type) {
+    margin-right: 3vw;
+  }
+}
 @media (max-width: 750px) {
   .user_posts .posts_wrapper .posts_group a:not(:last-of-type) {
-    margin: 0;
+    margin-right: 0;
   }
 }
 @media (min-width: 902px) {
   .user_posts .posts_wrapper .posts_group a {
-    margin: 0 27px 27px 0;
+    margin: 0 0 27px;
   }
 }
 @media (max-width: 750px) {
@@ -245,16 +242,16 @@ a:focus-visible .interactions_container {
 }
 .user_posts .posts_wrapper .posts_group a .user_post {
   position: relative;
-  width: calc(88vw / 3);
-  height: calc(88vw / 3);
+  width: calc(84vw / 3);
+  height: calc(84vw / 3);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 @media (min-width: 902px) {
   .user_posts .posts_wrapper .posts_group a .user_post {
-    width: 264px;
-    height: 264px;
+    width: 252px;
+    height: 252px;
   }
 }
 @media (max-width: 750px) {

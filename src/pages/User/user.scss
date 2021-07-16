@@ -168,7 +168,6 @@ a {
 }
 
 .user_posts {
-  width: 100%;
   max-width: 902px;
 
   overflow: hidden;
@@ -176,27 +175,20 @@ a {
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #dbdbdb;
+  margin-bottom: 30px;
 
   animation: appear 0.2s ease-in-out;
 
   @media (min-width: 902px) {
-    padding: 0 27px 27px;
+    padding: 27px 27px 0;
   }
 
   @media (max-width: 902px) {
-    padding: 0 3vw 0 3vw;
-
-    border: none;
-    border-top: 1px solid #dbdbdb;
-    border-bottom: 1px solid #dbdbdb;
+    padding: 3vw 3vw 0;
   }
 
   @media (max-width: 750px) {
     padding: 20px 0;
-
-    border: none;
-    border-top: 1px solid #dbdbdb;
-    border-bottom: 1px solid #dbdbdb;
   }
 
   @media (max-width: 600px) {
@@ -228,10 +220,7 @@ a {
   }
 
   .posts_wrapper {
-    padding-top: 5vw;
-
     @media (min-width: 902px) {
-      padding-top: 45px;
       width: 100%;
     }
 
@@ -257,19 +246,22 @@ a {
         margin-bottom: 3vw;
 
         &:not(:last-of-type) {
-          margin-right: 3vw;
+          margin-right: 0;
 
           @media (min-width: 902px) {
             margin-right: 27px;
           }
+          @media (max-width: 902px) {
+            margin-right: 3vw;
+          }
 
           @media (max-width: 750px) {
-            margin: 0;
+            margin-right: 0;
           }
         }
 
         @media (min-width: 902px) {
-          margin: 0 27px 27px 0;
+          margin: 0 0 27px;
         }
 
         @media (max-width: 750px) {
@@ -278,16 +270,16 @@ a {
 
         .user_post {
           position: relative;
-          width: calc(88vw / 3);
-          height: calc(88vw / 3);
+          width: calc(84vw / 3);
+          height: calc(84vw / 3);
 
           display: flex;
           justify-content: center;
           align-items: center;
 
           @media (min-width: 902px) {
-            width: 264px;
-            height: 264px;
+            width: 252px;
+            height: 252px;
           }
 
           @media (max-width: 750px) {

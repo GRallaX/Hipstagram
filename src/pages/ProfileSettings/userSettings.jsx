@@ -22,7 +22,7 @@ export const UserSettings = () => {
     setValue,
     setFocus,
     setError,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({ mode: "onChange" });
 
   const currentUser = useSelector(state => state.currentUser);
@@ -161,7 +161,6 @@ export const UserSettings = () => {
               setFocus={setFocus}
               errors={errors}
               loading={loading}
-              isValid={isValid}
             >
               {valid === true ? (
                 <span className="validated">&#10003;</span>
@@ -179,7 +178,6 @@ export const UserSettings = () => {
               setFocus={setFocus}
               errors={errors}
               loading={loading}
-              isValid={isValid}
             />
             <EditUserInput
               label="First Name"
@@ -193,7 +191,6 @@ export const UserSettings = () => {
               setFocus={setFocus}
               errors={errors}
               loading={loading}
-              isValid={isValid}
             />
             <EditUserInput
               label="Last Name"
@@ -207,7 +204,6 @@ export const UserSettings = () => {
               setFocus={setFocus}
               errors={errors}
               loading={loading}
-              isValid={isValid}
             />
           </form>
         </div>

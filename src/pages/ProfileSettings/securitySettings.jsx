@@ -22,7 +22,7 @@ export const SecuritySettings = () => {
     setFocus,
     setError,
     clearErrors,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({ mode: "onChange" });
 
   const { login, id: currentUserId } = useSelector(state => state.currentUser);
@@ -201,7 +201,9 @@ export const SecuritySettings = () => {
             <button
               className="submit_btn"
               type="submit"
-              disabled={!editPass || !isValid ? true : undefined}
+              disabled={
+                !editPass || Object.keys(errors).length ? true : undefined
+              }
             >
               {loading ? <img src={loadingIcon} alt="loadingIcon" /> : "Submit"}
             </button>

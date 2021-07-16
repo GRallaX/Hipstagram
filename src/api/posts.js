@@ -12,7 +12,7 @@ export const getPostById = postId => {
   return api.get("/posts/" + postId);
 };
 
-export const createPost = (image, title) => {
+export const sendNewPost = (image, title) => {
   const formData = new FormData();
   formData.append("image", image);
   formData.append("title", title);

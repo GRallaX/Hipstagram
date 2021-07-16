@@ -7,6 +7,7 @@ import {
   fetchUpdatePassword,
 } from "../../api/currentUser";
 import { followUser } from "../../api/users";
+import { sendNewPost } from "../../api/posts";
 
 export const getCurrentUser = () => {
   return async dispatch => {
@@ -119,12 +120,8 @@ export const unSubscribeUser = user => {
 
 export const createNewPost = (image, title) => {
   return async dispatch => {
-    try {
-      const uploadedPost = await createNewPost(image, title);
-      dispatch(actionCreators.createNewPost(uploadedPost));
-    } catch (e) {
-      console.log(e.response);
-      return e;
-    }
+    const { data: uploadedPost } = await sendNewPost(image, title);
+    dispatch(actionCreators.createNewPost(uploadedPost));
+    return uploadedPost;
   };
 };

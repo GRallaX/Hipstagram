@@ -147,12 +147,12 @@ code {
       outline: none;
 
       &:focus-visible {
-        filter: drop-shadow(1px 1px 2px #131313);
+        filter: drop-shadow(1px 2px 2px #131313);
       }
     }
 
     img {
-      filter: drop-shadow(1px 1px 2px #131313);
+      filter: drop-shadow(1px 2px 2px #131313);
       margin-right: 5px;
       width: 40px;
 
@@ -172,7 +172,7 @@ code {
       transition: 0.2s;
 
       &:hover {
-        filter: drop-shadow(1px 1px 1px #131313);
+        filter: drop-shadow(1px 2px 1px #131313);
       }
     }
   }
@@ -260,7 +260,7 @@ code {
 
     &:hover,
     &:focus-visible {
-      filter: drop-shadow(1px 1px 1px #131313);
+      filter: drop-shadow(1px 2px 1px #131313);
       cursor: pointer;
     }
   }
@@ -275,7 +275,7 @@ code {
     transition: 0.2s;
 
     &:focus-visible {
-      filter: drop-shadow(1px 1px 1px #131313);
+      filter: drop-shadow(1px 2px 1px #131313);
     }
   }
 
@@ -283,16 +283,14 @@ code {
     display: flex;
     align-items: center;
     color: whitesmoke;
-    margin: 2px 13px 0 0;
+    margin-left: 16px;
 
     &:focus-visible {
-      filter: drop-shadow(1px 1px 1px #131313);
+      filter: drop-shadow(1px 2px 1px #131313);
     }
 
-    @media (min-width: 825px) {
-      margin-right: 18px;
-      margin-left: 18px;
-      margin-bottom: 2px;
+    @media (max-width: 750px) {
+      margin: 2px 13px 0 0;
     }
 
     svg {
@@ -343,7 +341,7 @@ code {
     &:hover,
     &:focus-visible {
       cursor: pointer;
-      filter: drop-shadow(1px 1px 1px #131313);
+      filter: drop-shadow(1px 2px 1px #131313);
     }
 
     @media (min-width: 825px) {
@@ -384,7 +382,7 @@ code {
     height: 32px;
 
     &:hover {
-      box-shadow: 1px 1px 2px 1px rgba(51, 54, 56, 0.473);
+      box-shadow: 1px 1px 2px 2px rgba(51, 54, 56, 0.473);
     }
   }
 
@@ -402,7 +400,7 @@ code {
   height: 100vh;
   width: 100vw;
 
-  overflow-y: auto;
+  overflow-y: scroll;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -427,7 +425,7 @@ code {
 
   transition: 0.7s;
 
-  animation: appearModal 0.7s ease-in;
+  animation: appearModal 0.8s ease-in;
 
   @keyframes appearModal {
     0% {
@@ -455,8 +453,11 @@ code {
   border: 2px solid #4d88ed;
   color: whitesmoke;
   background: #4d88ed;
-
   outline: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -476,7 +477,7 @@ code {
     font-size: 14px;
 
     img {
-      height: 30px;
+      height: 29px;
       width: 100%;
     }
   }
@@ -507,7 +508,7 @@ code {
 
   &:hover,
   &:focus-visible {
-    filter: drop-shadow(1px 1px 2px #131313);
+    filter: drop-shadow(1px 2px 2px #131313);
     cursor: pointer;
   }
 }
@@ -530,7 +531,7 @@ code {
 
   &:hover,
   &:focus-visible {
-    filter: drop-shadow(1px 1px 2px #131313);
+    filter: drop-shadow(1px 2px 2px #131313);
     cursor: pointer;
   }
 

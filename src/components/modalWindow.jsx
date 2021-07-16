@@ -1,22 +1,43 @@
-import { useEffect, useRef } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import FocusTrap from "focus-trap-react";
 
 export const ModalWindow = ({ children, closeModalFunc }) => {
   const modalContainer = useRef();
+  const [modalSize, setModalSize] = useState();
 
   useEffect(() => {
     document.querySelector("body").className = "body scroll_hidden";
     return () => (document.querySelector("body").className = "body");
-  });
+  }, []);
 
-  useEffect(() => {
-    const modalHeight = modalContainer.current?.offsetHeight + 150;
-    if (modalHeight >= window.innerHeight) {
-      modalContainer.current.className = "modal_container big";
+  const handleResize = useCallback(entries => {
+    if (!Array.isArray(entries)) return;
+
+    const [entry] = entries;
+    if (entry.contentRect.height >= window.innerHeight - 170) {
+      setModalSize("big");
     } else {
-      modalContainer.current.className = "modal_container small";
+      setModalSize("small");
     }
-  }, [modalContainer.current?.offsetHeight]);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!modalContainer.current) return;
+
+    let resizeObserver = new ResizeObserver(entries => handleResize(entries));
+    resizeObserver.observe(modalContainer.current);
+
+    return () => {
+      resizeObserver.disconnect();
+      resizeObserver = null;
+    };
+  }, [modalContainer, handleResize]);
 
   const handleEscExit = e => {
     if (e.key === "Escape") {
@@ -34,7 +55,7 @@ export const ModalWindow = ({ children, closeModalFunc }) => {
         onKeyUp={handleEscExit}
       >
         <div
-          className="modal_container"
+          className={`modal_container ${modalSize}`}
           onClick={e => e.stopPropagation()}
           ref={modalContainer}
         >

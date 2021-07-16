@@ -42,7 +42,7 @@
   }
 }
 .settings_wrapper .settings_container .avatar_container {
-  padding: 30px 25px 30px 35px;
+  padding: 30px 10px 30px 30px;
   display: flex;
   justify-content: center;
 }
@@ -277,7 +277,7 @@
 .submit_btn:focus-visible,
 .show_btn:hover,
 .show_btn:focus-visible {
-  filter: drop-shadow(1px 1px 2px #131313);
+  filter: drop-shadow(1px 2px 2px #131313);
   cursor: pointer;
 }
 .change_btn:disabled,

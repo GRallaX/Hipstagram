@@ -14,7 +14,6 @@ export const EditUserInput = ({
   setFocus,
   errors,
   loading,
-  isValid,
   children,
 }) => {
   useEffect(() => {
@@ -37,7 +36,7 @@ export const EditUserInput = ({
       <button
         className="submit_btn"
         type="submit"
-        disabled={isValid ? undefined : true}
+        disabled={Object.keys(errors).length ? true : undefined}
       >
         {loading ? <img src={loadingIcon} alt="loadingIcon" /> : "Submit"}
       </button>

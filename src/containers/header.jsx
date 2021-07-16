@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import { logOutUser } from "../store/currentUser/thunks";
+import { EditPost } from "./dialogues/editPost";
 
 import { SearchInput } from "../components/searchUsersInput";
 import { ReactComponent as PlusIcon } from "../images/plus_icon.svg";
@@ -10,7 +11,6 @@ import { ReactComponent as HomeSymbol } from "../images/home_icon.svg";
 import { ReactComponent as SearchSymbol } from "../images/search_icon.svg";
 import { ReactComponent as LogoutIcon } from "../images/logout_icon.svg";
 import Logo from "../images/logo 1.png";
-import { CreateNewPost } from "./dialogues/createNewPost";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -118,7 +118,7 @@ export const Header = () => {
           <LogoutIcon />
         </span>
       </nav>
-      {createPost && <CreateNewPost closeFunc={handleOpenCreatePost} />}
+      {createPost && <EditPost closeFunc={handleOpenCreatePost} />}
     </header>
   );
 };

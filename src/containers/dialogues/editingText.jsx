@@ -17,8 +17,8 @@ export const EditingTextModal = ({
   const formRef = useRef();
   const textInput = useRef();
 
-  const handleOnEnterPress = e => {
-    if (e.keyCode === 13 && e.shiftKey === false) {
+  const handleOnEnterSubmit = e => {
+    if (e.key === "Enter" && e.shiftKey === false) {
       e.preventDefault();
       if (text) {
         formRef.current.dispatchEvent(
@@ -65,7 +65,7 @@ export const EditingTextModal = ({
               maxLength="60"
               defaultValue={textDefValue}
               onChange={handleTextInput}
-              onKeyDown={handleOnEnterPress}
+              onKeyDown={handleOnEnterSubmit}
               ref={textInput}
             />
           </label>
