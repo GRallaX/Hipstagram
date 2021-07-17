@@ -7,6 +7,7 @@ import { ModalWindow } from "../../components/modalWindow";
 import { ReactComponent as PlusIcon } from "../../images/plus_icon_big.svg";
 import loadingIcon from "../../images/loading_small.svg";
 import "./dialogues.css";
+import { useHistory } from "react-router-dom";
 
 const convertImage = file => {
   return new Promise((res, rej) => {
@@ -18,11 +19,15 @@ const convertImage = file => {
 };
 
 export const EditPost = ({ closeFunc }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const formRef = useRef();
+  const fileLblRef = useRef();
+
   const [sending, setSending] = useState(false);
   const [loadingFile, setLoadingFile] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
-  const dispatch = useDispatch();
-  const formRef = useRef();
+
   const { login } = useSelector(state => state.currentUser);
   const {
     watch,
@@ -90,7 +95,8 @@ export const EditPost = ({ closeFunc }) => {
       const [file] = image;
       const dispatchedPost = await dispatch(createNewPost(file, title));
       setSending(false);
-      console.log(dispatchedPost);
+      history.push("/feed", { newPost: dispatchedPost });
+      closeFunc();
     } catch (e) {
       setError("form", {
         type: "server",
@@ -98,6 +104,10 @@ export const EditPost = ({ closeFunc }) => {
       });
       setSending(false);
     }
+  };
+
+  const handleEditImage = () => {
+    fileLblRef.current.click();
   };
 
   const handleResetImage = e => {
@@ -138,8 +148,9 @@ export const EditPost = ({ closeFunc }) => {
               <div className="image_lbl_container">
                 {!loadingFile ? (
                   <label
+                    ref={fileLblRef}
                     htmlFor="image_input"
-                    className="image_lbl"
+                    className={!imagePreview ? "image_lbl" : "image_lbl hidden"}
                     aria-label="Upload image"
                     tabIndex="0"
                     onKeyUp={handleClickOnEnter}
@@ -149,6 +160,14 @@ export const EditPost = ({ closeFunc }) => {
                 ) : (
                   <img src={loadingIcon} alt="loading" className="loading" />
                 )}
+                <button
+                  className="edit"
+                  type="button"
+                  onClick={handleEditImage}
+                  disabled={imagePreview || loadingFile ? undefined : true}
+                >
+                  edit
+                </button>
                 <button
                   className="delete"
                   type="button"

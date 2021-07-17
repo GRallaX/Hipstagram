@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { Avatar } from "../components/avatar";
 import { FollowButton } from "../components/followBtn";
+import useLazyLoad from "../components/useLazyLoad";
 
 const UserCard = ({ user }) => {
   const { avatar, login, _id, id } = user;
@@ -25,11 +27,15 @@ const UserCard = ({ user }) => {
 };
 
 export const UsersList = ({ usersList }) => {
+  const containerRef = useRef();
+  const usersForRender = useLazyLoad(containerRef, usersList, 100);
+
   return (
-    <ul className="users_list">
-      {usersList.map((user) => {
-        return <UserCard user={user} key={user._id || user.id} />;
-      })}
+    <ul className="users_list" ref={containerRef} tabIndex="0">
+      {usersForRender.length &&
+        usersForRender.map(user => {
+          return <UserCard user={user} key={user._id || user.id} />;
+        })}
     </ul>
   );
 };

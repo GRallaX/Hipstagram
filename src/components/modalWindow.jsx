@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import FocusTrap from "focus-trap-react";
 
 export const ModalWindow = ({ children, closeModalFunc }) => {
@@ -27,7 +21,7 @@ export const ModalWindow = ({ children, closeModalFunc }) => {
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!modalContainer.current) return;
 
     let resizeObserver = new ResizeObserver(entries => handleResize(entries));

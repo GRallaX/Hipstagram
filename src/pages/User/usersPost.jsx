@@ -61,6 +61,7 @@ export const UsersPost = ({
           onLoad={() => {
             setImgLoading(false);
           }}
+          onError={e => (e.target.src = "https://picsum.photos/500/")}
           src={imgUrl}
           alt={ownersLogin + " " + title}
         />

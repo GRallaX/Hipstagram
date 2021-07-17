@@ -1,49 +1,22 @@
-import { Route } from "react-router";
 import { useEffect, useRef, useState } from "react";
+import { Route } from "react-router";
+import { useLocation } from "react-router-dom";
 import { fetchFeed } from "../../api/posts";
 
+import useLazyLoad from "../../components/useLazyLoad";
 import { FeedPost } from "./feedPost";
 import { ModalPost } from "../../containers/modalPost";
 import { LoadingIconBig } from "../../components/loadingIcon";
 import "./feed.css";
 
 export const Feed = () => {
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
-  const [postsForRender, setPostsForRender] = useState([]);
   const [modalPost, setModalPost] = useState(false);
-  const [endOfPage, setEndOfPage] = useState(false);
 
   const feedContainer = useRef();
-
-  const feedScrollListener = () => {
-    if (
-      document.documentElement.clientHeight + 200 >
-      feedContainer.current?.getBoundingClientRect().bottom
-    ) {
-      setEndOfPage(true);
-    }
-  };
-
-  useEffect(() => {
-    if (posts.length > postsForRender.length) {
-      document.addEventListener("scroll", feedScrollListener, true);
-      return () => document.removeEventListener("scroll", feedScrollListener);
-    }
-  }, [posts, postsForRender]);
-
-  useEffect(() => {
-    if (
-      posts.length > postsForRender.length &&
-      (endOfPage ||
-        !postsForRender.length ||
-        feedContainer.current?.clientHeight < window.innerHeight)
-    ) {
-      const postForRender = posts[postsForRender.length];
-      setPostsForRender([...postsForRender, postForRender]);
-      setEndOfPage(false);
-    }
-  }, [endOfPage, posts, postsForRender]);
+  const postsForRender = useLazyLoad(feedContainer, posts, 200);
 
   useEffect(() => {
     document.title = "Feed";
@@ -52,7 +25,11 @@ export const Feed = () => {
       try {
         const { data: feed } = await fetchFeed();
         if (!cleanupFunction) {
-          setPosts([...feed]);
+          if (location.state?.newPost) {
+            setPosts([location.state.newPost, ...feed]);
+          } else {
+            setPosts([...feed]);
+          }
           setIsLoading(false);
         }
       } catch (e) {
@@ -63,7 +40,7 @@ export const Feed = () => {
     return () => {
       cleanupFunction = true;
     };
-  }, []);
+  }, [location.state?.newPost]);
 
   if (isLoading) {
     return (

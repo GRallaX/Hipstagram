@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import loadingIcon from "../images/loading_small.svg";
 import { subscribeUser, unSubscribeUser } from "../store/currentUser/thunks";
 
-export const FollowButton = ({ size, user: userProp, setUser }) => {
+export const FollowButton = ({ size, user: userProp, setUser, post }) => {
   let user = {};
   if (userProp._id) {
     user = { ...userProp, id: userProp._id };
@@ -66,6 +66,11 @@ export const FollowButton = ({ size, user: userProp, setUser }) => {
     history.push("/users/" + currentUserId);
   };
 
+  const handleEditPost = e => {
+    e.preventDefault();
+    alert(`Amazing editing post at /posts/${post._id}`);
+  };
+
   useEffect(() => {
     let cleanupFunction = false;
     if (!cleanupFunction)
@@ -76,7 +81,13 @@ export const FollowButton = ({ size, user: userProp, setUser }) => {
   if (userId === currentUserId && size === "big_btn") {
     return (
       <button className={"settings_btn " + size} onClick={handleGoToSettings}>
-        Settings
+        Edit profile
+      </button>
+    );
+  } else if (post) {
+    return (
+      <button className={"post_settings_btn " + size} onClick={handleEditPost}>
+        Edit post
       </button>
     );
   } else if (userId === currentUserId) {

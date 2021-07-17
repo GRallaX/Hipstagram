@@ -446,7 +446,8 @@ code {
   }
 }
 
-.follow_btn {
+.follow_btn,
+.post_settings_btn {
   margin: 4px 16px;
   border-radius: 5px;
 
@@ -511,6 +512,12 @@ code {
     filter: drop-shadow(1px 2px 2px #131313);
     cursor: pointer;
   }
+}
+
+.post_settings_btn {
+  color: #696969;
+  border: 2px solid #888888;
+  background: rgb(240, 240, 240);
 }
 
 .settings_btn {

@@ -58,6 +58,11 @@
   font-weight: 600;
   margin-right: 12px;
 }
+.feed_post_header .edit_btn_container {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
 .feed_post_header a:first-of-type {
   outline: none;
 }

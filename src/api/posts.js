@@ -19,3 +19,11 @@ export const sendNewPost = (image, title) => {
 
   return api.post("/posts", formData);
 };
+
+export const sendUpdatedPost = (postId, title) => {
+  return api.patch("/posts/" + postId, { title: title });
+};
+
+export const fetchDeletePost = postId => {
+  return api.delete("/posts/" + postId);
+};

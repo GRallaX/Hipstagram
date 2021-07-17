@@ -100,7 +100,24 @@ export const Header = () => {
           </NavLink>
         </span>
         <span className="my_profile_btn">
-          <NavLink to={"/users/" + currentUserId}>
+          <NavLink
+            to={location => {
+              if (location.pathname === "/users/" + currentUserId) {
+                return {
+                  ...location,
+                  pathname: "/users/" + currentUserId,
+                  state: {
+                    ...location.state,
+                    needToReload: location.key,
+                  },
+                };
+              }
+              return {
+                ...location,
+                pathname: "/users/" + currentUserId,
+              };
+            }}
+          >
             {screenWidth > 750 ? currentUserLogin : <ProfileIcon />}
           </NavLink>
         </span>

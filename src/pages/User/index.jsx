@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, useParams } from "react-router-dom";
+import { Route, useLocation, useParams } from "react-router-dom";
 import { getCurrentUser } from "../../store/currentUser/thunks";
-import LazyLoad from "react-lazyload";
 import { getUserById } from "../../api/users";
 import { getFollowersAndFollowings } from "../../api/users";
 
+import { UsersPostsContainer } from "./usersPostsContainer";
 import { ModalPost } from "../../containers/modalPost";
 import { ModalFollowers } from "../../containers/dialogues/modalFollowers";
 import { ModalFollowings } from "../../containers/dialogues/modalFollowings";
-import { UsersPost } from "./usersPost";
 import { Avatar } from "../../components/avatar";
 import { FollowButton } from "../../components/followBtn";
 
@@ -19,9 +18,25 @@ import "./user.css";
 export const User = () => {
   const dispatch = useDispatch();
   const { id: pageUserId } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const location = useLocation();
 
   const [user, setUser] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const {
+    login,
+    avatar,
+    id,
+    email,
+    firstName,
+    lastName,
+    posts,
+    followersCount,
+    followingsCount,
+    followers,
+    following,
+  } = user;
+
   const [modalFollowers, setModalFollowers] = useState(false);
   const [modalFollowings, setModalFollowings] = useState(false);
   const [modalPost, setModalPost] = useState(false);
@@ -44,7 +59,7 @@ export const User = () => {
     })();
 
     return () => (cleanupFunction = true);
-  }, [dispatch, currentUserId, pageUserId]);
+  }, [dispatch, currentUserId, pageUserId, location.state?.needToReload]);
 
   useEffect(() => {
     let cleanupFunction = false;
@@ -93,32 +108,6 @@ export const User = () => {
       </div>
     );
   } else {
-    const {
-      login,
-      avatar,
-      id,
-      email,
-      firstName,
-      lastName,
-      posts,
-      followersCount,
-      followingsCount,
-      followers,
-      following,
-    } = user;
-
-    const reducer = (accum, post) => {
-      if (!accum.length || accum[accum.length - 1].length === 3) {
-        const newGroup = [];
-        newGroup.push(post);
-        accum.push(newGroup);
-      } else {
-        accum[accum.length - 1].push(post);
-      }
-      return accum;
-    };
-    const groupedUserPosts = posts.reduce(reducer, []);
-
     return (
       <div className="main">
         <Route
@@ -189,35 +178,15 @@ export const User = () => {
           </section>
         </header>
         <article className={posts.length ? "user_posts" : "user_posts empty"}>
-          <div className="posts_wrapper">
-            {posts.length > 0 ? (
-              groupedUserPosts.map((postGroup, index) => {
-                return (
-                  <LazyLoad
-                    height={200}
-                    offset={100}
-                    key={"postsGroup " + (index + 1)}
-                  >
-                    <div className={"posts_group"}>
-                      {postGroup.map(post => {
-                        return (
-                          <UsersPost
-                            key={"post_" + post._id}
-                            post={post}
-                            postOwner={user}
-                            modalPost={modalPost}
-                            setModalPost={setModalPost}
-                          />
-                        );
-                      })}
-                    </div>
-                  </LazyLoad>
-                );
-              })
-            ) : (
-              <h2>No posts yet</h2>
-            )}
-          </div>
+          {!posts.length ? (
+            <h2>No posts yet</h2>
+          ) : (
+            <UsersPostsContainer
+              user={user}
+              modalPost={modalPost}
+              setModalPost={setModalPost}
+            />
+          )}
         </article>
       </div>
     );

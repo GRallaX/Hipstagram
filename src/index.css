@@ -373,7 +373,8 @@ code {
   margin-top: 20px;
 }
 
-.follow_btn {
+.follow_btn,
+.post_settings_btn {
   margin: 4px 16px;
   border-radius: 5px;
   border: 2px solid #4d88ed;
@@ -387,40 +388,55 @@ code {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: 0.2s;
 }
-.follow_btn.not_followed img {
+.follow_btn.not_followed img,
+.post_settings_btn.not_followed img {
   filter: brightness(3);
 }
-.follow_btn.medium_btn {
+.follow_btn.medium_btn,
+.post_settings_btn.medium_btn {
   height: 35px;
   width: 100px;
   font-size: 14px;
 }
-.follow_btn.medium_btn img {
+.follow_btn.medium_btn img,
+.post_settings_btn.medium_btn img {
   height: 29px;
   width: 100%;
 }
-.follow_btn.big_btn {
+.follow_btn.big_btn,
+.post_settings_btn.big_btn {
   height: 35px;
   width: 120px;
   font-size: 16px;
 }
-.follow_btn.followed {
+.follow_btn.followed,
+.post_settings_btn.followed {
   color: #696969;
   border: 2px solid #888888;
   background: #f0f0f0;
 }
-.follow_btn.small_btn {
+.follow_btn.small_btn,
+.post_settings_btn.small_btn {
   width: 95px;
   height: 30px;
   margin: 0;
 }
-.follow_btn.small_btn img {
+.follow_btn.small_btn img,
+.post_settings_btn.small_btn img {
   height: 25px;
   width: 100%;
 }
-.follow_btn:hover, .follow_btn:focus-visible {
+.follow_btn:hover, .follow_btn:focus-visible,
+.post_settings_btn:hover,
+.post_settings_btn:focus-visible {
   filter: drop-shadow(1px 2px 2px #131313);
   cursor: pointer;
+}
+
+.post_settings_btn {
+  color: #696969;
+  border: 2px solid #888888;
+  background: #f0f0f0;
 }
 
 .settings_btn {

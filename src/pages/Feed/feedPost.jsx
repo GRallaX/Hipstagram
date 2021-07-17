@@ -11,6 +11,7 @@ import { PostComments } from "../../containers/postComments";
 import { CommentBtn } from "../../images/commentBtn.js";
 import { ModalLikes } from "../../containers/dialogues/modalLikes";
 import { AddComment } from "../../components/addComment";
+import { FollowButton } from "../../components/followBtn";
 
 import { Avatar } from "../../components/avatar";
 import { LoadingIconBig } from "../../components/loadingIcon";
@@ -102,12 +103,18 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
           <Link to={"/users/" + ownerId} className="user_post_ref">
             {postOwner.login}
           </Link>
+          {postOwner.id === currentUserId && (
+            <div className="edit_btn_container">
+              <FollowButton post={post} user={postOwner} size="small_btn" />
+            </div>
+          )}
         </header>
         <div className={imgLoading ? "image loading" : "image"}>
           <img
             src={imgUrl}
             alt={"post_img_" + _id}
             onLoad={() => setImgLoading(false)}
+            onError={e => (e.target.src = "https://picsum.photos/600/400/")}
           />
           <LikeHeart
             post={post}

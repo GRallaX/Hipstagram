@@ -15,7 +15,6 @@ import { AddComment } from "../../components/addComment";
 
 import { Avatar } from "../../components/avatar";
 import { LoadingIconBig } from "../../components/loadingIcon";
-
 import "./modalPost.css";
 
 export const ModalPost = ({ setModalPost }) => {
@@ -108,14 +107,20 @@ export const ModalPost = ({ setModalPost }) => {
               <ModalLikes usersList={likes} setModalLikes={setModalLikes} />
             )}
             <header className="modal_post_header">
-              <Link to={"/users/" + ownerId} className="user_ref">
-                <Avatar avatar={postOwner.avatar} size="small" />
-              </Link>
-              <Link to={"/users/" + ownerId} className="user_ref">
-                {postOwner.login}
-              </Link>
+              <div className="user_ref_container">
+                <Link to={"/users/" + ownerId} className="user_ref">
+                  <Avatar avatar={postOwner.avatar} size="small" />
+                </Link>
+                <Link to={"/users/" + ownerId} className="user_ref">
+                  {postOwner.login}
+                </Link>
+              </div>
               <div className="subscribe_btn">
-                <FollowButton user={postOwner} size="small_btn" />
+                {postOwner.id === currentUserId ? (
+                  <FollowButton post={post} user={postOwner} size="small_btn" />
+                ) : (
+                  <FollowButton user={postOwner} size="small_btn" />
+                )}
               </div>
             </header>
             <div
@@ -127,6 +132,9 @@ export const ModalPost = ({ setModalPost }) => {
                 onLoad={() => {
                   setImgLoading(false);
                 }}
+                onError={e =>
+                  (e.target.src = "http://placeimg.com/960/640/arch")
+                }
                 src={imgUrl}
                 alt={imgUrl}
               />
