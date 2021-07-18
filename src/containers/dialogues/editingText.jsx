@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { ModalWindow } from "../../components/modalWindow";
+import { toast } from "react-toastify";
 
 import loadingIcon from "../../images/loading_small.svg";
 import "./dialogues.css";
@@ -44,7 +45,7 @@ export const EditingTextModal = ({
       setIsLoading(false);
       closeFunc();
     } catch (e) {
-      console.log(e.response);
+      toast.error(e.response?.data || e.message);
       isLoading(false);
     }
   };

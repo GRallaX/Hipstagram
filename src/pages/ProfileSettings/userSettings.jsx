@@ -7,6 +7,7 @@ import { updateCurrentUser } from "../../store/currentUser/thunks";
 import { EditUserInput } from "./textInput";
 import { Avatar } from "../../components/avatar";
 import { ChangeAvatar } from "../../containers/dialogues/changeAvatar";
+import { toast } from "react-toastify";
 
 export const UserSettings = () => {
   const [editingField, setEditingField] = useState(false);
@@ -72,7 +73,7 @@ export const UserSettings = () => {
           return true;
         }
       } catch (e) {
-        console.log(e.response?.data);
+        toast.error(e.response?.data || e.message);
       }
     },
     [errors.login]

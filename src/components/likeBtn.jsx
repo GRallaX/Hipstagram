@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { toast } from "react-toastify";
 import { likePost } from "../api/posts";
 
 import { LikeBtnDef, LikeBtnLiked } from "../images/heartBtn.js";
@@ -28,7 +29,7 @@ export const LikeButton = ({
       );
       await likePost(_id);
     } catch (e) {
-      console.log(e.response);
+      toast.error(e.response?.data || e.message);
       setIsLiked(isLiked);
       setLikes([...likes]);
       likeContainer.current.className = "like_btn_container";

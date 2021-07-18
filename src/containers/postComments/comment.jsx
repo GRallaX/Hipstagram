@@ -5,6 +5,7 @@ import { deleteComment, editComment } from "../../api/comments";
 
 import { EditingTextModal } from "../dialogues/editingText";
 import { ReactComponent as Settings } from "../../images/settings_icon.svg";
+import { toast } from "react-toastify";
 
 const countTimeInfo = time => {
   let date = new Date(time);
@@ -81,12 +82,10 @@ export const Comment = ({ comment, comments, setComments }) => {
           return comment.id !== id;
         })
       );
-    } catch (err) {
-      console.log(err.response);
+    } catch (e) {
+      toast.error(e.response?.data || e.message);
     }
   };
-
-  console.log(comment);
 
   const handleEditComment = async text => {
     try {
@@ -99,8 +98,8 @@ export const Comment = ({ comment, comments, setComments }) => {
           return cmm;
         })
       );
-    } catch (err) {
-      console.log(err.response);
+    } catch (e) {
+      toast.error(e.response?.data || e.message);
     }
   };
 

@@ -13,6 +13,8 @@ const defaultState = {
   posts: [],
   followers: [],
   following: [],
+  followersCount: null,
+  followingsCount: null,
 };
 
 export default function currentUserReducer(state = defaultState, action) {
@@ -38,6 +40,8 @@ export default function currentUserReducer(state = defaultState, action) {
       return {
         ...state,
         ...action.payload,
+        followersCount: action.payload.followers.length,
+        followingsCount: action.payload.following.length,
         isLoggedIn: true,
         userLoaded: true,
       };
@@ -56,7 +60,11 @@ export default function currentUserReducer(state = defaultState, action) {
       return state;
 
     case actionTypes.SUBSCRIBE_USER:
-      return { ...state, following: [...state.following, action.payload] };
+      return {
+        ...state,
+        following: [...state.following, action.payload],
+        followingsCount: state.followingsCount + 1,
+      };
 
     case actionTypes.UNSUBSCRIBE_USER:
       return {
@@ -64,6 +72,7 @@ export default function currentUserReducer(state = defaultState, action) {
         following: [
           ...state.following.filter(user => user.id !== action.payload),
         ],
+        followingsCount: state.followingsCount - 1,
       };
 
     case actionTypes.CREATE_NEW_POST:

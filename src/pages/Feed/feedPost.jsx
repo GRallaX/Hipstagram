@@ -12,6 +12,7 @@ import { CommentBtn } from "../../images/commentBtn.js";
 import { ModalLikes } from "../../containers/dialogues/modalLikes";
 import { AddComment } from "../../components/addComment";
 import { FollowButton } from "../../components/followBtn";
+import { toast } from "react-toastify";
 
 import { Avatar } from "../../components/avatar";
 import { LoadingIconBig } from "../../components/loadingIcon";
@@ -75,7 +76,7 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
           setUpdate(false);
         }
       } catch (e) {
-        console.log(e.response);
+        toast.error(e.response?.data || e.message);
       }
     })();
     return () => {

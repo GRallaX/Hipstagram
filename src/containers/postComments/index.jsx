@@ -4,6 +4,7 @@ import { fetchPostComments } from "../../api/comments";
 
 import { Comment } from "./comment";
 import loadingIcon from "../../images/loading_small.svg";
+import { toast } from "react-toastify";
 import "./postComments.css";
 
 export const PostComments = ({
@@ -32,7 +33,7 @@ export const PostComments = ({
           setUpdate(false);
         }
       } catch (e) {
-        console.log(e.response);
+        toast.error(e.response?.data || e.message);
       }
     })();
 

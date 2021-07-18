@@ -9,6 +9,7 @@ import { TextInput } from "./textInput";
 import { PasswordInput } from "./passwordInput";
 import loadingIcon from "../../images/loading_small.svg";
 import { searchUsersByLogin } from "../../api/users";
+import { toast } from "react-toastify";
 import Logo from "../../images/logo 1.png";
 
 export const RegistrationForm = () => {
@@ -63,7 +64,7 @@ export const RegistrationForm = () => {
           return true;
         }
       } catch (e) {
-        return e.response?.data;
+        toast.error(e.response?.data || e.message);
       }
     }
   }, []);

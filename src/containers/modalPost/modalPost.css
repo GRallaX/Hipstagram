@@ -110,7 +110,7 @@
 .modal_post_image img {
   width: 100%;
   height: auto;
-  transition: opacity 0.3s linear;
+  transition: 0.3s;
 }
 .modal_post_image .like_heart_container {
   position: absolute;

@@ -15,6 +15,7 @@ import { AddComment } from "../../components/addComment";
 
 import { Avatar } from "../../components/avatar";
 import { LoadingIconBig } from "../../components/loadingIcon";
+import { toast } from "react-toastify";
 import "./modalPost.css";
 
 export const ModalPost = ({ setModalPost }) => {
@@ -65,7 +66,7 @@ export const ModalPost = ({ setModalPost }) => {
           setIsLoading(false);
         }
       } catch (e) {
-        console.log(e.response);
+        toast.error(e.response?.data || e.message);
         if (!cleanupFunction) {
           setIsLoading(false);
         }

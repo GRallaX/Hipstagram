@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { searchUsersByLogin } from "../../api/users";
 
 import { UsersList } from "../../containers/usersList";
+import { toast } from "react-toastify";
 import { LoadingIconBig } from "../../components/loadingIcon";
 import "./search.css";
 
@@ -11,14 +12,19 @@ export const SearchUsers = props => {
 
   useEffect(() => {
     let cleanupFunction = false;
+
     document.title = "Users Search";
     (async () => {
-      const { data: users } = await searchUsersByLogin(
-        props.location.search.slice(2)
-      );
-      if (!cleanupFunction) {
-        setUsersList(users);
-        setIsLoading(false);
+      try {
+        const { data: users } = await searchUsersByLogin(
+          props.location.search.slice(2)
+        );
+        if (!cleanupFunction) {
+          setUsersList(users);
+          setIsLoading(false);
+        }
+      } catch (e) {
+        toast.error(e.response?.data || e.message);
       }
     })();
     return () => (cleanupFunction = true);

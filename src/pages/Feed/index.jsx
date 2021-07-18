@@ -7,6 +7,7 @@ import useLazyLoad from "../../components/useLazyLoad";
 import { FeedPost } from "./feedPost";
 import { ModalPost } from "../../containers/modalPost";
 import { LoadingIconBig } from "../../components/loadingIcon";
+import { toast } from "react-toastify";
 import "./feed.css";
 
 export const Feed = () => {
@@ -33,7 +34,7 @@ export const Feed = () => {
           setIsLoading(false);
         }
       } catch (e) {
-        console.log(e);
+        toast.error(e.response?.data || e.message);
         setIsLoading(false);
       }
     })();

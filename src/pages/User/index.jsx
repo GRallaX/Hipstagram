@@ -14,6 +14,7 @@ import { FollowButton } from "../../components/followBtn";
 
 import { LoadingIconBig } from "../../components/loadingIcon";
 import "./user.css";
+import { toast } from "react-toastify";
 
 export const User = () => {
   const dispatch = useDispatch();
@@ -42,38 +43,27 @@ export const User = () => {
   const [modalPost, setModalPost] = useState(false);
 
   const currentUser = useSelector(state => state.currentUser);
-  const { id: currentUserId, token } = currentUser;
+  const { id: currentUserId } = currentUser;
 
   useEffect(() => {
     let cleanupFunction = false;
-    setIsLoading(true);
-    setModalFollowers(false);
-    setModalFollowings(false);
     (async () => {
       if (pageUserId === currentUserId) {
-        await dispatch(getCurrentUser());
+        document.title = "My Profile";
         if (!cleanupFunction) {
-          setIsLoading(false);
+          setUser(currentUser);
         }
       }
     })();
 
     return () => (cleanupFunction = true);
-  }, [dispatch, currentUserId, pageUserId, location.state?.needToReload]);
+  }, [currentUserId, pageUserId, currentUser]);
 
   useEffect(() => {
     let cleanupFunction = false;
     (async () => {
-      if (pageUserId === currentUserId) {
-        if (!cleanupFunction) {
-          setUser({
-            ...currentUser,
-            followersCount: currentUser.followers.length,
-            followingsCount: currentUser.following.length,
-          });
-        }
-        document.title = "Hipstagram - My Profile";
-      } else {
+      if (pageUserId !== currentUserId) {
+        setIsLoading(true);
         try {
           const { data: fetchedUser } = await getUserById(pageUserId);
           const { data: followersAndFollowings } =
@@ -84,14 +74,29 @@ export const User = () => {
           }
           document.title = fetchedUser.login;
         } catch (e) {
-          console.log(e);
+          toast.error(e.response?.data || e.message);
           setIsLoading(false);
         }
       }
     })();
 
     return () => (cleanupFunction = true);
-  }, [pageUserId, currentUser, token, currentUserId]);
+  }, [pageUserId, currentUserId]);
+
+  useEffect(() => {
+    let cleanupFunction = false;
+    (async () => {
+      setModalFollowers(false);
+      setModalFollowings(false);
+      if (pageUserId === currentUserId) {
+        setIsLoading(true);
+        await dispatch(getCurrentUser());
+        if (!cleanupFunction) {
+          setIsLoading(false);
+        }
+      }
+    })();
+  }, [location.state?.needToReload, pageUserId, currentUserId, dispatch]);
 
   if (isLoading) {
     return (

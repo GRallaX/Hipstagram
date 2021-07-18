@@ -8,6 +8,7 @@ import { ReactComponent as PlusIcon } from "../../images/plus_icon_big.svg";
 import loadingIcon from "../../images/loading_small.svg";
 import "./dialogues.css";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const convertImage = file => {
   return new Promise((res, rej) => {
@@ -102,6 +103,7 @@ export const EditPost = ({ closeFunc }) => {
         type: "server",
         message: e.response?.data || `server error ${e.response?.status}`,
       });
+      if (!e.response) toast.error(e.message);
       setSending(false);
     }
   };

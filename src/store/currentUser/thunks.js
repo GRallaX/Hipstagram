@@ -8,14 +8,16 @@ import {
 } from "../../api/currentUser";
 import { followUser } from "../../api/users";
 import { sendNewPost } from "../../api/posts";
+import { toast } from "react-toastify";
 
 export const getCurrentUser = () => {
   return async dispatch => {
     try {
       const { data: currentUser } = await fetchCurrentUser();
       dispatch(actionCreators.setCurrentUser(currentUser));
+      return currentUser;
     } catch (e) {
-      console.log(e.response?.data);
+      toast.error(e.response?.data || e.message);
       dispatch(logOutUser());
       return e;
     }
@@ -34,7 +36,8 @@ export const userRegistration = (login, email, password) => {
       dispatch(actionCreators.registration(id, token));
       return id;
     } catch (e) {
-      console.log(e.response);
+      if (!e.response) toast.error(e.message);
+
       return e;
     }
   };
@@ -48,7 +51,8 @@ export const logInUser = (login, password) => {
       } = await fetchLogIn(login, password);
       return dispatch(actionCreators.logIn(token));
     } catch (e) {
-      console.log(e.response);
+      if (!e.response) toast.error(e.message);
+
       return e;
     }
   };
@@ -67,7 +71,7 @@ export const updateCurrentUser = (type, value) => {
       dispatch(actionCreators.updateUser(updatedUser));
       return updatedUser;
     } catch (e) {
-      console.log(e);
+      if (!e.response) toast.error(e.message);
       return e;
     }
   };
@@ -86,7 +90,7 @@ export const changeUserPassword = (
       dispatch(actionCreators.updatePassword());
       return true;
     } catch (e) {
-      console.log(e);
+      if (!e.response) toast.error(e.message);
       return e;
     }
   };
@@ -99,7 +103,7 @@ export const subscribeUser = user => {
       dispatch(actionCreators.subscribeUser(user));
       return true;
     } catch (e) {
-      console.log(e.response);
+      toast.error(e.response?.data || e.message);
       return e;
     }
   };
@@ -112,7 +116,7 @@ export const unSubscribeUser = user => {
       dispatch(actionCreators.unsubscribeUser(user.id));
       return true;
     } catch (e) {
-      console.log(e.response);
+      toast.error(e.response?.data || e.message);
       return e;
     }
   };

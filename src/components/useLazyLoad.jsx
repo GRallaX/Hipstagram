@@ -17,11 +17,11 @@ const useLazyLoad = (containerRef, data = [], offsetHeight = 100) => {
     if (data.length > dataForRender.length) {
       window.addEventListener("resize", feedScrollListener, true);
       document.addEventListener("scroll", feedScrollListener, true);
-      return () => {
-        document.removeEventListener("scroll", feedScrollListener);
-        window.removeEventListener("resize", feedScrollListener);
-      };
     }
+    return () => {
+      document.removeEventListener("scroll", feedScrollListener);
+      window.removeEventListener("resize", feedScrollListener);
+    };
   }, [data, dataForRender, feedScrollListener]);
 
   useEffect(() => {

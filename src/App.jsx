@@ -9,8 +9,11 @@ import { Header } from "./containers/header";
 import { User } from "./pages/User";
 import { ProfileSettings } from "./pages/ProfileSettings";
 import { SearchUsers } from "./pages/SearchUsers";
+import { ToastContainer } from "react-toastify";
 
 import { LoadingIconBig } from "./components/loadingIcon";
+import { Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +47,18 @@ const App = () => {
           <Route path="/users/:id" component={User} />
           {isLoggedIn && <Redirect from="*" to="/feed" />}
         </Switch>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover
+          transition={Slide}
+        />
       </div>
     );
   }

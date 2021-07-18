@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { toast } from "react-toastify";
 import { postComment } from "../api/comments";
 
 import loadingIcon from "../images/loading_small.svg";
@@ -30,7 +31,8 @@ export const AddComment = ({ postId, comments, setComments }) => {
       e.target.elements.comment_text.value = "";
       setCommentText("");
     } catch (e) {
-      console.log(e.response);
+      toast.error(e.response?.data || e.message);
+
       setPostingComment(false);
     }
   };

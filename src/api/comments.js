@@ -1,6 +1,6 @@
 import api from "./config";
 
-export const fetchPostComments = (postId) => {
+export const fetchPostComments = postId => {
   return api.get("/comments/" + postId);
 };
 
@@ -17,6 +17,6 @@ export const editComment = (commentId, text) => {
   });
 };
 
-export const deleteComment = (commentId) => {
+export const deleteComment = commentId => {
   return api.delete("/comments/" + commentId);
 };

@@ -6,6 +6,7 @@ import { PasswordInput } from "./passInput";
 import loadingIcon from "../../images/loading_small.svg";
 import { changeUserPassword, logOutUser } from "../../store/currentUser/thunks";
 import { deleteUser } from "../../api/users";
+import { toast } from "react-toastify";
 
 export const SecuritySettings = () => {
   const [editPass, setEditPass] = useState(false);
@@ -137,7 +138,7 @@ export const SecuritySettings = () => {
       await dispatch(logOutUser());
       setLoading(false);
     } catch (e) {
-      console.log(e.response?.data);
+      toast.error(e.response?.data || e.message);
       setLoading(false);
     }
   };

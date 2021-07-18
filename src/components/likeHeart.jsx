@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { likePost } from "../api/posts";
 
+import { toast } from "react-toastify";
 import { LikeBtnDef, LikeBtnLiked } from "../images/heartBtn.js";
 
 export const LikeHeart = ({
@@ -15,7 +16,7 @@ export const LikeHeart = ({
 
   const likeContainer = useRef();
 
-  const handleLike = async (e) => {
+  const handleLike = async e => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -24,12 +25,12 @@ export const LikeHeart = ({
       likeContainer.current.className = isLiked ? "unliked" : "liked";
       setLikes(
         isLiked
-          ? likes.filter((like) => like._id !== currentUser._id)
+          ? likes.filter(like => like._id !== currentUser._id)
           : [...likes, currentUser]
       );
       await likePost(_id);
     } catch (e) {
-      console.log(e.response);
+      toast.error(e.response?.data || e.message);
       setIsLiked(isLiked);
       setLikes([...likes]);
       likeContainer.current.removeAttribute("class");

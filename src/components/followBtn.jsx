@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import loadingIcon from "../images/loading_small.svg";
 import { subscribeUser, unSubscribeUser } from "../store/currentUser/thunks";
+import { toast } from "react-toastify";
 
 export const FollowButton = ({ size, user: userProp, setUser, post }) => {
   let user = {};
@@ -47,8 +48,8 @@ export const FollowButton = ({ size, user: userProp, setUser, post }) => {
       });
     }
     if (subscribe.response) {
-      console.log(subscribe.response);
       setIsFollowed(isFollowed);
+      toast.error(subscribe.response.data);
       if (setUser) {
         setUser({ ...user });
       }
@@ -81,13 +82,13 @@ export const FollowButton = ({ size, user: userProp, setUser, post }) => {
   if (userId === currentUserId && size === "big_btn") {
     return (
       <button className={"settings_btn " + size} onClick={handleGoToSettings}>
-        Edit profile
+        Edit Profile
       </button>
     );
   } else if (post) {
     return (
       <button className={"post_settings_btn " + size} onClick={handleEditPost}>
-        Edit post
+        Edit Post
       </button>
     );
   } else if (userId === currentUserId) {

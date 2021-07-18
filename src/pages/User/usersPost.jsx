@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { fetchPostComments } from "../../api/comments";
 import { LikeBtnLiked } from "../../images/heartBtn.js";
 import { CommentBtnFilled } from "../../images/commentBtn";
+import { toast } from "react-toastify";
 
 export const UsersPost = ({
   post: postProp,
@@ -43,7 +44,7 @@ export const UsersPost = ({
           setComments(comments);
         }
       } catch (e) {
-        console.log(e);
+        toast.error(e.response?.data || e.message);
       }
     })();
     return () => (cleanupFunction = true);
