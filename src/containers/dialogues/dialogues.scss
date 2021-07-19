@@ -267,7 +267,8 @@
       position: relative;
       overflow: hidden;
       transition: 0.2s;
-      max-width: calc(100vw - 57px);
+      max-width: 100vh;
+      max-height: 100vh;
 
       .message {
         position: absolute;

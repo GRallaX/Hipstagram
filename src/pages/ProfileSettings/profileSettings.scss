@@ -1,13 +1,33 @@
-.profile_settings_wrapper {
-  width: 100%;
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
+.profile_settings_wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
+  overflow: hidden;
+
+  max-width: calc(100vw - 17px);
+
+  animation: appear 0.2s ease-in-out;
+
+  @media (min-width: 600px) {
+    margin-left: calc(100vw - 100%);
+  }
 
   @media (max-width: 600px) {
+    align-self: flex-start;
+    width: 100vw;
     flex-direction: column;
+    min-height: calc(100vh - 50px);
+    min-width: fit-content;
   }
 }
 
@@ -22,7 +42,7 @@
     width: 100%;
     margin: 0;
     border: none;
-    border-bottom: 1px solid #dbdbdb;
+    border-bottom: 5px solid #dbdbdb;
     border-radius: 0;
   }
 
@@ -122,6 +142,13 @@
           font-weight: 600;
           color: rgb(0, 145, 0);
 
+          z-index: 50;
+
+          @media (max-width: 600px) {
+            left: unset;
+            right: 60px;
+          }
+
           animation: appear 0.3s ease-in-out;
           @keyframes appear {
             0% {
@@ -151,11 +178,14 @@
   flex-direction: column;
 
   @media (max-width: 600px) {
+    flex: 1 0 auto;
     width: 100%;
     margin: 0;
     border: none;
-    border-bottom: 1px solid #dbdbdb;
+    border-bottom: 20px solid #dbdbdb;
     border-radius: 0;
+
+    align-items: unset;
   }
 
   h2 {
@@ -174,6 +204,10 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 1.9;
+
+    @media (max-width: 600px) {
+      width: 70vw;
+    }
 
     .success {
       width: 100%;
@@ -218,6 +252,10 @@
 
       transition: 0.5s;
 
+      @media (max-width: 600px) {
+        height: 340px;
+      }
+
       & > label:first-child {
         margin-top: 10px;
       }
@@ -228,6 +266,14 @@
 
       .data_label {
         width: 360px;
+
+        @media (max-width: 600px) {
+          width: 90vw;
+
+          .data_input {
+            margin-left: auto;
+          }
+        }
       }
 
       .btns {
@@ -270,6 +316,16 @@
   font-weight: 500;
   line-height: 1.9;
 
+  @media (max-width: 600px) {
+    max-width: 90vw;
+    justify-content: flex-start;
+    min-height: 80px;
+
+    button:first-of-type {
+      margin-left: calc(100% - 200px);
+    }
+  }
+
   .data_input {
     margin: 0 0 0 8px;
     width: 215px;
@@ -284,6 +340,11 @@
     font-weight: 400;
 
     transition: 0.2s;
+
+    @media (max-width: 600px) {
+      margin-left: auto;
+      margin-right: 50px;
+    }
 
     &.valid {
       padding-right: 27px;
@@ -320,6 +381,8 @@
 
   font-weight: 600;
   font-size: 14px;
+
+  z-index: 2;
 
   &:hover,
   &:focus-visible {

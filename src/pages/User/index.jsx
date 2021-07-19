@@ -117,7 +117,9 @@ export const User = () => {
       <div className="main">
         <Route
           path="/users/:ownerId/p/:postId"
-          render={() => <ModalPost setModalPost={setModalPost} />}
+          render={() => (
+            <ModalPost setModalPost={setModalPost} arrOfPosts={posts} />
+          )}
         />
         {modalFollowers && (
           <ModalFollowers
@@ -190,6 +192,7 @@ export const User = () => {
               user={user}
               modalPost={modalPost}
               setModalPost={setModalPost}
+              arrOfPosts={posts}
             />
           )}
         </article>

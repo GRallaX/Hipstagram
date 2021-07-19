@@ -96,7 +96,7 @@
   min-height: 270px;
 }
 .login_wrapper .form_container.registration {
-  min-height: 350px;
+  min-height: 395px;
 }
 .login_wrapper .form_container:focus-within {
   box-shadow: 1px 2px 3px 1px rgba(51, 54, 56, 0.473);

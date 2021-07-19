@@ -1,3 +1,11 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .comments_container .loading_comments {
   display: flex;
   justify-content: center;
@@ -6,6 +14,7 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
+  transition: 0.2s;
 }
 .comments_container .comment {
   margin: 2px 0;
@@ -14,6 +23,8 @@
   align-items: stretch;
   justify-content: flex-start;
   font-weight: 400;
+  transition: 0.2s;
+  animation: appear 0.2s ease-in-out;
 }
 .comments_container .comment:hover .menu_toggle {
   opacity: 1;
@@ -33,10 +44,14 @@
 .comments_container .comment .comment_info .comment_menu {
   position: relative;
 }
-.comments_container .comment .comment_info .comment_menu .btns {
+.comments_container .comment .comment_info .comment_menu .hidden {
+  width: 0;
+}
+.comments_container .comment .comment_info .btns {
+  margin: 0;
   position: absolute;
   top: -5px;
-  right: 100%;
+  right: 30px;
   width: 132px;
   height: 33px;
   display: flex;
@@ -45,8 +60,8 @@
   overflow: hidden;
   transition: 0.2s;
 }
-.comments_container .comment .comment_info .comment_menu .btns .edit,
-.comments_container .comment .comment_info .comment_menu .btns .delete {
+.comments_container .comment .comment_info .btns .edit,
+.comments_container .comment .comment_info .btns .delete {
   padding: 0;
   width: 60px;
   height: 23px;
@@ -57,28 +72,17 @@
   outline: none;
   color: whitesmoke;
 }
-.comments_container .comment .comment_info .comment_menu .btns .edit:hover, .comments_container .comment .comment_info .comment_menu .btns .edit:focus-visible,
-.comments_container .comment .comment_info .comment_menu .btns .delete:hover,
-.comments_container .comment .comment_info .comment_menu .btns .delete:focus-visible {
+.comments_container .comment .comment_info .btns .edit:hover, .comments_container .comment .comment_info .btns .edit:focus-visible,
+.comments_container .comment .comment_info .btns .delete:hover,
+.comments_container .comment .comment_info .btns .delete:focus-visible {
   filter: drop-shadow(1px 2px 2px #131313);
   cursor: pointer;
 }
-.comments_container .comment .comment_info .comment_menu .btns .edit {
+.comments_container .comment .comment_info .btns .edit {
   background: #4d88ed;
 }
-.comments_container .comment .comment_info .comment_menu .btns .delete {
+.comments_container .comment .comment_info .btns .delete {
   background: #ed4956;
-}
-.comments_container .comment .comment_info .comment_menu .hidden {
-  width: 0;
-}
-.comments_container .comment.owner {
-  margin-bottom: 8px;
-}
-.comments_container .comment .edited {
-  font-weight: 400;
-  color: #bbbbbb;
-  font-size: 14px;
 }
 .comments_container .comment .menu_toggle {
   opacity: 0;
@@ -96,6 +100,25 @@
   height: 14px;
   width: auto;
   fill: #afaeae;
+}
+.comments_container .comment .comment_status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  font-weight: 400;
+  color: #bbbbbb;
+}
+
+.view_all_comments {
+  text-decoration: none;
+  color: #bbbbbb;
+  font-weight: 400;
+  transition: 0.2s;
+  outline: none;
+}
+.view_all_comments:hover, .view_all_comments:focus {
+  filter: drop-shadow(1px 1px 1px #131313);
 }
 
 .comment_user_ref {

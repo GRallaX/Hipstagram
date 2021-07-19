@@ -15,6 +15,7 @@ export const Feed = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [modalPost, setModalPost] = useState(false);
+  const [newPost, setNewPost] = useState([]);
 
   const feedContainer = useRef();
   const postsForRender = useLazyLoad(feedContainer, posts, 200);
@@ -26,8 +27,8 @@ export const Feed = () => {
       try {
         const { data: feed } = await fetchFeed();
         if (!cleanupFunction) {
-          if (location.state?.newPost) {
-            setPosts([location.state.newPost, ...feed]);
+          if (newPost) {
+            setPosts([...newPost, ...feed]);
           } else {
             setPosts([...feed]);
           }
@@ -41,6 +42,11 @@ export const Feed = () => {
     return () => {
       cleanupFunction = true;
     };
+  }, [newPost]);
+
+  useEffect(() => {
+    if (location.state?.newPost)
+      setNewPost(newPost => [location.state?.newPost, ...newPost]);
   }, [location.state?.newPost]);
 
   if (isLoading) {

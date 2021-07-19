@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { fetchPostComments } from "../../api/comments";
 import { LikeBtnLiked } from "../../images/heartBtn.js";
@@ -11,6 +11,7 @@ export const UsersPost = ({
   postOwner,
   modalPost,
   setModalPost,
+  arrOfPosts,
 }) => {
   const [comments, setComments] = useState([]);
   const [imgLoading, setImgLoading] = useState(true);
@@ -18,6 +19,7 @@ export const UsersPost = ({
 
   const { _id, imgUrl, likes, title, ownerId } = post;
   const { ownersLogin } = postOwner;
+  const location = useLocation();
 
   const modalPostOpened = useMemo(() => {
     if (modalPost?._id === _id) {
@@ -29,8 +31,8 @@ export const UsersPost = ({
 
   useEffect(() => {
     if (modalPostOpened) {
-      setPost(modalPost);
-      setComments(modalPost.comments);
+      if (modalPost) setPost(modalPost);
+      if (modalPost.comments) setComments(modalPost.comments);
       setModalPost(false);
     }
   }, [modalPost, modalPostOpened, setModalPost]);
@@ -54,7 +56,14 @@ export const UsersPost = ({
     <Link
       to={{
         pathname: "/users/" + ownerId + "/p/" + _id,
-        state: { post, comments, postOwner, likes },
+        state: {
+          ...location.state,
+          post,
+          comments,
+          postOwner,
+          likes,
+          arrOfPosts,
+        },
       }}
     >
       <div className={imgLoading ? "user_post loading" : "user_post"}>

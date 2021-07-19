@@ -1,7 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import FocusTrap from "focus-trap-react";
+import { Link } from "react-router-dom";
 
-export const ModalWindow = ({ children, closeModalFunc }) => {
+import { ReactComponent as LeftArrow } from "../images/left-arrow.svg";
+import { ReactComponent as RightArrow } from "../images/right-arrow.svg";
+
+export const ModalWindow = ({
+  children,
+  closeModalFunc,
+  linkLeft,
+  linkRight,
+}) => {
   const modalContainer = useRef();
   const [modalSize, setModalSize] = useState();
 
@@ -49,11 +58,28 @@ export const ModalWindow = ({ children, closeModalFunc }) => {
         onKeyUp={handleEscExit}
       >
         <div
-          className={`modal_container ${modalSize}`}
+          className={`modal_container ${modalSize}${
+            linkLeft ? " link_left" : ""
+          }${linkRight ? " link_right" : ""}`}
           onClick={e => e.stopPropagation()}
           ref={modalContainer}
+          tabIndex="0"
         >
+          {linkLeft && (
+            <div className="link_to_left" onClick={e => e.stopPropagation()}>
+              <Link to={linkLeft}>
+                <LeftArrow />
+              </Link>
+            </div>
+          )}
           {children}
+          {linkRight && (
+            <div className="link_to_right" onClick={e => e.stopPropagation()}>
+              <Link to={linkRight}>
+                <RightArrow />
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </FocusTrap>

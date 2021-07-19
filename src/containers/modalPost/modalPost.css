@@ -1,3 +1,11 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .modal_post {
   position: relative;
   height: 100%;
@@ -5,7 +13,13 @@
   display: flex;
   font-size: 14px;
 }
+@media (max-width: 700px) {
+  .modal_post {
+    flex-direction: column;
+  }
+}
 .modal_post .loading_big {
+  margin: 0;
   height: 40vw;
   width: 60vw;
 }
@@ -15,6 +29,9 @@
 }
 .modal_post_wrapper {
   max-width: 1200px;
+  overflow: hidden;
+  border-radius: 5px;
+  animation: appear 0.2s ease-in-out;
 }
 .modal_post_header {
   position: absolute;
@@ -28,6 +45,17 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+@media (max-width: 700px) {
+  .modal_post_header {
+    position: relative;
+    top: 0;
+    right: auto;
+    width: 100%;
+    border: none;
+    margin: 0;
+    padding: 6px 16px;
+  }
 }
 .modal_post_header .user_ref_container {
   flex: 1 0 auto;
@@ -91,10 +119,31 @@
   align-items: center;
   position: relative;
 }
+@media (max-width: 700px) {
+  .modal_post_image {
+    width: 100%;
+    margin: 0;
+  }
+}
 .modal_post_image.loading {
   background-color: #949494;
-  min-height: 400px;
+  height: 100%;
+  width: 100%;
+  min-width: calc(100vw - 617px);
+  min-height: calc((100vw - 617px) * (2 / 3));
+  max-width: calc(100% - 300px);
   animation: loadingModalImg 1.5s ease-in-out infinite running;
+}
+@media (min-width: 1300px) {
+  .modal_post_image.loading {
+    max-height: 600px;
+  }
+}
+@media (max-width: 700px) {
+  .modal_post_image.loading {
+    min-width: 100%;
+    min-height: 70%;
+  }
 }
 @keyframes loadingModalImg {
   0% {
@@ -110,6 +159,7 @@
 .modal_post_image img {
   width: 100%;
   height: auto;
+  display: block;
   transition: 0.3s;
 }
 .modal_post_image .like_heart_container {
@@ -169,6 +219,7 @@
 .modal_post_image .like_heart_container .like_btn {
   width: 128px;
   height: 128px;
+  animation: appear 0.2s ease-in-out;
 }
 .modal_post_image .like_heart_container .like_btn .liked {
   fill: white;
@@ -187,12 +238,26 @@
   align-items: stretch;
   overflow: hidden;
 }
+@media (max-width: 700px) {
+  .modal_post .comments_likes_container {
+    top: 0;
+    position: relative;
+    width: 100%;
+  }
+}
 .modal_post .comments_likes_container .comments_container {
+  animation: appear 0.2s ease-in-out;
   flex-grow: 1;
   width: 100%;
   box-sizing: content-box;
   overflow: auto;
   padding: 6px 6px 6px 12px;
+}
+@media (max-width: 700px) {
+  .modal_post .comments_likes_container .comments_container {
+    margin-top: 35px;
+    padding: 8px 22px 12px 22px;
+  }
 }
 .modal_post .comments_likes_container .modal_post_btns {
   border-top: 1px solid #dbdbdb;
@@ -200,11 +265,24 @@
   padding: 6px 12px;
   display: flex;
   justify-content: flex-start;
+  animation: appear 0.2s ease-in-out;
+}
+@media (max-width: 700px) {
+  .modal_post .comments_likes_container .modal_post_btns {
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 10px 26px;
+  }
 }
 .modal_post .comments_likes_container .modal_post_btns .like_btn_container {
   display: flex;
   align-items: center;
   margin-right: 12px;
+  animation: appear 0.2s ease-in-out;
   outline: none;
 }
 .modal_post .comments_likes_container .modal_post_btns .like_btn_container:focus-visible {
@@ -263,6 +341,7 @@
   font-weight: 600;
   outline: none;
   transition: 0.2s;
+  animation: appear 0.2s ease-in-out;
 }
 .modal_post .comments_likes_container .modal_post_btns .post_likes_info a:hover, .modal_post .comments_likes_container .modal_post_btns .post_likes_info a:focus-visible,
 .modal_post .comments_likes_container .modal_post_btns .post_likes_info .likes_count_btn:hover,
@@ -277,6 +356,11 @@
   align-items: center;
   padding: 8px 16px;
 }
+@media (max-width: 700px) {
+  .modal_post .add_comment_container {
+    padding: 8px 22px;
+  }
+}
 .modal_post .add_comment_container .add_comment_form {
   position: relative;
   width: 100%;
@@ -288,6 +372,15 @@
   padding-top: 8px;
   box-sizing: content-box;
   overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  .modal_post .add_comment_container .add_comment_form .text_wrapper {
+    width: calc(100% - 64px);
+    padding: 0;
+  }
 }
 .modal_post .add_comment_container .add_comment_form .new_comment_text {
   width: 100%;
@@ -301,6 +394,11 @@
   font-size: 14px;
   overflow: hidden;
 }
+@media (max-width: 700px) {
+  .modal_post .add_comment_container .add_comment_form .new_comment_text {
+    padding: 0;
+  }
+}
 .modal_post .add_comment_container .add_comment_form .add_comment_btn {
   width: 55px;
   height: 30px;
@@ -312,6 +410,7 @@
   outline: none;
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 99;
   transition: 0.2s;
 }
 .modal_post .add_comment_container .add_comment_form .add_comment_btn:hover, .modal_post .add_comment_container .add_comment_form .add_comment_btn:focus-visible {
@@ -342,6 +441,25 @@
   width: 100%;
   filter: brightness(3);
 }
+.modal_post .comment {
+  max-width: 277px;
+  flex-wrap: wrap;
+}
+@media (max-width: 700px) {
+  .modal_post .comment {
+    max-width: calc(100% - 45px);
+  }
+}
+.modal_post .comment .comment_text {
+  flex: 0 1 calc(100% - 30px);
+}
 .modal_post .comment .comment_info {
-  margin-right: 28px;
+  display: flex;
+  align-items: flex-end;
+}
+.modal_post .comment .comment_status {
+  flex-basis: 100%;
+  font-size: 10px;
+  flex-direction: row;
+  justify-content: space-between;
 }/*# sourceMappingURL=modalPost.css.map */

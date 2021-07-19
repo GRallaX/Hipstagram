@@ -17,12 +17,18 @@
   padding: 20px;
   animation: appear 0.2s ease-in-out;
 }
+@media (min-width: 600px) {
+  .user_header {
+    margin-left: calc(100vw - 100%);
+  }
+}
 @media (max-width: 600px) {
   .user_header {
     margin: 0;
     width: 100%;
     border-radius: none;
     border: none;
+    align-items: center;
   }
 }
 .user_header .big.avatar {
@@ -30,7 +36,13 @@
 }
 @media (max-width: 750px) {
   .user_header .big.avatar {
-    margin: 0 0;
+    margin: 0;
+  }
+}
+@media (max-width: 600px) {
+  .user_header .big.avatar {
+    height: 100px;
+    width: 100px;
   }
 }
 .user_header .login_subscribe {
@@ -39,10 +51,26 @@
   align-items: center;
   flex-wrap: wrap;
 }
+@media (max-width: 600px) {
+  .user_header .login_subscribe {
+    min-width: 60vw;
+    justify-content: space-around;
+  }
+}
 .user_header .login_subscribe .login {
   margin: 4px 16px;
   font-weight: 400;
   font-size: 26px;
+}
+@media (max-width: 600px) {
+  .user_header .login_subscribe .login {
+    font-size: 22px;
+  }
+}
+.user_header .login_subscribe .big_btn {
+  margin: 4px 6px;
+  font-size: 14px;
+  width: 100px;
 }
 .user_header .user_data {
   margin: 16px;
@@ -50,6 +78,11 @@
   justify-content: space-evenly;
   padding: 0;
   font-size: 18px;
+}
+@media (max-width: 600px) {
+  .user_header .user_data {
+    font-size: 17px;
+  }
 }
 .user_header .user_data li {
   list-style-type: none;
@@ -76,16 +109,35 @@
   line-height: 1.5;
   text-align: left;
 }
+@media (max-width: 600px) {
+  .user_header .info {
+    margin: 16px 0 0 20px;
+    max-width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
 .user_header .name {
   margin: 5px 0;
   font-weight: 600;
   font-size: 18px;
   text-align: left;
 }
+@media (max-width: 600px) {
+  .user_header .name {
+    margin: 0 16px 0 0;
+    font-size: 16px;
+  }
+}
 .user_header .email {
   display: block;
   margin-top: 5px;
   font-size: 16px;
+}
+@media (max-width: 600px) {
+  .user_header .email {
+    margin: 0;
+  }
 }
 
 a {
@@ -146,6 +198,11 @@ a:focus-visible .interactions_container {
   margin-bottom: 30px;
   animation: appear 0.2s ease-in-out;
 }
+@media (min-width: 600px) {
+  .user_posts {
+    margin-left: calc(100vw - 100%);
+  }
+}
 @media (min-width: 902px) {
   .user_posts {
     padding: 27px 27px 0;
@@ -159,12 +216,18 @@ a:focus-visible .interactions_container {
 @media (max-width: 750px) {
   .user_posts {
     padding: 20px 0;
+    border: none;
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
   }
 }
 @media (max-width: 600px) {
   .user_posts {
-    flex: 99 0 auto;
     border-radius: 0;
+    max-width: 100%;
+    border-top: 6px solid #dbdbdb;
+    border-bottom: 20px solid #dbdbdb;
+    margin-bottom: 0;
   }
 }
 .user_posts.empty {

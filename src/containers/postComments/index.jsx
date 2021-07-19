@@ -13,6 +13,9 @@ export const PostComments = ({
   postOwner,
   comments,
   setComments,
+  children,
+  showTime = false,
+  showOnlyLast,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [update, setUpdate] = useState(false);
@@ -63,13 +66,18 @@ export const PostComments = ({
               {" " + postTitle}
             </span>
           </li>
-          {comments.map(comment => {
+          {children}
+          {comments.map((comment, index, array) => {
+            if (showOnlyLast) {
+              if (index < array.length - showOnlyLast) return null;
+            }
             return (
               <Comment
                 key={"comment_" + comment.id}
                 comment={comment}
                 comments={comments}
                 setComments={setComments}
+                showTime={showTime}
               />
             );
           })}

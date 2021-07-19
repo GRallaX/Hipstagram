@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getPostById } from "../../api/posts";
@@ -20,6 +20,8 @@ import { LoadingIconBig } from "../../components/loadingIcon";
 export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
   const [post, setPost] = useState(postProp);
   const { ownerId, imgUrl, title, _id } = post;
+
+  const location = useLocation();
 
   const [likes, setLikes] = useState(postProp.likes);
   const [postOwner, setPostOwner] = useState(false);
@@ -47,9 +49,10 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
   useEffect(() => {
     if (modalPostOpened) {
       setPost(modalPost);
-      setComments(modalPost.comments);
-      setLikes(modalPost.likes);
-      setIsLiked(modalPost.likes.some(user => user._id === currentUserId));
+      if (modalPost.comments) setComments(modalPost.comments);
+      if (modalPost.likes) setLikes(modalPost.likes);
+      if (modalPost.likes)
+        setIsLiked(modalPost.likes.some(user => user._id === currentUserId));
       setModalPost(false);
     }
   }, [currentUserId, modalPost, modalPostOpened, setModalPost]);
@@ -84,6 +87,7 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
       clearInterval(interval);
     };
   }, [_id, ownerId, currentUserId, postProp, update]);
+  console.log(location.state);
 
   if (isLoading) {
     return (
@@ -150,7 +154,7 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
           <Link
             to={{
               pathname: "/feed/p/" + _id,
-              state: { post, comments, postOwner, likes },
+              state: { ...location.state, post, comments, postOwner, likes },
             }}
           >
             <span className="comment_btn_container">
@@ -165,7 +169,18 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
           postOwner={postOwner}
           comments={comments}
           setComments={setComments}
-        />
+          showOnlyLast={2}
+        >
+          {comments.length > 2 && (
+            <Link
+              className="view_all_comments"
+              to={{
+                pathname: "/feed/p/" + _id,
+                state: { post, comments, postOwner, likes },
+              }}
+            >{`View all ${comments.length} comments`}</Link>
+          )}
+        </PostComments>
         <AddComment
           postId={_id}
           comments={comments}

@@ -1,3 +1,12 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .comments_container {
   .loading_comments {
     display: flex;
@@ -8,6 +17,8 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+
+    transition: 0.2s;
   }
 
   .comment {
@@ -19,6 +30,10 @@
     justify-content: flex-start;
 
     font-weight: 400;
+
+    transition: 0.2s;
+
+    animation: appear 0.2s ease-in-out;
 
     &:hover .menu_toggle {
       opacity: 1;
@@ -42,68 +57,58 @@
       .comment_menu {
         position: relative;
 
-        .btns {
-          position: absolute;
-          top: -5px;
-          right: 100%;
-
-          width: 132px;
-          height: 33px;
-
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          overflow: hidden;
-
-          transition: 0.2s;
-
-          .edit,
-          .delete {
-            padding: 0;
-            width: 60px;
-            height: 23px;
-
-            border: none;
-            border-radius: 5px;
-
-            font-weight: 500;
-            font-size: 12px;
-
-            outline: none;
-
-            color: whitesmoke;
-
-            &:hover,
-            &:focus-visible {
-              filter: drop-shadow(1px 2px 2px #131313);
-              cursor: pointer;
-            }
-          }
-
-          .edit {
-            background: #4d88ed;
-          }
-
-          .delete {
-            background: rgb(237, 73, 86);
-          }
-        }
-
         .hidden {
           width: 0;
         }
       }
-    }
 
-    &.owner {
-      margin-bottom: 8px;
-    }
+      .btns {
+        margin: 0;
+        position: absolute;
+        top: -5px;
+        right: 30px;
 
-    .edited {
-      font-weight: 400;
-      color: #bbbbbb;
+        width: 132px;
+        height: 33px;
 
-      font-size: 14px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        overflow: hidden;
+
+        transition: 0.2s;
+
+        .edit,
+        .delete {
+          padding: 0;
+          width: 60px;
+          height: 23px;
+
+          border: none;
+          border-radius: 5px;
+
+          font-weight: 500;
+          font-size: 12px;
+
+          outline: none;
+
+          color: whitesmoke;
+
+          &:hover,
+          &:focus-visible {
+            filter: drop-shadow(1px 2px 2px #131313);
+            cursor: pointer;
+          }
+        }
+
+        .edit {
+          background: #4d88ed;
+        }
+
+        .delete {
+          background: rgb(237, 73, 86);
+        }
+      }
     }
 
     .menu_toggle {
@@ -128,6 +133,31 @@
         fill: rgb(175, 174, 174);
       }
     }
+
+    .comment_status {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-start;
+
+      font-weight: 400;
+      color: #bbbbbb;
+    }
+  }
+}
+
+.view_all_comments {
+  text-decoration: none;
+  color: #bbbbbb;
+
+  font-weight: 400;
+
+  transition: 0.2s;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    filter: drop-shadow(1px 1px 1px #131313);
   }
 }
 

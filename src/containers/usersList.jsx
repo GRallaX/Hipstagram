@@ -31,7 +31,7 @@ export const UsersList = ({ usersList }) => {
   const usersForRender = useLazyLoad(containerRef, usersList, 100);
 
   return (
-    <ul className="users_list" ref={containerRef} tabIndex="0">
+    <ul className="users_list" ref={containerRef}>
       {usersForRender.length &&
         usersForRender.map(user => {
           return <UserCard user={user} key={user._id || user.id} />;

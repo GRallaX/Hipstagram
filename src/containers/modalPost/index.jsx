@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import { getPostById } from "../../api/posts";
@@ -77,6 +77,52 @@ export const ModalPost = ({ setModalPost }) => {
     };
   }, [currentUserId, postId]);
 
+  useEffect(() => {
+    setImgLoading(true);
+    if (!location.state?.post) {
+      setIsLoading(true);
+      setPost(false);
+      setLikes(false);
+    }
+    if (!location.state?.comments) setComments(false);
+  }, [location.pathname, location.state]);
+
+  const linksToNeiborPosts = (posts, curPost, postOwner) => {
+    const index = posts.findIndex(post => post._id === curPost._id);
+    if (posts.length > 1) {
+      const previousPost = posts[index - 1] || false;
+      const nextPost = posts[index + 1] || false;
+      const postLinks = {};
+      if (previousPost)
+        postLinks.previousLink = {
+          pathname: "/users/" + previousPost.ownerId + "/p/" + previousPost._id,
+          state: {
+            post: previousPost,
+            postOwner: postOwner,
+            likes: previousPost.likes,
+            arrOfPosts: posts,
+          },
+        };
+      if (nextPost)
+        postLinks.nextLink = {
+          pathname: "/users/" + nextPost.ownerId + "/p/" + nextPost._id,
+          state: {
+            post: nextPost,
+            postOwner: postOwner,
+            likes: nextPost.likes,
+            arrOfPosts: posts,
+          },
+        };
+      return postLinks;
+    }
+  };
+
+  const linksForModal = useMemo(() => {
+    if (location.state?.arrOfPosts && Object.keys(post).length) {
+      return linksToNeiborPosts(location.state.arrOfPosts, post, postOwner);
+    }
+  }, [location.state?.arrOfPosts, post, postOwner]);
+
   if (isLoading) {
     return (
       <ModalWindow
@@ -101,6 +147,12 @@ export const ModalPost = ({ setModalPost }) => {
     return (
       <ModalWindow
         closeModalFunc={() => history.push(location.pathname.split("/p/")[0])}
+        linkLeft={
+          linksForModal?.previousLink ? linksForModal.previousLink : undefined
+        }
+        linkRight={
+          linksForModal?.nextLink ? linksForModal?.nextLink : undefined
+        }
       >
         <div className="modal_post_wrapper">
           <article className="modal_post">
@@ -130,9 +182,7 @@ export const ModalPost = ({ setModalPost }) => {
               }
             >
               <img
-                onLoad={() => {
-                  setImgLoading(false);
-                }}
+                onLoad={() => setImgLoading(false)}
                 onError={e =>
                   (e.target.src = "http://placeimg.com/960/640/arch")
                 }
@@ -161,6 +211,7 @@ export const ModalPost = ({ setModalPost }) => {
                 postOwner={postOwner}
                 comments={comments}
                 setComments={setComments}
+                showTime
               />
               <div className="modal_post_btns">
                 <LikeButton

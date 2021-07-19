@@ -18,6 +18,7 @@ export const UsersPostsContainer = ({
   user: { posts },
   modalPost,
   setModalPost,
+  arrOfPosts,
 }) => {
   const groupedUserPosts = useMemo(
     () => posts.reduce(reducerInGroupOfThree, []),
@@ -40,6 +41,7 @@ export const UsersPostsContainer = ({
                   postOwner={user}
                   modalPost={modalPost}
                   setModalPost={setModalPost}
+                  arrOfPosts={arrOfPosts}
                 />
               );
             })}

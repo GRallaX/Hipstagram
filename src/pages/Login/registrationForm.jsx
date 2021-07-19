@@ -111,7 +111,7 @@ export const RegistrationForm = () => {
         <img src={Logo} alt="hip logo" />
         Hipstagram
       </h1>
-      <div className="form_container registartion">
+      <div className="form_container registration">
         <h2>Registration</h2>
         <form className="form" onSubmit={handleSubmit(handleRegistration)}>
           <TextInput
