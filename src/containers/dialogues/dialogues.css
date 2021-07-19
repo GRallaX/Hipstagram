@@ -2,14 +2,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
+  border-radius: 5px;
+}
+@media (max-width: 600px) {
+  .modal_container .small_modal_wrapper {
+    border-radius: 0;
+  }
 }
 .modal_container .small_modal_wrapper h2 {
   margin-top: 20px;
   padding: 0;
 }
+@media (max-width: 600px) {
+  .modal_container .small_modal_wrapper h2 {
+    margin: 10px 0;
+  }
+}
 .modal_container .small_modal_wrapper .users_list {
   margin: auto 20px;
   width: auto;
+}
+@media (max-width: 600px) {
+  .modal_container .small_modal_wrapper .users_list {
+    margin: 0;
+    border-top: none;
+  }
+}
+.modal_container .small_modal_wrapper .users_list > li:last-of-type {
+  border: none;
+}
+@media (max-width: 600px) {
+  .modal_container .small_modal_wrapper .users_list .users_list_card {
+    border-bottom: none;
+  }
 }
 .modal_container .small_modal_wrapper .users_list .users_list_card a:first-of-type {
   outline: none;

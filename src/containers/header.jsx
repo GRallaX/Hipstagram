@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import { logOutUser } from "../store/currentUser/thunks";
@@ -32,42 +32,36 @@ export const Header = () => {
     }
   }, [location]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
+  const handleResize = useCallback(() => {
+    setScreenWidth(window.innerWidth);
+  }, []);
 
+  useEffect(() => {
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  });
+  }, [handleResize]);
 
   const handleOpenCreatePost = () => {
     setCreatePost(v => !v);
   };
 
-  const handleOpenSearch = () => {
-    if (!showSearch) {
-      setShowSearch(true);
-      setTimeout(() => searchInput.current.focus(), 100);
-    } else {
-      setShowSearch(false);
-    }
-  };
+  useEffect(() => {
+    if (searchInput.current && showSearch) searchInput.current.focus();
+  }, [showSearch]);
 
   return (
     <header className="main_header">
-      <div className="logo">
+      <div className={screenWidth < 540 && showSearch ? "logo hidden" : "logo"}>
         <NavLink to="/">
           <img src={Logo} alt="hipstagram logo" />
           {screenWidth > 750 && <span>Hipstagram</span>}
         </NavLink>
       </div>
-      {screenWidth > 750 ? (
-        <SearchInput searchInput={searchInput} />
-      ) : showSearch ? (
+      {screenWidth > 750 && <SearchInput searchInput={searchInput} />}
+      {screenWidth < 750 && showSearch ? (
         <SearchInput searchInput={searchInput} />
       ) : null}
       <nav className="header_navigation">
@@ -75,9 +69,9 @@ export const Header = () => {
           <span
             className="search_Btn"
             tabIndex="0"
-            onClick={handleOpenSearch}
+            onClick={() => setShowSearch(v => !v)}
             onKeyPress={e => {
-              if (e.key === "Enter") handleOpenSearch();
+              if (e.key === "Enter") setShowSearch(v => !v);
             }}
           >
             <SearchSymbol />

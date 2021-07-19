@@ -26,7 +26,7 @@
   .user_header {
     margin: 0;
     width: 100%;
-    border-radius: none;
+    border-radius: 0;
     border: none;
     align-items: center;
   }
@@ -225,9 +225,9 @@ a:focus-visible .interactions_container {
   .user_posts {
     border-radius: 0;
     max-width: 100%;
+    margin-bottom: 0;
     border-top: 6px solid #dbdbdb;
     border-bottom: 20px solid #dbdbdb;
-    margin-bottom: 0;
   }
 }
 .user_posts.empty {
@@ -242,7 +242,8 @@ a:focus-visible .interactions_container {
     width: 100%;
     border-radius: 0;
     border: none;
-    border-top: 1px solid #dbdbdb;
+    border-top: 6px solid #dbdbdb;
+    border-bottom: 20px solid #dbdbdb;
     padding: 50px 0;
   }
 }

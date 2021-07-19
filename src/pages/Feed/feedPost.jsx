@@ -87,7 +87,6 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
       clearInterval(interval);
     };
   }, [_id, ownerId, currentUserId, postProp, update]);
-  console.log(location.state);
 
   if (isLoading) {
     return (

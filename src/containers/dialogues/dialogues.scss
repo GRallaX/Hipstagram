@@ -4,16 +4,38 @@
     flex-direction: column;
     align-items: center;
 
+    overflow: hidden;
+    border-radius: 5px;
+
+    @media (max-width: 600px) {
+      border-radius: 0;
+    }
+
     h2 {
       margin-top: 20px;
       padding: 0;
+
+      @media (max-width: 600px) {
+        margin: 10px 0;
+      }
     }
 
     .users_list {
       margin: auto 20px;
       width: auto;
 
+      @media (max-width: 600px) {
+        margin: 0;
+        border-top: none;
+      }
+      & > li:last-of-type {
+        border: none;
+      }
+
       .users_list_card {
+        @media (max-width: 600px) {
+          border-bottom: none;
+        }
         a:first-of-type {
           outline: none;
 

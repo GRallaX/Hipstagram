@@ -23,6 +23,7 @@ export const UserSettings = () => {
     setValue,
     setFocus,
     setError,
+    clearErrors,
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
@@ -129,6 +130,10 @@ export const UserSettings = () => {
       }
     }
   }, [valid, setValid, editingField, loginValue, setError, validationValue]);
+
+  useEffect(() => {
+    if (Object.keys(errors).length) clearErrors();
+  }, [editingField, errors, clearErrors]);
 
   return (
     <div className="settings_wrapper">

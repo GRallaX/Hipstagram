@@ -11,7 +11,7 @@
   max-width: 500px;
   margin: 16px 0;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 5px;
   border: 1px solid #dbdbdb;
   padding: 0 16px;
   font-size: 14px;
@@ -26,6 +26,8 @@
     margin: 0;
     border: none;
     border-radius: 0;
+    padding: 0;
+    background-color: #dbdbdb;
   }
 }
 
@@ -33,6 +35,11 @@
   width: 100%;
   margin: 0;
   padding: 0;
+}
+@media (max-width: 600px) {
+  .users_list {
+    border-top: 3px solid #dbdbdb;
+  }
 }
 .users_list_card {
   display: flex;
@@ -48,6 +55,14 @@
   overflow: hidden;
   animation: appear 0.2s ease-in-out;
   transition: 0.2s;
+}
+@media (max-width: 600px) {
+  .users_list_card {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    border-bottom: 3px solid #dbdbdb;
+  }
 }
 .users_list_card a:first-of-type {
   outline: none;
@@ -77,9 +92,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.users_list_card:hover {
-  cursor: pointer;
 }
 .users_list_card .subscribe_btn {
   flex: 1 0;

@@ -38,9 +38,6 @@
   animation: appear 0.2s ease-in-out;
   transition: 0.2s;
 }
-.feed_post .loading_big {
-  margin: 200px 0;
-}
 @media (max-width: 600px) {
   .feed_post {
     margin: 0;
@@ -48,6 +45,9 @@
     border-bottom: 6px solid #dbdbdb;
     border-radius: 0;
   }
+}
+.feed_post .loading_big {
+  margin: 200px 0;
 }
 .feed_post_header {
   height: 56px;
