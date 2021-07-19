@@ -101,7 +101,7 @@
 
   .image {
     position: relative;
-    width: clac(100% + 2px);
+    width: calc(100% + 2px);
 
     background-color: rgb(238, 238, 238);
 
@@ -114,6 +114,7 @@
     &.loading {
       height: 400px;
       animation: loadingPostImg 1.5s ease-in-out infinite running;
+      background-color: none;
 
       @media (max-width: 600px) {
         height: calc((100vw / 3) * 2);

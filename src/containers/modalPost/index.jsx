@@ -182,7 +182,7 @@ export const ModalPost = ({ setModalPost }) => {
               }
             >
               <img
-                // onLoad={() => setImgLoading(false)}
+                onLoad={() => setImgLoading(false)}
                 onError={e =>
                   (e.target.src = "http://placeimg.com/960/640/arch")
                 }

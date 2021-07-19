@@ -117,6 +117,7 @@
   height: 100%;
   margin-right: 300px;
   min-height: 300px;
+  min-width: 300px;
   background-color: black;
   overflow: hidden;
   display: flex;
@@ -131,22 +132,9 @@
 }
 .modal_post_image.loading {
   background-color: #949494;
-  height: 100%;
-  width: calc(100% - 340px);
-  min-width: calc(100vw - 420px);
-  min-height: 50vh;
+  min-width: calc(100% - 300px);
+  min-height: 100%;
   animation: loadingModalImg 1.5s ease-in-out infinite running;
-}
-@media (min-width: 1350px) {
-  .modal_post_image.loading {
-    min-width: 900px;
-  }
-}
-@media (max-width: 840px) {
-  .modal_post_image.loading {
-    min-height: 40vh;
-    min-width: 45vw;
-  }
 }
 @media (max-width: 700px) {
   .modal_post_image.loading {

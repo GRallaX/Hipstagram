@@ -58,7 +58,6 @@ code {
     width: 100%;
     margin: 0;
     flex: 1 0 auto;
-    background-color: #fafafa;
   }
 }
 .loading_big img {
@@ -366,9 +365,9 @@ code {
   position: relative;
   background-color: white;
   border-radius: 5px;
-  transition: 0.7s;
+  transition: 0.6s;
   outline: 0;
-  animation: appearModal 0.8s ease-in;
+  animation: appearModal 0.6s ease-in;
 }
 @keyframes appearModal {
   0% {
@@ -400,17 +399,10 @@ code {
   }
 }
 .modal_container.small {
-  margin-top: 150px;
-  transition: 0.2s;
-}
-@media (max-width: 700px) {
-  .modal_container.small {
-    margin-top: 20px;
-  }
+  margin-top: 120px;
 }
 .modal_container.big {
   margin-top: 40px;
-  transition: 0.2s;
 }
 .modal_container .link_to_left,
 .modal_container .link_to_right {

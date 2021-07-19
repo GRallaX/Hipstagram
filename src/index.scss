@@ -60,8 +60,6 @@ code {
     width: 100%;
     margin: 0;
     flex: 1 0 auto;
-
-    background-color: #fafafa;
   }
 
   img {
@@ -435,11 +433,11 @@ code {
   background-color: white;
   border-radius: 5px;
 
-  transition: 0.7s;
+  transition: 0.6s;
 
   outline: 0;
 
-  animation: appearModal 0.8s ease-in;
+  animation: appearModal 0.6s ease-in;
 
   @keyframes appearModal {
     0% {
@@ -472,19 +470,11 @@ code {
   }
 
   &.small {
-    margin-top: 150px;
-
-    transition: 0.2s;
-
-    @media (max-width: 700px) {
-      margin-top: 20px;
-    }
+    margin-top: 120px;
   }
 
   &.big {
     margin-top: 40px;
-
-    transition: 0.2s;
   }
 
   .link_to_left,

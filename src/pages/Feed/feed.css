@@ -82,7 +82,7 @@
 }
 .feed_post .image {
   position: relative;
-  width: 100%;
+  width: calc(100% + 2px);
   background-color: #eeeeee;
   overflow: hidden;
 }
@@ -94,6 +94,7 @@
 .feed_post .image.loading {
   height: 400px;
   animation: loadingPostImg 1.5s ease-in-out infinite running;
+  background-color: none;
 }
 @media (max-width: 600px) {
   .feed_post .image.loading {

@@ -146,6 +146,7 @@
 
     margin-right: 300px;
     min-height: 300px;
+    min-width: 300px;
 
     background-color: black;
 
@@ -161,20 +162,9 @@
 
     &.loading {
       background-color: rgb(148, 148, 148);
-      height: 100%;
-      width: calc(100% - 340px);
 
-      min-width: calc(100vw - 420px);
-      min-height: 50vh;
-
-      @media (min-width: 1350px) {
-        min-width: 900px;
-      }
-
-      @media (max-width: 840px) {
-        min-height: 40vh;
-        min-width: 45vw;
-      }
+      min-width: calc(100% - 300px);
+      min-height: 100%;
 
       @media (max-width: 700px) {
         min-width: 100%;
