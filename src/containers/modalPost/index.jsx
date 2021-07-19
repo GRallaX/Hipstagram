@@ -184,7 +184,7 @@ export const ModalPost = ({ setModalPost }) => {
               <img
                 onLoad={() => setImgLoading(false)}
                 onError={e =>
-                  (e.target.src = "http://placeimg.com/960/640/arch")
+                  (e.target.src = "https://placeimg.com/960/640/arch")
                 }
                 src={imgUrl}
                 alt={imgUrl}
