@@ -24,8 +24,9 @@
 }
 @media (max-width: 600px) {
   .feed_posts {
+    border-top: 6px solid #dbdbdb;
+    border-bottom: 60px solid #dbdbdb;
     padding: 0;
-    border-bottom: 40px solid #dbdbdb;
   }
 }
 
@@ -82,14 +83,9 @@
 }
 .feed_post .image {
   position: relative;
-  width: calc(100% + 2px);
+  width: 100%;
   background-color: #eeeeee;
   overflow: hidden;
-}
-@media (max-width: 600px) {
-  .feed_post .image {
-    max-width: calc(100vw - 17px);
-  }
 }
 .feed_post .image.loading {
   height: 400px;

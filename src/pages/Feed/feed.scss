@@ -25,8 +25,10 @@
   }
 
   @media (max-width: 600px) {
+    border-top: 6px solid #dbdbdb;
+    border-bottom: 60px solid #dbdbdb;
+
     padding: 0;
-    border-bottom: 40px solid #dbdbdb;
   }
 }
 
@@ -101,15 +103,11 @@
 
   .image {
     position: relative;
-    width: calc(100% + 2px);
+    width: 100%;
 
     background-color: rgb(238, 238, 238);
 
     overflow: hidden;
-
-    @media (max-width: 600px) {
-      max-width: calc(100vw - 17px);
-    }
 
     &.loading {
       height: 400px;

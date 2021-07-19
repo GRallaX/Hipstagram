@@ -12,6 +12,7 @@
   width: 100%;
   display: flex;
   font-size: 14px;
+  animation: appear 0.2s ease-in-out;
 }
 @media (max-width: 700px) {
   .modal_post {
