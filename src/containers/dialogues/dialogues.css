@@ -31,6 +31,7 @@
 .modal_container .small_modal_wrapper .users_list .users_list_card {
   margin: 0;
   border: none;
+  font-size: 14px;
 }
 .modal_container .small_modal_wrapper .users_list .users_list_card a:first-of-type {
   outline: none;

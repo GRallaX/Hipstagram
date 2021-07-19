@@ -29,6 +29,7 @@
     border-bottom: 60px solid #dbdbdb;
 
     padding: 0;
+    width: 100vw;
   }
 }
 
@@ -340,7 +341,7 @@
     animation: appear 0.2s ease-in-out;
 
     @media (max-width: 600px) {
-      width: calc(100vw - 15px);
+      width: 100%;
     }
 
     .add_comment_form {

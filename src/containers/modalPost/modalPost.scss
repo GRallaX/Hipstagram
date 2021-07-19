@@ -13,12 +13,18 @@
   width: 100%;
   display: flex;
 
+  border-radius: 4px;
   font-size: 14px;
+  overflow: hidden;
 
   animation: appear 0.2s ease-in-out;
 
   @media (max-width: 700px) {
     flex-direction: column;
+  }
+
+  @media (max-width: 700px) {
+    border-radius: 4px;
   }
 
   .loading_big {

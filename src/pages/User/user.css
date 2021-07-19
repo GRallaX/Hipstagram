@@ -26,9 +26,10 @@
   .user_header {
     margin: 0;
     width: 100%;
+    align-items: center;
+    padding: 16px 0;
     border-radius: 0;
     border: none;
-    align-items: center;
     border-top: 6px solid #dbdbdb;
   }
 }
@@ -55,10 +56,9 @@
 @media (max-width: 600px) {
   .user_header .login_subscribe {
     min-width: 60vw;
-    justify-content: space-around;
   }
   .user_header .login_subscribe .big_btn {
-    margin: 4px 6px;
+    margin: 4px auto;
     font-size: 14px;
     width: 100px;
   }
@@ -76,7 +76,7 @@
 .user_header .user_data {
   margin: 16px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 0;
   font-size: 18px;
 }
@@ -199,7 +199,7 @@ a:focus-visible .interactions_container {
   margin-bottom: 30px;
   animation: appear 0.2s ease-in-out;
 }
-@media (min-width: 600px) {
+@media (min-width: 750px) {
   .user_posts {
     margin-left: calc(100vw - 100%);
   }
@@ -219,17 +219,20 @@ a:focus-visible .interactions_container {
     padding: 20px 0;
     border: none;
     border-radius: 0;
+    margin: 0;
     border-bottom: 1px solid #dbdbdb;
     border-top: 1px solid #dbdbdb;
   }
 }
 @media (max-width: 600px) {
   .user_posts {
-    padding: 0;
-    border-radius: 0;
+    flex: 1 0 auto;
     max-width: 100%;
     margin-bottom: 0;
+    padding: 0;
+    border-radius: 0;
     border-top: 6px solid #dbdbdb;
+    background-color: #dbdbdb;
     border-bottom: 20px solid #dbdbdb;
   }
 }

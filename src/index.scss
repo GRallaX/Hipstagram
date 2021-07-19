@@ -437,6 +437,7 @@ code {
   position: relative;
 
   background-color: white;
+  border-radius: 4px;
 
   transition: 0.6s;
 
@@ -444,6 +445,10 @@ code {
   z-index: 99;
 
   animation: appearModal 0.5s ease-in;
+
+  @media (max-width: 600px) {
+    border-radius: 0;
+  }
 
   @keyframes appearModal {
     0% {
@@ -487,10 +492,14 @@ code {
     height: 100%;
     overflow: hidden;
 
+    border-radius: 4px;
+
     transition: 0.2s;
 
     @media (max-width: 600px) {
-      width: 40px;
+      width: 30px;
+
+      border-radius: 0;
     }
 
     a {

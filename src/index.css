@@ -370,10 +370,16 @@ code {
   flex-direction: column;
   position: relative;
   background-color: white;
+  border-radius: 4px;
   transition: 0.6s;
   outline: 0;
   z-index: 99;
   animation: appearModal 0.5s ease-in;
+}
+@media (max-width: 600px) {
+  .modal_container {
+    border-radius: 0;
+  }
 }
 @keyframes appearModal {
   0% {
@@ -412,12 +418,14 @@ code {
   width: 50px;
   height: 100%;
   overflow: hidden;
+  border-radius: 4px;
   transition: 0.2s;
 }
 @media (max-width: 600px) {
   .modal_container .link_to_left,
 .modal_container .link_to_right {
-    width: 40px;
+    width: 30px;
+    border-radius: 0;
   }
 }
 .modal_container .link_to_left a,
