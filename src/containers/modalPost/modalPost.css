@@ -34,8 +34,6 @@
 }
 .modal_post_wrapper {
   max-width: 1200px;
-  overflow: hidden;
-  border-radius: 5px;
   animation: appear 0.2s ease-in-out;
 }
 .modal_post_header {
