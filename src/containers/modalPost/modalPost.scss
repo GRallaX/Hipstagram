@@ -159,8 +159,8 @@
       height: 100%;
       width: 100%;
 
-      min-width: calc(100vw - 617px);
-      min-height: calc((100vw - 617px) * (2 / 3));
+      min-width: 50vw;
+      min-height: 50vh;
       max-width: calc(100% - 300px);
 
       @media (min-width: 1300px) {
@@ -169,7 +169,7 @@
 
       @media (max-width: 700px) {
         min-width: 100%;
-        min-height: 70%;
+        min-height: 60%;
       }
 
       animation: loadingModalImg 1.5s ease-in-out infinite running;

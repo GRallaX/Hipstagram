@@ -30,9 +30,6 @@ export const SearchInput = ({ searchInput }) => {
   }, [location, searchInput, history.action]);
 
   const handleSearchUsers = e => {
-    if (!e.target.value.trim().length) {
-      return;
-    }
     if (history.location.pathname.search(/\/users_search/g)) {
       history.push("/users_search?=" + e.target.value.trim());
     } else {

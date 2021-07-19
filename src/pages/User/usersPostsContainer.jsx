@@ -21,7 +21,7 @@ export const UsersPostsContainer = ({
   arrOfPosts,
 }) => {
   const groupedUserPosts = useMemo(
-    () => posts.reduce(reducerInGroupOfThree, []),
+    () => posts.reverse().reduce(reducerInGroupOfThree, []),
     [posts]
   );
 

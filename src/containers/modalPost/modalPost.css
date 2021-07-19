@@ -129,8 +129,8 @@
   background-color: #949494;
   height: 100%;
   width: 100%;
-  min-width: calc(100vw - 617px);
-  min-height: calc((100vw - 617px) * (2 / 3));
+  min-width: 50vw;
+  min-height: 50vh;
   max-width: calc(100% - 300px);
   animation: loadingModalImg 1.5s ease-in-out infinite running;
 }
@@ -142,7 +142,7 @@
 @media (max-width: 700px) {
   .modal_post_image.loading {
     min-width: 100%;
-    min-height: 70%;
+    min-height: 60%;
   }
 }
 @keyframes loadingModalImg {

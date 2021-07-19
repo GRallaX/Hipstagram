@@ -159,9 +159,6 @@ code {
   font-size: 22px;
   transition: 0.2s;
 }
-.main_header .logo span:hover {
-  filter: drop-shadow(1px 2px 1px #131313);
-}
 .main_header .users_search_input_container {
   flex: 0 1 auto;
   position: relative;
@@ -367,7 +364,7 @@ code {
   border-radius: 5px;
   transition: 0.7s;
   outline: 0;
-  animation: appearModal 0.8s ease-in-out;
+  animation: appearModal 0.8s ease-in;
 }
 @keyframes appearModal {
   0% {

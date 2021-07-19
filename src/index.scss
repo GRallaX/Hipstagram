@@ -163,7 +163,6 @@ code {
       text-decoration: none;
       width: fit-content;
       outline: none;
-
       &:hover,
       &:focus-visible {
         filter: drop-shadow(1px 2px 2px #131313);
@@ -183,10 +182,6 @@ code {
       font-size: 22px;
 
       transition: 0.2s;
-
-      &:hover {
-        filter: drop-shadow(1px 2px 1px #131313);
-      }
     }
   }
   .users_search_input_container {
@@ -439,7 +434,7 @@ code {
 
   outline: 0;
 
-  animation: appearModal 0.8s ease-in-out;
+  animation: appearModal 0.8s ease-in;
 
   @keyframes appearModal {
     0% {
