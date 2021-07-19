@@ -403,7 +403,7 @@ code {
   margin-top: 150px;
   transition: 0.2s;
 }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .modal_container.small {
     margin-top: 20px;
   }

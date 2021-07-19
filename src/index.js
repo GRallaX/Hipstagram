@@ -7,7 +7,7 @@ import { store } from "./store";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={"https://grallax.github.io/hipstagram"}>
     <Provider store={store}>
       <App />
     </Provider>

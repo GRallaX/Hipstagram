@@ -132,15 +132,20 @@
 .modal_post_image.loading {
   background-color: #949494;
   height: 100%;
-  width: 100%;
-  min-width: 50vw;
+  width: calc(100% - 300px);
+  min-width: calc(100vw - 320px);
   min-height: 50vh;
-  max-width: calc(100% - 300px);
   animation: loadingModalImg 1.5s ease-in-out infinite running;
 }
-@media (min-width: 1300px) {
+@media (min-width: 1200px) {
   .modal_post_image.loading {
-    max-height: 600px;
+    min-width: 900px;
+  }
+}
+@media (max-width: 840px) {
+  .modal_post_image.loading {
+    min-height: 40vh;
+    min-width: 45vw;
   }
 }
 @media (max-width: 700px) {
