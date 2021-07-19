@@ -239,8 +239,7 @@
   position: relative;
   overflow: hidden;
   transition: 0.2s;
-  max-width: 100vh;
-  max-height: 100vh;
+  max-width: 800px;
 }
 .post_edit_form .editing_container .preview_image_container .message {
   position: absolute;
