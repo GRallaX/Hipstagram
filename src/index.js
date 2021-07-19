@@ -7,7 +7,7 @@ import { store } from "./store";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
+  <BrowserRouter basename={"/hipstagram"}>
     <Provider store={store}>
       <App />
     </Provider>

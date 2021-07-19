@@ -38,6 +38,16 @@
 .modal_container .small_modal_wrapper .users_list .users_list_card a:first-of-type:focus-visible .avatar {
   box-shadow: 1px 1px 2px 2px rgba(51, 54, 56, 0.473);
 }
+.modal_container .small_modal_wrapper .users_list .users_list_card .follow_btn {
+  width: 95px;
+  height: 32px;
+  margin: 0;
+  font-size: 13px;
+}
+.modal_container .small_modal_wrapper .users_list .users_list_card .follow_btn img {
+  height: 25px;
+  width: 100%;
+}
 
 .text .new_text {
   width: 300px;
@@ -239,7 +249,7 @@
   position: relative;
   overflow: hidden;
   transition: 0.2s;
-  max-width: 800px;
+  max-width: 900px;
 }
 .post_edit_form .editing_container .preview_image_container .message {
   position: absolute;
@@ -269,7 +279,6 @@
   width: 100%;
   height: auto;
   display: block;
-  max-width: 900px;
   object-fit: contain;
   transition: opacity 0.3s linear;
   animation: appear 0.2s ease-in-out;

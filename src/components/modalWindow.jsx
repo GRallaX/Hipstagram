@@ -23,7 +23,7 @@ export const ModalWindow = ({
     if (!Array.isArray(entries)) return;
 
     const [entry] = entries;
-    if (entry.contentRect.height >= window.innerHeight - 170) {
+    if (entry.contentRect.height >= window.innerHeight - 300) {
       setModalSize("big");
     } else {
       setModalSize("small");

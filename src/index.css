@@ -409,7 +409,7 @@ code {
   }
 }
 .modal_container.big {
-  margin-top: 20px;
+  margin-top: 40px;
   transition: 0.2s;
 }
 .modal_container .link_to_left,
