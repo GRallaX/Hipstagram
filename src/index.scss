@@ -129,7 +129,7 @@ code {
   position: fixed;
   z-index: 98;
 
-  padding: 0 16px;
+  padding: 0 30px 0 18px;
   display: flex;
   align-items: center;
 
@@ -268,6 +268,10 @@ code {
 
     outline: none;
 
+    &:nth-last-of-type() {
+      margin-right: 0;
+    }
+
     &:hover,
     &:focus-visible {
       filter: drop-shadow(1px 2px 1px #131313);
@@ -347,6 +351,7 @@ code {
   .log_out_btn {
     transition: 0.2s;
     margin-top: 6px;
+    margin-right: 0;
 
     &:hover,
     &:focus-visible {

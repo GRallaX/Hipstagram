@@ -23,6 +23,10 @@
   height: 40vw;
   width: 60vw;
 }
+.modal_post .loading_big img {
+  height: 20%;
+  width: auto;
+}
 .modal_post .no_post_found {
   margin: 100px;
   font-size: 30px;

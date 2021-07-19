@@ -114,7 +114,7 @@ code {
   top: 0;
   position: fixed;
   z-index: 98;
-  padding: 0 16px;
+  padding: 0 30px 0 18px;
   display: flex;
   align-items: center;
   height: 50px;
@@ -231,6 +231,9 @@ code {
   transition: 0.2s;
   outline: none;
 }
+.header_navigation span:nth-last-of-type() {
+  margin-right: 0;
+}
 .header_navigation span:hover, .header_navigation span:focus-visible {
   filter: drop-shadow(1px 2px 1px #131313);
   cursor: pointer;
@@ -296,6 +299,7 @@ code {
 .header_navigation .log_out_btn {
   transition: 0.2s;
   margin-top: 6px;
+  margin-right: 0;
 }
 .header_navigation .log_out_btn:hover, .header_navigation .log_out_btn:focus-visible {
   cursor: pointer;

@@ -38,7 +38,7 @@ export const ModalPost = ({ setModalPost }) => {
   const [isLoading, setIsLoading] = useState(post && postOwner ? false : true);
   const [modalLikes, setModalLikes] = useState(false);
   const [isLiked, setIsLiked] = useState(
-    likes?.some(user => user._id === currentUserId)
+    likes ? likes?.some(user => user._id === currentUserId) : false
   );
   const [imgLoading, setImgLoading] = useState(true);
 
