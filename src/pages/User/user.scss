@@ -55,6 +55,12 @@
     @media (max-width: 600px) {
       min-width: 60vw;
       justify-content: space-around;
+
+      .big_btn {
+        margin: 4px 6px;
+        font-size: 14px;
+        width: 100px;
+      }
     }
 
     .login {
@@ -65,11 +71,6 @@
       @media (max-width: 600px) {
         font-size: 22px;
       }
-    }
-    .big_btn {
-      margin: 4px 6px;
-      font-size: 14px;
-      width: 100px;
     }
   }
 

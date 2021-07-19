@@ -28,7 +28,6 @@ h3 {
 h2 {
   margin: 0;
   padding: 16px 0;
-  background-color: #fff;
 }
 
 .scroll_hidden {
@@ -122,6 +121,7 @@ code {
   background-color: #4d88ed;
   box-shadow: 0 2px 2px 0 rgba(127, 132, 135, 0.2);
   animation: appear 0.2s ease-in-out;
+  user-select: none;
 }
 @media (max-width: 540px) {
   .main_header {
@@ -176,15 +176,7 @@ code {
 @media (max-width: 750px) {
   .main_header .users_search_input_container {
     transition: 0.5s;
-    animation: slideout 0.5s;
-  }
-  @keyframes slideout {
-    from {
-      width: 0;
-    }
-    to {
-      width: 220px;
-    }
+    animation: appear 0.5s;
   }
 }
 @media (max-width: 540px) {
@@ -375,7 +367,7 @@ code {
   border-radius: 5px;
   transition: 0.7s;
   outline: 0;
-  animation: appearModal 0.8s ease-in;
+  animation: appearModal 0.8s ease-in-out;
 }
 @keyframes appearModal {
   0% {

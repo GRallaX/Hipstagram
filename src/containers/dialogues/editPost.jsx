@@ -131,7 +131,7 @@ export const EditPost = ({ closeFunc }) => {
   return (
     <ModalWindow closeModalFunc={closeFunc}>
       <div className="small_modal_wrapper">
-        <h2>Creating new post</h2>
+        <h2>Create new post</h2>
         <form
           className="post_edit_form"
           onSubmit={handleSubmit(handleSubmitPost)}

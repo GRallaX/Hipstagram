@@ -43,8 +43,8 @@
 }
 .users_list_card {
   display: flex;
-  height: 56px;
-  margin-bottom: 16px;
+  height: 54px;
+  margin-bottom: 12px;
   width: 100%;
   list-style-type: none;
   background-color: #fff;

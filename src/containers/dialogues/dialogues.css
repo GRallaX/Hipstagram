@@ -11,7 +11,7 @@
   }
 }
 .modal_container .small_modal_wrapper h2 {
-  margin-top: 20px;
+  margin: 20px 0 10px;
   padding: 0;
 }
 @media (max-width: 600px) {
@@ -20,22 +20,17 @@
   }
 }
 .modal_container .small_modal_wrapper .users_list {
-  margin: auto 20px;
+  margin: 0 20px 10px;
   width: auto;
 }
 @media (max-width: 600px) {
   .modal_container .small_modal_wrapper .users_list {
-    margin: 0;
     border-top: none;
   }
 }
-.modal_container .small_modal_wrapper .users_list > li:last-of-type {
+.modal_container .small_modal_wrapper .users_list .users_list_card {
+  margin: 0;
   border: none;
-}
-@media (max-width: 600px) {
-  .modal_container .small_modal_wrapper .users_list .users_list_card {
-    border-bottom: none;
-  }
 }
 .modal_container .small_modal_wrapper .users_list .users_list_card a:first-of-type {
   outline: none;

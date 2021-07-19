@@ -12,7 +12,7 @@
     }
 
     h2 {
-      margin-top: 20px;
+      margin: 20px 0 10px;
       padding: 0;
 
       @media (max-width: 600px) {
@@ -21,21 +21,17 @@
     }
 
     .users_list {
-      margin: auto 20px;
+      margin: 0 20px 10px;
       width: auto;
 
       @media (max-width: 600px) {
-        margin: 0;
         border-top: none;
-      }
-      & > li:last-of-type {
-        border: none;
       }
 
       .users_list_card {
-        @media (max-width: 600px) {
-          border-bottom: none;
-        }
+        margin: 0;
+        border: none;
+
         a:first-of-type {
           outline: none;
 

@@ -25,7 +25,8 @@ export const Feed = () => {
     let cleanupFunction = false;
     (async () => {
       try {
-        const { data: feed } = await fetchFeed();
+        const { data: fetchedFeed } = await fetchFeed();
+        const feed = fetchedFeed.reverse();
         if (!cleanupFunction) {
           if (newPost) {
             setPosts([...newPost, ...feed]);

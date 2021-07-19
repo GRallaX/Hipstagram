@@ -56,6 +56,11 @@
     min-width: 60vw;
     justify-content: space-around;
   }
+  .user_header .login_subscribe .big_btn {
+    margin: 4px 6px;
+    font-size: 14px;
+    width: 100px;
+  }
 }
 .user_header .login_subscribe .login {
   margin: 4px 16px;
@@ -66,11 +71,6 @@
   .user_header .login_subscribe .login {
     font-size: 22px;
   }
-}
-.user_header .login_subscribe .big_btn {
-  margin: 4px 6px;
-  font-size: 14px;
-  width: 100px;
 }
 .user_header .user_data {
   margin: 16px;
