@@ -29,6 +29,7 @@
     border-radius: 0;
     border: none;
     align-items: center;
+    border-top: 6px solid #dbdbdb;
   }
 }
 .user_header .big.avatar {

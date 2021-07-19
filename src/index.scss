@@ -203,7 +203,7 @@ code {
       width: auto;
 
       .users_search_input {
-        width: calc(100%);
+        width: 100%;
       }
 
       animation: appear 0.5s;
@@ -211,7 +211,7 @@ code {
 
     span {
       position: absolute;
-      left: 9px;
+      left: 12px;
       top: 15px;
 
       svg {
@@ -576,22 +576,22 @@ code {
   }
 
   &.medium_btn {
-    height: 35px;
-    width: 100px;
+    width: 95px;
+    height: 32px;
 
-    font-size: 14px;
+    font-size: 13px;
 
     img {
-      height: 29px;
+      height: 25px;
       width: 100%;
     }
   }
 
   &.big_btn {
-    height: 35px;
-    width: 120px;
+    height: 33px;
+    width: 110px;
 
-    font-size: 16px;
+    font-size: 15px;
   }
 
   &.followed {
@@ -604,6 +604,8 @@ code {
     width: 95px;
     height: 30px;
     margin: 0;
+
+    font-size: 12px;
 
     img {
       height: 25px;
