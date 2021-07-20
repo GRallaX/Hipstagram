@@ -118,7 +118,10 @@ export const FeedPost = ({ post: postProp, modalPost, setModalPost }) => {
             src={imgUrl}
             alt={"post_img_" + _id}
             onLoad={() => setImgLoading(false)}
-            onError={e => (e.target.src = "https://picsum.photos/600/400/")}
+            onError={e => {
+              if (e.target.src === imgUrl)
+                e.target.src = "https://placeimg.com/960/640/arch";
+            }}
           />
           <LikeHeart
             post={post}

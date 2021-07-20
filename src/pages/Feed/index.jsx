@@ -18,7 +18,11 @@ export const Feed = () => {
   const [newPost, setNewPost] = useState([]);
 
   const feedContainer = useRef();
-  const postsForRender = useLazyLoad(feedContainer, posts, 200);
+  const postsForRender = useLazyLoad(
+    feedContainer,
+    posts,
+    window.innerHeight * 1.5
+  );
 
   useEffect(() => {
     document.title = "Feed";

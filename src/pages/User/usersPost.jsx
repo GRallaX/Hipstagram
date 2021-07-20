@@ -68,12 +68,15 @@ export const UsersPost = ({
     >
       <div className={imgLoading ? "user_post loading" : "user_post"}>
         <img
+          src={imgUrl}
+          alt={ownersLogin + " " + title}
           onLoad={() => {
             setImgLoading(false);
           }}
-          onError={e => (e.target.src = "https://picsum.photos/500/")}
-          src={imgUrl}
-          alt={ownersLogin + " " + title}
+          onError={e => {
+            if (e.target.src === imgUrl)
+              e.target.src = "https://placeimg.com/960/640/arch";
+          }}
         />
         <div className="interactions_container">
           <div className="interactions">
