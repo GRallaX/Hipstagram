@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 
-const useLazyLoad = (containerRef, data = [], offsetHeight = 100) => {
+const useLazyLoad = (
+  containerRef,
+  data = [],
+  offsetHeight = 100,
+  pushSize = 1
+) => {
   const [endOfPage, setEndOfPage] = useState(false);
   const [dataForRender, setDataForRender] = useState([]);
 
@@ -31,11 +36,18 @@ const useLazyLoad = (containerRef, data = [], offsetHeight = 100) => {
         !dataForRender.length ||
         containerRef.current?.clientHeight < window.innerHeight + offsetHeight)
     ) {
-      const forRender = data[dataForRender.length];
-      setDataForRender([...dataForRender, forRender]);
+      const forRender = [];
+      for (let i = 0; i < pushSize; i++) {
+        if (dataForRender.length + i >= data.length) break;
+
+        const item = data[dataForRender.length + i];
+        forRender.push(item);
+      }
+
+      setDataForRender([...dataForRender, ...forRender]);
       setEndOfPage(false);
     }
-  }, [endOfPage, data, dataForRender, containerRef, offsetHeight]);
+  }, [endOfPage, data, dataForRender, containerRef, offsetHeight, pushSize]);
 
   useEffect(() => {
     setDataForRender([]);

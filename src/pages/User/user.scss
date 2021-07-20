@@ -240,6 +240,9 @@ a {
   }
 
   @media (max-width: 750px) {
+    flex: 1 0 auto;
+
+    min-width: 100%;
     padding: 20px 0;
     border: none;
     border-radius: 0;
@@ -250,8 +253,8 @@ a {
   }
 
   @media (max-width: 600px) {
-    flex: 1 0 auto;
     max-width: 100%;
+    min-width: 100%;
     margin-bottom: 0;
 
     padding: 0;
