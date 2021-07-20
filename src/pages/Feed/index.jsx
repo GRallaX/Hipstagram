@@ -21,7 +21,7 @@ export const Feed = () => {
   const postsForRender = useLazyLoad(
     feedContainer,
     posts,
-    window.innerHeight,
+    window.innerHeight * 1.5,
     2
   );
 

@@ -7,7 +7,7 @@ export const ModalFollowers = ({ usersList, setModalFollowers }) => {
     <ModalWindow closeModalFunc={() => setModalFollowers(null)}>
       <div className="small_modal_wrapper">
         <h2>Followers</h2>
-        <UsersList usersList={usersList} />
+        <UsersList usersList={usersList.reverse()} />
       </div>
     </ModalWindow>
   );

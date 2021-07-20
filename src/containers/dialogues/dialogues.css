@@ -20,6 +20,7 @@
   }
 }
 .modal_container .small_modal_wrapper .users_list {
+  max-width: 80vw;
   margin: 0 20px 10px;
   width: auto;
 }

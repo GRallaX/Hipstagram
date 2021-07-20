@@ -9,6 +9,7 @@
 .user_header {
   margin: 20px 0 30px;
   width: max-content;
+  max-width: 100vw;
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #dbdbdb;
@@ -34,15 +35,17 @@
   }
 }
 .user_header .big.avatar {
+  flex: 0 0 auto;
   margin: 0 25px 0 15px;
 }
 @media (max-width: 750px) {
   .user_header .big.avatar {
-    margin: 0;
+    margin: 0 10px;
   }
 }
 @media (max-width: 600px) {
   .user_header .big.avatar {
+    align-self: top;
     height: 100px;
     width: 100px;
   }
@@ -70,14 +73,15 @@
 }
 @media (max-width: 600px) {
   .user_header .login_subscribe .login {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 .user_header .user_data {
-  margin: 16px;
+  width: 100%;
+  margin: 0;
+  padding: 16px;
   display: flex;
-  justify-content: space-between;
-  padding: 0;
+  justify-content: flex-start;
   font-size: 18px;
 }
 @media (max-width: 600px) {
@@ -86,10 +90,11 @@
   }
 }
 .user_header .user_data li {
+  display: block;
   list-style-type: none;
 }
 .user_header .user_data li:not(:last-of-type) {
-  margin: 0 16px 0 0;
+  margin: 0 20px 0 0;
 }
 .user_header .user_data .followers,
 .user_header .user_data .followings {
@@ -106,13 +111,13 @@
   font-weight: 700;
 }
 .user_header .info {
-  margin: 16px 16px 0;
+  margin: 0 16px 0;
   line-height: 1.5;
   text-align: left;
 }
 @media (max-width: 600px) {
   .user_header .info {
-    margin: 16px 0 0 20px;
+    margin: 10px 0 0 20px;
     max-width: 70%;
     display: flex;
     flex-wrap: wrap;

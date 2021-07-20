@@ -121,7 +121,11 @@ export const ChangeAvatar = ({ avatar, closeFunc }) => {
             <button type="button" className="cancel" onClick={closeFunc}>
               Cancel
             </button>
-            <button className="submit" type="submit">
+            <button
+              className="submit"
+              type="submit"
+              disabled={avatarPreview === avatar ? true : undefined}
+            >
               {sending ? <img src={loadingIcon} alt="loading" /> : "Submit"}
             </button>
           </div>

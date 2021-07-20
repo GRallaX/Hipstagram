@@ -37,6 +37,7 @@
 
 .users_list {
   width: 100%;
+  max-width: 100vw;
   margin: 0;
   padding: 0;
 }
@@ -98,7 +99,7 @@
   justify-content: center;
 }
 .users_list_card .subscribe_btn {
-  flex: 1 0;
+  flex: 1 0 auto;
   min-width: 132px;
   display: flex;
   justify-content: flex-end;
