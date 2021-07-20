@@ -29,13 +29,13 @@ const useLazyLoad = (containerRef, data = [], offsetHeight = 100) => {
       data.length > dataForRender.length &&
       (endOfPage ||
         !dataForRender.length ||
-        containerRef.current?.clientHeight < window.innerHeight)
+        containerRef.current?.clientHeight < window.innerHeight + offsetHeight)
     ) {
       const forRender = data[dataForRender.length];
       setDataForRender([...dataForRender, forRender]);
       setEndOfPage(false);
     }
-  }, [endOfPage, data, dataForRender, containerRef]);
+  }, [endOfPage, data, dataForRender, containerRef, offsetHeight]);
 
   useEffect(() => {
     setDataForRender([]);
