@@ -28,6 +28,7 @@
     border-radius: 0;
     padding: 0;
     border-top: 6px solid #dbdbdb;
+    border-bottom: 6px solid #dbdbdb;
     background-color: #dbdbdb;
   }
   .users_search h2 {

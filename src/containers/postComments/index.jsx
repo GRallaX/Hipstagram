@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { fetchPostComments } from "../../api/comments";
 
 import { Comment } from "./comment";
-import loadingIcon from "../../images/loading_small.svg";
 import { toast } from "react-toastify";
+import loadingIcon from "../../images/loading_small.svg";
 import "./postComments.css";
 
 export const PostComments = ({

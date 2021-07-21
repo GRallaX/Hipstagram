@@ -457,7 +457,15 @@ code {
 }
 .modal_container .link_to_left svg,
 .modal_container .link_to_right svg {
+  width: 100%;
+  height: auto;
   fill: rgba(245, 245, 245, 0.6);
+}
+@media (max-width: 600px) {
+  .modal_container .link_to_left svg,
+.modal_container .link_to_right svg {
+    fill: whitesmoke;
+  }
 }
 .modal_container .link_to_left {
   left: -50px;

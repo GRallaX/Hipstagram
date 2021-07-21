@@ -22,7 +22,7 @@ export const Feed = () => {
     feedContainer,
     posts,
     window.innerHeight * 1.5,
-    2
+    5
   );
 
   useEffect(() => {

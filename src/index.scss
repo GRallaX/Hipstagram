@@ -522,13 +522,19 @@ code {
         }
 
         @media (max-width: 600px) {
-          background-color: rgba(0, 0, 0, 0.5);
+          background-color: rgb(0, 0, 0, 0.5);
         }
       }
     }
 
     svg {
+      width: 100%;
+      height: auto;
       fill: rgba(245, 245, 245, 0.6);
+
+      @media (max-width: 600px) {
+        fill: whitesmoke;
+      }
     }
   }
 
