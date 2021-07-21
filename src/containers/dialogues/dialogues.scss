@@ -448,7 +448,7 @@
     }
 
     .text_lbl {
-      padding: 8px 16px;
+      padding: 8px 25px;
       display: flex;
 
       &:focus-within {
@@ -465,7 +465,7 @@
       }
 
       .post_title {
-        flex: 0 1 513px;
+        flex: 1 1 auto;
         height: 29px;
         display: block;
         padding: 5px;
@@ -474,6 +474,7 @@
         resize: none;
         outline: 0;
         border: 0;
+        border-radius: 3px;
 
         font-family: inherit;
         font-size: 14px;
@@ -483,7 +484,6 @@
         &:focus {
           background-color: rgb(240, 240, 240);
           filter: drop-shadow(1px 2px 2px #131313);
-          border-radius: 3px;
         }
       }
     }
