@@ -69,7 +69,7 @@ export const EditPost = ({ closeFunc }) => {
   const handleOnChabgeTitle = e => {
     onChange(e);
     if (e.target.value) {
-      e.target.style.height = "22px";
+      e.target.style.height = "29px";
       e.target.style.height = e.target.scrollHeight + "px";
     } else {
       e.target.removeAttribute("style");

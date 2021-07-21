@@ -249,20 +249,6 @@
     width: 100%;
   }
 }
-.modal_post .comments_likes_container .comments_container {
-  animation: appear 0.2s ease-in-out;
-  flex-grow: 1;
-  width: 100%;
-  box-sizing: content-box;
-  overflow: auto;
-  padding: 6px 6px 6px 12px;
-}
-@media (max-width: 700px) {
-  .modal_post .comments_likes_container .comments_container {
-    margin-top: 35px;
-    padding: 8px 22px 12px 22px;
-  }
-}
 .modal_post .comments_likes_container .modal_post_btns {
   border-top: 1px solid #dbdbdb;
   margin-top: 4px;
@@ -279,7 +265,7 @@
     left: 0;
     width: 100%;
     margin: 0;
-    padding: 10px 26px;
+    padding: 10px 18px;
   }
 }
 .modal_post .comments_likes_container .modal_post_btns .like_btn_container {
@@ -445,23 +431,48 @@
   width: 100%;
   filter: brightness(3);
 }
-.modal_post .comment {
+.modal_post .comments_container {
+  animation: appear 0.2s ease-in-out;
+  flex-grow: 1;
+  width: 100%;
+  box-sizing: content-box;
+  overflow: auto;
+  padding: 6px 6px 6px 12px;
+}
+@media (max-width: 700px) {
+  .modal_post .comments_container {
+    margin-top: 35px;
+    padding: 8px 22px 12px 22px;
+  }
+}
+.modal_post .comments_container .loading_comments {
+  width: calc(100% - 24px);
+}
+@media (max-width: 700px) {
+  .modal_post .comments_container .loading_comments {
+    width: calc(100% - 44px);
+  }
+}
+.modal_post .comments_container .comment {
   max-width: 277px;
   flex-wrap: wrap;
 }
 @media (max-width: 700px) {
-  .modal_post .comment {
+  .modal_post .comments_container .comment {
     max-width: calc(100% - 45px);
   }
 }
-.modal_post .comment .comment_text {
+.modal_post .comments_container .comment .comment_text {
   flex: 0 1 calc(100% - 30px);
 }
-.modal_post .comment .comment_info {
+.modal_post .comments_container .comment .comment_info {
   display: flex;
   align-items: flex-end;
 }
-.modal_post .comment .comment_status {
+.modal_post .comments_container .comment .comment_info .menu_toggle {
+  opacity: 1;
+}
+.modal_post .comments_container .comment .comment_status {
   flex-basis: 100%;
   font-size: 10px;
   flex-direction: row;

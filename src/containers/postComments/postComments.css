@@ -7,14 +7,9 @@
   }
 }
 .comments_container .loading_comments {
-  width: calc(100% - 12px);
+  width: 100%;
   display: flex;
   justify-content: center;
-}
-@media (max-width: 700px) {
-  .comments_container .loading_comments {
-    width: calc(100% - 22px);
-  }
 }
 .comments_container .comments {
   margin: 0;
