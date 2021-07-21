@@ -132,6 +132,11 @@ code {
     justify-content: flex-end;
   }
 }
+@media (max-width: 600px) {
+  .main_header {
+    padding: 0 18px;
+  }
+}
 .main_header .logo {
   flex: 1 999 0%;
   transition: 0.2s;
@@ -378,6 +383,7 @@ code {
 @media (max-width: 600px) {
   .modal_container {
     border-radius: 0;
+    margin-bottom: 60px;
   }
 }
 @keyframes appearModal {

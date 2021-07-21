@@ -148,6 +148,10 @@ code {
     justify-content: flex-end;
   }
 
+  @media (max-width: 600px) {
+    padding: 0 18px;
+  }
+
   .logo {
     flex: 1 999 0%;
 
@@ -447,6 +451,8 @@ code {
 
   @media (max-width: 600px) {
     border-radius: 0;
+
+    margin-bottom: 60px;
   }
 
   @keyframes appearModal {
