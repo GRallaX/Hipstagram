@@ -73,8 +73,9 @@ export const TextInput = React.forwardRef(
               type="text"
               aria-label={`enter ${name}`}
               onBlur={e => {
-                onBlur(e);
                 container.current.className = "text_input_container";
+                if (message[name]?.type === "serverValidation") return;
+                onBlur(e);
               }}
               onFocus={() => {
                 container.current.className = "text_input_container active";

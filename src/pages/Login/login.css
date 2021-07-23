@@ -58,7 +58,7 @@
 }
 .login_wrapper .form_wrapper {
   flex: 1 0 auto;
-  padding: 0 30px;
+  padding: 0 30px 30px;
   animation: appear 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@
 }
 @media (max-width: 800px) {
   .login_wrapper .form_wrapper {
-    padding: 0 15px;
+    padding: 0 15px 30px;
   }
 }
 .login_wrapper .form_wrapper .header {
@@ -112,6 +112,8 @@
 }
 .form .input_wrapper {
   min-height: 63px;
+  display: flex;
+  flex-direction: column;
 }
 .form .input_wrapper .text_input_container,
 .form .input_wrapper .pass_lbl_container {
@@ -207,7 +209,8 @@
   opacity: 0;
 }
 .form .message {
-  display: block;
+  flex: 0 0 auto;
+  max-width: 260px;
   color: #ed4956;
   transition: 0.3s;
   padding: 0 7px;

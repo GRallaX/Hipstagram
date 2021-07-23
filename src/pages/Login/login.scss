@@ -62,12 +62,12 @@
   .form_wrapper {
     flex: 1 0 auto;
 
-    padding: 0 30px;
+    padding: 0 30px 30px;
 
     animation: appear 0.2s ease-in-out;
 
     @media (max-width: 800px) {
-      padding: 0 15px;
+      padding: 0 15px 30px;
     }
 
     .header {
@@ -130,6 +130,9 @@
 
   .input_wrapper {
     min-height: 63px;
+
+    display: flex;
+    flex-direction: column;
 
     .text_input_container,
     .pass_lbl_container {
@@ -253,7 +256,8 @@
   }
 
   .message {
-    display: block;
+    flex: 0 0 auto;
+    max-width: 260px;
 
     color: rgb(237, 73, 86);
     transition: 0.3s;

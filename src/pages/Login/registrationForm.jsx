@@ -59,7 +59,7 @@ export const RegistrationForm = () => {
           foundedUsers.length &&
           foundedUsers.some(user => user.login === login)
         ) {
-          return "User with this login has already been registered";
+          return `Login "${login}" is not available`;
         } else {
           return true;
         }
