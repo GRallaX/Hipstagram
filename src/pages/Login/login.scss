@@ -124,6 +124,9 @@
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
+
   &.login {
     min-height: 188px;
   }

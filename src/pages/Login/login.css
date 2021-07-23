@@ -107,6 +107,10 @@
   font-size: 22px;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+}
 .form.login {
   min-height: 188px;
 }

@@ -156,9 +156,9 @@ export const RegistrationForm = () => {
               "Sign up"
             )}
           </button>
-          {errors.form && (
-            <span className="message">{errors.form.message}</span>
-          )}
+          {/* {errors.form && ( */}
+          <span className="message">errror msrfrf</span>
+          {/* )} */}
         </form>
       </div>
       <div className="switch_forms">
