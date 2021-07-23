@@ -18,8 +18,17 @@ export const LoginForm = () => {
     handleSubmit,
     setError,
     clearErrors,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const formatError = errorText => {
+    if (errorText === "Password is not equal")
+      return "Your password is invalid. Please try again.";
+    if (errorText.match(/(User with email)/g))
+      return `User with login "${watch("login")}" not found`;
+    return errorText;
+  };
 
   const handleLogin = async ({ login, password }) => {
     setIsLoading(true);
@@ -29,7 +38,9 @@ export const LoginForm = () => {
       setIsLoading(false);
       setError("form", {
         type: "server",
-        message: fetchLogin.response?.data || "Incorrect login or password",
+        message: fetchLogin.response?.data
+          ? formatError(fetchLogin.response.data)
+          : "Problem with your login or password",
       });
     }
   };

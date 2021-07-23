@@ -256,8 +256,10 @@
     display: block;
 
     color: rgb(237, 73, 86);
-    font-size: 12px;
     transition: 0.3s;
+
+    padding: 0 7px;
+    font-size: 12px;
   }
 
   .submit_btn {
