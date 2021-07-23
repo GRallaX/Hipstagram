@@ -68,6 +68,7 @@ export const Header = () => {
         {screenWidth < 750 && (
           <span
             className="search_Btn"
+            data-tooltip="Search users"
             tabIndex="0"
             onClick={() => setShowSearch(v => !v)}
             onKeyPress={e => {
@@ -80,7 +81,8 @@ export const Header = () => {
         <span
           className="add_new_post_btn"
           tabIndex="0"
-          aria-label="Add new post"
+          aria-label="New post"
+          data-tooltip="New post"
           onClick={handleOpenCreatePost}
           onKeyPress={e => {
             if (e.key === "Enter") handleOpenCreatePost();
@@ -88,12 +90,12 @@ export const Header = () => {
         >
           <PlusIcon />
         </span>
-        <span className="feed_btn">
+        <span className="feed_btn" data-tooltip="Feed">
           <NavLink to="/feed">
             {screenWidth > 750 ? "Feed" : <HomeSymbol />}
           </NavLink>
         </span>
-        <span className="my_profile_btn">
+        <span className="my_profile_btn" data-tooltip="My profile">
           <NavLink
             to={location => {
               if (location.pathname === "/users/" + currentUserId) {
@@ -117,8 +119,9 @@ export const Header = () => {
         </span>
         <span
           className="log_out_btn"
-          aria-label="Log Out"
+          aria-label="Log out"
           tabIndex="0"
+          data-tooltip="Log out"
           onClick={() => {
             dispatch(logOutUser());
           }}

@@ -236,16 +236,40 @@ code {
   }
 }
 .header_navigation span {
+  position: relative;
   margin-right: 16px;
   transition: 0.2s;
   outline: none;
+}
+.header_navigation span[data-tooltip]::before {
+  opacity: 0;
+  position: absolute;
+  content: attr(data-tooltip);
+  top: 5px;
+  right: calc(100% + 5px);
+  height: auto;
+  width: auto;
+  padding: 1px 3px;
+  white-space: nowrap;
+  font-size: 12px;
+  color: black;
+  background-color: #fff;
+  border: 1px solid black;
+  z-index: 100;
+  pointer-events: none;
 }
 .header_navigation span:nth-last-of-type() {
   margin-right: 0;
 }
 .header_navigation span:hover, .header_navigation span:focus-visible {
-  filter: drop-shadow(1px 2px 1px #131313);
   cursor: pointer;
+}
+.header_navigation span:hover > *, .header_navigation span:focus-visible > * {
+  filter: drop-shadow(1px 2px 1px #131313);
+}
+.header_navigation span:hover::before {
+  opacity: 1;
+  transition: 0.2s 1.2s;
 }
 .header_navigation a {
   text-decoration: none;
@@ -262,9 +286,6 @@ code {
   align-items: center;
   color: whitesmoke;
   margin-left: 16px;
-}
-.header_navigation .add_new_post_btn:focus-visible {
-  filter: drop-shadow(1px 2px 1px #131313);
 }
 @media (max-width: 750px) {
   .header_navigation .add_new_post_btn {
@@ -293,11 +314,13 @@ code {
   width: 29px;
 }
 .header_navigation .my_profile_btn {
+  text-decoration: none;
+}
+.header_navigation .my_profile_btn a {
+  color: whitesmoke;
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 200px;
-  color: whitesmoke;
-  text-decoration: none;
 }
 @media (max-width: 750px) {
   .header_navigation .my_profile_btn {
@@ -309,10 +332,6 @@ code {
   transition: 0.2s;
   margin-top: 6px;
   margin-right: 0;
-}
-.header_navigation .log_out_btn:hover, .header_navigation .log_out_btn:focus-visible {
-  cursor: pointer;
-  filter: drop-shadow(1px 2px 1px #131313);
 }
 @media (min-width: 825px) {
   .header_navigation .log_out_btn {
