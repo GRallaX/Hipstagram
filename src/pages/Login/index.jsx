@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { LoginForm } from "./loginForm";
 import { RegistrationForm } from "./registrationForm";
-import Wallpaper from "../../images/wpap_final 1.png";
+import Wallpaper from "../../images/login_wallpaper.jpg";
 import "./login.css";
 
 export const Login = () => {
