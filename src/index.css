@@ -178,6 +178,11 @@ code {
   align-items: center;
   padding: 0 4px;
 }
+@media (max-width: 900px) and (min-width: 750px) {
+  .main_header .users_search_input_container {
+    width: 180px;
+  }
+}
 @media (max-width: 750px) {
   .main_header .users_search_input_container {
     overflow: hidden;
@@ -189,9 +194,6 @@ code {
   .main_header .users_search_input_container {
     width: auto;
     animation: appear 0.5s;
-  }
-  .main_header .users_search_input_container .users_search_input {
-    width: 100%;
   }
 }
 .main_header .users_search_input_container span {
@@ -206,6 +208,7 @@ code {
 .main_header .users_search_input {
   padding: 3px 10px 5px 26px;
   height: 33px;
+  width: 100%;
   border: 1px solid #dbdbdb;
   border-radius: 5px;
   outline: 0;
@@ -267,9 +270,11 @@ code {
 .header_navigation span:hover > *, .header_navigation span:focus-visible > * {
   filter: drop-shadow(1px 2px 1px #131313);
 }
-.header_navigation span:hover::before {
-  opacity: 1;
-  transition: 0.2s 1.2s;
+@media (hover: hover) and (pointer: fine) {
+  .header_navigation span:hover::before {
+    opacity: 1;
+    transition: 0.2s 1.2s;
+  }
 }
 .header_navigation a {
   text-decoration: none;
@@ -317,10 +322,11 @@ code {
   text-decoration: none;
 }
 .header_navigation .my_profile_btn a {
+  display: block;
   color: whitesmoke;
   text-overflow: ellipsis;
   overflow: hidden;
-  max-width: 200px;
+  max-width: 25vw;
 }
 @media (max-width: 750px) {
   .header_navigation .my_profile_btn {

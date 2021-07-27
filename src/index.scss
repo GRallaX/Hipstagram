@@ -197,6 +197,10 @@ code {
     width: 220px;
     height: 100%;
 
+    @media (max-width: 900px) and (min-width: 750px) {
+      width: 180px;
+    }
+
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -210,10 +214,6 @@ code {
 
     @media (max-width: 540px) {
       width: auto;
-
-      .users_search_input {
-        width: 100%;
-      }
 
       animation: appear 0.5s;
     }
@@ -233,6 +233,7 @@ code {
   .users_search_input {
     padding: 3px 10px 5px 26px;
     height: 33px;
+    width: 100%;
 
     border: 1px solid #dbdbdb;
     border-radius: 5px;
@@ -311,10 +312,12 @@ code {
       }
     }
 
-    &:hover {
-      &::before {
-        opacity: 1;
-        transition: 0.2s 1.2s;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        &::before {
+          opacity: 1;
+          transition: 0.2s 1.2s;
+        }
       }
     }
   }
@@ -374,10 +377,11 @@ code {
     text-decoration: none;
 
     a {
+      display: block;
       color: whitesmoke;
       text-overflow: ellipsis;
       overflow: hidden;
-      max-width: 200px;
+      max-width: 25vw;
     }
 
     @media (max-width: 750px) {
