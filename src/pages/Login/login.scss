@@ -208,6 +208,8 @@
 
       transition: 0.3s;
 
+      pointer-events: none;
+
       &.active {
         top: 0px;
 
